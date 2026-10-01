@@ -1,3 +1,15 @@
+# 2026-10-01 공개 연결 근거 릴리스
+
+- 사용자 승인에 따라 MCP v2 로그, 중앙 검증, 다수 사용자 프로젝트 대시보드와 Kit 한·영 안내를 구현했습니다.
+- 공개 GitHub: https://github.com/heejunyoo/ai-pms
+- 새 앱: https://ai-pms-dashboard.vercel.app ; 보고서: /report.html
+- 기존 Kit: https://harness-kit.vercel.app/ai-pms.html (영어: ai-pms-en.html), 새 앱 연결과 개선된 activity ZIP.
+- 정본은 이 작업 폴더 및 ~/.claude/harness의 canonical sources. 공개 복사본은 별도 ai-pms-public Git 저장소로 개인 설정/원본 home Git 이력을 포함하지 않습니다.
+- 현재 검증은 specs/ai-pms-connectivity/verify_release.py와 release-proof.json, 공개 복사본 scripts/verify_public.py. 예전 해시 영수증은 역사적 자료입니다.
+- 실제 앱 훅 전달, Cursor/Gemini 어댑터, 모르는 사용자 PC 자동 수집, 운영 인증/수신 서버 연결은 후속 범위입니다. 합성 호출 완료를 실제 DB 접근 감사로 승격하지 않습니다.
+
+---
+
 # 다음 세션 — 중앙 AI PMS 구현
 
 ## 최신 완료 — 2026-10-01 자동 수집 제외 중앙 프로젝트 대시보드

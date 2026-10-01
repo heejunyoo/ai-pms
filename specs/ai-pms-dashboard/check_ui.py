@@ -39,6 +39,7 @@ def main():
     page.feed(html)
     assert not page.external, 'UI must not require external resources'
     assert {'pms-data', 'portfolio', 'detail', 'search', 'ownerFilter', 'statusFilter', 'phaseFilter', 'importFile', 'exportButton', 'error', 'detailPanel', 'documentSelect'} - page.ids == {'documentSelect'}
+    assert "failed:'호출 실패'" in html and "completed:'호출 완료'" in html
     assert 'role="alert"' in html and 'role="tablist"' in html and 'aria-selected=' in html
     data = next(body for attrs, body in page.scripts if attrs.get('id') == 'pms-data')
     assert json.loads(data)['projects'] == []

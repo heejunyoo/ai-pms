@@ -1,18 +1,18 @@
 {
   "reviewer": "/root/connectivity_release_review",
   "verdict": "no_blockers",
-  "reviewed_at": "2026-10-01T11:29:01.960358+00:00",
+  "reviewed_at": "2026-10-01T11:59:13.446567+00:00",
   "sha256": {
     "specs/ai-pms-connectivity/source.md": "f44342ad6d82e9ca89db4ac221318b24751ccc5290090b859085fa86f8f78180",
     "specs/ai-pms-connectivity/spec.md": "6f8be2e59d7b993cc81f9fbcefd7dfc3cb784c3c478560e38f578cba7b4d5577",
     "specs/ai-pms-central/central.py": "42898dc06d3e0d13cc5dbab33f45a03d62061974477428cb84ecedd8ef4062e9",
     "specs/ai-pms-central/connectivity.py": "4481158de00815d8a61dda9d14a09c64be3b95f70d8f72a4b203a87ddf1ad59f",
     "specs/ai-pms-dashboard/portfolio.py": "477cc0006a0d64ce170cf0b7d8fd5af3e5c4e8f23b44348a52c978d3bea0ef8a",
-    "specs/ai-pms-dashboard/dashboard.html": "1cf568e9e9a4d51b030725079838fcb7c68a5e30ac006f73a0a3a0e6c2ef820b",
-    "specs/ai-pms-dashboard/check_ui.py": "fb5d1962314ecc72c8b5cb19e3aad5ae9b1b2e48a90ad5ddfb4b75e5fa16d1e4",
+    "specs/ai-pms-dashboard/dashboard.html": "61c31e77c753b8960c8b51bbda67c7d02d294edd236ec052446ae0db8fc7359c",
+    "specs/ai-pms-dashboard/check_ui.py": "2a04417629289732c24e577aa0c61ee66fd6301d86c73dc71316e96b3f2d0934",
     "specs/ai-pms-dashboard/sample/generate.py": "a4fbcc31178ddb4f3f2e2a1a42b039490d7df00ddf7e70b1a0d585433306fb84",
     "scripts/build_dashboard_app.py": "c1777daac9066b99f4d585db62a457f69b0fe73aed57dc078ed071616d696b66",
-    "reports/ai-pms-eli20/index.html": "13520736ddf632135fb5680b00b938cac1f5fc1ccb44f91e854863c72a6a9ce7",
+    "reports/ai-pms-eli20/index.html": "2e2030a1583368c94c7a6caefe43689138b426ff01e066b64cfe5ef61ba90ba8",
     "$HOME/.claude/harness/activity/logger.py": "1f680659d204fba0c0d0b1f36f9eece8b0229393fc69d9e2e599790dac863339",
     "$HOME/.claude/harness/activity/connectivity.py": "4481158de00815d8a61dda9d14a09c64be3b95f70d8f72a4b203a87ddf1ad59f",
     "$HOME/.claude/harness/build/current_content.py": "2fc748413fd39efc9dd23b705346960c8c2defeb14fd880f61798bbf80ad2083",
@@ -22,7 +22,7 @@
     "specs/ai-pms-dashboard/test_portfolio.py": "5b8e9ad13105b3df43f92a331fc98fc4b2ede2b5944d91741edd853dbeea8e8a",
     "specs/ai-pms-dashboard/sample/central.json": "35a181490e9d2aab0289472c64159b4514e8ba1e3dab940b608e8efae37c4b88",
     "specs/ai-pms-dashboard/sample/catalog.json": "b40cb0a3189c6edc1ab26040b95f61c40c6d64c8de9b22d15d0757b91ca4bf9c",
-    "apps/dashboard/vercel.json": "5d185962ae18ba15dded24d800800148c4e8e5ac0b772edc67eb9dc716e090ec"
+    "apps/dashboard/vercel.json": "0163c292d391e009e2a220aa2cb9028f49b787a757bbd7bcc18e3a0f35986d41"
   },
   "findings": [],
   "checks": {
@@ -31,7 +31,9 @@
     "test_central.py": "4 passed",
     "test_logger.py": "11 passed",
     "independent_reproductions": "contradictory status rejected; malformed type false; Bearer rejected; both Kit UUIDs valid; malformed top-level and connection type matrix no crashes",
-    "static_csp": "all generated inline script hashes match routes; network blocked; report local links rebased"
+    "static_csp": "all generated inline script hashes match routes; network blocked; report local links rebased",
+    "final_ui_wording": "Connection badge uses call status labels, project/check badges retain defaults; UI checker passes, rebuilt CSP hashes match.",
+    "final_report_links": "Canonical references point to current connectivity spec/browser observation; static app rebases them to public repository; regenerated script CSP hashes match."
   },
   "boundary": "Independent source/static review only; no production/public-byte/browser proof. Final deployment verification remains parent responsibility.",
   "resolved_findings": [

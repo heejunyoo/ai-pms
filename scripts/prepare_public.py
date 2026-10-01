@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Create an isolated publication snapshot; never copies home Git history/config."""
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import shutil
@@ -26,6 +27,10 @@ def main():
             source=home/'.claude/harness'/folder/name
             assert source.is_file(),source
             target=out/'kit'/folder/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(source.read_bytes());copied.append(target.relative_to(out).as_posix())
+    for name in ('implementation.zip','reference-ko.zip','reference-en.zip'):
+        source=home/'.claude/harness/site/public'/name
+        target=out/'kit/downloads'/name;target.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copyfile(source,target);copied.append(target.relative_to(out).as_posix())
     (out/'.gitignore').write_text('__pycache__/\n*.pyc\n.vercel/\n.env*\n*.pem\n*.key\n.DS_Store\n')
     (out/'PUBLIC_SNAPSHOT.md').write_text('''# Publication boundary
 
@@ -33,6 +38,13 @@ This repository is a clean public snapshot of AI PMS research, implementation, t
 
 Kit/build contains the canonical source used in the existing Harness Kit home installation; that full generator needs the separately configured Harness Kit environment. Kit/activity is portable and independently testable. Public Kit downloads contain explicit, reviewed implementation sources. The sample app is a static synthetic dashboard, not a hosted receiver or an authenticated operations service. Automatic collection from users' PCs remains deferred.
 ''')
+    proof_path=out/'specs/ai-pms-connectivity/release-proof.json'
+    if proof_path.exists():
+        proof=json.loads(proof_path.read_text())
+        proof['source_proof_sha256']=hashlib.sha256((ROOT/'specs/ai-pms-connectivity/release-proof.json').read_bytes()).hexdigest()
+        proof['publication_rebased']=True
+        proof['sha256']={name:hashlib.sha256((out/name).read_bytes()).hexdigest() for name in proof['sha256']}
+        proof_path.write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n')
     (out/'publication-manifest.json').write_text(json.dumps({'kind':'sanitized-public-snapshot','files':sorted(copied),'excluded':['home Git history','credentials and settings','private audit backups','real runtime logs and inventory'],'personal_paths_replaced':True},indent=2)+'\n')
     print('Prepared',len(copied),'public source/sample/doc files')
 if __name__=='__main__':main()

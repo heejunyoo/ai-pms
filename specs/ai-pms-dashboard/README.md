@@ -1,3 +1,11 @@
+# 2026-10-01 연결 근거 개선 및 공개 릴리스
+
+[공개 샘플](https://ai-pms-dashboard.vercel.app) · [ELI20](https://ai-pms-dashboard.vercel.app/report.html) · [GitHub](https://github.com/heejunyoo/ai-pms) · [Kit](https://harness-kit.vercel.app/ai-pms.html)
+
+v2 모델은 MCP 서버·도구·호출 상태·데이터 참조·명시적인 산출물 참조를 사용자/환경별로 보여줍니다. v1 가져오기는 유지합니다. 현재 공개 앱 생성은 `python3 scripts/build_dashboard_app.py`, 현재 릴리스 검증은 `python3 specs/ai-pms-connectivity/verify_release.py`입니다. 공개 복사본의 핵심 검사는 `python3 scripts/verify_public.py`로 실행합니다.
+
+아래 v1 인수 영수증과 `verify_dashboard.py`, transport의 기존 `verify_transport.py`는 이전 브라우저 생성물에 해시를 묶은 역사적 기준입니다. v2에서 중앙·화면 코드가 바뀌어 옛 영수증의 freshness 검사에는 실패할 수 있으며 현재 릴리스 증거로 재사용하지 않습니다. 새 합성 데이터·공개 화면·검사 근거는 `specs/ai-pms-connectivity/release-proof.json`과 `browser-observation.md`에 있습니다.
+
 # 중앙 AI PMS 대시보드
 
 자동 수집 없이 로컬로 가져온 자료를 사용하는 중앙 현황·상세 화면입니다. 외부 리소스나 서버 없이 생성된 HTML을 브라우저에서 열 수 있습니다. `evidence/dashboard.html`은 다섯 합성 사용자 프로젝트를 넣은 실행 예제입니다.
