@@ -1,0 +1,41 @@
+{
+  "task_id": "activity-kit",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": ".claude/harness/build/build_current.py",
+      "action": "modified",
+      "summary": "Explicit 4-file activity ZIP allowlist plus bilingual package destination and offline usage in REFERENCE.md; canonical snapshot runs activity_logger_regressions before building"
+    },
+    {
+      "path": ".claude/harness/build/current_content.py",
+      "action": "modified",
+      "summary": "Bilingual Codex and Claude logger placement, merge-only command hooks with timeout 3, safety preservation, trust verification and privacy limits"
+    },
+    {
+      "path": ".claude/harness/build/check_current.py",
+      "action": "modified",
+      "summary": "Exact activity ZIP allowlist and bilingual logger hookup presence checks"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 -m py_compile .claude/harness/build/build_current.py .claude/harness/build/current_content.py .claude/harness/build/check_current.py",
+    "exit_code": 0,
+    "output_tail": ""
+  },
+  "done_when_check": [
+    {
+      "condition": "Implementation ZIP explicitly includes activity package without private logs or index",
+      "met": true,
+      "evidence": "build_current.py build() exports only activity/logger.py,test_logger.py,viewer.html,README.md; check_current.py asserts exact activity members"
+    },
+    {
+      "condition": "Both setup languages include same logger configuration steps preserving safety hooks",
+      "met": true,
+      "evidence": "current_content.py shared activity section emits same supported event JSON with timeout 3 in ko/en; local JSON and rendered HTML checks passed"
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.94,
+  "notes_for_orchestrator": "Full temporary Kit build/check remains parent integration after logger/viewer/README files are ready. Added timeout 3 per review. Did not export check_viewer.py; spec fixes four public activity files. Existing export boundary rejects literal /Users/ in all source bytes. Official source links already emitted on Codex/Claude guide pages. No live config or deploy changes. Parent review integrated activity_logger_regressions into snapshot(); py_compile rerun passed. Full build remains parent integration."
+}

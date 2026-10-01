@@ -1,0 +1,31 @@
+{
+  "task_id": "workflow-flowcheck",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": ".claude/harness/activity/test_workflow.py",
+      "action": "created",
+      "summary": "Added an offline Node VM DOM simulation for real viewer control IDs and events, including project/baseline creation, decision recording, selected-scope packet export, full JSONL save/reimport, reset state, and plain-text artifact safety."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 .claude/harness/activity/test_workflow.py",
+    "exit_code": 0,
+    "output_tail": "offline DOM workflow events, scoped packet, JSONL reimport, and plain-text artifact safety passed"
+  },
+  "done_when_check": [
+    {
+      "condition": "DOM-unit flow creates project, records decision and exports selected scoped work packet",
+      "met": true,
+      "evidence": "The test dispatches the actual project-start, baseline-form, file-import, basis-select, decision-form, basis-confirm, artifact-version-select, next-task-form, and save-project controls; the packet contains the selected artifact version, matching decision, and user-provided task and acceptance condition."
+    },
+    {
+      "condition": "Saved project JSONL roundtrips and plain-text artifact content never executes",
+      "met": true,
+      "evidence": "The saved full-project JSONL reimports with all four events and preserves baseline and decision fields. A script-like file preview remains literal text; size-limit, clear/reimport state, artifact switch, and review-target reset checks pass."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.96,
+  "notes_for_orchestrator": "This is an offline DOM simulation of actual UI event wiring, not browser visual proof. The requested result metadata file is excluded from files_changed."
+}

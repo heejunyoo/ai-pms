@@ -1,0 +1,46 @@
+{
+  "task_id": "send-retry",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-transport/sender.py",
+      "action": "created",
+      "summary": "stdlib loopback sender with bounded durable immutable outbox, identity binding, mixed-project JSONL filtering, retry/blocked/heartbeat and checkpoint recovery"
+    },
+    {
+      "path": "specs/ai-pms-transport/test_sender.py",
+      "action": "created",
+      "summary": "actual synthetic HTTP recovery and negative acceptance checks"
+    },
+    {
+      "path": "specs/ai-pms-transport/send-retry-result.json",
+      "action": "created",
+      "summary": "bounded handoff result receipt"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-transport/test_sender.py",
+    "exit_code": 0,
+    "output_tail": "sender: actual HTTP mixed-project/restart/offline/wrongACK/drop/redirect/retry/blocked/cap/heartbeat/state-failure checks passed"
+  },
+  "done_when_check": [
+    {
+      "condition": "등록 project JSONL만 size-aware durable outbox에 적재하고 완전 ACK만 인정한다",
+      "met": true,
+      "evidence": "test_sender.py actual HTTP mixed-project filtering, unfinished-line deferral, 101-event size splitting, full ACK and wrong context ACK checks passed"
+    },
+    {
+      "condition": "재시작·응답 분실·오프라인·blocked·wrong ACK에서 원본과 상태를 보존한다",
+      "met": true,
+      "evidence": "test_sender.py restart, identical raw bytes retry, offline clock, dropped response, wrong ACK, blocked, conflict, cap, pre-checkpoint and post-replace ACK-state failure checks passed"
+    },
+    {
+      "condition": "실제 loopback 송수신 및 sender 반례 검사를 통과한다",
+      "met": true,
+      "evidence": "Actual elevated python3 specs/ai-pms-transport/test_sender.py exit 0; proxy env ignored and redirect prevented"
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.93,
+  "notes_for_orchestrator": "Only assigned files edited; common/receiver contract unchanged. inflight.json durable batch marker retries even ACK checkpoint replacement followed by fsync failure. Synthetic loopback only; actual_multi_user_delivery_verified=false and product_complete=false. ACKed raw batches retained at 64MiB ceiling; state capped at 8MiB. Parent owns full integration/UI acceptance."
+}

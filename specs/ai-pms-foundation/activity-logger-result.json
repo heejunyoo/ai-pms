@@ -1,0 +1,22 @@
+{
+  "task_id": "activity-logger",
+  "status": "complete",
+  "files_changed": [
+    {"path": ".claude/harness/activity/logger.py", "action": "created", "summary": "Private versioned POSIX JSONL logger, provider correlation, explicit evidence validation"},
+    {"path": ".claude/harness/activity/test_logger.py", "action": "created", "summary": "Ten subprocess integration checks including baseline revisions, decision reasons and manual subagent correlation"},
+    {"path": ".claude/harness/activity/README.md", "action": "created", "summary": "Bilingual local install, schema allowlists, evidence uncertainty, privacy and retention documentation"}
+  ],
+  "acceptance_run": {
+    "command": "python3 .claude/harness/activity/test_logger.py",
+    "exit_code": 0,
+    "output_tail": "Ran 10 tests in 1.352s\n\nOK"
+  },
+  "done_when_check": [
+    {"condition": "Hook input produces versioned privacy-safe JSONL with stable project identity and correlation fields", "met": true, "evidence": "Native privacy/identity, provider tool_use_id and MCP categorization, timestamp and project override tests pass with real subprocess writes"},
+    {"condition": "Explicit decisions/artifact/check records validate and never imply observed acceptance", "met": true, "evidence": "All five manual kinds tested; declared authority, required exact version links and status enums enforced; baseline requires phase/revision/goal/scope; decision requires phase/revision/ID/summary/reason; pass check preserves independent pending acceptance"},
+    {"condition": "Malformed input/concurrency/privacy and failure behavior checks pass", "met": true, "evidence": "Malformed JSON, wrong types, NaN, oversized payload, credential/path/key rejection, symlink directory failure and 24 concurrent append/index checks pass"}
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.94,
+  "notes_for_orchestrator": "Runtime hook delivery remains unverified as required; no live configuration/deployment changes. Final v1 links include nullable baseline_version for every kind; baselines require phase_id+baseline_version and nonempty goal/scope; decisions require phase_id+baseline_version+decision_id and nonempty summary/reason, optional scope_added/scope_removed. Data allowlists match root clarification. Provider tool_use_id maps to canonical tool_call_id; MCP tools collapse to MCP. Export only daily JSONL; never export private project-index. Kit must omit Codex SubagentStop until required stdout response supported. Local index corruption warns and does not silently reassign identity. The packet explicitly authorizes this result JSON in addition to the three source files."
+}

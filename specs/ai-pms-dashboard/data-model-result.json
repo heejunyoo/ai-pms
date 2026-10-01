@@ -1,0 +1,96 @@
+{
+  "task_id": "data-model",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/portfolio.py",
+      "action": "created",
+      "summary": "오프라인 모델·합성 입력·의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/test_portfolio.py",
+      "action": "created",
+      "summary": "오프라인 모델·합성 입력·의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/Alice-desktop.jsonl",
+      "action": "created",
+      "summary": "오프라인 모델·합성 입력·의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/Alice-laptop.jsonl",
+      "action": "created",
+      "summary": "오프라인 모델·합성 입력·의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/Bob-laptop.jsonl",
+      "action": "created",
+      "summary": "오프라인 모델·합성 입력·의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/Carol-desktop.jsonl",
+      "action": "created",
+      "summary": "오프라인 모델·합성 입력·의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/Dana-laptop.jsonl",
+      "action": "created",
+      "summary": "오프라인 모델·합성 입력·의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/Eve-unmapped.jsonl",
+      "action": "created",
+      "summary": "오프라인 모델·합성 입력·의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/README.md",
+      "action": "created",
+      "summary": "오프라인 모델·합성 입력·의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/catalog.json",
+      "action": "created",
+      "summary": "오프라인 모델·합성 입력·의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/central.json",
+      "action": "created",
+      "summary": "오프라인 모델·합성 입력·의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/generate.py",
+      "action": "created",
+      "summary": "오프라인 모델·합성 입력·의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/manifest.json",
+      "action": "created",
+      "summary": "오프라인 모델·합성 입력·의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/data-model-result.json",
+      "action": "created",
+      "summary": "핸드오프 결과"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-dashboard/test_portfolio.py",
+    "exit_code": 0,
+    "output_tail": "Ran 16 tests in 1.181s\nOK"
+  },
+  "done_when_check": [
+    {
+      "condition": "명세의 공유 모델과 해당 파일 경계가 준수되고 검증 명령이 통과한다",
+      "met": true,
+      "evidence": "portfolio.py build_model/render_html; test_portfolio.py 16 tests exit0; UI 소유 파일 변경 없음"
+    },
+    {
+      "condition": "완료와 재검증, 여러 세션 및 사용자 귀속이 정확히 반영된다",
+      "met": true,
+      "evidence": "test_sample_purpose/revision_freshness/changed_signature/future_records/conflicting_equal_timestamps/wrong_scope/source_identity 통과; parsed UTC milestone ordering/orphan session alerts regression 통과"
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.93,
+  "notes_for_orchestrator": "실제 브라우저·통합 acceptance는 부모 담당. 합성/가져온 검사 기록이며 command 실행 없음. 독립 검토 수정: UTC milestone sorting, orphan/ambiguous run session alerts, missing-source/catalog-only declared evidence mode, final model<=1000 projects / output arrays<=10000 / canonical bytes<=6M, Bearer rejection, compact JSON output. sample/README.md fingerprint 생성법. 최신검사 bisect 조회 및 그룹별 충돌 판정으로 10000 runs 경계 검증 1.181초 통과."
+}

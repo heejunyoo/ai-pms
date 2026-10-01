@@ -1,0 +1,146 @@
+{
+  "goal": "여러 사용자 환경 기록을 로컬 중앙 저장/집계해 관리자가 다중 프로젝트와 원본 근거를 확인한다",
+  "author": "root-central-author",
+  "spec_ref": "spec.md",
+  "intent_guard": {
+    "source_ref": "../../PRODUCT-INTENT.md",
+    "requirements": [
+      {
+        "id": "central-1",
+        "quote": "서로 다른 두 사용자 환경의 기록이 하나의 중앙 저장/집계 경로로 들어온다. 사용자·환경·프로젝트의 식별이 섞이지 않는다.",
+        "outcome": "서로 다른 두 사용자 환경의 기록이 하나의 중앙 저장/집계 경로로 들어온다. 사용자·환경·프로젝트의 식별이 섞이지 않는다."
+      },
+      {
+        "id": "central-2",
+        "quote": "중앙 첫 화면에서 여러 프로젝트의 목표, 단계, 최근 변경, Agent/결과물 연결, 관리 필요 항목을 비교할 수 있다.",
+        "outcome": "중앙 첫 화면에서 여러 프로젝트의 목표, 단계, 최근 변경, Agent/결과물 연결, 관리 필요 항목을 비교할 수 있다."
+      },
+      {
+        "id": "central-3",
+        "quote": "중앙 목록에서 프로젝트와 원본 근거로 내려갈 수 있다. 개인의 '새 프로젝트 시작'이 중앙 관리 화면의 주 흐름을 대체하지 않는다.",
+        "outcome": "중앙 목록에서 프로젝트와 원본 근거로 내려갈 수 있다. 개인의 '새 프로젝트 시작'이 중앙 관리 화면의 주 흐름을 대체하지 않는다."
+      },
+      {
+        "id": "central-4",
+        "quote": "누락·연결 실패·수집 지연을 정상 진행이나 완료로 표현하지 않는다.",
+        "outcome": "누락·연결 실패·수집 지연을 정상 진행이나 완료로 표현하지 않는다."
+      },
+      {
+        "id": "central-5",
+        "quote": "로컬 수집 검사만으로 중앙 수집/집계/관리 기능 구현을 완료로 판정하지 않는다. 모의 데이터 검증과 실제 환경 전달 증거를 구별한다.",
+        "outcome": "로컬 수집 검사만으로 중앙 수집/집계/관리 기능 구현을 완료로 판정하지 않는다. 모의 데이터 검증과 실제 환경 전달 증거를 구별한다."
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-central/verify_acceptance.py",
+      "expect_exit_code": 0
+    }
+  },
+  "open_decisions": [],
+  "phases": [
+    {
+      "id": "central",
+      "name": "중앙 로컬 집계와 관리자 근거 흐름",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-central/verify_acceptance.py",
+        "expect_exit_code": 0
+      },
+      "rollback": "신규 중앙 로컬 도구 사용 중지; 기존 logger와 로그를 보존"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "central-local-flow",
+      "kind": "implement",
+      "phase": "central",
+      "depends_on": [],
+      "objective": "구현한다: 두 출처의 중앙 로컬 집계와 관리자 목록에서 원본 근거까지 이어지는 흐름",
+      "requirement_ids": [
+        "central-1",
+        "central-2",
+        "central-3",
+        "central-4",
+        "central-5"
+      ],
+      "done_when": [
+        "두 출처의 식별이 분리되며 멱등 수집/충돌/실패와 지연이 검사된다",
+        "다중 프로젝트 목록에서 목표/Phase/변경/Agent/산출물/관리 항목과 원본 근거를 볼 수 있다",
+        "실제 logger subprocess 기반 검사가 통과하며 합성/실제 전달의 경계를 README에 명시한다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-central/test_central.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-central/central.py",
+          "symbol": "import_sources, render, main",
+          "what": "새 로컬 중앙 수집/검증/집계/HTML 렌더 CLI 구현"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-central/central.py",
+        "specs/ai-pms-central/test_central.py",
+        "specs/ai-pms-central/README.md",
+        "specs/ai-pms-central/sample/manifest.json",
+        "specs/ai-pms-central/sample/source-a.jsonl",
+        "specs/ai-pms-central/sample/source-b.jsonl",
+        "specs/ai-pms-central/implementation-result.json"
+      ],
+      "reference_impl": {
+        "path": "$HOME/.claude/harness/activity/logger.py",
+        "why": "기존 v1 상수와 개인정보 제한, POSIX 잠금 규약을 재사용한다"
+      },
+      "already_tried": [
+        {
+          "what": "python3 -m unittest test_logger.py",
+          "result": "10 tests OK in activity directory"
+        },
+        {
+          "what": "python3 specs/ai-pms-central/test_central.py",
+          "result": "구현 전 파일 없음 exit 2 확인"
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-central/spec.md",
+        "facts": [
+          "작업 루트 $HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "자동 전송 증거 없이 완료 표현 금지; 부모가 브라우저 인수를 담당"
+        ],
+        "conventions": [
+          "Python stdlib, 한국어 UI, textContent, 기존 계약 변경 없음"
+        ],
+        "files": [
+          "PRODUCT-INTENT.md",
+          "specs/ai-pms-central/spec.md",
+          "specs/ai-pms-foundation/spec.md",
+          "$HOME/.claude/harness/activity/logger.py"
+        ],
+        "excluded": "글로벌 훅/Kit/개인 viewer/배포/DB/API는 제외"
+      },
+      "constraints": {
+        "must": [
+          "명세를 전부 읽고 보안/귀속/누락/접근성을 검증한다",
+          "반환은 handoff result schema에 맞춰 implementation-result.json에 저장한다"
+        ],
+        "must_not": [
+          "명세/정본/계획/기존 코드/테스트/설정 변경 금지",
+          "새 DB/API/서버/배포/외부 전송 금지"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 60
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "main"
+      }
+    }
+  ]
+}

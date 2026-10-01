@@ -1,0 +1,15 @@
+{
+  "reviewer": "independent-delivery-reviewer",
+  "verdict": "aligned",
+  "source_sha256": "e277f3669b0f7c8046f44bb463a853e3dd92791b465b449e6c4c70f9024d54a3",
+  "spec_sha256": "8032669a26a0f7db58431eb1378e02b89d7ce2a7e9ad273d1cb0a30d79d67d2f",
+  "requirements_covered": [
+    "central-1",
+    "central-2",
+    "central-3",
+    "central-4",
+    "central-5"
+  ],
+  "unapproved_changes": [],
+  "evidence": "PRODUCT-INTENT.md·spec.md·sources.md·plan.json를 직접 읽고 대조했다. NEXT_SESSION의 실환경 전달 구현 전 준비 단계로 정렬되며 구현/전송/배포 승인 또는 제품 완료 승인이 아니다. central-1은 환경 credential에 actor/environment/project 등록을 바인딩하고 서로 다른 동의 사용자 앱 이벤트→logger→outbox→인증 inbox→집계→관리 원문 대조를 향후 인수로 고정한다. 실제 두 사용자 전달은 현재 미충족이다. central-2/3은 기존 중앙 다중 프로젝트 관리자와 관계/원문 탐색을 유지하고 envelope 수신/집계 상태를 별도로 보여주는 방향이다. central-4는 durable inbox ACK와 집계/관리 화면 반영을 구분하고 blocked/지연/충돌/heartbeat를 정상 완료로 승격하지 않는다. central-5는 synthetic loopback과 실제 사용자 증거를 분리하고 현재 actual_delivery_verified=false, product_complete=false, api_implementation_approved=false를 유지한다. A 로컬 API loopback 구현과 B 실목적지/동의사용자/훅trust/자격/배포는 모두 미승인으로 분리한다. 이번 생성물은 read-only 설정 inventory, 준비검사, runbook 및 승인요청 문서이며 네트워크/키/로그/API 실행을 허용하지 않는다. 변경된 명세를 직접 재검토했다. exact ACK protocol/status/UTC시각/types 및 ID 순서, size-aware 배치 분할, outbox fsync/단일 sender 잠금, strict JSON, 독립 delivery-state.json과 선택적 --delivery-state 관리자 통합이 명시되어 이전 설계 지적이 명세상 해소됐다. 실제 inbox에서 상태 없는 배치를 queued로 계산하고 중앙 commit/본문 hash 대조 뒤에만 aggregated로 표시하며 metadata 손상/한도는 상태 불명으로 유지한다. 현재 preparation checker는 실 로그를 읽지 않고 고정 설정 선언만 조사하는 승인 전 범위다. 자유텍스트 goal/summary의 잔여 민감정보와 참여자 동의/보관/열람 경계는 이후 runbook 및 승인 B에 유지해야 한다. 이 제안의 실제 구현/보안/ACK 영속성과 공식 앱 문서의 실제 동작은 이번 읽기 검토로 검증하지 않았다. SHA-256은 실제 파일 바이트를 계산한 값이다."
+}

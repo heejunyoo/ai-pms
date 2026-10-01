@@ -1,0 +1,31 @@
+{
+  "task_id": "activity-integration",
+  "status": "partial",
+  "files_changed": [],
+  "acceptance_run": {
+    "command": "python3 .claude/harness/activity/test_logger.py && python3 .claude/harness/activity/check_viewer.py && python3 .claude/harness/build/build_current.py --output /private/tmp/ai-pms-kit-preview/public && python3 .claude/harness/build/check_site.py /private/tmp/ai-pms-kit-preview/public",
+    "exit_code": 0,
+    "output_tail": "10 logger tests OK; viewer import checks passed; Kit 34 pages ALL PASS; actual logger output accepted by viewer importer"
+  },
+  "done_when_check": [
+    {
+      "condition": "Parent independently reruns logger and viewer acceptance checks",
+      "met": true,
+      "evidence": "Parent ran verify_flow.py: 10 tests OK and viewer importer accepted all 8 generated records."
+    },
+    {
+      "condition": "Kit build and full-site check pass with private state excluded",
+      "met": true,
+      "evidence": "Temporary and canonical build/check passed: 34 pages, bilingual parity, exact 4 activity export files, privacy and offline checks."
+    },
+    {
+      "condition": "Browser actually imports locally generated JSONL and displays declared and observed records",
+      "met": false,
+      "evidence": "Browser automation rejected file URL protocol (HTTP/HTTPS only), so actual visual and file-picker inspection not performed. No workaround attempted."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.9,
+  "notes_for_orchestrator": "Local implementation and CLI/import/bundle checks pass. Fresh provider app trust/delivery and real browser visual/file selection remain unverified. No live settings changes or deployment.",
+  "next_packet_hint": "User opens viewer.html and selects local-verification-log.jsonl; then authorized isolated provider hookup pilot captures real events."
+}

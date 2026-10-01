@@ -1,0 +1,243 @@
+{
+  "goal": "자동수집 없이 여러 사용자의 다중 세션 프로젝트와 문서·진행·완료 상태를 중앙 대시보드에서 탐색한다",
+  "author": "root-dashboard-author",
+  "spec_ref": "spec.md",
+  "intent_guard": {
+    "source_ref": "source.md",
+    "requirements": [
+      {
+        "id": "multi-session",
+        "quote": "하나의 사용자의 다수 세션을 넘어서, 다수 사용자의 다수 세션을 보고자 하는게 목적이야.",
+        "outcome": "다수 사용자·환경·세션을 명시적으로 지속 프로젝트에 연결"
+      },
+      {
+        "id": "progress-docs",
+        "quote": "각각의 사람들이 각각이 어떤 목적을 가지고 무엇을 만들고자 하는지, 그 단계에서 어떤 문서들을 만들고 어떻게 진행이 되는지, 완성 상태에 도달은 했는지 등등을 보고자 하는거고",
+        "outcome": "목표·문서 변화·단계·검증의 중앙 현황과 상세"
+      },
+      {
+        "id": "completion",
+        "quote": "완성의 기준이 테스트 통과라는 것도 알수 있고 로깅 할 수 있을거라고 생각한다는 거야.",
+        "outcome": "설정된 전체 검사 결과로 완료 및 변경후 재검증 판정"
+      },
+      {
+        "id": "offline-dashboard",
+        "quote": "나머지를 구현하고, 대시보드까지 완성하자.",
+        "outcome": "자동수집 없이 사용할 수 있는 오프라인 대시보드 인수"
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-dashboard/verify_dashboard.py",
+      "expect_exit_code": 0
+    }
+  },
+  "open_decisions": [],
+  "phases": [
+    {
+      "id": "build",
+      "name": "프로젝트 모델과 화면 구현",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-dashboard/test_portfolio.py && python3 specs/ai-pms-dashboard/check_ui.py",
+        "expect_exit_code": 0
+      }
+    },
+    {
+      "id": "accept",
+      "name": "부모 통합 및 실제 화면 인수",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-dashboard/verify_dashboard.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "data-model",
+      "requirement_ids": [
+        "multi-session",
+        "progress-docs",
+        "completion",
+        "offline-dashboard"
+      ],
+      "kind": "implement",
+      "phase": "build",
+      "depends_on": [],
+      "objective": "구현한다: 사용자 제공 프로젝트 연결·문서 이력·버전별 완료 판정을 생성하는 로컬 모델",
+      "done_when": [
+        "명세의 공유 모델과 해당 파일 경계가 준수되고 검증 명령이 통과한다",
+        "완료와 재검증, 여러 세션 및 사용자 귀속이 정확히 반영된다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-dashboard/test_portfolio.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/portfolio.py",
+          "symbol": "build_model/render_html",
+          "what": "명세대로 신규 구현한다"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-dashboard/test_portfolio.py",
+        "specs/ai-pms-dashboard/data-model-result.json",
+        "specs/ai-pms-dashboard/sample/Alice-desktop.jsonl",
+        "specs/ai-pms-dashboard/sample/Alice-laptop.jsonl",
+        "specs/ai-pms-dashboard/sample/Bob-laptop.jsonl",
+        "specs/ai-pms-dashboard/sample/Carol-desktop.jsonl",
+        "specs/ai-pms-dashboard/sample/Dana-laptop.jsonl",
+        "specs/ai-pms-dashboard/sample/Eve-unmapped.jsonl",
+        "specs/ai-pms-dashboard/sample/README.md",
+        "specs/ai-pms-dashboard/sample/catalog.json",
+        "specs/ai-pms-dashboard/sample/central.json",
+        "specs/ai-pms-dashboard/sample/generate.py",
+        "specs/ai-pms-dashboard/sample/manifest.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-central/central.py",
+        "why": "기존 event/source 근거 형식과 개인정보 경계 및 stdlib 스타일을 따른다"
+      },
+      "already_tried": [
+        {
+          "what": "python3 specs/ai-pms-central/test_central.py",
+          "result": "2 tests exit0"
+        },
+        {
+          "what": "python3 specs/ai-pms-dashboard/test_portfolio.py",
+          "result": "새 파일 미구현 exit2"
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-dashboard/spec.md",
+        "facts": [
+          "부모가 실제 브라우저와 통합 acceptance를 맡는다",
+          "UI와 모델은 spec의 정규화 view model을 공유하며 파일 경계가 겹치지 않는다"
+        ],
+        "conventions": [
+          "기존 코드 보존, 새 의존성 없음",
+          "한국어 semantic UI와 안전한 텍스트 렌더링"
+        ],
+        "files": [
+          "specs/ai-pms-dashboard/source.md",
+          "specs/ai-pms-dashboard/spec.md",
+          "PRODUCT-CLARIFICATION.md",
+          "specs/ai-pms-central/central.py"
+        ],
+        "excluded": "자동수집,네트워크 API,DB,배포,전역 훅,기존 중앙/전송 코드"
+      },
+      "constraints": {
+        "must": [
+          "spec의 공유 model을 준수",
+          "검사 후 지정 result schema로 반환",
+          "부모와 파일 경계를 유지"
+        ],
+        "must_not": [
+          "기존 코드·테스트 삭제/skip/계약 변경",
+          "네트워크/배포/의존성 추가",
+          "다른 태스크 소유 파일 수정"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": false,
+        "escalate_to": "main"
+      }
+    },
+    {
+      "task_id": "dashboard-ui",
+      "requirement_ids": [
+        "multi-session",
+        "progress-docs",
+        "completion",
+        "offline-dashboard"
+      ],
+      "kind": "implement",
+      "phase": "build",
+      "depends_on": [],
+      "objective": "구현한다: 다수 사용자 프로젝트 현황과 문서·단계·검증·세션 상세를 탐색하는 대시보드",
+      "done_when": [
+        "명세의 공유 모델과 해당 파일 경계가 준수되고 검증 명령이 통과한다",
+        "완료와 재검증, 여러 세션 및 사용자 귀속이 정확히 반영된다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-dashboard/check_ui.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/dashboard.html",
+          "symbol": "renderPortfolio/renderDetail",
+          "what": "명세대로 신규 구현한다"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-dashboard/check_ui.py",
+        "specs/ai-pms-dashboard/dashboard-ui-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-central/central.py",
+        "why": "기존 event/source 근거 형식과 개인정보 경계 및 stdlib 스타일을 따른다"
+      },
+      "already_tried": [
+        {
+          "what": "python3 specs/ai-pms-central/test_central.py",
+          "result": "2 tests exit0"
+        },
+        {
+          "what": "python3 specs/ai-pms-dashboard/test_portfolio.py",
+          "result": "새 파일 미구현 exit2"
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-dashboard/spec.md",
+        "facts": [
+          "부모가 실제 브라우저와 통합 acceptance를 맡는다",
+          "UI와 모델은 spec의 정규화 view model을 공유하며 파일 경계가 겹치지 않는다"
+        ],
+        "conventions": [
+          "기존 코드 보존, 새 의존성 없음",
+          "한국어 semantic UI와 안전한 텍스트 렌더링"
+        ],
+        "files": [
+          "specs/ai-pms-dashboard/source.md",
+          "specs/ai-pms-dashboard/spec.md",
+          "PRODUCT-CLARIFICATION.md",
+          "specs/ai-pms-central/central.py"
+        ],
+        "excluded": "자동수집,네트워크 API,DB,배포,전역 훅,기존 중앙/전송 코드"
+      },
+      "constraints": {
+        "must": [
+          "spec의 공유 model을 준수",
+          "검사 후 지정 result schema로 반환",
+          "부모와 파일 경계를 유지"
+        ],
+        "must_not": [
+          "기존 코드·테스트 삭제/skip/계약 변경",
+          "네트워크/배포/의존성 추가",
+          "다른 태스크 소유 파일 수정"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": false,
+        "escalate_to": "main"
+      }
+    }
+  ]
+}

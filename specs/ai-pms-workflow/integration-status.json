@@ -1,0 +1,29 @@
+{
+  "phases": {
+    "p1": "local acceptance passed",
+    "p2": "DOM unit interaction and canonical Kit regression passed"
+  },
+  "delegation": {
+    "implementation": [
+      "workflow-ui",
+      "workflow-kit"
+    ],
+    "verification": [
+      "workflow-flowcheck"
+    ],
+    "model": "gpt-6-luna"
+  },
+  "parent_checks": {
+    "check_viewer": "passed",
+    "logger_import_flow": "passed",
+    "test_workflow": "passed: offline DOM simulation",
+    "kit_build": "passed",
+    "kit_check": "passed: 34 pages",
+    "codex_harness": "passed"
+  },
+  "boundaries": {
+    "actual_browser_visual": "not_verified",
+    "provider_hook_delivery": "not_verified",
+    "deployment": "not_performed"
+  }
+}

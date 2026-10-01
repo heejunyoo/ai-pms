@@ -1,0 +1,18 @@
+{
+  "scope": "A-local-transport",
+  "user_quote": "승인할게 진행해. 작업하면서 원자화 및 하위모델 이관이 필요한 경우를 명확하게 정리해서 진행하도록 해.",
+  "approved": true,
+  "approved_contract_ref": "../ai-pms-delivery/spec.md",
+  "approved_contract_sha256": "8032669a26a0f7db58431eb1378e02b89d7ce2a7e9ad273d1cb0a30d79d67d2f",
+  "includes": [
+    "local sender/receiver/API contract",
+    "synthetic loopback integration",
+    "central delivery state rendering"
+  ],
+  "excludes": [
+    "external transmission/deployment",
+    "global hooks/trust",
+    "real credentials",
+    "actual user delivery claim"
+  ]
+}

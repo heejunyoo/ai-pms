@@ -1,0 +1,285 @@
+{
+  "goal": "[HISTORICAL LIMITED PROTOTYPE: follow PRODUCT-INTENT.md for subsequent work] Ship common Kit event logger plus offline evidence viewer with validated local flow",
+  "spec_ref": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-foundation/spec.md",
+  "open_decisions": [],
+  "verify_command": "python3 Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-foundation/verify_flow.py && python3 .claude/harness/build/check_site.py && python3 .codex/harness/verify.py",
+  "phases": [
+    {
+      "id": "p1",
+      "name": "Local common logs, viewer and Kit source integration",
+      "exit_check": {
+        "command": "python3 .claude/harness/activity/test_logger.py && python3 .claude/harness/activity/check_viewer.py && python3 .codex/harness/verify.py",
+        "expect_exit_code": 0
+      }
+    },
+    {
+      "id": "p2",
+      "name": "Parent integrates real local logs, Kit bundle and user visible import",
+      "exit_check": {
+        "command": "python3 .claude/harness/build/build_current.py --output /private/tmp/ai-pms-kit-preview/public && python3 .claude/harness/build/check_site.py /private/tmp/ai-pms-kit-preview/public",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "activity-logger",
+      "kind": "implement",
+      "phase": "p1",
+      "depends_on": [],
+      "objective": "Implement portable secure common event logger and runnable integration checks",
+      "done_when": [
+        "Hook input produces versioned privacy-safe JSONL with stable project identity and correlation fields",
+        "Explicit decisions/artifact/check records validate and never imply observed acceptance",
+        "Malformed input/concurrency/privacy and failure behavior checks pass"
+      ],
+      "acceptance": {
+        "command": "python3 .claude/harness/activity/test_logger.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [],
+      "files_to_create": [
+        ".claude/harness/activity/logger.py",
+        ".claude/harness/activity/test_logger.py",
+        ".claude/harness/activity/README.md"
+      ],
+      "reference_impl": {
+        "path": ".codex/hooks/safety_gate.py",
+        "why": "Reuse canonical Python stdlib and Kit conventions; read spec contract before editing"
+      },
+      "already_tried": [
+        {
+          "what": "Inspected canonical build and baseline harness verify",
+          "result": "Baseline passed; activity files absent so new acceptance initially fails"
+        }
+      ],
+      "context": {
+        "spec_ref": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-foundation/spec.md",
+        "facts": [
+          "Shared workspace; only edit assigned files. Logger/viewer contract fully fixed in spec."
+        ],
+        "conventions": [
+          "Python stdlib; no new packages; Korean polite UI; preserve existing Kit ko/en parity"
+        ],
+        "files": [
+          ".codex/hooks/safety_gate.py",
+          ".claude/harness/build/build_current.py"
+        ],
+        "excluded": "Live configs, external APIs, DB, deployment, other task files"
+      },
+      "constraints": {
+        "must": [
+          "Read spec; implement contract; return result.schema.json conforming JSON to $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-foundation/activity-logger-result.json"
+        ],
+        "must_not": [
+          "Do not edit outside assigned files or deploy/install/change live settings"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 30
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": false,
+        "escalate_to": "main"
+      }
+    },
+    {
+      "task_id": "activity-viewer",
+      "kind": "implement",
+      "phase": "p1",
+      "depends_on": [],
+      "objective": "Implement offline Korean event evidence viewer and syntax validation check",
+      "done_when": [
+        "Imported version1 JSONL displays timeline and declared decisions with evidence links",
+        "Invalid input/dedup/filter/empty states are explicit and imported text cannot execute"
+      ],
+      "acceptance": {
+        "command": "python3 .claude/harness/activity/check_viewer.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [],
+      "files_to_create": [
+        ".claude/harness/activity/viewer.html",
+        ".claude/harness/activity/check_viewer.py"
+      ],
+      "reference_impl": {
+        "path": ".claude/harness/build/build_current.py",
+        "why": "Reuse canonical Python stdlib and Kit conventions; read spec contract before editing"
+      },
+      "already_tried": [
+        {
+          "what": "Inspected canonical build and baseline harness verify",
+          "result": "Baseline passed; activity files absent so new acceptance initially fails"
+        }
+      ],
+      "context": {
+        "spec_ref": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-foundation/spec.md",
+        "facts": [
+          "Shared workspace; only edit assigned files. Logger/viewer contract fully fixed in spec."
+        ],
+        "conventions": [
+          "Python stdlib; no new packages; Korean polite UI; preserve existing Kit ko/en parity"
+        ],
+        "files": [
+          ".claude/harness/build/build_current.py"
+        ],
+        "excluded": "Live configs, external APIs, DB, deployment, other task files"
+      },
+      "constraints": {
+        "must": [
+          "Read spec; implement contract; return result.schema.json conforming JSON to $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-foundation/activity-viewer-result.json"
+        ],
+        "must_not": [
+          "Do not edit outside assigned files or deploy/install/change live settings"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 30
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": false,
+        "escalate_to": "main"
+      }
+    },
+    {
+      "task_id": "activity-kit",
+      "kind": "implement",
+      "phase": "p1",
+      "depends_on": [],
+      "objective": "Integrate common logger package and bilingual hookup instructions into canonical Kit",
+      "done_when": [
+        "Implementation ZIP explicitly includes activity package without private logs or index",
+        "Both setup languages include same logger configuration steps preserving safety hooks"
+      ],
+      "acceptance": {
+        "command": "python3 -m py_compile .claude/harness/build/build_current.py .claude/harness/build/current_content.py .claude/harness/build/check_current.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": ".claude/harness/build/build_current.py",
+          "symbol": "build",
+          "what": "Integrate common logger package and bilingual hookup instructions into canonical Kit"
+        },
+        {
+          "path": ".claude/harness/build/current_content.py",
+          "symbol": "PAGES",
+          "what": "Integrate common logger package and bilingual hookup instructions into canonical Kit"
+        },
+        {
+          "path": ".claude/harness/build/check_current.py",
+          "symbol": "PAGES",
+          "what": "Integrate common logger package and bilingual hookup instructions into canonical Kit"
+        }
+      ],
+      "files_to_create": [],
+      "reference_impl": {
+        "path": ".claude/harness/build/BUILD.md",
+        "why": "Reuse canonical Python stdlib and Kit conventions; read spec contract before editing"
+      },
+      "already_tried": [
+        {
+          "what": "Inspected canonical build and baseline harness verify",
+          "result": "Baseline passed; activity files absent so new acceptance initially fails"
+        }
+      ],
+      "context": {
+        "spec_ref": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-foundation/spec.md",
+        "facts": [
+          "Shared workspace; only edit assigned files. Logger/viewer contract fully fixed in spec."
+        ],
+        "conventions": [
+          "Python stdlib; no new packages; Korean polite UI; preserve existing Kit ko/en parity"
+        ],
+        "files": [
+          ".claude/harness/build/BUILD.md",
+          ".claude/harness/build/check_current.py"
+        ],
+        "excluded": "Live configs, external APIs, DB, deployment, other task files"
+      },
+      "constraints": {
+        "must": [
+          "Read spec; implement contract; return result.schema.json conforming JSON to $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-foundation/activity-kit-result.json"
+        ],
+        "must_not": [
+          "Do not edit outside assigned files or deploy/install/change live settings"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 30
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": false,
+        "escalate_to": "main"
+      }
+    },
+    {
+      "task_id": "activity-integration",
+      "kind": "verify",
+      "phase": "p2",
+      "depends_on": [
+        "activity-logger",
+        "activity-viewer",
+        "activity-kit"
+      ],
+      "objective": "Validate complete local logging and Kit export flow and inspect browser file import",
+      "done_when": [
+        "Parent independently reruns logger and viewer acceptance checks",
+        "Kit build and full-site check pass with private state excluded",
+        "Browser actually imports locally generated JSONL and displays declared and observed records"
+      ],
+      "acceptance": {
+        "command": "python3 .claude/harness/activity/test_logger.py && python3 .claude/harness/activity/check_viewer.py && python3 .claude/harness/build/build_current.py --output /private/tmp/ai-pms-kit-preview/public && python3 .claude/harness/build/check_site.py /private/tmp/ai-pms-kit-preview/public",
+        "expect_exit_code": 0
+      },
+      "already_tried": [],
+      "context": {
+        "spec_ref": "Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-foundation/spec.md",
+        "facts": [
+          "Parent owns this integration; browser UI evidence must be separately reported"
+        ],
+        "files": [
+          ".claude/harness/activity/logger.py",
+          ".claude/harness/activity/viewer.html",
+          ".claude/harness/build/check_current.py"
+        ],
+        "excluded": "Actual Codex/Claude app delivery and live settings changes are separate verification boundary"
+      },
+      "constraints": {
+        "must": [
+          "Do not call direct stdin checks proof of live app hook delivery"
+        ],
+        "must_not": [
+          "Do not deploy or modify live user settings"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "cua_repl"
+      ],
+      "budget": {
+        "max_turns": 20
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": false,
+        "escalate_to": "main"
+      }
+    }
+  ]
+}

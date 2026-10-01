@@ -1,0 +1,51 @@
+{
+  "task_id": "workflow-kit",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": ".claude/harness/activity/README.md",
+      "action": "modified",
+      "summary": "Documented the bilingual local work cycle, handoff packet, save boundary, privacy limits, future product direction, and mapping between viewer and automatic-log project IDs."
+    },
+    {
+      "path": ".claude/harness/activity/example-project.jsonl",
+      "action": "created",
+      "summary": "Added nine clearly synthetic schema-v1 events with two reasoned decisions and two artifact versions with distinct check and acceptance outcomes."
+    },
+    {
+      "path": ".claude/harness/build/build_current.py",
+      "action": "modified",
+      "summary": "Added the synthetic example to the explicit activity export allowlist and bilingual bundle reference, and made test_workflow.py a required build snapshot check."
+    },
+    {
+      "path": ".claude/harness/build/current_content.py",
+      "action": "modified",
+      "summary": "Updated Korean and English Kit guides for the current workflow and clearly marked planned capabilities."
+    },
+    {
+      "path": ".claude/harness/build/check_current.py",
+      "action": "modified",
+      "summary": "Required the exact five-file activity export and added privacy and logger-schema checks for the synthetic fixture."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 -m py_compile .claude/harness/build/build_current.py .claude/harness/build/current_content.py .claude/harness/build/check_current.py",
+    "exit_code": 0,
+    "output_tail": ""
+  },
+  "done_when_check": [
+    {
+      "condition": "Bilingual Kit docs explain available scope-to-Agent flow and future product boundaries",
+      "met": true,
+      "evidence": "README.md and both language branches in current_content.py describe new project/basis selection, reasoned decisions, artifact evidence, next-task packet, separate JSONL save, and future-only sync/automatic semantics/WBS/Gantt/wireframes."
+    },
+    {
+      "condition": "Exact public export includes synthetic realistic sample and excludes private logs",
+      "met": true,
+      "evidence": "build_current.py exports only the five explicit activity files including example-project.jsonl; check_current.py rejects other activity entries and validates the fixture privacy boundary and schema. A real bundle rebuild remains in the parent integration sequence."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.91,
+  "notes_for_orchestrator": "Compile acceptance passed. Direct logger parity check passed for all nine example events. The required activity_workflow_regressions snapshot gate runs test_workflow.py with no optional bypass. Final implementation.zip/site build was left to parent while UI fixes remain pending."
+}

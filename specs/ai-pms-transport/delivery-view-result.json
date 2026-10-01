@@ -1,0 +1,46 @@
+{
+  "task_id": "delivery-view",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-central/central.py",
+      "action": "modified",
+      "summary": "Optional bounded private delivery metadata, registered/no-work cards, safe global/context delivery issues, batch details, mirror provenance and delivery-only corrupt central fallback"
+    },
+    {
+      "path": "specs/ai-pms-transport/test_delivery_view.py",
+      "action": "created",
+      "summary": "Four synthetic metadata/render/in-process receiver integration tests"
+    },
+    {
+      "path": "specs/ai-pms-transport/delivery-view-result.json",
+      "action": "created",
+      "summary": "Task result receipt"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-transport/test_delivery_view.py",
+    "exit_code": 0,
+    "output_tail": "test_cli_corrupt_store_and_escaped_label ... ok\ntest_receive_aggregate_and_original_provenance ... ok\ntest_registration_heartbeat_and_failure_contexts ... ok\ntest_strict_metadata_and_fail_safe ... ok\nRan 4 tests in 0.223s\nOK"
+  },
+  "done_when_check": [
+    {
+      "condition": "등록만 된 환경과 heartbeat를 작업 관측 없이 중앙 목록에 표시한다",
+      "met": true,
+      "evidence": "test_registration_heartbeat_and_failure_contexts checks two distinct registered contexts with same project UUID, no baseline/phase/observed agents/work; zero-event aggregated heartbeat remains no work evidence."
+    },
+    {
+      "condition": "전달 대기·실패·충돌·손상 metadata와 중앙 읽기 실패를 관리 필요 상태로 보인다",
+      "met": true,
+      "evidence": "Four acceptance tests cover per-context queued/failed/conflict, removed registration global issue, duplicate/schema/time/count/private-file/missing/corrupt/marker validation and delivery-only central corrupt-store CLI fallback. Independent-review regression sources[bad].events=[] now renders central_read_failed banner in delivery mode; plain mode exits 1 with safe enum text and no traceback."
+    },
+    {
+      "condition": "기존 중앙 테스트와 metadata/UI 데이터 검사를 통과한다",
+      "met": true,
+      "evidence": "test_delivery_view.py exit0 (4 tests); unchanged test_central.py exit0 (2 tests); emitted HTML JS node --check exit0. JSON escaping/textContent, exact source key and mirror SHA/line assertions pass; browser rendering is parent-owned."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.9,
+  "notes_for_orchestrator": "No common/receiver/sender/old test/API schema/global configuration changes. Registered contexts retained with unknown counts when marker exists; corrupt metadata uses safe error object. In-process synthetic receive/aggregate check does not claim HTTP or browser verification. Parent must perform actual list-detail-original/search/error/empty-registration/390px acceptance and full verify_transport.py. actual_multi_user_delivery_verified=false; product_complete=false. Initial check errors from unresolved macOS temporary directory alias and raw escaped-JSON string assertion were corrected in this task test only; no production contract changes. Follow-up independent-review nested events-list corruption fixed: AttributeError and RecursionError covered in delivery CLI fail-safe and outer safe error handling. Four delivery checks plus two old central tests rerun exit0 after final source modification; parent evidence must be regenerated from final central.py."
+}

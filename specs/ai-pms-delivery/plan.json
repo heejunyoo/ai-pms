@@ -1,0 +1,153 @@
+{
+  "goal": "실제 두 사용자 환경 전달을 구현할 준비와 승인 범위 및 인수 절차를 검토 가능한 형태로 만든다",
+  "author": "root-delivery-author",
+  "spec_ref": "spec.md",
+  "intent_guard": {
+    "source_ref": "../../PRODUCT-INTENT.md",
+    "requirements": [
+      {
+        "id": "central-1",
+        "quote": "서로 다른 두 사용자 환경의 기록이 하나의 중앙 저장/집계 경로로 들어온다. 사용자·환경·프로젝트의 식별이 섞이지 않는다.",
+        "outcome": "서로 다른 두 사용자 환경의 기록이 하나의 중앙 저장/집계 경로로 들어온다. 사용자·환경·프로젝트의 식별이 섞이지 않는다."
+      },
+      {
+        "id": "central-2",
+        "quote": "중앙 첫 화면에서 여러 프로젝트의 목표, 단계, 최근 변경, Agent/결과물 연결, 관리 필요 항목을 비교할 수 있다.",
+        "outcome": "중앙 첫 화면에서 여러 프로젝트의 목표, 단계, 최근 변경, Agent/결과물 연결, 관리 필요 항목을 비교할 수 있다."
+      },
+      {
+        "id": "central-3",
+        "quote": "중앙 목록에서 프로젝트와 원본 근거로 내려갈 수 있다. 개인의 '새 프로젝트 시작'이 중앙 관리 화면의 주 흐름을 대체하지 않는다.",
+        "outcome": "중앙 목록에서 프로젝트와 원본 근거로 내려갈 수 있다. 개인의 '새 프로젝트 시작'이 중앙 관리 화면의 주 흐름을 대체하지 않는다."
+      },
+      {
+        "id": "central-4",
+        "quote": "누락·연결 실패·수집 지연을 정상 진행이나 완료로 표현하지 않는다.",
+        "outcome": "누락·연결 실패·수집 지연을 정상 진행이나 완료로 표현하지 않는다."
+      },
+      {
+        "id": "central-5",
+        "quote": "로컬 수집 검사만으로 중앙 수집/집계/관리 기능 구현을 완료로 판정하지 않는다. 모의 데이터 검증과 실제 환경 전달 증거를 구별한다.",
+        "outcome": "로컬 수집 검사만으로 중앙 수집/집계/관리 기능 구현을 완료로 판정하지 않는다. 모의 데이터 검증과 실제 환경 전달 증거를 구별한다."
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-delivery/verify_preparation.py",
+      "expect_exit_code": 0
+    }
+  },
+  "open_decisions": [],
+  "phases": [
+    {
+      "id": "prepare",
+      "name": "승인 요청 준비와 실제 앱 인수 절차",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-delivery/verify_preparation.py",
+        "expect_exit_code": 0
+      },
+      "rollback": "새 준비 도구 사용 중지; 기존 제품/기록/설정을 보존"
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "delivery-preparation",
+      "kind": "implement",
+      "phase": "prepare",
+      "depends_on": [],
+      "objective": "작성한다: 실환경 전달 승인 전 로컬 준비 검사와 실제 앱 관측/구현 승인 안내",
+      "requirement_ids": [
+        "central-1",
+        "central-2",
+        "central-3",
+        "central-4",
+        "central-5"
+      ],
+      "done_when": [
+        "검사는 알려진 전역/프로젝트 설정의 기록기 선언만 안전하게 보고하며 네트워크·설정 변경·키 생성 없이 selftest를 통과한다",
+        "RUNBOOK은 실제 두 사용자 앱 이벤트에서 중앙 관리 원본까지 대조하는 절차와 실패 기준을 제공한다",
+        "APPROVAL은 A 로컬 API 구현과 B 실제 전송·배포·훅·비밀 승인을 분리하고 현재 실제 전달/제품 완료=false를 보존한다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-delivery/check_preparation.py --selftest",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-delivery/check_preparation.py",
+          "symbol": "collect_inventory, main, selftest",
+          "what": "독립 로컬 준비 검사; 실제 수신기/전송기 또는 API 계약 활성화 금지"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-delivery/runtime-inventory.json",
+        "specs/ai-pms-delivery/RUNBOOK.md",
+        "specs/ai-pms-delivery/APPROVAL.md",
+        "specs/ai-pms-delivery/preparation-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-central/verify_acceptance.py",
+        "why": "명시적 실패 guard와 작은 selftest, 로컬/실제 전달 경계 보고 방식"
+      },
+      "already_tried": [
+        {
+          "what": "python3 specs/ai-pms-central/verify_acceptance.py",
+          "result": "2 tests OK, actual delivery UNVERIFIED product INCOMPLETE"
+        },
+        {
+          "what": "python3 specs/ai-pms-delivery/check_preparation.py --selftest",
+          "result": "구현 전 파일 없음 exit2 확인"
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-delivery/spec.md",
+        "facts": [
+          "작업 루트 $HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "부모가 제품/전송 설계를 결정했다; 명세 제안이고 API/외부 전송/훅 변경은 미승인",
+          "Codex0.159.2 Claude2.1.243 설치 출력 확인; 실제 앱호스트 전달 proof 아님"
+        ],
+        "conventions": [
+          "stdlib only, 한국어, secrets/config 원문 출력 금지",
+          "재현 가능한 준비 점검과 관측 절차를 제공하되 실행 전달 완료를 주장하지 않는다"
+        ],
+        "files": [
+          "PRODUCT-INTENT.md",
+          "specs/ai-pms-delivery/spec.md",
+          "specs/ai-pms-delivery/sources.md",
+          "specs/ai-pms-central/README.md",
+          "specs/ai-pms-central/central.py",
+          "$HOME/.claude/harness/activity/logger.py"
+        ],
+        "excluded": "API/server/sender 실행 구현, network/socket, 실 로그 읽기/전송, 글로벌 설정/프로덕션 변경 모두 제외"
+      },
+      "constraints": {
+        "must": [
+          "명세 전체 읽고 준비 파일만 작성한다",
+          "check_preparation 기본 실행은 read-only 보고; --output 명시 시 지정 로컬 JSON 보고만 작성한다",
+          "고정 global/project Codex hooks.json+config.toml inline hooks, Claude settings.json+settings.local.json만 조사 가능; 플러그인/managed/기타 레이어 미조사 경계를 명시한다",
+          "원문 command/config/payload/개인경로/키를 보고하지 않고 scope alias와 hook event별 logger 선언 count만 남긴다",
+          "runtime-inventory.json은 실제 실행해 작성하며 actual_delivery_verified=false, product_complete=false, api_implementation_approved=false를 하드코딩한 준비 경계로 보고한다",
+          "selftest는 temp fixture로 hook 찾기/누락/invalid config/secret 원문 비출력/false 플래그를 검사한다",
+          "handoff result schema에 맞춰 preparation-result.json 저장"
+        ],
+        "must_not": [
+          "spec/plan/source 정본/기존 logger/central/글로벌 설정 수정 금지",
+          "API/수신기/전송기 구현, 네트워크, 실제 비밀 생성/보관, 외부 API/배포 금지",
+          "현재 scope의 승인기록을 만들어내거나 실제 전달 성공 flag 작성 금지"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 30
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "main"
+      }
+    }
+  ]
+}

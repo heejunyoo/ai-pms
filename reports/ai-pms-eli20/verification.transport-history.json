@@ -1,0 +1,28 @@
+{
+  "report_sha256": "e3685226d5f856ea5fe8d15a621ea5e0a84fb9fbe838e97f77a79e2923495840",
+  "observed_at": "2026-10-01",
+  "explain_level": 20,
+  "static_check_exit_code": 0,
+  "broken_local_links": 0,
+  "browser": "actual Chrome via CUA",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "document_scroll_width_each_scenario": {
+    "normal": 390,
+    "offline": 390,
+    "acklost": 390,
+    "conflict": 390,
+    "heartbeat": 390
+  },
+  "card_class_changes_observed": true,
+  "keyboard_enter_returns_to_normal": true,
+  "minimum_scenario_touch_height": 45.1875,
+  "console_errors_observed": [],
+  "external_runtime_resources": false,
+  "deployed": false,
+  "transport_final_gate_exit_code": 0,
+  "actual_multi_user_delivery_verified": false,
+  "product_complete": false
+}

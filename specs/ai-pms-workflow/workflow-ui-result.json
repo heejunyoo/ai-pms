@@ -1,0 +1,41 @@
+{
+  "task_id": "workflow-ui",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": ".claude/harness/activity/viewer.html",
+      "action": "modified",
+      "summary": "Added offline project/baseline authoring, scoped decisions, exact-version review, explicit basis confirmation, Markdown handoff, and full-project JSONL save."
+    },
+    {
+      "path": ".claude/harness/activity/check_viewer.py",
+      "action": "modified",
+      "summary": "Added stdlib/Node checks for workflow controls, v1 records, exact evidence filtering, packet contents, and JSONL round-trip."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 .claude/harness/activity/check_viewer.py",
+    "exit_code": 0,
+    "output_tail": "viewer syntax, offline import, workflow authoring and packet checks passed"
+  },
+  "done_when_check": [
+    {
+      "condition": "New project and scope decision forms generate privacy-safe v1 records without CLI",
+      "met": true,
+      "evidence": "baselineRecord and decisionRecord validate against the existing v1 validator; empty required fields and unsafe content are rejected. The independent DOM workflow check exercised form submission and re-import."
+    },
+    {
+      "condition": "Selected baseline, exact evidence and user next task generate concrete Markdown packet",
+      "met": true,
+      "evidence": "nextTaskPacket requires explicit basis confirmation in the UI and an exact artifact ID/version when available; checks latest timestamp, exact-scope decisions, acceptance/check environments and summaries, and reports missing or excluded evidence. The independent DOM check exercised packet generation and basis confirmation."
+    },
+    {
+      "condition": "Offline plain-text artifact review and full-project record save preserve declared status",
+      "met": true,
+      "evidence": "Selected UTF-8 files up to 1 MiB render only through pre.textContent; projectJSONL keeps complete event objects and round-trips with canonical event equality. The independent DOM check covered clear-state reset, artifact-version and review-target preview resets, and re-import without dirty state."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.96,
+  "notes_for_orchestrator": "Acceptance passed: `python3 .claude/harness/activity/check_viewer.py` (exit 0). Independent DOM verification passed: `python3 .claude/harness/activity/test_workflow.py` (exit 0). No browser visual proof was attempted because the file URL path was security-rejected; logger schema and external settings were unchanged."
+}

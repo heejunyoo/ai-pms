@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'none'; img-src 'none'; base-uri 'none'; form-action 'none'">
+<title>AI PMS · 프로젝트 작업 사이클</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#18332f;background:#f4f6f3;line-height:1.65}*{box-sizing:border-box}body{margin:0}main{max-width:1050px;margin:auto;padding:32px 20px}h1{font-size:clamp(25px,5vw,38px);line-height:1.3}h2{font-size:22px}p{overflow-wrap:anywhere}label{display:block;font-weight:650}input,select,button{font:inherit;min-height:44px;max-width:100%}input{padding:8px;background:white;border:1px solid #b9ccc5;border-radius:6px}select,button{padding:8px 12px;border:1px solid #9bb3a9;border-radius:6px;background:white;color:#18332f}button{cursor:pointer}a{color:#00634f;text-underline-offset:3px}a:focus-visible,input:focus-visible,select:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #c36d14;outline-offset:3px}.controls{display:flex;gap:20px;flex-wrap:wrap;align-items:end}.controls>div{min-width:180px;flex:1}.panel,article{padding:20px;background:white;border:1px solid #ccdad4;border-radius:10px;margin:16px 0}article h3{margin:0;font-size:17px;overflow-wrap:anywhere}article p{margin:8px 0}.muted{color:#4c625b}.gap{color:#7b420b}.badge{font-size:13px;font-weight:700;color:#00634f}.links{display:flex;flex-wrap:wrap;gap:8px 16px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f4f6f3;padding:12px;font-size:13px}ol{padding-left:24px}#warnings{max-height:260px;overflow:auto}article:target{outline:3px solid #00634f}section:empty{display:none}[hidden]{display:none!important}@media(max-width:500px){main{padding:20px 12px}.panel,article{padding:16px}.controls>div{min-width:100%}}
+.review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.review-grid>.panel{margin:0}.primary{background:#00634f;color:white;border-color:#00634f}.action-list li{margin:12px 0}.lead{font-size:18px}.review-result{border-left:4px solid #c36d14}.review-result[data-state="accepted"]{border-left-color:#00634f}textarea{font:inherit;width:100%;min-height:110px;padding:12px;border:1px solid #9bb3a9;border-radius:6px}form label{margin-top:16px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}.small{font-size:13px}.result-title{overflow-wrap:anywhere}@media(max-width:650px){.review-grid{grid-template-columns:1fr}}
+</style>
+<main>
+<h1>AI PMS · 목표부터 다음 Agent 작업까지</h1>
+<p class="lead">기준 정하기 → 실행·변경 확인 → 결과 판단 → 다음 작업 전달</p>
+<div class="panel"><h2>이 화면에서 할 수 있는 일</h2><p>로컬 프로젝트 기준·결정·버전별 증거를 기록하고 다음 Agent 작업 패킷을 파일로 내보냅니다.</p><p class="muted">중앙 동기화, 자동 수집에 따른 결정 의미 해석, 프레임별 WBS·간트·와이어프레임은 아직 제공하지 않습니다.</p></div>
+<section class="panel" aria-labelledby="author-title"><h2 id="author-title">1. 기준 정하기</h2>
+<button id="project-start" type="button" class="primary">새 프로젝트 시작</button>
+<form id="baseline-form" hidden>
+<h3 id="baseline-title">프로젝트 목표와 범위</h3>
+<label for="goal-input">목표</label><textarea id="goal-input" maxlength="2000" required placeholder="누구의 어떤 문제를 해결하나요?"></textarea>
+<label for="scope-included">포함할 범위</label><textarea id="scope-included" maxlength="2000" required placeholder="이번에 다룰 기능과 대상"></textarea>
+<label for="scope-excluded">제외할 범위</label><textarea id="scope-excluded" maxlength="2000" required placeholder="이번 단계에서 다루지 않을 것"></textarea>
+<label for="phase-name">이번 단계 이름</label><input id="phase-name" maxlength="200" required placeholder="예: 예약 흐름 MVP">
+<label for="finish-conditions">완료 조건</label><textarea id="finish-conditions" maxlength="2000" required placeholder="확인 가능한 완료 조건"></textarea>
+<div class="actions"><button type="submit" class="primary">기준을 프로젝트 기록에 추가</button><button type="button" id="cancel-baseline">취소</button></div><p id="baseline-feedback" role="status" aria-live="polite"></p>
+</form>
+<div id="existing-baseline" hidden><h3>새 기준 버전 추가</h3><label for="phase-mode">단계</label><select id="phase-mode"><option value="continue">기존 단계 이어가기</option><option value="new">새 단계</option></select><button id="add-baseline" type="button">선택 프로젝트에 기준 추가</button></div>
+</section>
+<div class="panel">
+<label for="files">프로젝트 기록 가져오기</label>
+<input id="files" type="file" accept=".jsonl,.json,application/json" multiple>
+<p class="muted">파일당 10 MiB, 한 번에 30 MiB, 전체 20,000개 이벤트까지 읽습니다. 추가 선택은 기존 기록에 합칩니다.</p>
+<button id="clear" type="button">기록 비우기</button>
+<p id="status" role="status" aria-live="polite">아직 파일을 선택하지 않았습니다.</p>
+<details id="warning-box" hidden><summary>읽기 경고</summary><ol id="warnings"></ol></details>
+</div>
+<div class="controls">
+<div><label for="project">검토할 프로젝트</label><select id="project"><option value="">전체 프로젝트</option></select></div>
+
+</div>
+<p id="count" role="status" aria-live="polite"></p>
+<div id="empty" class="panel">
+<h2>프로젝트 기록을 가져오면, 여기서 검토할 일이 보입니다</h2>
+<p>위에서 기록 파일을 선택하세요. 검증용 기록도 같은 방식으로 읽을 수 있습니다.</p>
+<ol><li>가장 최근에 기록된 목표와 범위를 확인합니다.</li><li>변경 이유와 결과물별 검사 근거를 읽습니다.</li><li>결과물을 별도로 확인한 뒤 수락·수정 요청·보류를 기록합니다.</li></ol>
+<p class="muted">이 화면은 선택한 파일만 읽습니다. 기록 수집 설정은 함께 제공된 README.md를 참고하세요.</p>
+</div>
+<section id="review" hidden aria-labelledby="review-title"><h2 id="review-title">3. 확인하고 결정하기</h2><div id="review-content"></div></section>
+<section id="work-cycle" class="panel" hidden aria-labelledby="work-cycle-title"><h2 id="work-cycle-title">4. 기준을 선택해 다음 작업 전달</h2>
+<p id="dirty-status" class="gap" role="status" aria-live="polite">새 기록은 브라우저 메모리에만 있습니다. 프로젝트 기록 저장 전에는 탭을 닫으면 사라집니다.</p>
+<div class="actions"><button id="save-project" type="button" class="primary">프로젝트 기록 저장 · 전체 JSONL</button></div><p id="save-feedback" role="status" aria-live="polite"></p>
+<label for="basis-select">다음 작업에 사용할 기준 선택</label><select id="basis-select"><option value="">기준 선택</option></select>
+<label><input id="basis-confirm" type="checkbox"> 이 기준이 이번 다음 작업에 적용된다고 확인했습니다.</label>
+<form id="decision-form"><h3>기준에 연결할 결정 기록</h3>
+<label for="decision-summary">결정 요약</label><textarea id="decision-summary" maxlength="2000" placeholder="예: 결제는 이번 단계에서 제외"></textarea>
+<label for="decision-reason">결정 이유</label><textarea id="decision-reason" maxlength="2000" placeholder="왜 이 결정이 필요한가요?"></textarea>
+<label for="decision-added">추가한 범위</label><textarea id="decision-added" maxlength="2000"></textarea><label for="decision-removed">제외한 범위</label><textarea id="decision-removed" maxlength="2000"></textarea>
+<button type="submit">선택한 기준에 결정 추가</button><p id="decision-feedback" role="status" aria-live="polite"></p><p class="muted">범위 변경은 기존 기준을 바꾸지 않습니다. 승인된 범위가 달라졌다면 새 기준 버전을 기록하세요.</p>
+</form>
+<h3>선택한 결과물 버전 미리보기</h3><label for="artifact-version-select">기록된 결과물</label><select id="artifact-version-select"><option value="">결과물 버전 선택</option></select>
+<label for="artifact-file">미리 볼 파일 (UTF-8, 최대 1 MiB)</label><input id="artifact-file" type="file"><p class="muted">사용자가 선택한 자료 · 등록 버전과 일치 여부 미검증. 파일은 업로드하거나 보관하지 않습니다.</p><pre id="artifact-preview" aria-live="polite">파일을 직접 선택하면 평문으로 표시합니다.</pre>
+<form id="next-task-form"><h3>다음 Agent 작업 패킷</h3>
+<label for="target-agent">Agent 표시 이름 (선택)</label><input id="target-agent" maxlength="120" placeholder="예: 구현 Agent">
+<label for="next-task">사용자가 정한 다음 작업</label><textarea id="next-task" maxlength="2000" required></textarea>
+<label for="next-acceptance">이 작업의 완료 조건</label><textarea id="next-acceptance" maxlength="2000" required></textarea>
+<button type="submit" class="primary">패킷 만들기</button><p id="packet-feedback" role="status" aria-live="polite"></p>
+</form><label for="packet-preview">내보낼 Markdown 패킷</label><textarea id="packet-preview" readonly aria-label="생성된 Markdown 패킷"></textarea>
+<button id="download-packet" type="button" disabled>Markdown 패킷 내려받기</button><p>Agent에게 자동 전송하지 않습니다.</p>
+</section>
+<form id="review-form" class="panel" hidden>
+<h2 id="review-target">결과물 판단</h2>
+<p id="review-evidence"></p>
+<p>결과물 자체는 로그에 포함되어 있지 않습니다. 아래 버전의 결과물을 별도로 열어 확인한 뒤 판단하세요.</p>
+<label for="review-state">어떤 판단을 남길까요?</label><select id="review-state"><option value="pending">판단 보류</option><option value="rejected">수정 요청</option><option value="accepted">수락</option></select>
+<label for="review-note">판단 이유 · 다음 작업자가 해야 할 일</label><textarea id="review-note" maxlength="2000" required placeholder="예: 화면은 확인했지만 모바일 입력 흐름은 아직 확인하지 못했습니다. 해당 흐름을 검증한 뒤 다시 검토해주세요."></textarea>
+<p class="small muted">작성자 판단으로 기록합니다. 이 화면에서 에이전트에게 작업을 전송하거나 사용자 권한을 대신 확인하지는 않습니다.</p>
+<div class="actions"><button class="primary" type="submit">판단 기록 저장 · 파일 내려받기</button><button id="cancel-review" type="button">취소</button></div>
+<p id="review-feedback" role="status" aria-live="polite"></p>
+</form>
+<details class="panel" id="raw-details"><summary>근거 기록 자세히 보기 · 필요할 때 펼치세요</summary>
+<label for="source">상세 기록 출처</label><select id="source"><option value="">전체 출처</option><option value="codex">Codex</option><option value="claude">Claude</option><option value="manual">직접 기록</option></select>
+<p class="muted">직접 기록은 작성자의 선언입니다. 검사 통과와 사용자 수락은 별개이며 Stop은 완료를 뜻하지 않습니다.</p>
+<section aria-labelledby="declared-title"><h2 id="declared-title">목표·결정·결과물·검사·판단 근거</h2><div id="declared"></div></section>
+<section aria-labelledby="observed-title"><h2 id="observed-title">실행 이력</h2><div id="observed"></div></section>
+</details>
+</main>
+<script>
+'use strict';
+const LIMIT = 20000, FILE_LIMIT = 10*1024*1024, BATCH_LIMIT = 30*1024*1024;
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const LINKS = ['phase_id','baseline_version','task_id','decision_id','artifact_id','artifact_version','check_id'];
+const IDS = ['session_id','agent_id','parent_agent_id','turn_id','tool_call_id'];
+const TOOLS = 'Bash Read Write Edit MultiEdit Glob Grep Task Agent WebFetch WebSearch NotebookEdit TodoWrite Skill ToolSearch AskUserQuestion exec_command write_stdin apply_patch spawn_agent send_message wait_agent view_image MCP'.split(' ');
+const NATIVE = {SessionStart:'session.start',SessionEnd:'session.end',UserPromptSubmit:'prompt.observed',PreToolUse:'tool.requested',PostToolUse:'tool.completed',PostToolUseFailure:'tool.failed',SubagentStart:'agent.start',SubagentStop:'agent.end',Stop:'turn.stopped',unknown:'unknown'};
+const PRIVATE = new RegExp('(?:\\b(?:sk|ghp|github_pat|AIza|xox[baprs])[-_][A-Za-z0-9_-]{8,}|\\bAIza[A-Za-z0-9_-]{20,}|-----BEGIN .*PRIVATE KEY|\\b(?:password|secret|token|api[_ -]?key)\\s*[:=]\\s*\\S+|(?:/'+ 'Users/' +'|/home/|/private/|/tmp/|/root/|[A-Z]:[\\\\/]|~/)[^\\s]*)','i');
+const OBSERVED = ['session.start','session.end','prompt.observed','tool.requested','tool.completed','tool.failed','agent.start','agent.end','turn.stopped','unknown'];
+const DATA = {'project.baseline':['summary','scope','goal'],'decision.recorded':['summary','reason','scope_added','scope_removed'],'artifact.recorded':['summary'],'check.recorded':['summary','status','environment'],'acceptance.recorded':['summary','status','environment']};
+const REQUIRED = {'project.baseline':['phase_id','baseline_version'],'decision.recorded':['phase_id','baseline_version','decision_id'],'artifact.recorded':['artifact_id','artifact_version'],'check.recorded':['check_id','artifact_id','artifact_version'],'acceptance.recorded':['artifact_id','artifact_version']};
+const LABELS = {'project.baseline':'프로젝트 기준·단계','decision.recorded':'결정','artifact.recorded':'산출물','check.recorded':'검사','acceptance.recorded':'승인','session.start':'세션 시작','session.end':'세션 종료','prompt.observed':'프롬프트 수신','tool.requested':'도구 요청','tool.completed':'도구 실행 종료','tool.failed':'도구 실패','agent.start':'에이전트 시작','agent.end':'에이전트 종료','turn.stopped':'턴 종료','unknown':'알 수 없는 이벤트'};
+const STATUS = {pass:'통과',fail:'실패',unknown:'확인 안 됨',accepted:'승인',rejected:'거절',pending:'대기'};
+const FIELD_LABELS = {phase_id:'단계',baseline_version:'범위 기준 버전',task_id:'작업',decision_id:'결정',artifact_id:'산출물',artifact_version:'산출물 버전',check_id:'검사'};
+function object(v){return v!==null && typeof v==='object' && !Array.isArray(v);}
+function bounded(v,max=200){return typeof v==='string' && v.length>0 && v.length<=max && !/[\u0000-\u001f\u007f]/.test(v);}
+function identifier(v){return v===null || (bounded(v,128) && /^[A-Za-z0-9][A-Za-z0-9_.:@-]*$/.test(v) && !PRIVATE.test(v));}
+function utc(v){return typeof v==='string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|\+00:00)$/.test(v) && Number.isFinite(Date.parse(v)) && new Date(v).toISOString().slice(0,19)===v.slice(0,19);}
+function validate(e){
+ if(!object(e)) return false;
+ const keys=['schema_version','adapter_version','event_id','observed_at','occurred_at','source','native_event','kind','authority','project_id',...IDS,'tool_name','links','data','missing_fields'];
+ if(Object.keys(e).length!==keys.length || keys.some(k=>!Object.hasOwn(e,k))) return false;
+ if(e.schema_version!==1 || e.adapter_version!=='1' || !UUID.test(e.event_id) || typeof e.event_id!=='string' || typeof e.project_id!=='string' || !UUID.test(e.project_id)) return false;
+ if(!utc(e.observed_at) || !(e.occurred_at===null || utc(e.occurred_at)) || !['codex','claude','manual'].includes(e.source) || !identifier(e.native_event) || e.native_event===null) return false;
+ const manual=Object.hasOwn(DATA,e.kind);
+ if(!(manual || OBSERVED.includes(e.kind)) || e.authority!==(manual?'declared':'observed') || (manual ? e.source!=='manual' : e.source==='manual')) return false;
+ if(manual ? e.native_event!==e.kind : !Object.hasOwn(NATIVE,e.native_event) || NATIVE[e.native_event]!==e.kind) return false;
+ if(IDS.some(k=>!identifier(e[k])) || !(e.tool_name===null || TOOLS.includes(e.tool_name))) return false;
+ if(!object(e.links) || Object.keys(e.links).length!==LINKS.length || LINKS.some(k=>!Object.hasOwn(e.links,k) || !identifier(e.links[k]))) return false;
+ if(!object(e.data) || Object.keys(e.data).some(k=>!(manual?DATA[e.kind]:[]).includes(k))) return false;
+ if(manual && (REQUIRED[e.kind].some(k=>e.links[k]===null) || Object.entries(e.data).some(([k,v])=>typeof v!=='string' || v.length>(k==='environment'?80:2000) || /[\u0000-\u0008\u000b-\u001f]/.test(v) || PRIVATE.test(v)))) return false;
+ if(e.kind==='project.baseline' && ['goal','scope'].some(k=>typeof e.data[k]!=='string' || !e.data[k].trim())) return false;
+ if(e.kind==='decision.recorded' && ['summary','reason'].some(k=>typeof e.data[k]!=='string' || !e.data[k].trim())) return false;
+ if(e.kind==='check.recorded' && !['pass','fail','unknown'].includes(e.data.status)) return false;
+ if(e.kind==='acceptance.recorded' && !['accepted','rejected','pending'].includes(e.data.status)) return false;
+ return Array.isArray(e.missing_fields) && e.missing_fields.length<=30 && e.missing_fields.every(v=>bounded(v,100) && /^[A-Za-z0-9_.:-]+$/.test(v));
+}
+function canonical(value){if(Array.isArray(value)) return '['+value.map(canonical).join(',')+']';if(object(value)) return '{'+Object.keys(value).sort().map(k=>JSON.stringify(k)+':'+canonical(value[k])).join(',')+'}';return JSON.stringify(value);}
+function importText(text,events,name='파일'){
+ const result={valid:0,invalid:0,duplicates:0,conflicts:0,limited:0,warnings:[]};
+ for(const [i,line] of text.replace(/^\uFEFF/,'').split(/\r?\n/).entries()){
+  if(!line.trim()) continue;
+  let e;try{if(line.length>65536) throw Error();e=JSON.parse(line);if(!validate(e)) throw Error();}catch{result.invalid++;if(result.warnings.length<30) result.warnings.push(name+' '+(i+1)+'행: 형식·버전·필드가 맞지 않아 제외했습니다.');continue;}
+  if(events.has(e.event_id)){result.duplicates++;if(canonical(events.get(e.event_id))!==canonical(e)){result.conflicts++;if(result.warnings.length<30) result.warnings.push(name+' '+(i+1)+'행: 같은 event_id의 내용이 달라 처음 기록을 유지했습니다.');}continue;}
+  if(events.size>=LIMIT){result.limited++;continue;}events.set(e.event_id,e);result.valid++;
+ }return result;
+}
+function filtered(events,project,source){return [...events.values()].filter(e=>(!project||e.project_id===project)&&(!source||e.source===source)).sort((a,b)=>a.observed_at.localeCompare(b.observed_at)||a.event_id.localeCompare(b.event_id));}
+function linkKey(e,key){return JSON.stringify([e.project_id,key,...(['artifact_id','artifact_version'].includes(key)?[e.links.artifact_id,e.links.artifact_version]:key==='baseline_version'?[e.links.phase_id,e.links.baseline_version]:[e.links[key]])]);}
+function runKey(e){return JSON.stringify([e.source,e.project_id,e.session_id,e.agent_id,e.tool_call_id]);}
+function reviewProject(list){
+ const ordered=[...list].sort((a,b)=>a.observed_at.localeCompare(b.observed_at)||a.event_id.localeCompare(b.event_id));
+ const latest=kind=>ordered.filter(e=>e.kind===kind).at(-1)||null;
+ const rows=new Map();for(const e of ordered){if(!['artifact.recorded','check.recorded','acceptance.recorded'].includes(e.kind))continue;const k=JSON.stringify([e.project_id,e.links.artifact_id,e.links.artifact_version]);if(!rows.has(k))rows.set(k,{artifact:null,check:null,acceptance:null});const r=rows.get(k);r[e.kind==='artifact.recorded'?'artifact':e.kind==='check.recorded'?'check':'acceptance']=e;}
+ return {baseline:latest('project.baseline'),decisions:ordered.filter(e=>e.kind==='decision.recorded').slice(-3).reverse(),results:[...rows.values()].filter(r=>r.artifact).reverse(),orphans:[...rows.values()].filter(r=>!r.artifact).length};
+}
+function reviewAction(row){
+ if(!row.check)return '검사 근거를 요청하세요';
+ if(row.check.data.status==='fail')return '실패 내용을 확인하고 수정 요청을 남기세요';
+ if(row.check.data.status==='unknown')return '검사 결과를 확인한 뒤 판단하세요';
+ if(!row.acceptance || row.acceptance.data.status==='pending')return '결과물을 확인하고 수락 여부를 기록하세요';
+ if(row.acceptance.data.status==='rejected')return '수정 요청에 맞는 새 버전이 나왔는지 확인하세요';
+ return '기록된 수락 판단과 검사 범위를 확인하세요';
+}
+function acceptanceRecord(artifact,status,note){
+ const e={schema_version:1,adapter_version:'1',event_id:crypto.randomUUID(),observed_at:new Date().toISOString(),occurred_at:null,source:'manual',native_event:'acceptance.recorded',kind:'acceptance.recorded',authority:'declared',project_id:artifact.project_id,tool_name:null,links:{...artifact.links},data:{status,summary:note,environment:'practitioner-review'},missing_fields:['occurred_at']};for(const k of IDS){e[k]=artifact[k];if(e[k]===null)e.missing_fields.push(k);}if(!note.trim()||!validate(e))throw Error('판단 이유를 입력하고 비밀정보나 개인 경로가 포함되어 있지 않은지 확인하세요.');return e;
+}
+function manualRecord(kind,projectId,links,data){
+ const e={schema_version:1,adapter_version:'1',event_id:crypto.randomUUID(),observed_at:new Date().toISOString(),occurred_at:null,source:'manual',native_event:kind,kind,authority:'declared',project_id:projectId,tool_name:null,links:{...Object.fromEntries(LINKS.map(k=>[k,null])),...links},data,missing_fields:['occurred_at']};for(const k of IDS){e[k]=null;e.missing_fields.push(k);}if(!validate(e))throw Error('필수 항목을 확인하고 비밀정보, 개인 경로, 2,000자를 넘는 기록이 없는지 확인하세요.');return e;
+}
+function baselineRecord(projectId,fields,prior=null){
+ if(!fields||['goal','included','excluded','phaseName','finish'].some(k=>typeof fields[k]!=='string'||!fields[k].trim()))throw Error('목표, 포함·제외 범위, 단계 이름, 완료 조건을 모두 입력하세요.');
+ const phaseId=prior&&fields.phaseMode!=='new'?prior.links.phase_id:crypto.randomUUID(),version=crypto.randomUUID();
+ const scope='포함:\n'+fields.included.trim()+'\n제외:\n'+fields.excluded.trim(),summary='단계: '+fields.phaseName.trim()+'\n완료 조건: '+fields.finish.trim();
+ return manualRecord('project.baseline',projectId,{phase_id:phaseId,baseline_version:version},{goal:fields.goal.trim(),scope,summary});
+}
+function decisionRecord(baseline,fields){
+ if(!baseline||baseline.kind!=='project.baseline')throw Error('먼저 적용할 기준을 선택하세요.');
+ return manualRecord('decision.recorded',baseline.project_id,{phase_id:baseline.links.phase_id,baseline_version:baseline.links.baseline_version,decision_id:crypto.randomUUID()},{summary:fields.summary.trim(),reason:fields.reason.trim(),scope_added:fields.added.trim(),scope_removed:fields.removed.trim()});
+}
+function projectJSONL(list){return [...list].sort((a,b)=>a.observed_at.localeCompare(b.observed_at)||a.event_id.localeCompare(b.event_id)).map(e=>JSON.stringify(e)).join('\n')+'\n';}
+function nextTaskPacket(baseline,list,task,conditions,target='',artifactSelection=null){
+ if(!baseline||!task.trim()||!conditions.trim())throw Error('기준, 다음 작업, 완료 조건을 모두 입력하세요.');
+ if([task,conditions,target].some(v=>typeof v!=='string'||v.length>2000||PRIVATE.test(v)||/[\u0000-\u0008\u000b-\u001f]/.test(v)))throw Error('패킷 입력에서 비밀정보·개인 경로·제어 문자를 제거하고 2,000자 이내로 작성하세요.');
+ const ordered=[...list].sort((a,b)=>a.observed_at.localeCompare(b.observed_at)||a.event_id.localeCompare(b.event_id)),sameProject=ordered.filter(e=>e.project_id===baseline.project_id),decisions=sameProject.filter(e=>e.kind==='decision.recorded'&&e.links.phase_id===baseline.links.phase_id&&e.links.baseline_version===baseline.links.baseline_version);
+ const artifactKinds=['artifact.recorded','check.recorded','acceptance.recorded'],basisEvents=sameProject.filter(e=>artifactKinds.includes(e.kind)&&e.links.phase_id===baseline.links.phase_id&&e.links.baseline_version===baseline.links.baseline_version),available=new Map(basisEvents.filter(e=>e.kind==='artifact.recorded').map(e=>[JSON.stringify([e.links.artifact_id,e.links.artifact_version]),e]));
+ if(available.size&&!artifactSelection)throw Error('패킷에 포함할 결과물 ID와 정확한 버전을 선택하세요.');
+ if(artifactSelection&&!available.has(JSON.stringify([artifactSelection.artifact_id,artifactSelection.artifact_version])))throw Error('선택한 결과물 버전이 이 기준에 연결되어 있지 않습니다.');
+ const artifactEvents=basisEvents.filter(e=>!artifactSelection||e.links.artifact_id===artifactSelection.artifact_id&&e.links.artifact_version===artifactSelection.artifact_version),excludedEvidence=new Set(sameProject.filter(e=>artifactKinds.includes(e.kind)&&!(e.links.phase_id===baseline.links.phase_id&&e.links.baseline_version===baseline.links.baseline_version)).map(e=>JSON.stringify([e.links.artifact_id,e.links.artifact_version]))).size+Math.max(0,available.size-(artifactSelection?1:0));
+ const rows=new Map();for(const e of artifactEvents){const key=JSON.stringify([e.links.artifact_id,e.links.artifact_version]);if(!rows.has(key))rows.set(key,{artifact:null,check:null,acceptance:null});const row=rows.get(key);row[e.kind==='artifact.recorded'?'artifact':e.kind==='check.recorded'?'check':'acceptance']=e;}
+ const artifacts=[...rows.values()].filter(r=>r.artifact),gaps=[];if([...rows.values()].some(r=>!r.artifact))gaps.push('검사 또는 판단이 연결된 결과물 기록 없음');
+ for(const r of artifacts){const id=r.artifact.links.artifact_id+' / '+r.artifact.links.artifact_version;if(!r.check)gaps.push(id+': 검사 기록 없음');else if(r.check.data.status!=='pass')gaps.push(id+': 검사 '+(r.check.data.status||'상태 미기록'));if(!r.acceptance||r.acceptance.data.status==='pending')gaps.push(id+': 사용자 판단 미완료');else if(r.acceptance.data.status==='rejected')gaps.push(id+': 수정 요청 후 새 버전 확인 필요');}
+ const lines=['# 다음 Agent 작업 패킷','',target.trim()?'Agent: '+target.trim():'Agent: 미지정','전달 방식: 사용자가 파일로 전달 · 자동 전송 안 함','','## 선택한 기준','프로젝트 ID: '+baseline.project_id,'목표: '+baseline.data.goal,'단계 ID: '+baseline.links.phase_id+' · 기준 버전: '+baseline.links.baseline_version,baseline.data.summary,baseline.data.scope,'','## 이 기준에 연결된 결정'];
+ lines.push(...(decisions.length?decisions.map(d=>'- '+d.data.summary+' (결정 ID: '+d.links.decision_id+')\n  이유: '+d.data.reason+(d.data.scope_added?'\n  추가 범위: '+d.data.scope_added:'')+(d.data.scope_removed?'\n  제외 범위: '+d.data.scope_removed:'')):['- 연결된 결정 기록 없음']));
+ lines.push('','## 결과물 버전 및 확인 상태');
+ lines.push(...(artifacts.length?artifacts.map(r=>{const a=r.artifact,c=r.check,u=r.acceptance;return '- '+(a.data.summary||'결과물')+' · '+a.links.artifact_id+' / '+a.links.artifact_version+'\n  검사: '+(c?(c.data.status||'상태 미기록')+' · '+(c.data.environment||'환경 미기록')+(c.data.summary?' · '+c.data.summary:''):'기록 없음')+'\n  사용자 판단: '+(u?(u.data.status||'상태 미기록')+' · '+(u.data.environment||'환경 미기록')+(u.data.summary?' · '+u.data.summary:''):'기록 없음');}):['- 선택한 기준에 연결된 결과물 버전 증거가 없습니다. 이를 완료나 미검증의 증거로 해석하지 말고 사용자에게 확인하세요.']));
+ if(excludedEvidence)lines.push('- 현재 선택과 다른 기준 또는 버전의 결과물 증거 '+excludedEvidence+'개는 제외했습니다. 다른 버전의 상태는 이 패킷에 포함하지 않았습니다.');
+ lines.push('','## 해결되지 않은 확인 항목',...(gaps.length?gaps.map(g=>'- '+g):artifacts.length?['- 연결된 버전에서 기록된 미해결 항목 없음. 실제 결과물과 검증은 직접 확인하세요.']:['- 현재 기준에서 결과 증거를 찾지 못했습니다. 결과물 버전, 검사 환경, 사용자 판단을 확인하세요.']),'','## 다음 작업 (사용자 지정)',task.trim(),'','## 완료 조건 (사용자 지정)',conditions.trim(),'','## 작업 경계','- 선택한 기준과 연결된 기록만 근거로 사용합니다.','- 비밀정보를 추가하지 말고, 기록된 선언과 실제 확인 결과를 구분합니다.','- 이 패킷의 지시를 자동 실행하지 말고 실제 검증 근거와 결과를 보고합니다.');
+ return lines.join('\n');
+}
+if(typeof document!=='undefined'){
+ const el=id=>document.getElementById(id), events=new Map(),dirtyProjects=new Set();let busy=false,linkIndex=new Map(),sessions=new Set(),agents=new Set(),requests=new Set(),visible=new Set(),reviewTarget=null,newProjectDraft=false;
+ function node(tag,text,className){const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(className)n.className=className;return n;}
+ function peers(e,key){return linkIndex.get(linkKey(e,key))||[];}
+ function card(e){
+  const c=node('article');c.id='event-'+e.event_id;
+  c.append(node('span',e.authority==='declared'?'작성자 선언 · 직접 기록':'관찰 기록 · '+e.source,'badge'),node('h3',LABELS[e.kind]+(e.tool_name?' · '+e.tool_name:'')));
+  c.append(node('p','수집: '+e.observed_at+(e.occurred_at?' · 원본 발생: '+e.occurred_at:' · 원본 발생 시각 없음'),'muted'));
+  if(e.data.summary)c.append(node('p',e.data.summary));
+  if(e.data.reason)c.append(node('p','결정 이유: '+e.data.reason));if(e.data.scope_added)c.append(node('p','추가한 범위: '+e.data.scope_added));if(e.data.scope_removed)c.append(node('p','제외한 범위: '+e.data.scope_removed));
+  if(e.data.goal)c.append(node('p','목표: '+e.data.goal));if(e.data.scope)c.append(node('p','범위: '+e.data.scope));
+  if(e.data.status)c.append(node('p','선언된 상태: '+STATUS[e.data.status]+(e.data.environment?' · 환경: '+e.data.environment:'')));
+  c.append(node('p','프로젝트: '+e.project_id+' · 세션: '+(e.session_id||'없음'),'muted'));
+  c.append(node('p','에이전트: '+(e.agent_id||'없음')+' · 부모 에이전트: '+(e.parent_agent_id||'없음'),'muted'),node('p','턴: '+(e.turn_id||'없음')+' · 도구 호출: '+(e.tool_call_id||'없음'),'muted'));
+  const links=node('div',undefined,'links');let linked=0;
+  for(const key of LINKS){if(e.links[key]===null)continue;linked++;const found=peers(e,key),count=found.length-1,detail=node('details'),summary=node('summary',FIELD_LABELS[key]+': '+e.links[key]+' · 연결 기록 '+count+'개');detail.append(summary);
+   if(!count)detail.append(node('p','연결된 다른 근거가 관찰되지 않았습니다.','gap'));
+   for(const other of found.slice(0,11).filter(o=>o.event_id!==e.event_id).slice(0,10)){const a=node('a',LABELS[other.kind]+' · '+other.observed_at);a.href='#event-'+other.event_id;const p=node('p');if(!visible.has(other.event_id)){p.textContent=LABELS[other.kind]+' · '+other.event_id+' · 현재 화면 밖 근거';}else p.append(a);detail.append(p);}if(count>10)detail.append(node('p','연결 목록은 첫 10개만 표시합니다. 같은 연결 ID는 각 기록의 필드에서 확인할 수 있습니다.','muted'));links.append(detail);
+  }c.append(links);
+  if(!linked)c.append(node('p','단계·작업·결정·산출물·검사 연결이 없습니다.','gap'));
+  if(e.authority==='declared' && (e.session_id===null || !sessions.has(JSON.stringify([e.project_id,e.session_id]))))c.append(node('p','이 선언과 같은 세션의 실행 근거가 관찰되지 않았습니다.','gap'));
+  if(e.parent_agent_id && !agents.has(JSON.stringify([e.project_id,e.parent_agent_id])))c.append(node('p','부모 에이전트 기록이 관찰되지 않았습니다.','gap'));
+  if(e.tool_call_id && ['tool.completed','tool.failed'].includes(e.kind) && !requests.has(runKey(e)))c.append(node('p','이 도구 실행의 요청 근거가 관찰되지 않았습니다.','gap'));
+  if(e.missing_fields.length)c.append(node('p','누락된 원본 필드: '+e.missing_fields.join(', '),'gap'));
+  const details=node('details');details.append(node('summary','기록 필드 보기'),node('pre',JSON.stringify(e,null,2)));c.append(details);return c;
+ }
+ function download(text,name,type){const url=URL.createObjectURL(new Blob([text],{type}));const a=node('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+ function resetArtifactPreview(){el('artifact-file').value='';el('artifact-preview').textContent='파일을 직접 선택하면 평문으로 표시합니다.';}
+ function invalidatePacket(){el('packet-preview').value='';el('download-packet').disabled=true;el('packet-feedback').textContent='';}
+ function resetWorkflowDraft(){
+  for(const id of ['goal-input','scope-included','scope-excluded','phase-name','finish-conditions','decision-summary','decision-reason','decision-added','decision-removed','target-agent','next-task','next-acceptance'])el(id).value='';
+  el('baseline-form').hidden=true;newProjectDraft=false;el('baseline-feedback').textContent='';el('decision-feedback').textContent='';
+  el('basis-select').value='';el('basis-confirm').checked=false;el('artifact-version-select').value='';el('save-feedback').textContent='';
+  resetArtifactPreview();invalidatePacket();reviewTarget=null;el('review-form').hidden=true;el('review-state').value='pending';el('review-note').value='';el('review-feedback').textContent='';
+ }
+ function startReview(row){resetArtifactPreview();reviewTarget=row.artifact;el('review-form').hidden=false;el('review-target').textContent='결과물 판단'+' · '+(row.artifact.data.summary||row.artifact.links.artifact_id);el('review-evidence').textContent='대상 버전: '+row.artifact.links.artifact_version+' · 최근 기록된 검사: '+(row.check?STATUS[row.check.data.status]+' ('+(row.check.data.environment||'환경 미기록')+')':'근거 없음');el('review-state').value=row.acceptance?.data.status||'pending';el('review-note').value='';el('review-feedback').textContent='';el('review-form').scrollIntoView({block:'start'});el('review-state').focus();}
+ function baselines(project){return filtered(events,project,'').filter(e=>e.kind==='project.baseline');}
+ function selectedBasis(){return events.get(el('basis-select').value)||null;}
+ function refreshWorkflow(){
+  const project=el('project').value,list=filtered(events,project,'');el('work-cycle').hidden=!project;
+  const priorBasis=el('basis-select').value;el('existing-baseline').hidden=!project;el('basis-select').replaceChildren(node('option','기준 선택'));el('basis-select').firstChild.value='';
+  const bases=baselines(project);for(const b of bases){const o=node('option',b.data.goal.slice(0,55)+' · '+(b.data.summary.split('\n')[0]||'단계')+' · '+b.observed_at);o.value=b.event_id;el('basis-select').append(o);}
+  if(bases.length){el('basis-select').value=bases.some(b=>b.event_id===priorBasis)?priorBasis:bases.at(-1).event_id;el('decision-form').hidden=false;}
+  else el('decision-form').hidden=true;
+  el('dirty-status').textContent=dirtyProjects.has(project)?'저장되지 않은 프로젝트 기록이 있습니다. 탭을 닫으면 브라우저 메모리의 변경이 사라집니다.':'새 기록은 브라우저 메모리에만 있습니다. 프로젝트 기록 저장 전에는 탭을 닫으면 사라집니다.';
+  const priorArtifact=el('artifact-version-select').value;el('artifact-version-select').replaceChildren(node('option','결과물 버전 선택'));el('artifact-version-select').firstChild.value='';
+  const artifacts=list.filter(e=>e.kind==='artifact.recorded');for(const a of artifacts){const o=node('option',(a.data.summary||a.links.artifact_id)+' · '+a.links.artifact_version);o.value=a.event_id;el('artifact-version-select').append(o);}
+  if(artifacts.some(a=>a.event_id===priorArtifact))el('artifact-version-select').value=priorArtifact;
+ }
+ function renderReview(){
+  const content=el('review-content');content.replaceChildren();el('review').hidden=events.size===0;if(!events.size)return;
+  const project=el('project').value;if(!project){content.append(node('p','프로젝트를 선택하면 해당 프로젝트에서 확인하고 결정할 항목을 보여드립니다.'));return;}
+  const list=filtered(events,project,''),model=reviewProject(list),grid=node('div',undefined,'review-grid'),scope=node('div',undefined,'panel'),changes=node('div',undefined,'panel');
+  scope.append(node('h3','무엇을 만들기로 했나요?'));
+  if(model.baseline){const b=model.baseline;scope.append(node('p',b.data.goal,'lead'),node('p','가장 최근 기록된 범위: '+b.data.scope),node('p','단계 '+b.links.phase_id+' · 범위 기준 '+b.links.baseline_version,'muted'));scope.append(node('p','가장 최근 기록을 보여줍니다. 현재 적용할 범위인지 확인하세요.','small muted'));}else scope.append(node('p','목표와 범위 기준이 기록되어 있지 않습니다. 실행 내역만으로 현재 범위를 정할 수 없습니다.','gap'));
+  changes.append(node('h3','왜 범위가 바뀌었나요?'));
+  if(!model.decisions.length)changes.append(node('p','변경 결정이 기록되어 있지 않습니다. 변경이 없었다는 뜻은 아닙니다.','muted'));
+  for(const d of model.decisions){changes.append(node('p',d.data.summary),node('p','이유: '+d.data.reason));if(d.data.scope_added)changes.append(node('p','추가: '+d.data.scope_added));if(d.data.scope_removed)changes.append(node('p','제외: '+d.data.scope_removed));changes.append(node('p','단계 '+d.links.phase_id+' · 기준 '+d.links.baseline_version,'small muted'));}
+  grid.append(scope,changes);content.append(grid);
+  const next=node('div',undefined,'panel'),todo=node('ol',undefined,'action-list');next.append(node('h3','지금 확인할 일'));
+  if(!model.baseline)todo.append(node('li','프로젝트 담당자와 목표·범위·이번 단계의 종료 조건을 먼저 확인하세요.'));
+  if(!model.results.length)todo.append(node('li','아직 검토할 결과물 버전이 기록되어 있지 않습니다. 담당자에게 결과물과 검증 근거를 요청하세요.'));
+  for(const row of model.results.slice(0,20)){const li=node('li'),b=node('button','검토하고 판단 기록');b.type='button';b.addEventListener('click',()=>startReview(row));li.append(node('p',(row.artifact.data.summary||row.artifact.links.artifact_id)+' — '+reviewAction(row)),b);todo.append(li);}
+  if(model.orphans)todo.append(node('li','결과물 기록 없이 검사·판단만 있는 버전이 '+model.orphans+'개입니다. 대상 결과물을 확인하세요.'));
+  if(model.results.length>20)todo.append(node('li','결과물은 최근 20개 버전까지 표시합니다. 이전 기록은 상세 보기에서 확인하세요.'));
+  next.append(todo);content.append(next,node('h3','결과물별 근거와 남아 있는 판단'));
+  for(const row of model.results.slice(0,20)){const a=row.artifact,c=node('article',undefined,'review-result');c.dataset.state=row.acceptance?.data.status||'pending';c.append(node('h3',a.data.summary||a.links.artifact_id,'result-title'),node('p','검사: '+(row.check?STATUS[row.check.data.status]+' · '+(row.check.data.environment||'환경 미기록'):'기록 없음')+' / 판단: '+(row.acceptance?STATUS[row.acceptance.data.status]:'기록 없음')));if(row.check?.data.summary)c.append(node('p',row.check.data.summary));if(row.acceptance?.data.summary)c.append(node('p','판단 이유: '+row.acceptance.data.summary));c.append(node('p','다음 확인: '+reviewAction(row)));const d=node('details');d.append(node('summary','대상 버전과 원본 근거'),node('pre',JSON.stringify({artifact:a,check:row.check,acceptance:row.acceptance},null,2)));c.append(d);content.append(c);}
+  const exportButton=node('button','검토 요약 내려받기 · 다음 작업에 전달');exportButton.type='button';exportButton.addEventListener('click',()=>{const lines=['프로젝트 검토 요약',model.baseline?'목표: '+model.baseline.data.goal+'\n기록된 범위: '+model.baseline.data.scope+'\n단계: '+model.baseline.links.phase_id+' / 기준 버전: '+model.baseline.links.baseline_version:'목표·범위 미기록',...model.decisions.map(d=>'결정: '+d.data.summary+'\n이유: '+d.data.reason),...model.results.map(r=>(r.artifact.data.summary||r.artifact.links.artifact_id)+' ['+r.artifact.links.artifact_version+']\n검사: '+(r.check?STATUS[r.check.data.status]+' · '+(r.check.data.environment||'환경 미기록'):'근거 없음')+' / 판단: '+(r.acceptance?STATUS[r.acceptance.data.status]:'미기록')+'\n다음 확인: '+reviewAction(r)+(r.acceptance?.data.summary?'\n판단 이유: '+r.acceptance.data.summary:'')),'검사와 수락은 작성자가 기록한 상태입니다. 결과물 자체와 실제 적용 범위는 별도로 확인하세요.'];download(lines.join('\n\n'),'project-review.txt','text/plain;charset=utf-8');});content.append(exportButton);
+ }
+ function render(){
+  linkIndex=new Map();sessions=new Set();agents=new Set();requests=new Set();for(const e of events.values()){for(const key of LINKS){if(e.links[key]===null)continue;const k=linkKey(e,key);if(!linkIndex.has(k))linkIndex.set(k,[]);linkIndex.get(k).push(e);}if(e.authority==='observed')sessions.add(JSON.stringify([e.project_id,e.session_id]));if(e.agent_id)agents.add(JSON.stringify([e.project_id,e.agent_id]));if(e.kind==='tool.requested' && e.tool_call_id)requests.add(runKey(e));}
+  // ponytail: render latest 250 events; add pagination if older timeline review is needed.
+  const all=filtered(events,el('project').value,el('source').value),list=all.slice(-250);visible=new Set(list.map(e=>e.event_id));el('count').textContent='전체 '+events.size+'개 · 필터 전체 '+all.length+'개 · 표시 최근 '+list.length+'개 (최대 250개)';el('declared').replaceChildren();el('observed').replaceChildren();
+  el('empty').hidden=events.size>0;renderReview();refreshWorkflow();
+  for(const e of list)el(e.authority==='declared'?'declared':'observed').append(card(e));
+  for(const id of ['declared','observed'])if(!el(id).childElementCount)el(id).append(node('p',events.size?'현재 조건에 해당하는 기록이 없습니다.':'가져온 기록이 없습니다.','muted'));
+ }
+ function projects(){const selected=el('project').value,names=new Map();for(const e of filtered(events,'','')){if(!names.has(e.project_id))names.set(e.project_id,'목표 미기록');if(e.kind==='project.baseline')names.set(e.project_id,e.data.goal);}el('project').replaceChildren(node('option','프로젝트 선택'));el('project').firstChild.value='';for(const [id,name] of names){const o=node('option',name.slice(0,70)+' · '+id.slice(0,8));o.value=id;el('project').append(o);}el('project').value=names.has(selected)?selected:names.size===1?[...names.keys()][0]:'';}
+ el('project-start').addEventListener('click',()=>{newProjectDraft=true;el('baseline-title').textContent='새 프로젝트 목표와 범위';el('baseline-form').hidden=false;el('baseline-feedback').textContent='';el('goal-input').focus();});
+ el('add-baseline').addEventListener('click',()=>{newProjectDraft=false;el('baseline-title').textContent='새 기준 버전';el('baseline-form').hidden=false;el('baseline-feedback').textContent='';el('goal-input').value=baselines(el('project').value).at(-1)?.data.goal||'';el('goal-input').focus();});
+ el('cancel-baseline').addEventListener('click',()=>{el('baseline-form').hidden=true;newProjectDraft=false;});
+ el('baseline-form').addEventListener('submit',event=>{event.preventDefault();try{const projectId=!newProjectDraft&&el('project').value?el('project').value:crypto.randomUUID(),prior=baselines(projectId).at(-1),entry=baselineRecord(projectId,{goal:el('goal-input').value,included:el('scope-included').value,excluded:el('scope-excluded').value,phaseName:el('phase-name').value,finish:el('finish-conditions').value,phaseMode:el('phase-mode').value},prior);events.set(entry.event_id,entry);dirtyProjects.add(projectId);el('baseline-form').hidden=true;newProjectDraft=false;projects();el('project').value=projectId;el('basis-confirm').checked=false;render();el('baseline-feedback').textContent='기준을 메모리에 추가했습니다. 프로젝트 기록 저장을 완료해야 파일로 보관됩니다.';}catch(err){el('baseline-feedback').textContent=err.message;}});
+ el('basis-select').addEventListener('change',()=>{el('basis-confirm').checked=false;el('artifact-version-select').value='';resetArtifactPreview();invalidatePacket();});
+ el('decision-form').addEventListener('submit',event=>{event.preventDefault();try{const entry=decisionRecord(selectedBasis(),{summary:el('decision-summary').value,reason:el('decision-reason').value,added:el('decision-added').value,removed:el('decision-removed').value});events.set(entry.event_id,entry);dirtyProjects.add(entry.project_id);el('decision-feedback').textContent='선택한 기준에 결정 선언을 연결했습니다. 범위 기준은 자동으로 바뀌지 않습니다.';render();}catch(err){el('decision-feedback').textContent=err.message;}});
+ el('save-project').addEventListener('click',()=>{const id=el('project').value;if(!id)return;const text=projectJSONL(filtered(events,id,''));download(text,'project-'+id+'.jsonl','application/json');dirtyProjects.delete(id);el('save-feedback').textContent='선택 프로젝트의 전체 기록 JSONL을 내려받았습니다. 파일을 안전한 위치에 보관하세요.';refreshWorkflow();});
+ el('artifact-version-select').addEventListener('change',()=>{resetArtifactPreview();invalidatePacket();});
+ el('artifact-file').addEventListener('change',async()=>{const file=el('artifact-file').files?.[0];if(!file)return;if(file.size>1024*1024){el('artifact-preview').textContent='파일이 1 MiB를 넘어 표시하지 않았습니다.';return;}try{const text=new TextDecoder('utf-8',{fatal:true}).decode(await file.arrayBuffer());if(el('artifact-file').files?.[0]===file)el('artifact-preview').textContent=text;}catch{if(el('artifact-file').files?.[0]===file)el('artifact-preview').textContent='UTF-8 평문 파일만 표시할 수 있습니다.';}});
+ el('next-task-form').addEventListener('submit',event=>{event.preventDefault();try{if(!el('basis-confirm').checked)throw Error('다음 작업에 적용할 기준을 선택하고 확인해 주세요.');const artifact=events.get(el('artifact-version-select').value),packet=nextTaskPacket(selectedBasis(),filtered(events,el('project').value,''),el('next-task').value,el('next-acceptance').value,el('target-agent').value,artifact?artifact.links:null);el('packet-preview').value=packet;el('download-packet').disabled=false;el('packet-feedback').textContent='패킷은 평문 Markdown입니다. 내려받아 내용을 확인한 뒤 직접 전달하세요.';}catch(err){el('packet-preview').value='';el('download-packet').disabled=true;el('packet-feedback').textContent=err.message;}});
+ el('download-packet').addEventListener('click',()=>{if(el('packet-preview').value)download(el('packet-preview').value,'next-agent-work.md','text/markdown;charset=utf-8');});
+ el('review-form').addEventListener('submit',event=>{event.preventDefault();if(!reviewTarget)return;try{const e=acceptanceRecord(reviewTarget,el('review-state').value,el('review-note').value);events.set(e.event_id,e);dirtyProjects.add(e.project_id);render();el('review-feedback').textContent='판단을 메모리에 추가했습니다. 프로젝트 기록 저장에서 전체 JSONL을 내려받으세요.';}catch(err){el('review-feedback').textContent=err.message;}});
+ el('cancel-review').addEventListener('click',()=>{el('review-form').hidden=true;reviewTarget=null;});
+ el('files').addEventListener('change',async()=>{
+  if(busy)return;busy=true;el('files').disabled=true;el('clear').disabled=true;el('status').textContent='파일을 읽고 있습니다…';el('warnings').replaceChildren();
+  const files=[...el('files').files],totals={valid:0,invalid:0,duplicates:0,conflicts:0,limited:0},warnings=[];
+  try{if(files.reduce((s,f)=>s+f.size,0)>BATCH_LIMIT)warnings.push('선택한 파일 합계가 30 MiB를 넘어 가져오지 않았습니다.');else for(const f of files){if(f.size>FILE_LIMIT){warnings.push(f.name+': 10 MiB를 넘어 제외했습니다.');continue;}try{const bytes=await f.arrayBuffer(),text=new TextDecoder('utf-8',{fatal:true}).decode(bytes),r=importText(text,events,f.name);for(const k of Object.keys(totals))totals[k]+=r[k];warnings.push(...r.warnings);}catch{warnings.push(f.name+': UTF-8 파일을 읽지 못했습니다.');}}
+  }finally{projects();render();el('status').textContent='읽기 완료 · 추가 '+totals.valid+'개 · 잘못된 행 '+totals.invalid+'개 · 중복 '+totals.duplicates+'개 (내용 충돌 '+totals.conflicts+'개) · 한도 초과 제외 '+totals.limited+'개'+(warnings.length?' · 경고 '+warnings.length+'건':'');if(totals.limited)warnings.push('전체 20,000개 한도를 넘는 이벤트는 제외했습니다.');for(const w of warnings.slice(0,100))el('warnings').append(node('li',w));el('warning-box').hidden=warnings.length===0;busy=false;el('files').disabled=false;el('clear').disabled=false;el('files').value='';}
+ });
+ el('project').addEventListener('change',()=>{resetWorkflowDraft();render();});el('source').addEventListener('change',render);
+ el('clear').addEventListener('click',()=>{events.clear();dirtyProjects.clear();resetWorkflowDraft();projects();el('source').value='';el('warnings').replaceChildren();el('warning-box').hidden=true;el('status').textContent='기록을 비웠습니다. 파일을 선택해 다시 시작하세요.';render();});render();
+}
+</script>
+</html>

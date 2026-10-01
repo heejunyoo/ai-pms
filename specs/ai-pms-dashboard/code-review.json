@@ -1,0 +1,72 @@
+{
+  "reviewer": "dashboard-review-independent",
+  "verdict": "no_blockers",
+  "reviewed_at": "2026-10-01T08:50:28.467576+00:00",
+  "source_sha256": "9c14a8733f7d5ad5e3a0f781253525af8fca25d911142329cba342042a7f299e",
+  "spec_sha256": "fdbf92f0a5b2262ab6a2a0601096cf04765f5e7a8b2e478f95f46d2da2fe2727",
+  "code_sha256": {
+    "specs/ai-pms-dashboard/portfolio.py": "7fc2b31c0be29cadeba6e584c272dcd7284e129af282b924a664c51c59a9563a",
+    "specs/ai-pms-dashboard/dashboard.html": "c38896a3d70cde93fb4bed77159c8a50370c165da0b516148d16d0cdb98c0b15",
+    "specs/ai-pms-dashboard/test_portfolio.py": "d787c5cae94687906f6f3922799f21f3b00ac5e2d2d9406f97c577713783f75b",
+    "specs/ai-pms-dashboard/check_ui.py": "e3a1cae3c2f93c51eb4b89ccb9141f06714c4575d098857594980f8cb46d2126",
+    "specs/ai-pms-dashboard/preview_server.py": "1b428b984b10c1ffda84d1901947e7915d7e0210d687e7f800768e23c266d6b4",
+    "reports/ai-pms-eli20/index.html": "48408c27f95cd75adb4e01a3688f45eb280e6379af2abe542b69c9bb86a3fc66",
+    "specs/ai-pms-dashboard/sample/Alice-desktop.jsonl": "0e36a220c7655fa9a7c00d3e94f01b5c324c40fbcd463b686cc171d1f5dfa20c",
+    "specs/ai-pms-dashboard/sample/Alice-laptop.jsonl": "8266fe9c31c952bf29780b533f7e98a4da9a5d1f69f740196c428e366391dc05",
+    "specs/ai-pms-dashboard/sample/Bob-laptop.jsonl": "288d4c15690369830dd35085b73c82e08c11251b26978669b4bcba36f6fb2930",
+    "specs/ai-pms-dashboard/sample/Carol-desktop.jsonl": "88688a7a0dc4f342ebc8c5a54ae5ad8646d2540ffc92dfa7cc279e66640b71d6",
+    "specs/ai-pms-dashboard/sample/Dana-laptop.jsonl": "fd761d8ff675b40415d7b827a66634f40194b23a54373d2bbca1e57587af7047",
+    "specs/ai-pms-dashboard/sample/Eve-unmapped.jsonl": "e7ff32b272d1043f8819ee3ee1d459cf1643c018935c4cff4fba367834784165",
+    "specs/ai-pms-dashboard/sample/README.md": "765b0d5affd66204a205398681a5f5c3d11fef3ca305759031c275a0292731a0",
+    "specs/ai-pms-dashboard/sample/catalog.json": "46f676c13d8c5bb40d4705b95054bb2b718ca69eee97c7a763217a3dc8d0a721",
+    "specs/ai-pms-dashboard/sample/central.json": "dea17ac77c95f7aa87de61d8175e0da83dc3b6abbf5c25dde5460f882c517615",
+    "specs/ai-pms-dashboard/sample/generate.py": "9a05b951761b968f2990b4a51c75108ab06ebc2611b726b82a9a361ee19471d4",
+    "specs/ai-pms-dashboard/sample/manifest.json": "6fa7fd4bb03adc9afb2e7f54f08936716ed880ab38f29749def19f85fc636928",
+    "specs/ai-pms-dashboard/verify_dashboard.py": "d36303d2a56f7a1a698b307a9933231a23eb61d72fa9be9b05bfa174b5fdc1cd",
+    "specs/ai-pms-dashboard/README.md": "ffdb081e5d3980d6f09e2eb7ccf46e2ff3577da01358d806be89c2bc963a854b"
+  },
+  "blocking_findings": [],
+  "resolved_findings": [
+    "미관측 검사 exit_code=null을 정상 모델/UI에서 unknown으로 처리하고 전체 화면 거부를 제거했다.",
+    "UI snapshot의 secret/개인 절대경로/제어문자 및 문서 단계·사용자·환경·세션 참조 우회를 차단했다. Python Bearer 입력도 차단한다.",
+    "문서/검사 및 최초 완료 milestone을 문자열 순서 대신 parsed instant로 정렬했다.",
+    "단독 또는 사용자/환경 간 모호한 검사 세션을 임의 귀속하지 않고 alert로 표시한다.",
+    "catalog-only 미관측 출처를 declared로 구별하며 실행·합성 증거로 위장하지 않는다.",
+    "최종 모델 프로젝트1000·배열10000·canonical JSON6MB와 UI8MB/텍스트6M 한도를 정렬하고 compact export로 재가져오기를 지원한다.",
+    "preview_server는 loopback 및 고정 artifact whitelist만 제공하고 보고서의 생성 대시보드 상대 URL alias를 추가했다. verifier는 원문/반환검사, 모델·HTML byte freshness, 샘플 의미, 필수 브라우저 체크/해시 coverage, 독립 코드해시를 요구한다.",
+    "최종 보완 검토: native JSON 붙여넣기 dialog는 명시적 label/alert와 native focus/Escape를 사용한다. 파일·붙여넣기는 8MB byte 한도 및 JSON 문법/정규화 validation을 수행하는 동일 applySnapshot으로 연결되고 검증 실패 전에 model을 변경하지 않는다. parse 오류에 입력 원문을 표시하지 않는다. 고정 보고서 문서 whitelist 추가는 개발 미리보기만 보강하며 네트워크 제품 API를 추가하지 않는다."
+  ],
+  "checks": [
+    {
+      "command": "python3 specs/ai-pms-dashboard/test_portfolio.py",
+      "exit_code": 0,
+      "summary": "16 tests PASS"
+    },
+    {
+      "command": "python3 specs/ai-pms-dashboard/check_ui.py",
+      "exit_code": 0,
+      "summary": "empty/full/declared/null-run models; 26 malformed nested cases; JS syntax/static UI PASS"
+    },
+    {
+      "command": "python3 specs/ai-pms-central/test_central.py",
+      "exit_code": 0,
+      "summary": "2 original central tests PASS"
+    },
+    {
+      "command": "python3 specs/ai-pms-dashboard/verify_dashboard.py",
+      "exit_code": 1,
+      "summary": "선행 계획/결과/모델/UI/central/ELI20/artifact freshness 검사는 통과; 작성 전 browser-verification.json 부재에서 예상 중단. 전체 인수 완료 주장이 아님."
+    },
+    {
+      "command": "python3 specs/ai-pms-dashboard/check_ui.py",
+      "exit_code": 0,
+      "summary": "최종 paste/file 공통 applySnapshot 로직: invalid 유지, empty/full 변경, reset/render 검사 + 기존 nested 26 cases PASS"
+    }
+  ],
+  "boundaries": [
+    "본 검토자는 구현 파일을 수정하지 않았다. 부모 브라우저 관측과 전체 인수 증거는 별도이며 verify_dashboard.py는 저장 관측/해시 freshness를 검사하고 새 브라우저를 실행하지 않는다.",
+    "현재 UI는 이미 산출된 snapshot을 보여주며 JSON status를 raw catalog로부터 다시 계산하지 않는다. 가져온 완료 기록은 검사 재실행 또는 실제 다중 사용자 전달 증거가 아니다.",
+    "revision 변경의 과거 완료 이력은 보존한다. 기준 정의 자체가 바뀌어 이전 signature만 남으면 옛 기준 완료 milestone을 복원할 수 없다. 이전 기준 snapshot 보관은 후속 경계다.",
+    "브라우저 확장 권한 때문에 native filechooser의 실제 선택→onchange 경로는 미검증이다. 부모는 동일 제품의 붙여넣기 경로로 실제 invalid/full/empty 교체를 검증했다고 전달했다. 본 검토자는 그 UI를 직접 조작하지 않았으며 부모 관측을 독립 브라우저 증거로 대체하지 않는다. 실제 다운로드 JSON과 snapshot 동등성도 부모 검증이다."
+  ]
+}

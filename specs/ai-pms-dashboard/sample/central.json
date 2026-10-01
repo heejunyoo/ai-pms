@@ -1,0 +1,747 @@
+{
+  "version": 1,
+  "sources": {
+    "[\"Alice\", \"laptop\", \"11111111-1111-4111-8111-111111111111\"]": {
+      "actor_id": "Alice",
+      "environment_id": "laptop",
+      "project_id": "11111111-1111-4111-8111-111111111111",
+      "label": "Alice 합성 환경",
+      "evidence_mode": "synthetic",
+      "events": {
+        "dc8d894b-e49f-5543-8e5b-712672ba8a2d": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "dc8d894b-e49f-5543-8e5b-712672ba8a2d",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "SessionStart",
+            "kind": "session.start",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "alice-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3",
+          "line": 1
+        },
+        "7891c70d-9a77-5ec7-9ef2-1ef2a981ae04": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "7891c70d-9a77-5ec7-9ef2-1ef2a981ae04",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "Stop",
+            "kind": "turn.stopped",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "alice-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3",
+          "line": 2
+        },
+        "ac903ec5-a4a9-5e0c-b711-14efbe1e38c8": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "ac903ec5-a4a9-5e0c-b711-14efbe1e38c8",
+            "observed_at": "2026-09-30T02:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "SessionStart",
+            "kind": "session.start",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "alice-2",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3",
+          "line": 3
+        },
+        "689976cf-ad5d-56f8-903d-c0c244fbe1fe": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "689976cf-ad5d-56f8-903d-c0c244fbe1fe",
+            "observed_at": "2026-09-30T02:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "Stop",
+            "kind": "turn.stopped",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "alice-2",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3",
+          "line": 4
+        },
+        "e06718eb-4da1-5381-ad0c-76ba1c973279": {
+          "event": {
+            "schema_version": 2,
+            "adapter_version": "2",
+            "event_id": "e06718eb-4da1-5381-ad0c-76ba1c973279",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "PreToolUse",
+            "kind": "tool.requested",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": "MCP",
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {
+              "connection": {
+                "server": "sample-crm",
+                "tool": "lookup",
+                "status": "requested",
+                "duration_ms": null,
+                "operation": "read",
+                "resources": [
+                  {
+                    "id": "customers",
+                    "kind": "database",
+                    "label": "합성 고객 자료",
+                    "evidence": "declared"
+                  }
+                ],
+                "artifact_refs": [
+                  {
+                    "id": "design",
+                    "version": "v2"
+                  }
+                ]
+              }
+            },
+            "missing_fields": [],
+            "session_id": "alice-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": "synthetic-call"
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3",
+          "line": 5
+        },
+        "2042e4db-6979-5f97-9205-81e57de6f27d": {
+          "event": {
+            "schema_version": 2,
+            "adapter_version": "2",
+            "event_id": "2042e4db-6979-5f97-9205-81e57de6f27d",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "PostToolUse",
+            "kind": "tool.completed",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": "MCP",
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {
+              "connection": {
+                "server": "sample-crm",
+                "tool": "lookup",
+                "status": "completed",
+                "duration_ms": 42,
+                "operation": "read",
+                "resources": [
+                  {
+                    "id": "customers",
+                    "kind": "database",
+                    "label": "합성 고객 자료",
+                    "evidence": "output"
+                  }
+                ],
+                "artifact_refs": [
+                  {
+                    "id": "design",
+                    "version": "v2"
+                  }
+                ]
+              }
+            },
+            "missing_fields": [],
+            "session_id": "alice-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": "synthetic-call"
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3",
+          "line": 6
+        }
+      }
+    },
+    "[\"Alice\", \"desktop\", \"11111111-1111-4111-8111-111111111111\"]": {
+      "actor_id": "Alice",
+      "environment_id": "desktop",
+      "project_id": "11111111-1111-4111-8111-111111111111",
+      "label": "Alice 합성 환경",
+      "evidence_mode": "synthetic",
+      "events": {
+        "c1702f52-4397-5f5c-8f5e-b6a85f0b71ec": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "c1702f52-4397-5f5c-8f5e-b6a85f0b71ec",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "SessionStart",
+            "kind": "session.start",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "alice-3",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "329f70cf8c98cd396d3c260205ebf446d5b176d6f5f08fa705f0bf9afb712b86",
+          "line": 1
+        },
+        "62518ec8-84d9-5565-ba4f-2bfbc3330c4b": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "62518ec8-84d9-5565-ba4f-2bfbc3330c4b",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "Stop",
+            "kind": "turn.stopped",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "alice-3",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "329f70cf8c98cd396d3c260205ebf446d5b176d6f5f08fa705f0bf9afb712b86",
+          "line": 2
+        },
+        "f82761d9-5fb8-5c9a-90b3-2df0bb857ee3": {
+          "event": {
+            "schema_version": 2,
+            "adapter_version": "2",
+            "event_id": "f82761d9-5fb8-5c9a-90b3-2df0bb857ee3",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "PostToolUse",
+            "kind": "tool.completed",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": "MCP",
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {
+              "connection": {
+                "server": null,
+                "tool": null,
+                "status": "completed",
+                "duration_ms": null,
+                "operation": "unknown",
+                "resources": [],
+                "artifact_refs": []
+              }
+            },
+            "missing_fields": [],
+            "session_id": "alice-3",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "329f70cf8c98cd396d3c260205ebf446d5b176d6f5f08fa705f0bf9afb712b86",
+          "line": 3
+        }
+      }
+    },
+    "[\"Bob\", \"laptop\", \"11111111-1111-4111-8111-111111111111\"]": {
+      "actor_id": "Bob",
+      "environment_id": "laptop",
+      "project_id": "11111111-1111-4111-8111-111111111111",
+      "label": "Bob 합성 환경",
+      "evidence_mode": "synthetic",
+      "events": {
+        "4f14b406-f4bc-58b0-81fe-26143fb33860": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "4f14b406-f4bc-58b0-81fe-26143fb33860",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "SessionStart",
+            "kind": "session.start",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "bob-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "2d74caeb2e8740c79705f76457e0b4507923b07a262f21670d8a9e4ec0823ea7",
+          "line": 1
+        },
+        "104c2eff-11fb-520f-9d70-4c83be23eb1c": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "104c2eff-11fb-520f-9d70-4c83be23eb1c",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "Stop",
+            "kind": "turn.stopped",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "bob-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "2d74caeb2e8740c79705f76457e0b4507923b07a262f21670d8a9e4ec0823ea7",
+          "line": 2
+        },
+        "a6296aa3-3fe9-56a3-acc5-caf8f9ef9161": {
+          "event": {
+            "schema_version": 2,
+            "adapter_version": "2",
+            "event_id": "a6296aa3-3fe9-56a3-acc5-caf8f9ef9161",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "PostToolUseFailure",
+            "kind": "tool.failed",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": "MCP",
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {
+              "connection": {
+                "server": "sample-crm",
+                "tool": "lookup",
+                "status": "failed",
+                "duration_ms": null,
+                "operation": "read",
+                "resources": [
+                  {
+                    "id": "customers",
+                    "kind": "database",
+                    "label": "합성 고객 자료",
+                    "evidence": "input"
+                  }
+                ],
+                "artifact_refs": [
+                  {
+                    "id": "design",
+                    "version": "v2"
+                  }
+                ]
+              }
+            },
+            "missing_fields": [],
+            "session_id": "bob-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": "synthetic-call"
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "2d74caeb2e8740c79705f76457e0b4507923b07a262f21670d8a9e4ec0823ea7",
+          "line": 3
+        }
+      }
+    },
+    "[\"Carol\", \"desktop\", \"22222222-2222-4222-8222-222222222222\"]": {
+      "actor_id": "Carol",
+      "environment_id": "desktop",
+      "project_id": "22222222-2222-4222-8222-222222222222",
+      "label": "Carol 합성 환경",
+      "evidence_mode": "synthetic",
+      "events": {
+        "106ae5a6-0293-57c3-965d-99c3725e1d5c": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "106ae5a6-0293-57c3-965d-99c3725e1d5c",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "SessionStart",
+            "kind": "session.start",
+            "authority": "observed",
+            "project_id": "22222222-2222-4222-8222-222222222222",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "carol-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "88688a7a0dc4f342ebc8c5a54ae5ad8646d2540ffc92dfa7cc279e66640b71d6",
+          "line": 1
+        },
+        "4129176c-4474-502f-8187-e0232e7641b3": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "4129176c-4474-502f-8187-e0232e7641b3",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "Stop",
+            "kind": "turn.stopped",
+            "authority": "observed",
+            "project_id": "22222222-2222-4222-8222-222222222222",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "carol-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "88688a7a0dc4f342ebc8c5a54ae5ad8646d2540ffc92dfa7cc279e66640b71d6",
+          "line": 2
+        }
+      }
+    },
+    "[\"Dana\", \"laptop\", \"33333333-3333-4333-8333-333333333333\"]": {
+      "actor_id": "Dana",
+      "environment_id": "laptop",
+      "project_id": "33333333-3333-4333-8333-333333333333",
+      "label": "Dana 합성 환경",
+      "evidence_mode": "synthetic",
+      "events": {
+        "6a8e67e4-0021-526a-9c3f-953cb986a8d6": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "6a8e67e4-0021-526a-9c3f-953cb986a8d6",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "SessionStart",
+            "kind": "session.start",
+            "authority": "observed",
+            "project_id": "33333333-3333-4333-8333-333333333333",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "dana-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "fd761d8ff675b40415d7b827a66634f40194b23a54373d2bbca1e57587af7047",
+          "line": 1
+        },
+        "fa1e4a74-3dda-5f7d-ab74-41af52dae6e7": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "fa1e4a74-3dda-5f7d-ab74-41af52dae6e7",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "Stop",
+            "kind": "turn.stopped",
+            "authority": "observed",
+            "project_id": "33333333-3333-4333-8333-333333333333",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "dana-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "fd761d8ff675b40415d7b827a66634f40194b23a54373d2bbca1e57587af7047",
+          "line": 2
+        }
+      }
+    },
+    "[\"Eve\", \"unmapped\", \"44444444-4444-4444-8444-444444444444\"]": {
+      "actor_id": "Eve",
+      "environment_id": "unmapped",
+      "project_id": "44444444-4444-4444-8444-444444444444",
+      "label": "Eve 합성 환경",
+      "evidence_mode": "synthetic",
+      "events": {
+        "a7b6c60a-d07b-5ede-9847-5145aab6fa56": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "a7b6c60a-d07b-5ede-9847-5145aab6fa56",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "SessionStart",
+            "kind": "session.start",
+            "authority": "observed",
+            "project_id": "44444444-4444-4444-8444-444444444444",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "eve-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "e7ff32b272d1043f8819ee3ee1d459cf1643c018935c4cff4fba367834784165",
+          "line": 1
+        },
+        "b8e09338-9893-553a-84eb-13052072ac51": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "b8e09338-9893-553a-84eb-13052072ac51",
+            "observed_at": "2026-09-30T01:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "Stop",
+            "kind": "turn.stopped",
+            "authority": "observed",
+            "project_id": "44444444-4444-4444-8444-444444444444",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "eve-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-01T00:00:00Z",
+          "file_sha256": "e7ff32b272d1043f8819ee3ee1d459cf1643c018935c4cff4fba367834784165",
+          "line": 2
+        }
+      }
+    }
+  }
+}

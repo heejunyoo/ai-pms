@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "packet.schema.json",
+  "title": "Handoff Task Packet",
+  "description": "서브에이전트에게 넘기는 작업 1건. 대화 히스토리를 대체한다. 스택 무관.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "kind",
+    "objective",
+    "done_when",
+    "already_tried",
+    "context",
+    "constraints",
+    "tools_allowed",
+    "budget",
+    "on_failure"
+  ],
+  "properties": {
+    "task_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{2,63}$",
+      "description": "kebab-case. 반환값이 이 값을 그대로 되돌려야 짝이 맞는다."
+    },
+    "kind": {
+      "enum": ["investigate", "implement", "verify"],
+      "description": "implement/verify 는 acceptance 가, implement 는 edit_points 가, investigate 는 return_schema 가 추가로 필요하다."
+    },
+    "phase": {
+      "type": "string",
+      "description": "plan.json 의 phases[].id. 단독 발행이면 생략."
+    },
+    "depends_on": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "선행 task_id. 순서를 산문으로 쓰지 않는다."
+    },
+    "objective": {
+      "type": "string",
+      "minLength": 10,
+      "description": "동사로 시작하는 한 문장. 목표이지 절차가 아니다."
+    },
+    "done_when": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 8 },
+      "description": "상위 에이전트가 결과만 보고 참/거짓을 판정할 수 있는 문장. 기계 판정은 acceptance 가 맡는다."
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command", "expect_exit_code"],
+      "description": "실제로 돌려 보고 통과 출력을 확인한 명령만 쓴다.",
+      "properties": {
+        "command": { "type": "string", "minLength": 3 },
+        "expect_exit_code": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "expect_contains": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "출력에 반드시 포함되어야 할 문자열."
+        },
+        "cwd": { "type": "string" }
+      }
+    },
+    "edit_points": {
+      "type": "array",
+      "description": "kind=implement 에 필수. 파일만 주고 심볼을 안 주면 서브에이전트가 새 파일을 만든다.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "what"],
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "symbol": { "type": "string", "description": "함수·클래스·섹션 이름." },
+          "what": { "type": "string", "minLength": 5 }
+        }
+      }
+    },
+    "files_to_create": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "새로 만들 파일 경로. 여기 없는 파일을 만들면 범위 이탈이다."
+    },
+    "reference_impl": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "why"],
+      "description": "흉내낼 기존 구현. 서브에이전트가 리포 규약을 지키게 하는 가장 싼 수단.",
+      "properties": {
+        "path": { "type": "string" },
+        "why": { "type": "string", "minLength": 5 }
+      }
+    },
+    "already_tried": {
+      "type": "array",
+      "description": "중복 실행 차단용. 시도한 적 없으면 빈 배열을 명시한다.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["what", "result"],
+        "properties": {
+          "what": { "type": "string", "minLength": 3 },
+          "result": { "type": "string", "minLength": 3 }
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["facts", "excluded"],
+      "properties": {
+        "spec_ref": {
+          "type": "string",
+          "description": "근거 문서 경로. 내용을 붙여넣지 말고 경로를 준다."
+        },
+        "facts": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "서브에이전트가 스스로 알아낼 수 없는 사실만. 재발견 가능한 것은 넣지 않는다."
+        },
+        "conventions": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "이 리포의 명명·에러처리·주입 방식. 주변 코드에서 뽑아 쓴다."
+        },
+        "files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "읽어야 할 경로. 내용이 아니라 경로."
+        },
+        "excluded": {
+          "type": "string",
+          "minLength": 3,
+          "description": "일부러 안 보낸 것. 없으면 \"none\". 공백을 지어내지 않게 한다."
+        }
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["must", "must_not"],
+      "properties": {
+        "must": { "type": "array", "items": { "type": "string" } },
+        "must_not": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" },
+          "description": "범위 이탈 차단. 최소 1개."
+        }
+      }
+    },
+    "tools_allowed": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" },
+      "description": "작업 패킷의 도구 사용 가이드. Codex API 수준의 화이트리스트는 아니다."
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_turns"],
+      "properties": {
+        "max_turns": { "type": "integer", "minimum": 1, "maximum": 100, "description": "작업 패킷의 중단 판단 가이드. API가 강제하지 않는다." },
+        "wall_clock_s": { "type": "integer", "minimum": 10, "description": "작업 패킷의 시간 가이드. API가 강제하지 않는다." }
+      }
+    },
+    "return_schema": {
+      "type": "object",
+      "minProperties": 1,
+      "description": "kind=investigate 에 필수. result.payload 가 따라야 할 모양."
+    },
+    "on_failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["retry", "partial_ok"],
+      "properties": {
+        "retry": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "재발행 횟수. 2 이상은 상위 모델이 직접 하는 편이 싸다."
+        },
+        "partial_ok": { "type": "boolean" },
+        "escalate_to": { "type": "string" }
+      }
+    }
+  }
+}

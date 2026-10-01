@@ -1,0 +1,36 @@
+{
+  "task_id": "guard-kit",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "$HOME/.claude/harness/build/current_content.py",
+      "action": "modified",
+      "summary": "Added bilingual source anchored requirements, independent review freshness, task mapping, original purpose acceptance, and semantic limits guidance."
+    },
+    {
+      "path": "$HOME/.claude/harness/build/check_current.py",
+      "action": "modified",
+      "summary": "Requires both packages' intent guard and reviewed example files, then runs each exported validator selftest and plan check from a temporary extraction."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 -m py_compile .claude/harness/build/current_content.py .claude/harness/build/check_current.py",
+    "exit_code": 0,
+    "output_tail": ""
+  },
+  "done_when_check": [
+    {
+      "condition": "Both handoff guide languages explain source anchoring, independent review freshness, task-to-requirement mapping, and original-purpose acceptance.",
+      "met": true,
+      "evidence": "Added matching intent-guard sections and bilingual content assertions."
+    },
+    {
+      "condition": "Bundle checker requires the guard module and valid example receipts for both platforms.",
+      "met": true,
+      "evidence": "The checker requires both packages' guard and examples and invokes their own plan validation and selftest."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.87,
+  "notes_for_orchestrator": "Parent closed pending ZIP check: publish.sh built and checked exported validators, deployed, and remote HTML/ZIP matched local SHA-256."
+}

@@ -1,0 +1,857 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-10-01T12:00:00Z",
+  "evidence_mode": "synthetic",
+  "projects": [
+    {
+      "id": "alice-recall",
+      "name": "Recall 학습 도우미",
+      "goal": "자료를 읽고 배운 내용을 회상 문제로 확인합니다.",
+      "owners": [
+        "Alice"
+      ],
+      "current_revision": "v1",
+      "current_phase": "build",
+      "status": "complete",
+      "status_reason": "현재 revision의 프로젝트 범위 최신 검사 기록이 모두 통과했습니다. 목표/문서는 catalog.projects[0]의 명시적 입력입니다.",
+      "phases": [
+        {
+          "id": "plan",
+          "name": "기획",
+          "status": "unknown"
+        },
+        {
+          "id": "design",
+          "name": "설계",
+          "status": "complete"
+        },
+        {
+          "id": "build",
+          "name": "구현",
+          "status": "unknown"
+        }
+      ],
+      "documents": [
+        {
+          "id": "prd",
+          "title": "제품 요구사항",
+          "kind": "prd",
+          "version": "v1",
+          "phase_id": "plan",
+          "at": "2026-09-29T01:00:00Z",
+          "session_id": "alice-1",
+          "actor_id": "Alice",
+          "environment_id": "laptop",
+          "summary": "첫 요구사항",
+          "content": "사용자는 자료를 넣고 회상 문제를 풉니다. 출처를 함께 표시합니다.",
+          "source_ref": "catalog.projects[0].documents[0]"
+        },
+        {
+          "id": "design",
+          "title": "회상 흐름 설계",
+          "kind": "design",
+          "version": "v1",
+          "phase_id": "design",
+          "at": "2026-09-29T03:00:00Z",
+          "session_id": "alice-1",
+          "actor_id": "Alice",
+          "environment_id": "laptop",
+          "summary": "설계 초안",
+          "content": "자료 입력 → 요약 → 문제 풀이. 실패 시 오류를 보여줍니다.",
+          "source_ref": "catalog.projects[0].documents[1]"
+        },
+        {
+          "id": "design",
+          "title": "회상 흐름 설계",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "design",
+          "at": "2026-09-30T03:00:00Z",
+          "session_id": "alice-2",
+          "actor_id": "Alice",
+          "environment_id": "laptop",
+          "summary": "부분 결과 안내 추가",
+          "content": "자료 입력 → 출처 확인 → 문제 풀이. 부분 결과는 누락 범위를 표시하고 재시도합니다.",
+          "source_ref": "catalog.projects[0].documents[2]"
+        },
+        {
+          "id": "implementation",
+          "title": "구현 결과",
+          "kind": "implementation",
+          "version": "v1",
+          "phase_id": "build",
+          "at": "2026-09-30T08:00:00Z",
+          "session_id": "alice-3",
+          "actor_id": "Alice",
+          "environment_id": "desktop",
+          "summary": "인수 기준 충족",
+          "content": "출처 표시, 문제 풀이, 부분 결과 안내를 구현했습니다. 이 내용과 검사는 모두 합성 시연 입력입니다.",
+          "source_ref": "catalog.projects[0].documents[3]"
+        }
+      ],
+      "criteria": [
+        {
+          "id": "recall-acceptance",
+          "label": "전체 인수 검사",
+          "scope": "project",
+          "target_id": "alice-recall",
+          "command": "python3 checks/recall-acceptance.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "design-review",
+          "label": "설계 단계 검사",
+          "scope": "phase",
+          "target_id": "design",
+          "command": "python3 checks/design-review.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "single-task",
+          "label": "개별 작업 검사",
+          "scope": "task",
+          "target_id": "quiz-component",
+          "command": "python3 checks/single-task.py",
+          "expected_exit_code": 0
+        }
+      ],
+      "runs": [
+        {
+          "criterion_id": "recall-acceptance",
+          "revision": "v1",
+          "at": "2026-09-30T04:00:00Z",
+          "exit_code": 1,
+          "session_id": "alice-2",
+          "evidence": "합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "criterion_signature": "2e85d86516a525c02029be9d743ae8af218359602e98e4508275c05474fb278b",
+          "status": "fail",
+          "source_ref": "catalog.projects[0].runs[0]"
+        },
+        {
+          "criterion_id": "recall-acceptance",
+          "revision": "v1",
+          "at": "2026-09-30T08:00:00Z",
+          "exit_code": 0,
+          "session_id": "alice-3",
+          "evidence": "합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "criterion_signature": "2e85d86516a525c02029be9d743ae8af218359602e98e4508275c05474fb278b",
+          "status": "pass",
+          "source_ref": "catalog.projects[0].runs[1]"
+        },
+        {
+          "criterion_id": "design-review",
+          "revision": "v1",
+          "at": "2026-09-30T03:00:00Z",
+          "exit_code": 0,
+          "session_id": "alice-1",
+          "evidence": "합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "criterion_signature": "9f3f3e89c5cc8fface90aa007665f33471bc822fb963bfc542e501cd2d8b2f10",
+          "status": "pass",
+          "source_ref": "catalog.projects[0].runs[2]"
+        },
+        {
+          "criterion_id": "single-task",
+          "revision": "v1",
+          "at": "2026-09-30T05:00:00Z",
+          "exit_code": 0,
+          "session_id": "alice-2",
+          "evidence": "합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "criterion_signature": "dad1d2eca95a658cbdd51b916a9698d135e88d7c506e34dacce99906ed89ff52",
+          "status": "pass",
+          "source_ref": "catalog.projects[0].runs[3]"
+        }
+      ],
+      "sessions": [
+        {
+          "id": "alice-3",
+          "actor_id": "Alice",
+          "environment_id": "desktop",
+          "event_count": 3
+        },
+        {
+          "id": "alice-1",
+          "actor_id": "Alice",
+          "environment_id": "laptop",
+          "event_count": 4
+        },
+        {
+          "id": "alice-2",
+          "actor_id": "Alice",
+          "environment_id": "laptop",
+          "event_count": 2
+        }
+      ],
+      "timeline": [
+        {
+          "at": "2026-09-29T01:00:00Z",
+          "kind": "document",
+          "title": "제품 요구사항 · v1",
+          "detail": "첫 요구사항",
+          "session_id": "alice-1",
+          "source_ref": "catalog.projects[0].documents[0]"
+        },
+        {
+          "at": "2026-09-29T03:00:00Z",
+          "kind": "document",
+          "title": "회상 흐름 설계 · v1",
+          "detail": "설계 초안",
+          "session_id": "alice-1",
+          "source_ref": "catalog.projects[0].documents[1]"
+        },
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "turn.stopped",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"62518ec8-84d9-5565-ba4f-2bfbc3330c4b\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"alice-3\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "alice-3",
+          "source_ref": "central Alice/desktop event_id=62518ec8-84d9-5565-ba4f-2bfbc3330c4b file_sha256=329f70cf8c98cd396d3c260205ebf446d5b176d6f5f08fa705f0bf9afb712b86 line=2"
+        },
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "session.start",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"c1702f52-4397-5f5c-8f5e-b6a85f0b71ec\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"alice-3\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "alice-3",
+          "source_ref": "central Alice/desktop event_id=c1702f52-4397-5f5c-8f5e-b6a85f0b71ec file_sha256=329f70cf8c98cd396d3c260205ebf446d5b176d6f5f08fa705f0bf9afb712b86 line=1"
+        },
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "tool.completed",
+          "detail": "{\n  \"adapter_version\": \"2\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {\n    \"connection\": {\n      \"artifact_refs\": [],\n      \"duration_ms\": null,\n      \"operation\": \"unknown\",\n      \"resources\": [],\n      \"server\": null,\n      \"status\": \"completed\",\n      \"tool\": null\n    }\n  },\n  \"event_id\": \"f82761d9-5fb8-5c9a-90b3-2df0bb857ee3\",\n  \"kind\": \"tool.completed\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"PostToolUse\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 2,\n  \"session_id\": \"alice-3\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": \"MCP\",\n  \"turn_id\": null\n}",
+          "session_id": "alice-3",
+          "source_ref": "central Alice/desktop event_id=f82761d9-5fb8-5c9a-90b3-2df0bb857ee3 file_sha256=329f70cf8c98cd396d3c260205ebf446d5b176d6f5f08fa705f0bf9afb712b86 line=3"
+        },
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "tool.completed",
+          "detail": "{\n  \"adapter_version\": \"2\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {\n    \"connection\": {\n      \"artifact_refs\": [\n        {\n          \"id\": \"design\",\n          \"version\": \"v2\"\n        }\n      ],\n      \"duration_ms\": 42,\n      \"operation\": \"read\",\n      \"resources\": [\n        {\n          \"evidence\": \"output\",\n          \"id\": \"customers\",\n          \"kind\": \"database\",\n          \"label\": \"합성 고객 자료\"\n        }\n      ],\n      \"server\": \"sample-crm\",\n      \"status\": \"completed\",\n      \"tool\": \"lookup\"\n    }\n  },\n  \"event_id\": \"2042e4db-6979-5f97-9205-81e57de6f27d\",\n  \"kind\": \"tool.completed\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"PostToolUse\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 2,\n  \"session_id\": \"alice-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": \"synthetic-call\",\n  \"tool_name\": \"MCP\",\n  \"turn_id\": null\n}",
+          "session_id": "alice-1",
+          "source_ref": "central Alice/laptop event_id=2042e4db-6979-5f97-9205-81e57de6f27d file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=6"
+        },
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "turn.stopped",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"7891c70d-9a77-5ec7-9ef2-1ef2a981ae04\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"alice-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "alice-1",
+          "source_ref": "central Alice/laptop event_id=7891c70d-9a77-5ec7-9ef2-1ef2a981ae04 file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=2"
+        },
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "session.start",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"dc8d894b-e49f-5543-8e5b-712672ba8a2d\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"alice-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "alice-1",
+          "source_ref": "central Alice/laptop event_id=dc8d894b-e49f-5543-8e5b-712672ba8a2d file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=1"
+        },
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "tool.requested",
+          "detail": "{\n  \"adapter_version\": \"2\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {\n    \"connection\": {\n      \"artifact_refs\": [\n        {\n          \"id\": \"design\",\n          \"version\": \"v2\"\n        }\n      ],\n      \"duration_ms\": null,\n      \"operation\": \"read\",\n      \"resources\": [\n        {\n          \"evidence\": \"declared\",\n          \"id\": \"customers\",\n          \"kind\": \"database\",\n          \"label\": \"합성 고객 자료\"\n        }\n      ],\n      \"server\": \"sample-crm\",\n      \"status\": \"requested\",\n      \"tool\": \"lookup\"\n    }\n  },\n  \"event_id\": \"e06718eb-4da1-5381-ad0c-76ba1c973279\",\n  \"kind\": \"tool.requested\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"PreToolUse\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 2,\n  \"session_id\": \"alice-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": \"synthetic-call\",\n  \"tool_name\": \"MCP\",\n  \"turn_id\": null\n}",
+          "session_id": "alice-1",
+          "source_ref": "central Alice/laptop event_id=e06718eb-4da1-5381-ad0c-76ba1c973279 file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=5"
+        },
+        {
+          "at": "2026-09-30T02:00:00Z",
+          "kind": "event",
+          "title": "turn.stopped",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"689976cf-ad5d-56f8-903d-c0c244fbe1fe\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-09-30T02:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"alice-2\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "alice-2",
+          "source_ref": "central Alice/laptop event_id=689976cf-ad5d-56f8-903d-c0c244fbe1fe file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=4"
+        },
+        {
+          "at": "2026-09-30T02:00:00Z",
+          "kind": "event",
+          "title": "session.start",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"ac903ec5-a4a9-5e0c-b711-14efbe1e38c8\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-09-30T02:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"alice-2\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "alice-2",
+          "source_ref": "central Alice/laptop event_id=ac903ec5-a4a9-5e0c-b711-14efbe1e38c8 file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=3"
+        },
+        {
+          "at": "2026-09-30T03:00:00Z",
+          "kind": "check",
+          "title": "설계 단계 검사 · pass",
+          "detail": "v1 · python3 checks/design-review.py\n가져온 검사 기록 (실행하지 않음): 합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "session_id": "alice-1",
+          "source_ref": "catalog.projects[0].runs[2]"
+        },
+        {
+          "at": "2026-09-30T03:00:00Z",
+          "kind": "document",
+          "title": "회상 흐름 설계 · v2",
+          "detail": "부분 결과 안내 추가",
+          "session_id": "alice-2",
+          "source_ref": "catalog.projects[0].documents[2]"
+        },
+        {
+          "at": "2026-09-30T04:00:00Z",
+          "kind": "check",
+          "title": "전체 인수 검사 · fail",
+          "detail": "v1 · python3 checks/recall-acceptance.py\n가져온 검사 기록 (실행하지 않음): 합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "session_id": "alice-2",
+          "source_ref": "catalog.projects[0].runs[0]"
+        },
+        {
+          "at": "2026-09-30T05:00:00Z",
+          "kind": "check",
+          "title": "개별 작업 검사 · pass",
+          "detail": "v1 · python3 checks/single-task.py\n가져온 검사 기록 (실행하지 않음): 합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "session_id": "alice-2",
+          "source_ref": "catalog.projects[0].runs[3]"
+        },
+        {
+          "at": "2026-09-30T08:00:00Z",
+          "kind": "check",
+          "title": "전체 인수 검사 · pass",
+          "detail": "v1 · python3 checks/recall-acceptance.py\n가져온 검사 기록 (실행하지 않음): 합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "session_id": "alice-3",
+          "source_ref": "catalog.projects[0].runs[1]"
+        },
+        {
+          "at": "2026-09-30T08:00:00Z",
+          "kind": "document",
+          "title": "구현 결과 · v1",
+          "detail": "인수 기준 충족",
+          "session_id": "alice-3",
+          "source_ref": "catalog.projects[0].documents[3]"
+        },
+        {
+          "at": "2026-09-30T08:00:00Z",
+          "kind": "milestone",
+          "title": "프로젝트 완료 기준 충족 · v1",
+          "detail": "당시 기준의 가져온 검사 기록이 모두 통과했습니다.",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].runs"
+        }
+      ],
+      "sources": [
+        {
+          "actor_id": "Alice",
+          "environment_id": "laptop",
+          "project_id": "11111111-1111-4111-8111-111111111111",
+          "evidence_mode": "synthetic",
+          "event_count": 6
+        },
+        {
+          "actor_id": "Alice",
+          "environment_id": "desktop",
+          "project_id": "11111111-1111-4111-8111-111111111111",
+          "evidence_mode": "synthetic",
+          "event_count": 3
+        }
+      ],
+      "alerts": [],
+      "last_updated": "2026-09-30T08:00:00Z",
+      "connections": [
+        {
+          "server": "sample-crm",
+          "tool": "lookup",
+          "status": "completed",
+          "duration_ms": 42,
+          "operation": "read",
+          "resources": [
+            {
+              "id": "customers",
+              "kind": "database",
+              "label": "합성 고객 자료",
+              "evidence": "output"
+            }
+          ],
+          "artifact_refs": [
+            {
+              "id": "design",
+              "version": "v2"
+            }
+          ],
+          "id": "connection-74b0b230774a69caf4f11137412f801c",
+          "actor_id": "Alice",
+          "environment_id": "laptop",
+          "session_id": "alice-1",
+          "agent_id": null,
+          "tool_call_id": "synthetic-call",
+          "at": "2026-09-30T01:00:00Z",
+          "authority": "observed",
+          "source_ref": "central Alice/laptop event_id=2042e4db-6979-5f97-9205-81e57de6f27d file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=6"
+        },
+        {
+          "server": "sample-crm",
+          "tool": "lookup",
+          "status": "requested",
+          "duration_ms": null,
+          "operation": "read",
+          "resources": [
+            {
+              "id": "customers",
+              "kind": "database",
+              "label": "합성 고객 자료",
+              "evidence": "declared"
+            }
+          ],
+          "artifact_refs": [
+            {
+              "id": "design",
+              "version": "v2"
+            }
+          ],
+          "id": "connection-b4d69138e27ec7a5a2c3b7116ef4b07a",
+          "actor_id": "Alice",
+          "environment_id": "laptop",
+          "session_id": "alice-1",
+          "agent_id": null,
+          "tool_call_id": "synthetic-call",
+          "at": "2026-09-30T01:00:00Z",
+          "authority": "observed",
+          "source_ref": "central Alice/laptop event_id=e06718eb-4da1-5381-ad0c-76ba1c973279 file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=5"
+        },
+        {
+          "server": null,
+          "tool": null,
+          "status": "completed",
+          "duration_ms": null,
+          "operation": "unknown",
+          "resources": [],
+          "artifact_refs": [],
+          "id": "connection-cd8a72b059ec84fde8a698a6bc8d3026",
+          "actor_id": "Alice",
+          "environment_id": "desktop",
+          "session_id": "alice-3",
+          "agent_id": null,
+          "tool_call_id": null,
+          "at": "2026-09-30T01:00:00Z",
+          "authority": "observed",
+          "source_ref": "central Alice/desktop event_id=f82761d9-5fb8-5c9a-90b3-2df0bb857ee3 file_sha256=329f70cf8c98cd396d3c260205ebf446d5b176d6f5f08fa705f0bf9afb712b86 line=3"
+        }
+      ]
+    },
+    {
+      "id": "bob-payments",
+      "name": "지급 내역 검토",
+      "goal": "지급 내역의 오류를 확인하는 화면을 만듭니다.",
+      "owners": [
+        "Bob"
+      ],
+      "current_revision": "v1",
+      "current_phase": "build",
+      "status": "failed",
+      "status_reason": "현재 revision의 프로젝트 범위 최신 검사 기록에 실패가 있습니다. 목표/문서는 catalog.projects[1]의 명시적 입력입니다.",
+      "phases": [
+        {
+          "id": "plan",
+          "name": "기획",
+          "status": "unknown"
+        },
+        {
+          "id": "design",
+          "name": "설계",
+          "status": "complete"
+        },
+        {
+          "id": "build",
+          "name": "구현",
+          "status": "unknown"
+        }
+      ],
+      "documents": [],
+      "criteria": [
+        {
+          "id": "payments-acceptance",
+          "label": "전체 인수 검사",
+          "scope": "project",
+          "target_id": "bob-payments",
+          "command": "python3 checks/payments-acceptance.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "payment-design",
+          "label": "설계 단계 검사",
+          "scope": "phase",
+          "target_id": "design",
+          "command": "python3 checks/payment-design.py",
+          "expected_exit_code": 0
+        }
+      ],
+      "runs": [
+        {
+          "criterion_id": "payments-acceptance",
+          "revision": "v1",
+          "at": "2026-09-30T05:00:00Z",
+          "exit_code": 1,
+          "session_id": "bob-1",
+          "evidence": "합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "criterion_signature": "0671daf3359a1d27af7fc9475d52d27b8f45aca10fade58fde26517534b5f2ed",
+          "status": "fail",
+          "source_ref": "catalog.projects[1].runs[0]"
+        },
+        {
+          "criterion_id": "payment-design",
+          "revision": "v1",
+          "at": "2026-09-30T03:00:00Z",
+          "exit_code": 0,
+          "session_id": "bob-1",
+          "evidence": "합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "criterion_signature": "9c9a29aae5873252b4ff30ca00890644731181c588939c00763aad2ee52c0ef5",
+          "status": "pass",
+          "source_ref": "catalog.projects[1].runs[1]"
+        }
+      ],
+      "sessions": [
+        {
+          "id": "bob-1",
+          "actor_id": "Bob",
+          "environment_id": "laptop",
+          "event_count": 3
+        }
+      ],
+      "timeline": [
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "turn.stopped",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"104c2eff-11fb-520f-9d70-4c83be23eb1c\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"bob-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "bob-1",
+          "source_ref": "central Bob/laptop event_id=104c2eff-11fb-520f-9d70-4c83be23eb1c file_sha256=2d74caeb2e8740c79705f76457e0b4507923b07a262f21670d8a9e4ec0823ea7 line=2"
+        },
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "session.start",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"4f14b406-f4bc-58b0-81fe-26143fb33860\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"bob-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "bob-1",
+          "source_ref": "central Bob/laptop event_id=4f14b406-f4bc-58b0-81fe-26143fb33860 file_sha256=2d74caeb2e8740c79705f76457e0b4507923b07a262f21670d8a9e4ec0823ea7 line=1"
+        },
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "tool.failed",
+          "detail": "{\n  \"adapter_version\": \"2\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {\n    \"connection\": {\n      \"artifact_refs\": [\n        {\n          \"id\": \"design\",\n          \"version\": \"v2\"\n        }\n      ],\n      \"duration_ms\": null,\n      \"operation\": \"read\",\n      \"resources\": [\n        {\n          \"evidence\": \"input\",\n          \"id\": \"customers\",\n          \"kind\": \"database\",\n          \"label\": \"합성 고객 자료\"\n        }\n      ],\n      \"server\": \"sample-crm\",\n      \"status\": \"failed\",\n      \"tool\": \"lookup\"\n    }\n  },\n  \"event_id\": \"a6296aa3-3fe9-56a3-acc5-caf8f9ef9161\",\n  \"kind\": \"tool.failed\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"PostToolUseFailure\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 2,\n  \"session_id\": \"bob-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": \"synthetic-call\",\n  \"tool_name\": \"MCP\",\n  \"turn_id\": null\n}",
+          "session_id": "bob-1",
+          "source_ref": "central Bob/laptop event_id=a6296aa3-3fe9-56a3-acc5-caf8f9ef9161 file_sha256=2d74caeb2e8740c79705f76457e0b4507923b07a262f21670d8a9e4ec0823ea7 line=3"
+        },
+        {
+          "at": "2026-09-30T03:00:00Z",
+          "kind": "check",
+          "title": "설계 단계 검사 · pass",
+          "detail": "v1 · python3 checks/payment-design.py\n가져온 검사 기록 (실행하지 않음): 합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "session_id": "bob-1",
+          "source_ref": "catalog.projects[1].runs[1]"
+        },
+        {
+          "at": "2026-09-30T05:00:00Z",
+          "kind": "check",
+          "title": "전체 인수 검사 · fail",
+          "detail": "v1 · python3 checks/payments-acceptance.py\n가져온 검사 기록 (실행하지 않음): 합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "session_id": "bob-1",
+          "source_ref": "catalog.projects[1].runs[0]"
+        }
+      ],
+      "sources": [
+        {
+          "actor_id": "Bob",
+          "environment_id": "laptop",
+          "project_id": "11111111-1111-4111-8111-111111111111",
+          "evidence_mode": "synthetic",
+          "event_count": 3
+        }
+      ],
+      "alerts": [],
+      "last_updated": "2026-09-30T05:00:00Z",
+      "connections": [
+        {
+          "server": "sample-crm",
+          "tool": "lookup",
+          "status": "failed",
+          "duration_ms": null,
+          "operation": "read",
+          "resources": [
+            {
+              "id": "customers",
+              "kind": "database",
+              "label": "합성 고객 자료",
+              "evidence": "input"
+            }
+          ],
+          "artifact_refs": [
+            {
+              "id": "design",
+              "version": "v2"
+            }
+          ],
+          "id": "connection-77914218a3ca848f7535db22d9f9c1bb",
+          "actor_id": "Bob",
+          "environment_id": "laptop",
+          "session_id": "bob-1",
+          "agent_id": null,
+          "tool_call_id": "synthetic-call",
+          "at": "2026-09-30T01:00:00Z",
+          "authority": "observed",
+          "source_ref": "central Bob/laptop event_id=a6296aa3-3fe9-56a3-acc5-caf8f9ef9161 file_sha256=2d74caeb2e8740c79705f76457e0b4507923b07a262f21670d8a9e4ec0823ea7 line=3"
+        }
+      ]
+    },
+    {
+      "id": "carol-dashboard",
+      "name": "운영 대시보드",
+      "goal": "운영 상태와 변경 이력을 함께 봅니다.",
+      "owners": [
+        "Carol"
+      ],
+      "current_revision": "v2",
+      "current_phase": "build",
+      "status": "revalidation",
+      "status_reason": "과거 revision 완료 후 현재 revision 검사 기록이 부족합니다. 목표/문서는 catalog.projects[2]의 명시적 입력입니다.",
+      "phases": [
+        {
+          "id": "plan",
+          "name": "기획",
+          "status": "unknown"
+        },
+        {
+          "id": "design",
+          "name": "설계",
+          "status": "unknown"
+        },
+        {
+          "id": "build",
+          "name": "구현",
+          "status": "unknown"
+        }
+      ],
+      "documents": [],
+      "criteria": [
+        {
+          "id": "dashboard-acceptance",
+          "label": "전체 인수 검사",
+          "scope": "project",
+          "target_id": "carol-dashboard",
+          "command": "python3 checks/dashboard-acceptance.py",
+          "expected_exit_code": 0
+        }
+      ],
+      "runs": [
+        {
+          "criterion_id": "dashboard-acceptance",
+          "revision": "v1",
+          "at": "2026-09-29T08:00:00Z",
+          "exit_code": 0,
+          "session_id": "carol-1",
+          "evidence": "합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "criterion_signature": "5f115c20ef490d8eca4b645517426f05df7a225c9d15d149538ead0e3cfb102a",
+          "status": "pass",
+          "source_ref": "catalog.projects[2].runs[0]"
+        }
+      ],
+      "sessions": [
+        {
+          "id": "carol-1",
+          "actor_id": "Carol",
+          "environment_id": "desktop",
+          "event_count": 2
+        }
+      ],
+      "timeline": [
+        {
+          "at": "2026-09-29T08:00:00Z",
+          "kind": "check",
+          "title": "전체 인수 검사 · pass",
+          "detail": "v1 · python3 checks/dashboard-acceptance.py\n가져온 검사 기록 (실행하지 않음): 합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "session_id": "carol-1",
+          "source_ref": "catalog.projects[2].runs[0]"
+        },
+        {
+          "at": "2026-09-29T08:00:00Z",
+          "kind": "milestone",
+          "title": "프로젝트 완료 기준 충족 · v1",
+          "detail": "당시 기준의 가져온 검사 기록이 모두 통과했습니다.",
+          "session_id": null,
+          "source_ref": "catalog.projects[2].runs"
+        },
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "session.start",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"106ae5a6-0293-57c3-965d-99c3725e1d5c\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"22222222-2222-4222-8222-222222222222\",\n  \"schema_version\": 1,\n  \"session_id\": \"carol-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "carol-1",
+          "source_ref": "central Carol/desktop event_id=106ae5a6-0293-57c3-965d-99c3725e1d5c file_sha256=88688a7a0dc4f342ebc8c5a54ae5ad8646d2540ffc92dfa7cc279e66640b71d6 line=1"
+        },
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "turn.stopped",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"4129176c-4474-502f-8187-e0232e7641b3\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"22222222-2222-4222-8222-222222222222\",\n  \"schema_version\": 1,\n  \"session_id\": \"carol-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "carol-1",
+          "source_ref": "central Carol/desktop event_id=4129176c-4474-502f-8187-e0232e7641b3 file_sha256=88688a7a0dc4f342ebc8c5a54ae5ad8646d2540ffc92dfa7cc279e66640b71d6 line=2"
+        }
+      ],
+      "sources": [
+        {
+          "actor_id": "Carol",
+          "environment_id": "desktop",
+          "project_id": "22222222-2222-4222-8222-222222222222",
+          "evidence_mode": "synthetic",
+          "event_count": 2
+        }
+      ],
+      "alerts": [],
+      "last_updated": "2026-09-30T01:00:00Z",
+      "connections": []
+    },
+    {
+      "id": "dana-discovery",
+      "name": "고객 인터뷰 정리",
+      "goal": "고객 요구를 정리하고 다음 실험을 정합니다.",
+      "owners": [
+        "Dana"
+      ],
+      "current_revision": "v1",
+      "current_phase": "build",
+      "status": "unknown",
+      "status_reason": "프로젝트 범위 완료 기준이 없습니다. 목표/문서는 catalog.projects[3]의 명시적 입력입니다.",
+      "phases": [
+        {
+          "id": "plan",
+          "name": "기획",
+          "status": "unknown"
+        },
+        {
+          "id": "design",
+          "name": "설계",
+          "status": "unknown"
+        },
+        {
+          "id": "build",
+          "name": "구현",
+          "status": "unknown"
+        }
+      ],
+      "documents": [],
+      "criteria": [],
+      "runs": [],
+      "sessions": [
+        {
+          "id": "dana-1",
+          "actor_id": "Dana",
+          "environment_id": "laptop",
+          "event_count": 2
+        }
+      ],
+      "timeline": [
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "session.start",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"6a8e67e4-0021-526a-9c3f-953cb986a8d6\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"33333333-3333-4333-8333-333333333333\",\n  \"schema_version\": 1,\n  \"session_id\": \"dana-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "dana-1",
+          "source_ref": "central Dana/laptop event_id=6a8e67e4-0021-526a-9c3f-953cb986a8d6 file_sha256=fd761d8ff675b40415d7b827a66634f40194b23a54373d2bbca1e57587af7047 line=1"
+        },
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "turn.stopped",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"fa1e4a74-3dda-5f7d-ab74-41af52dae6e7\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"33333333-3333-4333-8333-333333333333\",\n  \"schema_version\": 1,\n  \"session_id\": \"dana-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "dana-1",
+          "source_ref": "central Dana/laptop event_id=fa1e4a74-3dda-5f7d-ab74-41af52dae6e7 file_sha256=fd761d8ff675b40415d7b827a66634f40194b23a54373d2bbca1e57587af7047 line=2"
+        }
+      ],
+      "sources": [
+        {
+          "actor_id": "Dana",
+          "environment_id": "laptop",
+          "project_id": "33333333-3333-4333-8333-333333333333",
+          "evidence_mode": "synthetic",
+          "event_count": 2
+        }
+      ],
+      "alerts": [],
+      "last_updated": "2026-09-30T01:00:00Z",
+      "connections": [
+        {
+          "server": "sample-crm",
+          "tool": "lookup",
+          "status": "configured",
+          "duration_ms": null,
+          "operation": "read",
+          "resources": [
+            {
+              "id": "customers",
+              "kind": "database",
+              "label": "합성 고객 자료",
+              "evidence": "declared"
+            }
+          ],
+          "artifact_refs": [
+            {
+              "id": "design",
+              "version": "v2"
+            }
+          ],
+          "id": "configured-crm",
+          "actor_id": "Dana",
+          "environment_id": "laptop",
+          "session_id": null,
+          "agent_id": null,
+          "tool_call_id": null,
+          "at": null,
+          "authority": "declared",
+          "source_ref": "catalog.projects[3].connections[0]"
+        }
+      ]
+    },
+    {
+      "id": "unmapped-f54926a3bf0a924b",
+      "name": "Eve 합성 환경",
+      "goal": "목표 미입력 · 출처 미연결",
+      "owners": [
+        "Eve"
+      ],
+      "current_revision": "unknown",
+      "current_phase": null,
+      "status": "unknown",
+      "status_reason": "프로젝트 범위 완료 기준이 없습니다. 목표/문서는 central.unmapped의 명시적 입력입니다.",
+      "phases": [],
+      "documents": [],
+      "criteria": [],
+      "runs": [],
+      "sessions": [
+        {
+          "id": "eve-1",
+          "actor_id": "Eve",
+          "environment_id": "unmapped",
+          "event_count": 2
+        }
+      ],
+      "timeline": [
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "session.start",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"a7b6c60a-d07b-5ede-9847-5145aab6fa56\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"44444444-4444-4444-8444-444444444444\",\n  \"schema_version\": 1,\n  \"session_id\": \"eve-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "eve-1",
+          "source_ref": "central Eve/unmapped event_id=a7b6c60a-d07b-5ede-9847-5145aab6fa56 file_sha256=e7ff32b272d1043f8819ee3ee1d459cf1643c018935c4cff4fba367834784165 line=1"
+        },
+        {
+          "at": "2026-09-30T01:00:00Z",
+          "kind": "event",
+          "title": "turn.stopped",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"b8e09338-9893-553a-84eb-13052072ac51\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"44444444-4444-4444-8444-444444444444\",\n  \"schema_version\": 1,\n  \"session_id\": \"eve-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "eve-1",
+          "source_ref": "central Eve/unmapped event_id=b8e09338-9893-553a-84eb-13052072ac51 file_sha256=e7ff32b272d1043f8819ee3ee1d459cf1643c018935c4cff4fba367834784165 line=2"
+        }
+      ],
+      "sources": [
+        {
+          "actor_id": "Eve",
+          "environment_id": "unmapped",
+          "project_id": "44444444-4444-4444-8444-444444444444",
+          "evidence_mode": "synthetic",
+          "event_count": 2
+        }
+      ],
+      "alerts": [],
+      "last_updated": "2026-09-30T01:00:00Z",
+      "connections": []
+    }
+  ]
+}

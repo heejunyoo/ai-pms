@@ -1,0 +1,51 @@
+{
+  "task_id": "receive-aggregate",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-transport/common.py",
+      "action": "modified",
+      "summary": "Bounded JSON and durable private directory barriers"
+    },
+    {
+      "path": "specs/ai-pms-transport/receiver.py",
+      "action": "created",
+      "summary": "Authenticated immutable inbox and independent aggregate metadata"
+    },
+    {
+      "path": "specs/ai-pms-transport/test_receiver.py",
+      "action": "created",
+      "summary": "Synthetic actual HTTP and durability failure counterexamples"
+    },
+    {
+      "path": "specs/ai-pms-transport/receive-aggregate-result.json",
+      "action": "created",
+      "summary": "Task return contract"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-transport/test_receiver.py",
+    "exit_code": 0,
+    "output_tail": "receiver: synthetic HTTP auth, durable replay, metadata failures, context isolation and conflicts passed"
+  },
+  "done_when_check": [
+    {
+      "condition": "환경 자격과 project allowlist로 귀속을 고정하고 inbox fsync 뒤에만 멱등 ACK한다",
+      "met": true,
+      "evidence": "test_receiver.py actual HTTP forged credential/project, revocation, replay, immutable body conflict, inbox parent fsync failure checks passed"
+    },
+    {
+      "condition": "집계 실패와 충돌을 중앙 저장과 독립된 metadata에 보존한다",
+      "met": true,
+      "evidence": "test_receiver.py registration_changed, event_conflict, import_failed, corrupt inbox and metadata marker failures passed; central store/inbox separate"
+    },
+    {
+      "condition": "실제 loopback HTTP 및 위조·중복·충돌·저장 실패 반례 검사를 통과한다",
+      "met": true,
+      "evidence": "python3 specs/ai-pms-transport/test_receiver.py exit0 using temporary synthetic credentials and loopback HTTP"
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.88,
+  "notes_for_orchestrator": "Only T1 designated files changed. No real credentials/global hooks/logger changes/external transmission/deployment. actual_multi_user_delivery_verified=false; product_complete=false. Parent owns final verify_transport, independent review and browser acceptance. sync_file central limit uses central.MAX_STORE. Invalid server registry returns503, HTTP parser errors fixed JSON. receive conservatively rebuilds all inbox statuses queued; aggregate rechecks all immutable inboxes. Independent nested-store corruption follow-up: reproduced source.events=[] AttributeError, now aggregate marks import_failed; preflight rejects invalid events containers including heartbeat and preserves corrupt original store bytes. Added compact test; acceptance exit0."
+}

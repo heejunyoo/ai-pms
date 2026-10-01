@@ -1,0 +1,51 @@
+{
+  "task_id": "kit",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "$HOME/.claude/harness/build/current_content.py",
+      "action": "modified",
+      "summary": "Bilingual central AI PMS page, goals/documents/revision checks and safe connectivity logging examples; index discovery."
+    },
+    {
+      "path": "$HOME/.claude/harness/build/build_current.py",
+      "action": "modified",
+      "summary": "AI PMS nav, synthetic dashboard/report/repository links, connectivity module ZIP export and bundle purpose."
+    },
+    {
+      "path": "$HOME/.claude/harness/build/check_current.py",
+      "action": "modified",
+      "summary": "AI PMS language/route/content/link and exact ZIP allowlist assertions; portable logger module loading."
+    },
+    {
+      "path": "$HOME/.claude/harness/build/BUILD.md",
+      "action": "modified",
+      "summary": "AI PMS canonical build and publication boundaries."
+    },
+    {
+      "path": "specs/ai-pms-connectivity/kit-result.json",
+      "action": "created",
+      "summary": "Handoff result and acceptance evidence."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 $HOME/.claude/harness/build/build_current.py && python3 $HOME/.claude/harness/build/check_current.py",
+    "exit_code": 0,
+    "output_tail": "Built 36 pages, both language bundles, and current discovery files.\nALL PASS — 36 pages; language parity, legacy routes, HTML/JS, privacy, offline resources, bundles, and headers."
+  },
+  "done_when_check": [
+    {
+      "condition": "spec.md 소유 범위와 고정 계약 준수",
+      "met": true,
+      "evidence": "Canonical four owned files updated. AI PMS KO/EN pages explain multi-user/multi-session projects, goal/documents/steps/revision completion, observed vs declared MCP/data provenance, local synthetic stdin and resource-map examples. No backend/UI edits or external writes."
+    },
+    {
+      "condition": "해당 검증 실행 결과와 남은 경계를 result JSON에 기록",
+      "met": true,
+      "evidence": "Canonical build + check_current exit0 after backend connectivity module and tests ready. 36 routes, language parity, legacy aliases, exact export allowlist, HTML/JS, privacy, offline resource and CSP checks passed."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.94,
+  "notes_for_orchestrator": "Local Kit gate passed with backend files present. Parent must rebuild if backend changes again, verify public app/repo/report links and production Kit/dashboard bytes, desktop/mobile interactions and release receipt. No deployment or real multi-user hook-delivery proof performed here. Static sample and retained local viewer are explicitly distinguished from operational central service. Canonical build generated site/public/ (automatic outputs), not manual edits."
+}

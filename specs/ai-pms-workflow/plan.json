@@ -1,0 +1,254 @@
+{
+  "goal": "[HISTORICAL LIMITED PROTOTYPE: follow PRODUCT-INTENT.md for subsequent work] Implement practical AI PMS first work cycle: chosen phase and scope -> decision/evidence -> concrete next Agent work packet",
+  "spec_ref": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-workflow/spec.md",
+  "open_decisions": [],
+  "verify_command": "python3 .claude/harness/activity/check_viewer.py && python3 .claude/harness/activity/test_workflow.py && python3 .claude/harness/build/check_site.py",
+  "phases": [
+    {
+      "id": "p1",
+      "name": "Work cycle implementation and portable Kit guide",
+      "exit_check": {
+        "command": "python3 .claude/harness/activity/check_viewer.py",
+        "expect_exit_code": 0
+      }
+    },
+    {
+      "id": "p2",
+      "name": "Interaction roundtrip and canonical Kit regression",
+      "exit_check": {
+        "command": "python3 .claude/harness/activity/test_workflow.py && python3 .claude/harness/build/build_current.py && python3 .claude/harness/build/check_site.py && python3 .codex/harness/verify.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "workflow-ui",
+      "kind": "implement",
+      "phase": "p1",
+      "depends_on": [],
+      "objective": "Implement scope-to-next-Agent offline work cycle with first-visit clarity",
+      "done_when": [
+        "New project and scope decision forms generate privacy-safe v1 records without CLI",
+        "Selected baseline, exact evidence and user next task generate concrete Markdown packet",
+        "Offline plain-text artifact review and full-project record save preserve declared status"
+      ],
+      "acceptance": {
+        "command": "python3 .claude/harness/activity/check_viewer.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": ".claude/harness/activity/viewer.html",
+          "symbol": "validate/renderReview/projects",
+          "what": "Implement scope-to-next-Agent offline work cycle with first-visit clarity"
+        },
+        {
+          "path": ".claude/harness/activity/check_viewer.py",
+          "symbol": "main",
+          "what": "Implement scope-to-next-Agent offline work cycle with first-visit clarity"
+        }
+      ],
+      "files_to_create": [],
+      "reference_impl": {
+        "path": ".claude/harness/activity/viewer.html",
+        "why": "Use existing inline offline UI or canonical stdlib build pattern"
+      },
+      "already_tried": [
+        {
+          "what": "Read current sources and ran check_viewer.py",
+          "result": "Existing offline import/practitioner checks passed; no project authoring or executable next-work context UI"
+        }
+      ],
+      "context": {
+        "spec_ref": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-workflow/spec.md",
+        "facts": [
+          "User wants continued product implementation through lower model handoff; no lengthy reports. Only assigned files may change."
+        ],
+        "conventions": [
+          "Self-contained offline Korean UI; stdlib; v1 JSONL unchanged; no external resources"
+        ],
+        "files": [
+          ".claude/harness/activity/viewer.html",
+          ".claude/harness/activity/check_viewer.py",
+          ".claude/harness/activity/logger.py"
+        ],
+        "excluded": "Live hooks/accounts, backend/API, DB, deployment, unrelated files"
+      },
+      "constraints": {
+        "must": [
+          "Read full spec and write result-schema conforming $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-workflow/workflow-ui-result.json"
+        ],
+        "must_not": [
+          "Do not modify files outside assigned scope, change logger schema, install deps or bypass browser URL rejection"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": false,
+        "escalate_to": "main"
+      }
+    },
+    {
+      "task_id": "workflow-kit",
+      "kind": "implement",
+      "phase": "p1",
+      "depends_on": [],
+      "objective": "Explain product direction and package realistic explicit workflow example",
+      "done_when": [
+        "Bilingual Kit docs explain available scope-to-Agent flow and future product boundaries",
+        "Exact public export includes synthetic realistic sample and excludes private logs"
+      ],
+      "acceptance": {
+        "command": "python3 -m py_compile .claude/harness/build/build_current.py .claude/harness/build/current_content.py .claude/harness/build/check_current.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": ".claude/harness/activity/README.md",
+          "symbol": "Practitioner review",
+          "what": "Explain product direction and package realistic explicit workflow example"
+        },
+        {
+          "path": ".claude/harness/build/build_current.py",
+          "symbol": "build/snapshot",
+          "what": "Explain product direction and package realistic explicit workflow example"
+        },
+        {
+          "path": ".claude/harness/build/current_content.py",
+          "symbol": "PAGES",
+          "what": "Explain product direction and package realistic explicit workflow example"
+        },
+        {
+          "path": ".claude/harness/build/check_current.py",
+          "symbol": "validate",
+          "what": "Explain product direction and package realistic explicit workflow example"
+        }
+      ],
+      "files_to_create": [
+        ".claude/harness/activity/example-project.jsonl"
+      ],
+      "reference_impl": {
+        "path": ".claude/harness/activity/README.md",
+        "why": "Use existing inline offline UI or canonical stdlib build pattern"
+      },
+      "already_tried": [
+        {
+          "what": "Read current sources and ran check_viewer.py",
+          "result": "Existing offline import/practitioner checks passed; no project authoring or executable next-work context UI"
+        }
+      ],
+      "context": {
+        "spec_ref": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-workflow/spec.md",
+        "facts": [
+          "User wants continued product implementation through lower model handoff; no lengthy reports. Only assigned files may change."
+        ],
+        "conventions": [
+          "Self-contained offline Korean UI; stdlib; v1 JSONL unchanged; no external resources"
+        ],
+        "files": [
+          ".claude/harness/activity/README.md",
+          ".claude/harness/activity/logger.py",
+          ".claude/harness/build/BUILD.md",
+          ".claude/harness/build/build_current.py",
+          ".claude/harness/build/check_current.py"
+        ],
+        "excluded": "Live hooks/accounts, backend/API, DB, deployment, unrelated files"
+      },
+      "constraints": {
+        "must": [
+          "Read full spec and write result-schema conforming $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-workflow/workflow-kit-result.json"
+        ],
+        "must_not": [
+          "Do not modify files outside assigned scope, change logger schema, install deps or bypass browser URL rejection"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": false,
+        "escalate_to": "main"
+      }
+    },
+    {
+      "task_id": "workflow-flowcheck",
+      "kind": "implement",
+      "phase": "p2",
+      "depends_on": [
+        "workflow-ui",
+        "workflow-kit"
+      ],
+      "objective": "Verify actual offline UI event wiring and exported work context",
+      "done_when": [
+        "DOM-unit flow creates project, records decision and exports selected scoped work packet",
+        "Saved project JSONL roundtrips and plain-text artifact content never executes"
+      ],
+      "acceptance": {
+        "command": "python3 .claude/harness/activity/test_workflow.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [],
+      "files_to_create": [
+        ".claude/harness/activity/test_workflow.py"
+      ],
+      "reference_impl": {
+        "path": ".claude/harness/activity/viewer.html",
+        "why": "Use existing inline offline UI or canonical stdlib build pattern"
+      },
+      "already_tried": [
+        {
+          "what": "Read current sources and ran check_viewer.py",
+          "result": "Existing offline import/practitioner checks passed; no project authoring or executable next-work context UI"
+        }
+      ],
+      "context": {
+        "spec_ref": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-workflow/spec.md",
+        "facts": [
+          "User wants continued product implementation through lower model handoff; no lengthy reports. Only assigned files may change."
+        ],
+        "conventions": [
+          "Self-contained offline Korean UI; stdlib; v1 JSONL unchanged; no external resources"
+        ],
+        "files": [
+          ".claude/harness/activity/viewer.html",
+          ".claude/harness/activity/check_viewer.py",
+          ".claude/harness/activity/example-project.jsonl"
+        ],
+        "excluded": "Live hooks/accounts, backend/API, DB, deployment, unrelated files"
+      },
+      "constraints": {
+        "must": [
+          "Read full spec and write result-schema conforming $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-workflow/workflow-flowcheck-result.json"
+        ],
+        "must_not": [
+          "Do not modify files outside assigned scope, change logger schema, install deps or bypass browser URL rejection"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": false,
+        "escalate_to": "main"
+      }
+    }
+  ]
+}

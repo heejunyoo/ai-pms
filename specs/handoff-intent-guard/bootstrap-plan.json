@@ -1,0 +1,208 @@
+{
+  "goal": "Strengthen handoff against product goal drift, publish updated Kit and leave central AI PMS continuation",
+  "spec_ref": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/spec.md",
+  "open_decisions": [],
+  "verify_command": "python3 .codex/harness/verify.py && python3 .claude/harness/build/check_site.py",
+  "phases": [
+    {
+      "id": "p1",
+      "name": "Staged guard and bilingual guidance",
+      "exit_check": {
+        "command": "python3 $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/validate.py selftest && python3 $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/validate.py selftest",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "guard-core",
+      "kind": "implement",
+      "phase": "p1",
+      "depends_on": [],
+      "objective": "Implement fail-closed intent evidence and requirement guard in both staged handoff packages",
+      "done_when": [
+        "Missing/self-reviewed/blocked/stale source-spec receipts fail plan and emit",
+        "Tasks map to original requirements and original-purpose acceptance is mandatory",
+        "Both tool-specific selftests preserve old checks and pass new negative regressions"
+      ],
+      "acceptance": {
+        "command": "python3 $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/validate.py selftest && python3 $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/validate.py selftest",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/validate.py",
+          "symbol": "package validators/schemas/docs",
+          "what": "Implement fail-closed intent evidence and requirement guard in both staged handoff packages"
+        },
+        {
+          "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/plan.schema.json",
+          "symbol": "package validators/schemas/docs",
+          "what": "Implement fail-closed intent evidence and requirement guard in both staged handoff packages"
+        },
+        {
+          "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/packet.schema.json",
+          "symbol": "package validators/schemas/docs",
+          "what": "Implement fail-closed intent evidence and requirement guard in both staged handoff packages"
+        },
+        {
+          "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/example.plan.json",
+          "symbol": "package validators/schemas/docs",
+          "what": "Implement fail-closed intent evidence and requirement guard in both staged handoff packages"
+        },
+        {
+          "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/SKILL.md",
+          "symbol": "package validators/schemas/docs",
+          "what": "Implement fail-closed intent evidence and requirement guard in both staged handoff packages"
+        },
+        {
+          "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/validate.py",
+          "symbol": "package validators/schemas/docs",
+          "what": "Implement fail-closed intent evidence and requirement guard in both staged handoff packages"
+        },
+        {
+          "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/plan.schema.json",
+          "symbol": "package validators/schemas/docs",
+          "what": "Implement fail-closed intent evidence and requirement guard in both staged handoff packages"
+        },
+        {
+          "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/packet.schema.json",
+          "symbol": "package validators/schemas/docs",
+          "what": "Implement fail-closed intent evidence and requirement guard in both staged handoff packages"
+        },
+        {
+          "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/example.plan.json",
+          "symbol": "package validators/schemas/docs",
+          "what": "Implement fail-closed intent evidence and requirement guard in both staged handoff packages"
+        },
+        {
+          "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/SKILL.md",
+          "symbol": "package validators/schemas/docs",
+          "what": "Implement fail-closed intent evidence and requirement guard in both staged handoff packages"
+        }
+      ],
+      "files_to_create": [
+        "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/intent_guard.py",
+        "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/example-intent.md",
+        "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/example-spec.md",
+        "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/example-review.json",
+        "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/intent_guard.py",
+        "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/example-intent.md",
+        "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/example-spec.md",
+        "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/example-review.json"
+      ],
+      "reference_impl": {
+        "path": ".agents/skills/handoff/validate.py",
+        "why": "Preserve existing stdlib schema/selftest/emit pattern and tool-specific contracts"
+      },
+      "already_tried": [
+        {
+          "what": "Inspected current handoff validators, schemas, Kit canonical generator and global rules",
+          "result": "Current validators do not anchor source intent, independent review or original-purpose acceptance"
+        }
+      ],
+      "context": {
+        "spec_ref": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/spec.md",
+        "facts": [
+          "Stage protected global skill changes; do not edit live .agents or .codex paths. User explicitly authorized Kit deployment; parent executes after review."
+        ],
+        "files": [
+          "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/requested-change.md",
+          "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/spec.md",
+          ".claude/harness/build/BUILD.md"
+        ],
+        "excluded": "Product UI expansion, live config/hooks, new DB/API/infra, existing tests deletion, deploy by subagents"
+      },
+      "constraints": {
+        "must": [
+          "Follow spec; preserve existing tests; write result-schema JSON $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/guard-core-result.json"
+        ],
+        "must_not": [
+          "No live protected package installs or deployment; only assigned staged/core or canonical doc files"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 40
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": false,
+        "escalate_to": "main"
+      }
+    },
+    {
+      "task_id": "guard-kit",
+      "kind": "implement",
+      "phase": "p1",
+      "depends_on": [],
+      "objective": "Publish bilingual intent guard guidance and enforce Kit export coverage",
+      "done_when": [
+        "Both handoff guide languages explain source anchoring independent review and original-purpose acceptance",
+        "Bundle checker requires guard module and valid example receipts for both platforms"
+      ],
+      "acceptance": {
+        "command": "python3 -m py_compile .claude/harness/build/current_content.py .claude/harness/build/check_current.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "$HOME/.claude/harness/build/current_content.py",
+          "symbol": "PAGES/validate",
+          "what": "Publish bilingual intent guard guidance and enforce Kit export coverage"
+        },
+        {
+          "path": "$HOME/.claude/harness/build/check_current.py",
+          "symbol": "PAGES/validate",
+          "what": "Publish bilingual intent guard guidance and enforce Kit export coverage"
+        }
+      ],
+      "files_to_create": [],
+      "reference_impl": {
+        "path": ".agents/skills/handoff/validate.py",
+        "why": "Preserve existing stdlib schema/selftest/emit pattern and tool-specific contracts"
+      },
+      "already_tried": [
+        {
+          "what": "Inspected current handoff validators, schemas, Kit canonical generator and global rules",
+          "result": "Current validators do not anchor source intent, independent review or original-purpose acceptance"
+        }
+      ],
+      "context": {
+        "spec_ref": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/spec.md",
+        "facts": [
+          "Stage protected global skill changes; do not edit live .agents or .codex paths. User explicitly authorized Kit deployment; parent executes after review."
+        ],
+        "files": [
+          "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/requested-change.md",
+          "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/spec.md",
+          ".claude/harness/build/BUILD.md"
+        ],
+        "excluded": "Product UI expansion, live config/hooks, new DB/API/infra, existing tests deletion, deploy by subagents"
+      },
+      "constraints": {
+        "must": [
+          "Follow spec; preserve existing tests; write result-schema JSON $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/guard-kit-result.json"
+        ],
+        "must_not": [
+          "No live protected package installs or deployment; only assigned staged/core or canonical doc files"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 40
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": false,
+        "escalate_to": "main"
+      }
+    }
+  ]
+}

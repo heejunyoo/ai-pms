@@ -1,0 +1,102 @@
+{
+  "task_id": "backend",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "$HOME/.claude/harness/activity/logger.py",
+      "action": "modified"
+    },
+    {
+      "path": "$HOME/.claude/harness/activity/test_logger.py",
+      "action": "modified"
+    },
+    {
+      "path": "$HOME/.claude/harness/activity/README.md",
+      "action": "modified"
+    },
+    {
+      "path": "$HOME/.claude/harness/activity/connectivity.py",
+      "action": "created"
+    },
+    {
+      "path": "specs/ai-pms-central/central.py",
+      "action": "modified"
+    },
+    {
+      "path": "specs/ai-pms-central/test_central.py",
+      "action": "modified"
+    },
+    {
+      "path": "specs/ai-pms-central/connectivity.py",
+      "action": "created"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/portfolio.py",
+      "action": "modified"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/test_portfolio.py",
+      "action": "modified"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/generate.py",
+      "action": "modified"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/Eve-unmapped.jsonl",
+      "action": "modified"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/central.json",
+      "action": "modified"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/Alice-desktop.jsonl",
+      "action": "modified"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/Bob-laptop.jsonl",
+      "action": "modified"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/manifest.json",
+      "action": "modified"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/catalog.json",
+      "action": "modified"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/Dana-laptop.jsonl",
+      "action": "modified"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/Alice-laptop.jsonl",
+      "action": "modified"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/sample/Carol-desktop.jsonl",
+      "action": "modified"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-dashboard/test_portfolio.py",
+    "exit_code": 0,
+    "output_tail": "Ran 17 tests; OK"
+  },
+  "done_when_check": [
+    {
+      "condition": "spec.md 소유 범위와 고정 계약 준수",
+      "met": true,
+      "evidence": "logger hook v2 + identical connectivity allowlist, central v1/v2, catalog2/model2, scoped provenance and synthetic fixtures; logger11/central3/model17 pass"
+    },
+    {
+      "condition": "해당 검증 실행 결과와 남은 경계를 result JSON에 기록",
+      "met": true,
+      "evidence": "logger11 central3 portfolio17 delivery4; sender/receiver actual synthetic loopback tests exit0 with escalation; harness verify all PASS. Browser/public release belongs to parent."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.9,
+  "notes_for_orchestrator": "Native adapters support Codex/Claude command hook metadata; Cursor/Gemini are not claimed as verified. Safe MCP server/tool identifiers are retained under v2; original test retained with updated contract assertion. Sample generator sample_data() defaults v1 for old checks; generate() creates v2. No UI/Kit files changed. Per-event connection IDs hash actor/environment/project/event identity to avoid collisions. v1 MCP entries appear identity unavailable in a v2 model. Completion logic unchanged. Full provider-hook delivery / multi-PC collection remains unverified/deferred."
+}

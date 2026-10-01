@@ -1,0 +1,41 @@
+{
+  "task_id": "dashboard-ui",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/dashboard.html",
+      "action": "modified",
+      "summary": "v1/v2 exact validation, scoped connectivity filters/summary and MCP detail relationships with safe rendering"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/check_ui.py",
+      "action": "modified",
+      "summary": "Preserved existing checks; added exact v2/privacy/authority/scoped-resource counterexamples"
+    },
+    {
+      "path": "specs/ai-pms-connectivity/dashboard-ui-result.json",
+      "action": "created",
+      "summary": "Handoff result and local acceptance boundary"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-dashboard/check_ui.py",
+    "exit_code": 0,
+    "output_tail": "v2 exact contract, scoped resources, configured/observed separation and malformed connectivity/declared-provenance/null-time cases PASS\nValidator: empty/full/declared/null-run model, 26 malformed nested cases, injection preserved as text; version labels PASS\nUI static structure + JavaScript syntax + import validator: PASS (browser QA is separate)"
+  },
+  "done_when_check": [
+    {
+      "condition": "spec.md 소유 범위와 고정 계약 준수",
+      "met": true,
+      "evidence": "Only dashboard.html/check_ui.py and allowed result changed. v1 exact shape remains accepted; v2 connection exact shape/privacy/identity validation and scoped resource keys checked. Portfolio filter/card summary/fifth MCP detail tab uses textContent and existing keyboard tabs. Independent-review fixes strictly reject declared input/output resource references and declared unknown null timestamps; executable counterexamples included."
+    },
+    {
+      "condition": "해당 검증 실행 결과와 남은 경계를 result JSON에 기록",
+      "met": true,
+      "evidence": "check_ui.py exit 0. Browser/mobile/import-export interaction and live public deployment validation remain parent integration scope."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.9,
+  "notes_for_orchestrator": "Independent-review blockers corrected: declared rows reject input/output resources; null at is allowed only for declared configured rows. Positive declared unknown UTC and configured-null cases plus five malformed counterexamples passed. No browser/production/actual-user delivery proof claimed; parent must perform final integrated mobile/browser/public acceptance."
+}

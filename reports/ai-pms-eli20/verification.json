@@ -1,0 +1,19 @@
+{
+  "scope": "eli20-offline-project-dashboard",
+  "report_sha256": "48408c27f95cd75adb4e01a3688f45eb280e6379af2abe542b69c9bb86a3fc66",
+  "static_check_command": "python3 ~/.agents/skills/eli5/check.py reports/ai-pms-eli20/index.html",
+  "interactive_states_verified": [
+    "plan",
+    "build",
+    "done",
+    "change"
+  ],
+  "keyboard_enter_verified": true,
+  "mobile_width": 390,
+  "mobile_document_width": 390,
+  "browser_observation_ref": "../../specs/ai-pms-dashboard/evidence/browser-observation.md",
+  "browser_receipt_sha256": "55a9f8605f81bccab02b4aaa35ea9a924d3e537483aa4d2266d68a251f0afe7a",
+  "automatic_collection_deferred": true,
+  "actual_multi_user_delivery_verified": false,
+  "remote_service_deployed": false
+}

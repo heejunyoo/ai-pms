@@ -1,0 +1,20 @@
+{
+  "task_id": "activity-viewer",
+  "status": "complete",
+  "files_changed": [
+    {"path": ".claude/harness/activity/viewer.html", "action": "created", "summary": "Offline Korean version1 JSONL viewer with strict validation, declared/observed timelines, exact version links, gaps, filters, bounds and textContent rendering"},
+    {"path": ".claude/harness/activity/check_viewer.py", "action": "created", "summary": "Node syntax and offline contract/import/link identity checks invoked by Python stdlib"}
+  ],
+  "acceptance_run": {
+    "command": "python3 .claude/harness/activity/check_viewer.py",
+    "exit_code": 0,
+    "output_tail": "viewer syntax and offline import checks passed"
+  },
+  "done_when_check": [
+    {"condition": "Imported version1 JSONL displays timeline and declared decisions with evidence links", "met": true, "evidence": "Implemented declared/observed sections, baseline goal/scope/version, decision reason/scope changes, source/agent identities and exact artifact/version and phase/baseline links. Runnable check verifies accepted contract, filter and link identities. Browser proof belongs to parent."},
+    {"condition": "Invalid input/dedup/filter/empty states are explicit and imported text cannot execute", "met": true, "evidence": "Runnable check covers malformed/version/type input, stable and conflicting dedup, filter empty results, event cap, HTML-looking summary. Rendering uses textContent; self-contained CSP denies network. Empty, load, invalid, duplicate and limit status implemented."}
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.9,
+  "notes_for_orchestrator": "No browser verification performed by this task. Max 10 MiB/file, 30 MiB/batch, 20,000 imported events; displays latest 250 matching events and first 10 evidence peers with visible ceiling and outside-screen labels. Latest pre-release version1 baseline_version amendment included. No live config, deployment, external services or other task source changes."
+}

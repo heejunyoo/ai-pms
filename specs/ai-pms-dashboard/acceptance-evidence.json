@@ -1,0 +1,60 @@
+{
+  "scope": "offline-central-project-dashboard",
+  "offline_dashboard_complete": true,
+  "automatic_collection_deferred": true,
+  "actual_multi_user_delivery_verified": false,
+  "remote_service_deployed": false,
+  "evidence_mode": "synthetic",
+  "tests": [
+    {
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 $HOME/.agents/skills/handoff/validate.py plan $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-dashboard/plan.json",
+      "exit_code": 0,
+      "output_tail": "WARN   phase=accept: 소속 태스크가 없다\n\n통과 (WARN 1건 — 읽고 판단한다)\n"
+    },
+    {
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 $HOME/.agents/skills/handoff/validate.py result $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-dashboard/data-model-result.json --plan $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-dashboard/plan.json",
+      "exit_code": 0,
+      "output_tail": "WARN   phase=accept: 소속 태스크가 없다\n\n통과 (WARN 1건 — 읽고 판단한다)\n"
+    },
+    {
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 $HOME/.agents/skills/handoff/validate.py result $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-dashboard/dashboard-ui-result.json --plan $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-dashboard/plan.json",
+      "exit_code": 0,
+      "output_tail": "WARN   phase=accept: 소속 태스크가 없다\n\n통과 (WARN 1건 — 읽고 판단한다)\n"
+    },
+    {
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-dashboard/test_portfolio.py",
+      "exit_code": 0,
+      "output_tail": "................\n----------------------------------------------------------------------\nRan 16 tests in 1.110s\n\nOK\n"
+    },
+    {
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-dashboard/check_ui.py",
+      "exit_code": 0,
+      "output_tail": "Validator: empty/full/declared/null-run model, 26 malformed nested cases, injection preserved as text; version labels PASS\nUI static structure + JavaScript syntax + import validator: PASS (browser QA is separate)\n"
+    },
+    {
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/ai-pms-central/test_central.py",
+      "exit_code": 0,
+      "output_tail": "projects=3\ntest_subprocess_import_identity_links_privacy_and_report (__main__.CentralFlow.test_subprocess_import_identity_links_privacy_and_report) ... ok\ntest_time_order_future_and_past_errors (__main__.CentralFlow.test_time_order_future_and_past_errors) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.491s\n\nOK\n"
+    },
+    {
+      "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 $HOME/.agents/skills/eli5/check.py $HOME/Documents/Codex/2026-09-30/ai-pms-research/reports/ai-pms-eli20/index.html",
+      "exit_code": 0,
+      "output_tail": "── $HOME/Documents/Codex/2026-09-30/ai-pms-research/reports/ai-pms-eli20/index.html\nWARN   다크 모드 대응이 없다 — 다크 브라우저에서 대비가 무너질 수 있다\nINFO   svg 0개 · 핸들러 1개 · 버튼 4개 · ELI20 · 산문 2399자 (총량 제한 없음)\n── ERROR 0 · WARN 1\n정적 검사 통과. 다음은 390px 실제 렌더 확인이다(정적 통과 ≠ 화면 멀쩡).\n"
+    }
+  ],
+  "project_count": 5,
+  "browser_receipt_sha256": "55a9f8605f81bccab02b4aaa35ea9a924d3e537483aa4d2266d68a251f0afe7a",
+  "code_review_sha256": "ad94586fc431edd322ce63e1749e035ba4be7169ce9609e60f9bc9e1d006e856",
+  "artifact_sha256": {
+    "specs/ai-pms-dashboard/portfolio.py": "7fc2b31c0be29cadeba6e584c272dcd7284e129af282b924a664c51c59a9563a",
+    "specs/ai-pms-dashboard/dashboard.html": "c38896a3d70cde93fb4bed77159c8a50370c165da0b516148d16d0cdb98c0b15",
+    "specs/ai-pms-dashboard/test_portfolio.py": "d787c5cae94687906f6f3922799f21f3b00ac5e2d2d9406f97c577713783f75b",
+    "specs/ai-pms-dashboard/check_ui.py": "e3a1cae3c2f93c51eb4b89ccb9141f06714c4575d098857594980f8cb46d2126",
+    "specs/ai-pms-dashboard/sample/generate.py": "9a05b951761b968f2990b4a51c75108ab06ebc2611b726b82a9a361ee19471d4",
+    "reports/ai-pms-eli20/index.html": "48408c27f95cd75adb4e01a3688f45eb280e6379af2abe542b69c9bb86a3fc66",
+    "specs/ai-pms-dashboard/evidence/dashboard.html": "2bcd02fcb3c030756f33bbd48ad8aeba5c53ebcb0ef2984c2321e3d683b2d2bb",
+    "specs/ai-pms-dashboard/evidence/empty.html": "09b8b9a5ed801587ea3847b5b9691339b263d6bff7c9d4d75584a6ccc266d679",
+    "specs/ai-pms-dashboard/evidence/snapshot.json": "260b1d71b5d8a698b6a16ca4a02bc801079c7c44d69565ca641e38eb8f170ae3",
+    "specs/ai-pms-dashboard/evidence/browser-observation.md": "09c2c8e7e0cb2d8cdd271635ae11f7277400c9cc3ffcc9f3a7cf86ba87f5150f"
+  }
+}

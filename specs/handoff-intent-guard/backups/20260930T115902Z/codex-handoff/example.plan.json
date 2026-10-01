@@ -1,0 +1,205 @@
+{
+  "goal": "공개 HTTP API 에 IP 단위 요청 제한을 적용해, 초과 요청이 429 와 Retry-After 헤더를 받도록 한다",
+  "spec_ref": ".codex/specs/rate-limit/spec.md",
+  "open_decisions": [],
+  "verify_command": "npm test",
+  "phases": [
+    {
+      "id": "p1",
+      "name": "설정과 저장소 — 라우터에 배선하지 않은 상태로 단위 테스트 통과",
+      "exit_check": {
+        "command": "npm run typecheck && npm test -- src/rateLimit",
+        "expect_exit_code": 0,
+        "expect_contains": ["passed"]
+      },
+      "rollback": "git restore src/config/rateLimit.ts src/rateLimit/"
+    },
+    {
+      "id": "p2",
+      "name": "미들웨어 배선 — 실제 라우터에 적용되고 429 를 반환",
+      "exit_check": {
+        "command": "npm test -- src/middleware",
+        "expect_exit_code": 0,
+        "expect_contains": ["passed"]
+      },
+      "rollback": "git restore src/middleware/ src/app.ts"
+    },
+    {
+      "id": "p3",
+      "name": "회귀 확인 — 기존 테스트가 모두 통과",
+      "exit_check": { "command": "npm test", "expect_exit_code": 0 }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "rl-config",
+      "kind": "implement",
+      "phase": "p1",
+      "depends_on": [],
+      "objective": "환경변수에서 요청 제한 설정을 읽는 로더를 추가한다",
+      "done_when": [
+        "RATE_LIMIT_MAX 와 RATE_LIMIT_WINDOW_SEC 를 읽고 미설정 시 각각 100, 60 을 쓴다",
+        "값이 숫자가 아니면 기동 시점에 예외를 던진다"
+      ],
+      "acceptance": {
+        "command": "npm run typecheck && npm test -- src/config/rateLimit.test.ts",
+        "expect_exit_code": 0,
+        "expect_contains": ["passed"]
+      },
+      "files_to_create": ["src/config/rateLimit.ts", "src/config/rateLimit.test.ts"],
+      "reference_impl": {
+        "path": "src/config/cors.ts",
+        "why": "이 리포의 설정 로더 형태(zod 스키마 + 기본값 + 기동 시 검증)를 그대로 따른다"
+      },
+      "already_tried": [],
+      "context": {
+        "spec_ref": ".codex/specs/rate-limit/spec.md",
+        "facts": [
+          "설정은 전부 src/config/ 아래 파일 하나당 하나이며 index.ts 가 재수출한다",
+          "테스트는 vitest 이고 파일명은 <대상>.test.ts 규약이다"
+        ],
+        "conventions": [
+          "검증에 zod 를 쓴다. 수동 typeof 검사를 쓰지 않는다",
+          "기본값은 스키마의 .default() 로 표현한다"
+        ],
+        "files": ["src/config/cors.ts", "src/config/index.ts"],
+        "excluded": "저장소 구현(src/rateLimit/)은 rl-store 태스크가 맡는다. 여기서 만들지 말 것"
+      },
+      "constraints": {
+        "must": ["src/config/index.ts 에 재수출을 추가할 것"],
+        "must_not": [
+          "미들웨어나 라우터를 건드리지 말 것",
+          "새 의존성을 package.json 에 추가하지 말 것"
+        ]
+      },
+      "tools_allowed": ["exec_command", "apply_patch"],
+      "budget": { "max_turns": 12 },
+      "on_failure": { "retry": 1, "partial_ok": false, "escalate_to": "main" }
+    },
+    {
+      "task_id": "rl-store",
+      "kind": "implement",
+      "phase": "p1",
+      "depends_on": [],
+      "objective": "IP 별 요청 횟수를 슬라이딩 윈도로 세는 인메모리 저장소를 구현한다",
+      "done_when": [
+        "동일 IP 가 윈도 안에서 한도를 넘으면 allowed=false 와 남은 대기 초를 돌려준다",
+        "윈도가 지난 기록은 메모리에서 제거되어 무한히 쌓이지 않는다"
+      ],
+      "acceptance": {
+        "command": "npm test -- src/rateLimit/store.test.ts",
+        "expect_exit_code": 0,
+        "expect_contains": ["passed"]
+      },
+      "files_to_create": ["src/rateLimit/store.ts", "src/rateLimit/store.test.ts"],
+      "reference_impl": {
+        "path": "src/cache/lruCache.ts",
+        "why": "만료 처리와 타이머 정리 패턴을 여기서 그대로 가져온다"
+      },
+      "already_tried": [
+        {
+          "what": "기존 미들웨어에 rate limit 흔적이 있는지 grep -r 'rateLimit' src/",
+          "result": "히트 없음. 신규 구현이 맞다"
+        }
+      ],
+      "context": {
+        "spec_ref": ".codex/specs/rate-limit/spec.md",
+        "facts": [
+          "프로세스는 단일 인스턴스로 뜬다. 분산 저장소는 이번 범위가 아니다",
+          "테스트에서 시간은 vi.useFakeTimers() 로 제어한다"
+        ],
+        "conventions": ["클래스보다 팩토리 함수를 쓴다(createXxx)"],
+        "files": ["src/cache/lruCache.ts"],
+        "excluded": "Redis 연동은 후속 과제로 스펙에서 제외했다. 인터페이스만 교체 가능하게 두면 된다"
+      },
+      "constraints": {
+        "must": ["allowed / retryAfterSec 두 필드를 가진 결과 객체를 돌려줄 것"],
+        "must_not": [
+          "외부 저장소나 새 의존성을 쓰지 말 것",
+          "src/config/ 를 수정하지 말 것"
+        ]
+      },
+      "tools_allowed": ["exec_command", "apply_patch"],
+      "budget": { "max_turns": 20 },
+      "on_failure": { "retry": 1, "partial_ok": true, "escalate_to": "main" }
+    },
+    {
+      "task_id": "rl-middleware",
+      "kind": "implement",
+      "phase": "p2",
+      "depends_on": ["rl-config", "rl-store"],
+      "objective": "요청 제한 미들웨어를 만들어 앱의 공개 라우터에 배선한다",
+      "done_when": [
+        "한도 초과 요청이 429 와 Retry-After 헤더를 받는다",
+        "헬스체크 경로는 제한 대상에서 제외된다"
+      ],
+      "acceptance": {
+        "command": "npm test -- src/middleware/rateLimit.test.ts",
+        "expect_exit_code": 0,
+        "expect_contains": ["passed"]
+      },
+      "edit_points": [
+        {
+          "path": "src/app.ts",
+          "symbol": "createApp",
+          "what": "cors 미들웨어 등록 바로 다음 줄에 rateLimit 미들웨어를 등록한다"
+        }
+      ],
+      "files_to_create": ["src/middleware/rateLimit.ts", "src/middleware/rateLimit.test.ts"],
+      "reference_impl": {
+        "path": "src/middleware/requestId.ts",
+        "why": "미들웨어 시그니처와 테스트 작성 형태를 그대로 따른다"
+      },
+      "already_tried": [],
+      "context": {
+        "spec_ref": ".codex/specs/rate-limit/spec.md",
+        "facts": [
+          "클라이언트 IP 는 req.ip 가 아니라 getClientIp(req) 헬퍼로 얻는다(프록시 뒤에 있음)",
+          "헬스체크 경로는 /healthz 하나뿐이다"
+        ],
+        "conventions": ["에러 응답은 sendError(res, status, code) 헬퍼로만 만든다"],
+        "files": ["src/middleware/requestId.ts", "src/app.ts", "src/http/clientIp.ts"],
+        "excluded": "설정 로더와 저장소는 선행 태스크가 이미 만들었다. 다시 만들지 말고 import 할 것"
+      },
+      "constraints": {
+        "must": ["설정과 저장소를 새로 만들지 말고 기존 모듈을 import 할 것"],
+        "must_not": [
+          "src/config/ 와 src/rateLimit/ 를 수정하지 말 것",
+          "라우터 파일들을 개별로 수정하지 말 것 — 등록은 createApp 한 곳에서만"
+        ]
+      },
+      "tools_allowed": ["exec_command", "apply_patch"],
+      "budget": { "max_turns": 15 },
+      "on_failure": { "retry": 1, "partial_ok": false, "escalate_to": "main" }
+    },
+    {
+      "task_id": "rl-regression",
+      "kind": "verify",
+      "phase": "p3",
+      "depends_on": ["rl-middleware"],
+      "objective": "전체 테스트를 돌려 기존 동작이 깨지지 않았는지 확인하고 실패 목록을 보고한다",
+      "done_when": [
+        "전체 테스트 실행 결과와 실패한 테스트 이름 목록이 보고되어 있다"
+      ],
+      "acceptance": { "command": "npm test", "expect_exit_code": 0 },
+      "reference_impl": {
+        "path": "package.json",
+        "why": "scripts 에 정의된 명령 외에 다른 명령을 지어내지 않게 한다"
+      },
+      "already_tried": [],
+      "context": {
+        "spec_ref": ".codex/specs/rate-limit/spec.md",
+        "facts": ["작업 전 기준선: 전체 테스트 218 passed / 0 failed"],
+        "files": ["package.json"],
+        "excluded": "none"
+      },
+      "constraints": {
+        "must": ["실패가 있으면 원인 추정 없이 실패 목록만 그대로 보고할 것"],
+        "must_not": ["실패한 테스트를 고치려 하지 말 것 — 보고만 한다"]
+      },
+      "tools_allowed": ["exec_command"],
+      "budget": { "max_turns": 6 },
+      "on_failure": { "retry": 0, "partial_ok": true, "escalate_to": "main" }
+    }
+  ]
+}

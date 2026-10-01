@@ -1,0 +1,155 @@
+{
+  "verified_at": "2026-09-30T12:01:27.310420+00:00",
+  "public_url": "https://harness-kit.vercel.app",
+  "deployment_url": "https://harness-9tco29le4-luckyhyun.vercel.app",
+  "deployment_id": "dpl_GPrY6fxyESDcZsh5Lu3e6AxyfTjj",
+  "checks": [
+    {
+      "command": "./.claude/harness/site/publish.sh",
+      "exit_code": 0,
+      "output_tail": "Built 34 pages; ALL PASS language parity, legacy routes, HTML/JS, privacy, offline resources, bundles, headers; production READY and aliased."
+    },
+    {
+      "command": "staged Codex and Claude validate.py selftest",
+      "exit_code": 0,
+      "output_tail": "Both ALL PASS including CLI malformed shapes 0 through 4"
+    },
+    {
+      "command": "installed Codex validate.py emit plan.json release",
+      "exit_code": 0,
+      "output_tail": "Source quotes, outcomes, review refs and original-purpose acceptance emitted"
+    }
+  ],
+  "installed_files": [
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/validate.py",
+      "installed": "$HOME/.agents/skills/handoff/validate.py",
+      "sha256": "f8e3756a418bd8e0645c8a05141046ca27f08bea0048e58ac2ed6f7b9489bc76"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/plan.schema.json",
+      "installed": "$HOME/.agents/skills/handoff/plan.schema.json",
+      "sha256": "0d4ec8bf17b68efb45be634a7404636206b1ebad1abab4f54f0ad4c49edc8408"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/packet.schema.json",
+      "installed": "$HOME/.agents/skills/handoff/packet.schema.json",
+      "sha256": "8ef0141afbc6ce331c024bee5f3639e0c6763cd800e1abc8664d20d85d4095cf"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/example.plan.json",
+      "installed": "$HOME/.agents/skills/handoff/example.plan.json",
+      "sha256": "edb0e1e957325ef1e9685993b97037a7b8ee3d3b02102fd67a207e9533082637"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/SKILL.md",
+      "installed": "$HOME/.agents/skills/handoff/SKILL.md",
+      "sha256": "553e16df11b741b561a1aea057ded3eb5e9ae0eded254b9596c040d01a0b0c99"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/intent_guard.py",
+      "installed": "$HOME/.agents/skills/handoff/intent_guard.py",
+      "sha256": "cb5ac07b65b51a38970a15963ad1fe0af1600b5def2fbc2bc1fa073845a481f6"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/example-intent.md",
+      "installed": "$HOME/.agents/skills/handoff/example-intent.md",
+      "sha256": "298acd1bc54276bddbdbdc063c8bb379a624ed0b0b3f500186e7d7d854fe8854"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/example-spec.md",
+      "installed": "$HOME/.agents/skills/handoff/example-spec.md",
+      "sha256": "dab2f156316545c20af3be2755a7cd209cce375a9dbf2b3ad39012e2516407a7"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/example-review.json",
+      "installed": "$HOME/.agents/skills/handoff/example-review.json",
+      "sha256": "cfa618881a0c74e2ee0d7ed74319a08107579624bd81ac715eac9bc07b70e5aa"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/validate.py",
+      "installed": "$HOME/.claude/skills/handoff/validate.py",
+      "sha256": "6de85d35893ecbb2a184da575d5ce737cb8efdeff49eeeffcf5eaf958e7d03a9"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/plan.schema.json",
+      "installed": "$HOME/.claude/skills/handoff/plan.schema.json",
+      "sha256": "a6ba9abcaedc47c3846146f7c42aeb90a9a6ba09e6433baa3291765be9ad4878"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/packet.schema.json",
+      "installed": "$HOME/.claude/skills/handoff/packet.schema.json",
+      "sha256": "d79312a34d38c6bddae270466e5ec3b2f64a0a695a0a90f8236e8e48b9076646"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/example.plan.json",
+      "installed": "$HOME/.claude/skills/handoff/example.plan.json",
+      "sha256": "34421a3fae95a11dd6f1a8387bc073d9b28a92ea2b92be63e95a33b7f742f502"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/SKILL.md",
+      "installed": "$HOME/.claude/skills/handoff/SKILL.md",
+      "sha256": "198eb8c3d5c88bfafa852e824bbfdf3a61fc1df0e8312c251a4ff67aacb5efaa"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/intent_guard.py",
+      "installed": "$HOME/.claude/skills/handoff/intent_guard.py",
+      "sha256": "cb5ac07b65b51a38970a15963ad1fe0af1600b5def2fbc2bc1fa073845a481f6"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/example-intent.md",
+      "installed": "$HOME/.claude/skills/handoff/example-intent.md",
+      "sha256": "298acd1bc54276bddbdbdc063c8bb379a624ed0b0b3f500186e7d7d854fe8854"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/example-spec.md",
+      "installed": "$HOME/.claude/skills/handoff/example-spec.md",
+      "sha256": "dab2f156316545c20af3be2755a7cd209cce375a9dbf2b3ad39012e2516407a7"
+    },
+    {
+      "staged": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/example-review.json",
+      "installed": "$HOME/.claude/skills/handoff/example-review.json",
+      "sha256": "cfa618881a0c74e2ee0d7ed74319a08107579624bd81ac715eac9bc07b70e5aa"
+    }
+  ],
+  "public_artifacts": [
+    {
+      "url": "https://harness-kit.vercel.app/handoff.html",
+      "local": "$HOME/.claude/harness/site/public/handoff.html",
+      "downloaded": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/public-proof/handoff.html",
+      "sha256": "a10a4016fe87b60c2c233aefffc8148f5e05f0868620774117eb887238557cbe"
+    },
+    {
+      "url": "https://harness-kit.vercel.app/handoff-en.html",
+      "local": "$HOME/.claude/harness/site/public/handoff-en.html",
+      "downloaded": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/public-proof/handoff-en.html",
+      "sha256": "d9911a2cb5afdc677bcbfab7b96dce5b73f498afbc4aea9edf9f6c2fda7baafd"
+    },
+    {
+      "url": "https://harness-kit.vercel.app/implementation.zip",
+      "local": "$HOME/.claude/harness/site/public/implementation.zip",
+      "downloaded": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/public-proof/implementation.zip",
+      "sha256": "9dc24b42c01d763c803ee80bc368dc9bfe6b095ffbad1d8ca85675fc6b27210e"
+    },
+    {
+      "url": "https://harness-kit.vercel.app/reference-ko.zip",
+      "local": "$HOME/.claude/harness/site/public/reference-ko.zip",
+      "downloaded": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/public-proof/reference-ko.zip",
+      "sha256": "1a656764cda0c7a0b0da9d17f59c6a476421e39032c34fd90b0f299dba8daa98"
+    },
+    {
+      "url": "https://harness-kit.vercel.app/reference-en.zip",
+      "local": "$HOME/.claude/harness/site/public/reference-en.zip",
+      "downloaded": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/public-proof/reference-en.zip",
+      "sha256": "d97e7c4cd71c819d3d75bca4d64d998ada933d9305d2efbac13eab1d75a77daa"
+    }
+  ],
+  "browser_checks": [
+    "Korean intent guard anchor clicked and screenshot visually checked",
+    "English page displays matching intent guard guidance"
+  ],
+  "limits": [
+    "Final code review closed by parent after independent reviewer and core agent usage-limit termination",
+    "No proof of live application hook delivery or central PMS implementation"
+  ]
+}

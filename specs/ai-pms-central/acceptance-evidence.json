@@ -1,0 +1,70 @@
+{
+  "scope": "local-central-flow",
+  "evidence_mode": "synthetic",
+  "actual_multi_user_delivery_verified": false,
+  "product_complete": false,
+  "verified_at": "2026-09-30T12:40:52.197880+00:00",
+  "browser_checks": {
+    "multi_project_list": true,
+    "project_detail": true,
+    "original_event": true,
+    "mobile": true,
+    "empty_state": true
+  },
+  "artifacts": [
+    {
+      "role": "central-dashboard",
+      "path": "evidence/preview/dashboard.html",
+      "sha256": "fd5e20ae3601312782920eedb08c50a08d61f9723d5de4c43c6ed8beb4280a60"
+    },
+    {
+      "role": "central-empty",
+      "path": "evidence/preview/empty.html",
+      "sha256": "9a7f9f8cdcacbb46b342d830797b1c9b2a3ae847f7af60c37ba736202587ac4c"
+    },
+    {
+      "role": "browser-observation",
+      "path": "evidence/browser-observation.md",
+      "sha256": "8f097c9c42556ef145d3fe22732cabad94e1fea7a1fb36a0543df8796f0c889d"
+    }
+  ],
+  "code_hashes": {
+    "central.py": "7e5780995b2ae6cd2493efd5fbee19a14eb0425c02adbd39376f437a82e65cd5",
+    "test_central.py": "a7fc012ce578c89831f5391d64f2fb3aba6d71cc94934a6513e1322c3eaf17a1",
+    "README.md": "9799ad6a097a1f3a8b7a0b117717d8eb1e840ff1c7cf5bfed6e600e556935aa9"
+  },
+  "screenshots": [
+    {
+      "path": "evidence/audit-desktop.png",
+      "sha256": "92bcb8ae006627308cbc27aa91c29cac7c26e9dfed52825e9a453a004e4d28cc"
+    },
+    {
+      "path": "evidence/dashboard-desktop.png",
+      "sha256": "8b55b83e422a15c504f93aa385a884ea62312102936502d968ea45558e435a2c"
+    },
+    {
+      "path": "evidence/dashboard-mobile.png",
+      "sha256": "2a23f57e9b713ee6a5ec8655fd6bfd127a10630e55d553ca4b6513cb04238955"
+    },
+    {
+      "path": "evidence/empty-desktop.png",
+      "sha256": "a2ad7112805779ab770d6568f8f7ccb47af32baee57808fe0477926722b7aea6"
+    },
+    {
+      "path": "evidence/empty-mobile.png",
+      "sha256": "deb14d0f90db3b5e0a33a3c301061e63b1b3ba7f0f77361ace4eb7eb2113b3e8"
+    },
+    {
+      "path": "evidence/original-event.png",
+      "sha256": "e442d03f96816ed3707a0472117ee750876bb7935407690272c5690bd3bb6eba"
+    },
+    {
+      "path": "evidence/original-mobile-before-fix.png",
+      "sha256": "af36e9a7a292f77cc3520985287725b9f88c90d203be178f0ba708170ec21bb2"
+    },
+    {
+      "path": "evidence/original-mobile.png",
+      "sha256": "377ebf1d416edf8b4f3b5ddf4c66c34cfc4eda3a812fb92ccc5e2c9be678dc69"
+    }
+  ]
+}

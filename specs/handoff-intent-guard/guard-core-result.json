@@ -1,0 +1,121 @@
+{
+  "task_id": "guard-core",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/validate.py",
+      "action": "modified",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/plan.schema.json",
+      "action": "modified",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/packet.schema.json",
+      "action": "modified",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/example.plan.json",
+      "action": "modified",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/SKILL.md",
+      "action": "modified",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/intent_guard.py",
+      "action": "created",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/example-intent.md",
+      "action": "created",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/example-spec.md",
+      "action": "created",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/example-review.json",
+      "action": "created",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/validate.py",
+      "action": "modified",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/plan.schema.json",
+      "action": "modified",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/packet.schema.json",
+      "action": "modified",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/example.plan.json",
+      "action": "modified",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/SKILL.md",
+      "action": "modified",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/intent_guard.py",
+      "action": "created",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/example-intent.md",
+      "action": "created",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/example-spec.md",
+      "action": "created",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/example-review.json",
+      "action": "created",
+      "summary": "Intent evidence gate; parent closed malformed-input findings"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/codex-handoff/validate.py selftest && python3 $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/staging/claude-handoff/validate.py selftest",
+    "exit_code": 0,
+    "output_tail": "Both platform selftests ALL PASS"
+  },
+  "done_when_check": [
+    {
+      "condition": "Missing/self-reviewed/blocked/stale source-spec receipts fail plan and emit",
+      "met": true,
+      "evidence": "Staged selftests and parent CLI integration check passed; code-review.md records independent findings and parent closure"
+    },
+    {
+      "condition": "Tasks map to original requirements and original-purpose acceptance is mandatory",
+      "met": true,
+      "evidence": "Staged selftests and parent CLI integration check passed; code-review.md records independent findings and parent closure"
+    },
+    {
+      "condition": "Both tool-specific selftests preserve old checks and pass new negative regressions",
+      "met": true,
+      "evidence": "Staged selftests and parent CLI integration check passed; code-review.md records independent findings and parent closure"
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.94,
+  "notes_for_orchestrator": "Parent records actual checks because core agent ended at usage limit; final code review was parent closure, not independent final approval."
+}

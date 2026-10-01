@@ -1,0 +1,44 @@
+{
+  "sources": [
+    {
+      "actor_id": "alice",
+      "environment_id": "codex-mac",
+      "project_id": "11111111-1111-4111-8111-111111111111",
+      "label": "고객 요청 분류",
+      "evidence_mode": "synthetic",
+      "files": [
+        "source-a.jsonl"
+      ]
+    },
+    {
+      "actor_id": "bob",
+      "environment_id": "claude-linux",
+      "project_id": "11111111-1111-4111-8111-111111111111",
+      "label": "내부 검색 신뢰도",
+      "evidence_mode": "synthetic",
+      "files": [
+        "source-b.jsonl"
+      ]
+    },
+    {
+      "actor_id": "carol",
+      "environment_id": "synthetic-future",
+      "project_id": "22222222-2222-4222-8222-222222222222",
+      "label": "목표 없는 관측 작업",
+      "evidence_mode": "synthetic",
+      "files": [
+        "goal-missing.jsonl"
+      ]
+    },
+    {
+      "actor_id": "dave",
+      "environment_id": "synthetic-offline",
+      "project_id": "33333333-3333-4333-8333-333333333333",
+      "label": "입력 미도착",
+      "evidence_mode": "synthetic",
+      "files": [
+        "missing.jsonl"
+      ]
+    }
+  ]
+}

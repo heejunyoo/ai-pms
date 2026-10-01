@@ -1,0 +1,82 @@
+{
+  "reviewer": "/root/connectivity_release_review",
+  "verdict": "no_blockers",
+  "reviewed_at": "2026-10-01T11:29:01.960358+00:00",
+  "sha256": {
+    "specs/ai-pms-connectivity/source.md": "f44342ad6d82e9ca89db4ac221318b24751ccc5290090b859085fa86f8f78180",
+    "specs/ai-pms-connectivity/spec.md": "6f8be2e59d7b993cc81f9fbcefd7dfc3cb784c3c478560e38f578cba7b4d5577",
+    "specs/ai-pms-central/central.py": "42898dc06d3e0d13cc5dbab33f45a03d62061974477428cb84ecedd8ef4062e9",
+    "specs/ai-pms-central/connectivity.py": "4481158de00815d8a61dda9d14a09c64be3b95f70d8f72a4b203a87ddf1ad59f",
+    "specs/ai-pms-dashboard/portfolio.py": "477cc0006a0d64ce170cf0b7d8fd5af3e5c4e8f23b44348a52c978d3bea0ef8a",
+    "specs/ai-pms-dashboard/dashboard.html": "1cf568e9e9a4d51b030725079838fcb7c68a5e30ac006f73a0a3a0e6c2ef820b",
+    "specs/ai-pms-dashboard/check_ui.py": "fb5d1962314ecc72c8b5cb19e3aad5ae9b1b2e48a90ad5ddfb4b75e5fa16d1e4",
+    "specs/ai-pms-dashboard/sample/generate.py": "a4fbcc31178ddb4f3f2e2a1a42b039490d7df00ddf7e70b1a0d585433306fb84",
+    "scripts/build_dashboard_app.py": "c1777daac9066b99f4d585db62a457f69b0fe73aed57dc078ed071616d696b66",
+    "reports/ai-pms-eli20/index.html": "13520736ddf632135fb5680b00b938cac1f5fc1ccb44f91e854863c72a6a9ce7",
+    "$HOME/.claude/harness/activity/logger.py": "1f680659d204fba0c0d0b1f36f9eece8b0229393fc69d9e2e599790dac863339",
+    "$HOME/.claude/harness/activity/connectivity.py": "4481158de00815d8a61dda9d14a09c64be3b95f70d8f72a4b203a87ddf1ad59f",
+    "$HOME/.claude/harness/build/current_content.py": "2fc748413fd39efc9dd23b705346960c8c2defeb14fd880f61798bbf80ad2083",
+    "$HOME/.claude/harness/build/build_current.py": "87588b18b33600c952b35e6bc88fc10a161b0aa8885904e802e3b09a5a517096",
+    "$HOME/.claude/harness/build/check_current.py": "9c29c2a94374dd3105a42283d06682f3d9e350a4eadcaeb5429aef27afa7848a",
+    "specs/ai-pms-central/test_central.py": "47005636ced5684ca51634cfedba1a2747361e110bf492476729d23bd0ea79f5",
+    "specs/ai-pms-dashboard/test_portfolio.py": "5b8e9ad13105b3df43f92a331fc98fc4b2ede2b5944d91741edd853dbeea8e8a",
+    "specs/ai-pms-dashboard/sample/central.json": "35a181490e9d2aab0289472c64159b4514e8ba1e3dab940b608e8efae37c4b88",
+    "specs/ai-pms-dashboard/sample/catalog.json": "b40cb0a3189c6edc1ab26040b95f61c40c6d64c8de9b22d15d0757b91ca4bf9c",
+    "apps/dashboard/vercel.json": "5d185962ae18ba15dded24d800800148c4e8e5ac0b772edc67eb9dc716e090ec"
+  },
+  "findings": [],
+  "checks": {
+    "test_portfolio.py": "17 passed",
+    "check_ui.py": "passed including provenance, null-time, scheme/path parity",
+    "test_central.py": "4 passed",
+    "test_logger.py": "11 passed",
+    "independent_reproductions": "contradictory status rejected; malformed type false; Bearer rejected; both Kit UUIDs valid; malformed top-level and connection type matrix no crashes",
+    "static_csp": "all generated inline script hashes match routes; network blocked; report local links rebased"
+  },
+  "boundary": "Independent source/static review only; no production/public-byte/browser proof. Final deployment verification remains parent responsibility.",
+  "resolved_findings": [
+    {
+      "id": "R1",
+      "severity": "high",
+      "file": "$HOME/.claude/harness/activity/logger.py",
+      "issue": "Manual record privacy filter permits Bearer syntheticcredential123; persists credential-like content before central/UI rejects it.",
+      "reproduction": "logger.record_event artifact.recorded with summary Bearer syntheticcredential123 returns data unchanged."
+    },
+    {
+      "id": "R2",
+      "severity": "high",
+      "file": "specs/ai-pms-central/central.py",
+      "issue": "valid_event accepts tool.requested / PreToolUse with connection.status completed; portfolio displays completed observation.",
+      "reproduction": "Mutate synthetic v2 event native_event=PreToolUse, kind=tool.requested, connection.status=completed; valid_event returns True."
+    },
+    {
+      "id": "R3",
+      "severity": "medium",
+      "file": "specs/ai-pms-central/central.py",
+      "issue": "Malformed tool_name=[] raises TypeError in set membership; strict validator must return False.",
+      "reproduction": "Set valid event tool_name=[]; valid_event raises TypeError."
+    },
+    {
+      "id": "R4",
+      "severity": "high",
+      "file": "$HOME/.claude/harness/build/current_content.py",
+      "issue": "Both languages use --project-id demo-project although logger requires UUID. Hook command returns zero but event is not recorded.",
+      "reproduction": "project_uuid(\"demo-project\") raises ValueError; hook catches and returns zero."
+    },
+    {
+      "id": "R5",
+      "severity": "medium",
+      "file": "reports/ai-pms-eli20/index.html",
+      "issue": "Report says Codex/Claude/Cursor/Gemini normalize supported events; actual logger accepts only codex/claude. Qualify missing adapters explicitly.",
+      "reproduction": "argparse --source choices are codex,claude only."
+    },
+    {
+      "id": "R6",
+      "issue": "UI declared resource evidence/null-time/privacy parity fixed and malformed cases covered"
+    },
+    {
+      "id": "R7",
+      "issue": "Synthetic fixture native/connection status now consistent; portfolio 17 tests pass"
+    }
+  ]
+}

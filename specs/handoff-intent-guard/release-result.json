@@ -1,0 +1,56 @@
+{
+  "task_id": "release",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/verify_release.py",
+      "action": "created",
+      "summary": "Release/continuation artifact"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/release-evidence.json",
+      "action": "created",
+      "summary": "Release/continuation artifact"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/NEXT_SESSION.md",
+      "action": "created",
+      "summary": "Release/continuation artifact"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/install_reviewed.py",
+      "action": "created",
+      "summary": "Release/continuation artifact"
+    },
+    {
+      "path": "$HOME/Documents/Codex/2026-09-30/ai-pms-research/AGENTS.md",
+      "action": "created",
+      "summary": "Release/continuation artifact"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 $HOME/Documents/Codex/2026-09-30/ai-pms-research/specs/handoff-intent-guard/verify_release.py",
+    "exit_code": 0,
+    "output_tail": "Installed guard, public HTML/ZIP byte evidence and central PMS continuation verified"
+  },
+  "done_when_check": [
+    {
+      "condition": "Installed packages and mandatory harness checks pass",
+      "met": true,
+      "evidence": "release-evidence.json and NEXT_SESSION.md; production READY; public HTML/ZIP SHA256 matches"
+    },
+    {
+      "condition": "Public HTML and ZIP hashes match local release",
+      "met": true,
+      "evidence": "release-evidence.json and NEXT_SESSION.md; production READY; public HTML/ZIP SHA256 matches"
+    },
+    {
+      "condition": "NEXT_SESSION.md retains central multiuser purpose and runnable next order",
+      "met": true,
+      "evidence": "release-evidence.json and NEXT_SESSION.md; production READY; public HTML/ZIP SHA256 matches"
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.96,
+  "notes_for_orchestrator": "Central PMS not yet implemented. Independent final code review was interrupted; parent closure recorded separately."
+}

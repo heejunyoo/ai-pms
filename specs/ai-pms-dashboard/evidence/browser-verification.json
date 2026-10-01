@@ -1,0 +1,43 @@
+{
+  "observer": "root-parent",
+  "observed_at": "2026-10-01T08:52:50.789131+00:00",
+  "browser": "Chrome CUA",
+  "evidence_mode": "synthetic",
+  "checks": {
+    "portfolio": true,
+    "compound_filters": true,
+    "search_empty_reset": true,
+    "project_checks": true,
+    "document_versions": true,
+    "sessions_environments": true,
+    "timeline_original": true,
+    "back_filter_focus": true,
+    "revalidation": true,
+    "unknown": true,
+    "import_error_preserves": true,
+    "import_replaces": true,
+    "export_reimport": true,
+    "mobile_390": true,
+    "empty": true,
+    "report_all_states": true,
+    "report_mobile_390": true
+  },
+  "import_method": "paste-shared-handler",
+  "native_file_picker_verified": false,
+  "export_file_json_equal": true,
+  "export_sha256": "260b1d71b5d8a698b6a16ca4a02bc801079c7c44d69565ca641e38eb8f170ae3",
+  "mobile_width": 390,
+  "mobile_document_width": 390,
+  "artifact_sha256": {
+    "specs/ai-pms-dashboard/portfolio.py": "7fc2b31c0be29cadeba6e584c272dcd7284e129af282b924a664c51c59a9563a",
+    "specs/ai-pms-dashboard/dashboard.html": "c38896a3d70cde93fb4bed77159c8a50370c165da0b516148d16d0cdb98c0b15",
+    "specs/ai-pms-dashboard/test_portfolio.py": "d787c5cae94687906f6f3922799f21f3b00ac5e2d2d9406f97c577713783f75b",
+    "specs/ai-pms-dashboard/check_ui.py": "e3a1cae3c2f93c51eb4b89ccb9141f06714c4575d098857594980f8cb46d2126",
+    "specs/ai-pms-dashboard/sample/generate.py": "9a05b951761b968f2990b4a51c75108ab06ebc2611b726b82a9a361ee19471d4",
+    "reports/ai-pms-eli20/index.html": "48408c27f95cd75adb4e01a3688f45eb280e6379af2abe542b69c9bb86a3fc66",
+    "specs/ai-pms-dashboard/evidence/dashboard.html": "2bcd02fcb3c030756f33bbd48ad8aeba5c53ebcb0ef2984c2321e3d683b2d2bb",
+    "specs/ai-pms-dashboard/evidence/empty.html": "09b8b9a5ed801587ea3847b5b9691339b263d6bff7c9d4d75584a6ccc266d679",
+    "specs/ai-pms-dashboard/evidence/snapshot.json": "260b1d71b5d8a698b6a16ca4a02bc801079c7c44d69565ca641e38eb8f170ae3",
+    "specs/ai-pms-dashboard/evidence/browser-observation.md": "09c2c8e7e0cb2d8cdd271635ae11f7277400c9cc3ffcc9f3a7cf86ba87f5150f"
+  }
+}
