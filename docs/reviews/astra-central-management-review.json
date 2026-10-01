@@ -1,0 +1,156 @@
+{
+  "reviewer": "/root/astra_central_management_review",
+  "reviewed_at": "2026-10-01",
+  "verdict": "inadequate",
+  "existing_foundation": "partial",
+  "assessment_target": "최신 회사목표 위임 및 개인프로젝트 Agent 활용/공통하네스 개선 중앙관리 목적",
+  "evidence": [
+    {
+      "id": "E1",
+      "ref": "PRODUCT-INTENT.md:고정할 제품 목적",
+      "finding": "다수 개인의 목표와 중앙 관리 목적; 조직 계층 강제 금지"
+    },
+    {
+      "id": "E2",
+      "ref": "PRODUCT-CLARIFICATION.md:대시보드 방향",
+      "finding": "프로젝트 문서 단계 완료 중심; 최신 위임 및 공통 개선 목적은 미구체화"
+    },
+    {
+      "id": "E3",
+      "ref": "specs/ai-pms-dashboard/portfolio.py:CRITERION_KEYS/validate_catalog/build_model",
+      "finding": "기준 6필드와 선언 runs; 회사목표/위임/기준이유/계획개정/runner/개선조치 미지원"
+    },
+    {
+      "id": "E4",
+      "ref": "specs/ai-pms-dashboard/README.md:입력 작성",
+      "finding": "catalog 예제와 snapshot 가져오기 안내; criteria 변경의 이전 snapshot 수동 보존"
+    },
+    {
+      "id": "E5",
+      "ref": "specs/ai-pms-dashboard/sample/catalog.json:projects[id=alice-recall].runs",
+      "finding": "합성 실패 후 통과; 실패이유와 수정내용 없음; 실행하지 않았다고 명시"
+    },
+    {
+      "id": "E6",
+      "ref": "specs/ai-pms-dashboard/data-model-result.json:acceptance_run/done_when_check",
+      "finding": "실제 작업의 저장된 최종 실행 요약; 전체 시도/기준개정/대상해시 없음"
+    },
+    {
+      "id": "E7",
+      "ref": "$HOME/.agents/skills/handoff/plan.schema.json:intent_guard;packet.schema.json:requirement_ids;result.schema.json:acceptance_run",
+      "finding": "원문→작업 매핑 기반 존재; 테스트케이스별 커버리지와 전체 실행이력은 아님"
+    },
+    {
+      "id": "E8",
+      "ref": "$HOME/.agents/skills/handoff/validate.py:check_result",
+      "finding": "command echo unrelated로 바꾼 in-memory 결과가 errors=[] warnings=[]; command 동일성 미검사"
+    },
+    {
+      "id": "E9",
+      "ref": "$HOME/.claude/harness/activity/logger.py:DATA/LINKS/record_event/hook_event",
+      "finding": "호출 관측과 제한된 선언; 테스트 설계/실행영수증 계약 없음"
+    },
+    {
+      "id": "E10",
+      "ref": "$HOME/.claude/hooks/session_gate.py:scan",
+      "finding": "최신 관측편집 이후 알려진 검증 흔적 검사; 프로젝트 목표 충족 증명 아님"
+    },
+    {
+      "id": "E11",
+      "ref": "$HOME/.claude/harness/build/current_content.py:SCENES/PAGES[ai-pms]",
+      "finding": "철칙 하네스 루프 및 MCP 안내 존재; 설치와 실제호출 구분; 개선기록 없음"
+    },
+    {
+      "id": "E12",
+      "ref": "specs/ai-pms-connectivity/release-proof.json:evidence_mode/live_user_delivery_verified",
+      "finding": "저장된 배포증거 synthetic 및 live delivery false; 현재 외부 상태 재검증 안함"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "company-objective-assignment",
+      "status": "missing",
+      "need": "선택 조직목표 연결, 성과형/작업형 위임, 담당/수락/변경과 성과근거"
+    },
+    {
+      "id": "independent-personal-goals",
+      "status": "partial",
+      "need": "개인 목표 유지와 명시적 연결; 공통개선에서 제외하지 않음"
+    },
+    {
+      "id": "test-plan-lifecycle",
+      "status": "missing",
+      "need": "생성 이유, 원문/요구사항, 기준버전/개정/제외 및 커버리지"
+    },
+    {
+      "id": "test-run-evidence",
+      "status": "partial",
+      "need": "runner가 생성한 시도ID, 환경, 명령, 테스트/산출물 digest, 결과/출력참조"
+    },
+    {
+      "id": "blocked-and-agent-practice",
+      "status": "missing",
+      "need": "반복실패 원인, 이미시도한것, 담당/다음조치, 하네스 버전과 개선전후검증"
+    },
+    {
+      "id": "record-guide-and-template",
+      "status": "partial",
+      "need": "분산된 계약을 책임/시점/출처/누락까지 연결하는 작성안내와 빈 템플릿"
+    },
+    {
+      "id": "optional-graph-evidence",
+      "status": "not-required",
+      "need": "필요할 때 프로젝트별 AST graph 버전/최신성/생성사건 연결; 의미/런타임 증명으로 승격금지"
+    }
+  ],
+  "missing_capabilities": [
+    "선택 조직목표 연결, 성과형/작업형 위임, 담당/수락/변경과 성과근거",
+    "개인 목표 유지와 명시적 연결; 공통개선에서 제외하지 않음",
+    "생성 이유, 원문/요구사항, 기준버전/개정/제외 및 커버리지",
+    "runner가 생성한 시도ID, 환경, 명령, 테스트/산출물 digest, 결과/출력참조",
+    "반복실패 원인, 이미시도한것, 담당/다음조치, 하네스 버전과 개선전후검증",
+    "분산된 계약을 책임/시점/출처/누락까지 연결하는 작성안내와 빈 템플릿"
+  ],
+  "minimum_useful_next_scope": {
+    "delivery": "로컬 구조화기록과 파일 import 기반 목표·검증·개선 관리",
+    "records": [
+      "optional company objective and assignments",
+      "versioned test-plan with rationale and requirement mapping",
+      "runner-produced run attempts with artifact and test digests",
+      "blocked cases and improvement actions with before/after evidence"
+    ],
+    "acceptance": [
+      "회사성과형/작업형 위임과 독립개인프로젝트가 함께 표현됨",
+      "실제 로컬 실패→수정→통과 기록이 보존됨",
+      "새 산출물/기준개정 후 현재상태가 재검증 필요로 바뀌고 과거통과 보존",
+      "wrong command/criterion version/artifact hash가 최신완료로 채택되지 않음",
+      "관리자가 목표/막힘/다음조치/담당/검증경계/개선근거까지 탐색함"
+    ],
+    "graphify": "optional local AST artifact; not prerequisite"
+  },
+  "capture_responsibility": {
+    "hooks": "호출/파일/세션/실패 등 관측과 구조화기록 수집 촉발",
+    "agent_structured_records": "목표/이유/계획/요구사항/차단분석/다음조치 및 출처",
+    "trusted_local_runner": "실제 명령/환경/시각/시도/대상 및 테스트digest/exit/출력참조",
+    "central": "명시적 연결, freshness, 증거의 출처/범위/환경, 관리자 조치"
+  },
+  "boundaries": [
+    "automatic_collection_deferred=true",
+    "no product code or external mutation",
+    "no current public deployment re-verification",
+    "historical release evidence is not product completion",
+    "synthetic examples are not actual users",
+    "criterion hash is not execution attestation",
+    "company outcome is not inferred from project test pass",
+    "no productivity scoring from tool/session/document/test counts",
+    "no graph requirement; no home indexing or semantic API extraction or global hook installation"
+  ],
+  "local_check": {
+    "target": "handoff validate.py check_result command mismatch",
+    "method": "result loaded and modified only in memory",
+    "errors": [],
+    "warnings": []
+  },
+  "report": "docs/reviews/astra-central-management-review.md",
+  "report_sha256": "137a1aed381a6abf3927d1d9c433ae3cfda470eb58e94f349149a20c24b6b249"
+}

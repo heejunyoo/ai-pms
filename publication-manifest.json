@@ -16,6 +16,10 @@
     "apps/dashboard/public/snapshot.json",
     "apps/dashboard/vercel.json",
     "brief.md",
+    "docs/central-management-contract.md",
+    "docs/json-contracts.md",
+    "docs/reviews/astra-central-management-review.json",
+    "docs/reviews/astra-central-management-review.md",
     "kit/activity/README.md",
     "kit/activity/connectivity.py",
     "kit/activity/example-project.jsonl",
@@ -205,7 +209,9 @@
     "specs/handoff-intent-guard/release-result.json",
     "specs/handoff-intent-guard/requested-change.md",
     "specs/handoff-intent-guard/spec.md",
-    "specs/handoff-intent-guard/verify_release.py"
+    "specs/handoff-intent-guard/verify_release.py",
+    "templates/catalog-v2.template.json",
+    "templates/snapshot-empty-v2.json"
   ],
   "excluded": [
     "home Git history",
