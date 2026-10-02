@@ -4,6 +4,8 @@ import copy
 import datetime as dt
 import hashlib
 import json
+import importlib.util
+from pathlib import Path
 from pathlib import PurePosixPath
 import re
 
@@ -123,8 +125,13 @@ def validate_traceability(t,pairs,reqids,attemptmap):
         require(r['status']!='unsupported' or not r['capabilities'],'unsupported capabilities')
         if r['last_observed_at'] is not None: require(time(r['last_observed_at'])<=at,'capture time order')
 
+def work_module():
+    spec=importlib.util.spec_from_file_location('management_work',Path(__file__).with_name('work.py'))
+    module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+    return module
+
 def validate(p,helpers=None):
-    m=p['management']; keys(m,FIELDS | ({'traceability'} if 'traceability' in m else set()))
+    m=p['management']; keys(m,FIELDS | ({'traceability'} if 'traceability' in m else set()) | ({'work'} if 'work' in m else set()))
     require(len(canonical(m).encode())<=16*1024*1024,'size limit')
     (helpers.validate_tree if helpers else validate_tree)(m)
     owners={r['actor_id'] for r in p['source_refs']}; pairs={(r['actor_id'],r['environment_id']) for r in p['source_refs']}
@@ -199,6 +206,7 @@ def validate(p,helpers=None):
         for k in ('generator','version','source_revision'): ident(r[k])
         sha(r['source_sha256']); time(r['at']); require(r['mode']=='code-only' and r['status'] in ('generated','failed','unknown'),'graph')
     if 'traceability' in m: validate_traceability(m['traceability'],pairs,reqids,attemptmap)
+    if 'work' in m: work_module().validate(p)
     return m
 
 def derive(p,observed,helpers=None):

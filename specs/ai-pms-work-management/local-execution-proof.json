@@ -1,0 +1,17 @@
+{
+  "evidence": "actual-local-subprocess-and-kit-cli-with-synthetic-identities",
+  "handoff_structure_preserved": true,
+  "stages": [
+    "task_failed",
+    "dependent_blocked",
+    "review_pending",
+    "complete",
+    "revalidation"
+  ],
+  "required_tasks": 2,
+  "completed_before_change": 2,
+  "completed_after_change": 0,
+  "raw_output_retained": false,
+  "actual_multi_user_delivery_verified": false,
+  "real_human_approval_verified": false
+}

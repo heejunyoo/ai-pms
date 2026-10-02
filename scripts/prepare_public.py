@@ -22,7 +22,7 @@ def main():
         body=f.read_text();body=body.replace(str(Path.home()),'$HOME')
         target=out/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(body);copied.append(rel.as_posix())
     home=Path.home()
-    for folder,names in {'activity':['logger.py','connectivity.py','management.py','management_recorder.py','test_management_recorder.py','catalog-v3.template.json','json-contracts.md','test_logger.py','test_workflow.py','viewer.html','README.md','example-project.jsonl'],'build':['current_content.py','build_current.py','check_current.py','check_site.py','BUILD.md']}.items():
+    for folder,names in {'activity':['logger.py','connectivity.py','management.py','work.py','management_recorder.py','test_management_recorder.py','catalog-v3.template.json','catalog-work.template.json','json-contracts.md','test_logger.py','test_workflow.py','viewer.html','README.md','example-project.jsonl'],'build':['current_content.py','build_current.py','check_current.py','check_site.py','BUILD.md']}.items():
         for name in names:
             source=home/'.claude/harness'/folder/name
             assert source.is_file(),source
@@ -49,6 +49,15 @@ Kit/build contains the canonical source used in the existing Harness Kit home in
         proof['publication_document_whitespace_normalized']=['docs/json-contracts.md', 'kit/activity/json-contracts.md']
         proof['sha256']={name:hashlib.sha256((out/name).read_bytes()).hexdigest() for name in proof['sha256']}
         proof_path.write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n')
+    for name in ('release-proof.json','code-review.json'):
+        relative=Path('specs/ai-pms-work-management')/name
+        target=out/relative
+        if not target.exists():continue
+        receipt=json.loads(target.read_text())
+        original=receipt['sha256'].copy()
+        receipt['sha256']={path:hashlib.sha256((out/path).read_bytes()).hexdigest() for path in original}
+        receipt['publication_transform']={'source_receipt_sha256':hashlib.sha256((ROOT/relative).read_bytes()).hexdigest(),'changed_paths':[path for path in original if original[path]!=receipt['sha256'][path]],'reason':'Personal home paths replaced with $HOME; publication hash reconciliation, not another independent review.'}
+        target.write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
     (out/'publication-manifest.json').write_text(json.dumps({'kind':'sanitized-public-snapshot','files':sorted(copied),'excluded':['home Git history','credentials and settings','private audit backups','real runtime logs and inventory'],'personal_paths_replaced':True},indent=2)+'\n')
     print('Prepared',len(copied),'public source/sample/doc files')
 if __name__=='__main__':main()

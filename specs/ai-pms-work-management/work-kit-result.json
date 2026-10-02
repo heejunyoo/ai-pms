@@ -1,0 +1,56 @@
+{
+  "task_id": "work-kit",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "$HOME/.claude/harness/activity/management_recorder.py",
+      "action": "modified",
+      "summary": "Current work management integration"
+    },
+    {
+      "path": "$HOME/.claude/harness/activity/work.py",
+      "action": "modified",
+      "summary": "Current work management integration"
+    },
+    {
+      "path": "$HOME/.claude/harness/activity/catalog-work.template.json",
+      "action": "modified",
+      "summary": "Current work management integration"
+    },
+    {
+      "path": "$HOME/.claude/harness/build/current_content.py",
+      "action": "modified",
+      "summary": "Current work management integration"
+    },
+    {
+      "path": "$HOME/.claude/harness/build/build_current.py",
+      "action": "modified",
+      "summary": "Current work management integration"
+    },
+    {
+      "path": "specs/ai-pms-work-management/test_kit_work.py",
+      "action": "modified",
+      "summary": "Current work management integration"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-work-management/test_kit_work.py",
+    "exit_code": 0,
+    "output_tail": "6 tests OK; legacy recorder13 OK; actual execution exercise PASS"
+  },
+  "done_when_check": [
+    {
+      "condition": "명세의 정확한 계약과 소유 파일 경계를 지킨다",
+      "met": true,
+      "evidence": "6 tests OK; legacy recorder13 OK; actual execution exercise PASS"
+    },
+    {
+      "condition": "실행 가능한 검증에서 거짓 완료와 잘못된 귀속 반례를 차단한다",
+      "met": true,
+      "evidence": "6 tests OK; legacy recorder13 OK; actual execution exercise PASS"
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.9,
+  "notes_for_orchestrator": "Parent-authored integration result. Original delegate hit usage limit; parent completed remaining code and checks. Independent Astra review and actual browser/public acceptance are separate."
+}

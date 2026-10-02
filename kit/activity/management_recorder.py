@@ -15,6 +15,7 @@ import uuid
 from contextlib import contextmanager
 
 import management
+import work
 
 MAX_FILE = 16 * 1024 * 1024
 ENVIRONMENTS = ('unit', 'mock', 'local', 'browser', 'live-provider', 'production')
@@ -280,7 +281,7 @@ def graph_record(root, project, timeout=300):
     return graph
 
 
-def import_handoff(root, project, handoff, result, plan_id, version, reason, test_files, actor, environment_id, session=None):
+def _import_legacy_handoff(root, project, handoff, result, plan_id, version, reason, test_files, actor, environment_id, session=None):
     """Seed explicit requirements/plans/checks. Imported outcomes remain declarations."""
     root = project_root(root)
     management.validate(project)
@@ -337,6 +338,88 @@ def import_handoff(root, project, handoff, result, plan_id, version, reason, tes
                                          run['exit_code'], stamp, stamp, 'Imported Handoff result; execution unobserved.'))
     management.validate(project)
 
+
+
+def import_handoff(root, project, handoff, result, plan_id, version, reason, test_files, actor, environment_id, session=None):
+    """Preserve full atomic plans; incomplete historical inputs retain their legacy evidence scope."""
+    tasks = handoff.get('tasks', [])
+    if not handoff.get('phases'):
+        if any('phase' in task or 'depends_on' in task or 'done_when' in task for task in tasks):
+            raise ValueError('full work plan requires explicit phases and phase exit checks')
+        return _import_legacy_handoff(root, project, handoff, result, plan_id, version, reason, test_files, actor, environment_id, session)
+    root = project_root(root)
+    management.validate(project); validate_actor(project, actor, environment_id); management.ident(session)
+    p = copy.deepcopy(project); m = p['management']; stamp = now()
+    if not tasks or any(not all(k in t for k in ('task_id','phase','objective','done_when','depends_on','acceptance')) for t in tasks):
+        raise ValueError('full work plan requires atomic tasks and completion conditions')
+    if result is not None and result.get('task_id') not in {t['task_id'] for t in tasks}:
+        raise ValueError('result task is absent from plan')
+    if any(x['id']==plan_id and x['version']==version for x in m['plans']):
+        raise ValueError('plan version already recorded')
+    requirements = handoff.get('intent_guard',{}).get('requirements',[])
+    source = handoff.get('intent_guard',{}).get('source_ref',handoff.get('spec_ref','handoff'))
+    existing = {r['id']:r for r in m['requirements']}
+    for r in requirements:
+        entry={'id':r['id'],'text':r['quote'],'source':source}
+        if r['id'] in existing and entry!=existing[r['id']]:raise ValueError('requirement changed; use a new ID')
+        if r['id'] not in existing:m['requirements'].append(entry);existing[r['id']]=entry
+    reqids=[r['id'] for r in requirements]
+    m['plans'].append(dict(id=plan_id,version=version,at=stamp,summary=handoff['goal'],reason=reason,requirement_ids=reqids,handoff_ref=plan_id))
+    phases=[{'id':phase['id'],'name':phase['name']} for phase in handoff['phases']]
+    phaseids={phase['id'] for phase in phases}
+    if any(d['phase_id'] not in phaseids for d in p['documents']) or any(c['scope']=='phase' and c['target_id'] not in phaseids for c in p['criteria']):
+        raise ValueError('existing phase evidence needs explicit migration; original plan preserved')
+    if any(c['scope']=='task' and c['target_id'] not in {t['task_id'] for t in tasks} for c in p['criteria']):
+        raise ValueError('retired tasks need explicit scope treatment; original plan preserved')
+    p['phases']=phases
+    p['goal']=handoff['goal']
+    if p['current_phase'] not in phaseids:p['current_phase']=None
+    files=actual_manifest(root,[{'path':f} for f in test_files])
+    if not files:raise ValueError('explicit test files required')
+    manifest={f['path']:f for f in m['artifact']['files']};manifest.update({f['path']:f for f in files});m['artifact']['files']=list(manifest.values());refresh_artifact(root,p)
+    m['work']={'plan_id':plan_id,'plan_version':version,'at':stamp,'tasks':[],'phase_gates':[],'updates':[],'reviews':[]}
+    def check(acceptance, scope, target, label, test_id, requirement_ids):
+        if not isinstance(acceptance,dict) or not {'command','expect_exit_code'}<=set(acceptance) or set(acceptance)-{'command','expect_exit_code','expect_contains','cwd'}:
+            raise ValueError('unsupported acceptance definition')
+        if acceptance.get('cwd') not in (None,'.'):raise ValueError('acceptance cwd must be the explicit project root')
+        expected=acceptance.get('expect_contains',[])
+        if not isinstance(expected,list) or any(not isinstance(x,str) or not x for x in expected):raise ValueError('output expectations must be nonempty strings')
+        if expected and scope!='task':raise ValueError('phase/project output expectations require a supported verifier; exit-only completion refused')
+        matches=[c for c in p['criteria'] if c['scope']==scope and c['target_id']==target and c['command']==acceptance['command'] and c['expected_exit_code']==acceptance['expect_exit_code']]
+        if len(matches)>1:raise ValueError('ambiguous acceptance mapping')
+        cid=matches[0]['id'] if matches else 'work-'+scope+'-'+management.digest(target)[:24]
+        definition={'id':cid,'label':label,'scope':scope,'target_id':target,'command':acceptance['command'],'expected_exit_code':acceptance['expect_exit_code']}
+        previous=next((c for c in p['criteria'] if c['id']==cid),None)
+        if previous is not None:previous.update(definition)
+        else:p['criteria'].append(definition)
+        if len(test_id)>127:test_id='handoff-'+management.digest(test_id)[:32]
+        tp=dict(id=test_id,version=version,plan_id=plan_id,plan_version=version,criterion_id=cid,requirement_ids=requirement_ids,reason=reason,excluded='Imported explicit Handoff scope; output expectations require human review when present.',at=stamp,definition=copy.deepcopy(definition),test_files=copy.deepcopy(files))
+        m['test_plans'].append(tp)
+        return cid,tp,expected
+    for task in tasks:
+        tid=task['task_id'];cid,tp,expected=check(task['acceptance'],'task',tid,task['objective'],'handoff-'+tid,task.get('requirement_ids',reqids))
+        done=copy.deepcopy(task['done_when'])
+        if expected:done.append('Review exact acceptance output expectations: '+json.dumps(expected,ensure_ascii=True))
+        m['work']['tasks'].append(dict(id=tid,title=task['objective'],phase_id=task['phase'],owner=actor,required=True,depends_on=copy.deepcopy(task['depends_on']),requirement_ids=task.get('requirement_ids',reqids),done_when=done,criterion_ids=[cid],document_ids=[],review_required=bool(expected)))
+        if result is not None and result.get('task_id')==tid:
+            run=result.get('acceptance_run')
+            if not isinstance(run,dict) or run.get('command')!=tp['definition']['command'] or type(run.get('exit_code')) is not int:raise ValueError('result acceptance mismatch')
+            m['attempts'].append(receipt(p,tp,actor,environment_id,session,'local','declared',run['exit_code'],stamp,stamp,'Imported Handoff result; execution unobserved.'))
+    for phase in handoff['phases']:
+        cid,_,_=check(phase.get('exit_check'),'phase',phase['id'],phase['name']+' exit','handoff-phase-'+phase['id'],reqids)
+        m['work']['phase_gates'].append({'phase_id':phase['id'],'criterion_ids':[cid]})
+    overall=handoff.get('intent_guard',{}).get('acceptance')
+    if overall is not None:check(overall,'project',p['id'],'Project acceptance','handoff-project-'+p['id'],reqids)
+    management.validate(p)
+    project.clear();project.update(p)
+
+
+def import_work_record(project, kind, entry):
+    p=copy.deepcopy(project)
+    if 'work' not in p['management']:raise ValueError('explicit work plan required')
+    p['management']['work']['updates' if kind=='update' else 'reviews'].append(copy.deepcopy(entry))
+    management.validate(p)
+    project.clear();project.update(p)
 
 
 def trace_records(project):
@@ -444,8 +527,14 @@ def main(argv=None):
     checkpoint.add_argument('--decision-id', action='append', default=[])
     checkpoint.add_argument('--summary', default='Explicit local Git checkpoint.')
     record = commands.add_parser('record')
-    record.add_argument('--kind', required=True, choices=('decision', 'handoff', 'capture'))
+    record.add_argument('--kind', required=True, choices=('decision', 'handoff', 'capture', 'update', 'review'))
     record.add_argument('--record', required=True, help='project-relative explicit record JSON')
+    update = commands.add_parser('update')
+    update.add_argument('--task',required=True);update.add_argument('--state',required=True,choices=('not_started','in_progress','blocked'))
+    update.add_argument('--summary',required=True);update.add_argument('--next-action',required=True)
+    review = commands.add_parser('review')
+    review.add_argument('--task',required=True);review.add_argument('--reviewer',required=True)
+    review.add_argument('--decision',required=True,choices=('approved','changes_requested'));review.add_argument('--summary',required=True)
     for command in (run, handoff, checkpoint):
         command.add_argument('--actor-id', required=True); command.add_argument('--environment-id', required=True)
         command.add_argument('--session-id', required=True)
@@ -473,12 +562,25 @@ def main(argv=None):
                 import_handoff(root, project, plan, result, args.plan_id, args.version, args.reason,
                                args.test_file, args.actor_id, args.environment_id, args.session_id)
                 code = 0
+            elif args.action in ('update','review'):
+                management.validate(project)
+                task=next((t for t in project['management'].get('work',{}).get('tasks',[]) if t['id']==args.task),None)
+                if task is None:raise ValueError('unknown task')
+                if args.action=='update':
+                    entry=dict(id='update-'+uuid.uuid4().hex,task_id=args.task,at=now(),state=args.state,summary=args.summary,next_action=args.next_action)
+                else:
+                    refresh_artifact(root,project)
+                    entry=dict(id='review-'+uuid.uuid4().hex,task_id=args.task,at=now(),reviewer=args.reviewer,decision=args.decision,summary=args.summary,artifact_sha256=project['management']['artifact']['sha256'],task_sha256=work.task_digest(project,task))
+                import_work_record(project,args.action,entry)
+                code=0
             elif args.action == 'checkpoint':
                 checkpoint_record(root, project, args.actor_id, args.environment_id, args.session_id,
                                   args.agent_id, args.attempt_id, args.decision_id, args.summary)
                 code = 0
             elif args.action == 'record':
-                import_trace_record(project, args.kind, read_json(local_path(root, args.record)))
+                entry = read_json(local_path(root, args.record))
+                if args.kind in ('update','review'): import_work_record(project,args.kind,entry)
+                else: import_trace_record(project,args.kind,entry)
                 code = 0
             else:
                 management.validate(project)

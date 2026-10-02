@@ -301,7 +301,7 @@ def build_model(store=None, catalog=None, now=None):
         for revision, instant in sorted({(r['revision'], r['at']) for r in runs}, key=lambda item: (item[0], time(item[1]))):
             if state(project_criteria, revision, time(instant)) == 'complete':
                 if revision not in completed_revisions:
-                    add(instant, 'milestone', '프로젝트 완료 기준 충족 · ' + revision, '당시 기준의 가져온 검사 기록이 모두 통과했습니다.', None, ref + '.runs')
+                    add(instant, 'milestone', ('전체 검사 통과 이력 · ' if management_view and 'work' in management_view else '프로젝트 완료 기준 충족 · ') + revision, '당시 기준의 가져온 검사 기록이 모두 통과했습니다.', None, ref + '.runs')
                 completed_revisions.add(revision)
         if status == 'in_progress' and management_view:
             test_plans = {(t['id'],t['version']):t for t in management_view['test_plans']}
@@ -309,11 +309,15 @@ def build_model(store=None, catalog=None, now=None):
                 status = 'revalidation'
         if status == 'in_progress' and completed_revisions - {p['current_revision']}:
             status = 'revalidation'
+        work_view = management.work_module().derive(p, observed, management_view) if management_view and 'work' in management_view else None
+        if work_view is not None: status = management.work_module().project_status(p,observed,management_view,work_view)
         reason = {'unknown': '프로젝트 범위 완료 기준이 없습니다.', 'complete': '현재 revision의 프로젝트 범위 최신 검사 기록이 모두 통과했습니다.', 'failed': '현재 revision의 프로젝트 범위 최신 검사 기록에 실패가 있습니다.', 'revalidation': '과거 revision 완료 후 현재 revision 검사 기록이 부족합니다.', 'in_progress': '현재 revision의 프로젝트 범위 검사 기록이 부족하거나 불명입니다.'}[status]
+        if work_view and status!='complete': reason += ' 필수 작업·단계·전체 검사·승인·막힘 해결 조건을 모두 확인해야 합니다.'
         phases = [{**phase, 'status': state([c for c in p['criteria'] if c['scope'] == 'phase' and c['target_id'] == phase['id']], p['current_revision'])} for phase in p['phases']]
         projects.append(dict(id=p['id'], name=p['name'], goal=p['goal'], owners=sorted({r['actor_id'] for r in p['source_refs']}), current_revision=p['current_revision'], current_phase=p['current_phase'], status=status, status_reason=reason + ' 목표/문서는 ' + ref + '의 명시적 입력입니다.', phases=phases, documents=documents, criteria=p['criteria'], runs=runs, sessions=sorted(sessions.values(), key=lambda s: (s['actor_id'], s['environment_id'], s['id'])), timeline=sorted(timeline, key=lambda t: (time(t['at']), t['kind'], t['source_ref'], t['title'])), sources=sources, alerts=sorted(set(alerts)), last_updated=max((t['at'] for t in timeline), key=time, default=None)))
         if v2: projects[-1]['connections'] = connections
         if v3: projects[-1]['management'] = management_view
+        if work_view is not None: projects[-1]['work'] = work_view
     if catalog['projects'] and not modes:
         modes.add('declared')
     model = dict(schema_version=3 if v3 else 2 if v2 else 1, generated_at=generated, evidence_mode='mixed' if len(modes) > 1 else next(iter(modes), 'declared'), projects=projects)

@@ -1,0 +1,13 @@
+{
+  "reviewer": "astra-independent-work-review",
+  "verdict": "aligned",
+  "source_sha256": "33d9be108200400d68ee72e3ce63572626cecf4c78b9e2e5dbbf21f5bfe9e703",
+  "spec_sha256": "bae80baee73521597bcb36ff29b4201be958962ab24c0b45c8ba02a17bb5190d",
+  "requirements_covered": [
+    "people",
+    "work",
+    "interventions"
+  ],
+  "unapproved_changes": [],
+  "evidence": "Directly compared source.md and PRODUCT-INTENT.md: people-first project goals, phase/task structure, explicit owners and manager interventions address the user purpose; logs remain supporting evidence.\nPeople: one person may own tasks across many projects; shared projects remain single records; assigned work differs from participation; project-wide issues are not misattributed to a selected person.\nWork: completion requires current runner evidence, completed dependencies, required human approval and phase/project gates; missing owners/acceptance and future or stale evidence cannot become complete.\nClosed B1: EVERY declared phase must complete; taskless and optional-only phases remain unknown and prevent project completion; required counterexample added.\nClosed B2: review digest now includes plan id/version/at, task, current full criterion definitions and latest full testplan records. Review must postdate work and applicable testplan definitions; same-ID changed-acceptance counterexample added.\nInterventions: concrete missing assignment/acceptance, blockers, failure, review and revalidation actions link to work and preserve person/project scope.\nAcceptance requires Python/JS parity, forged-import rejection, real browser person/goal/phase/task/intervention path, keyboard/390px and actual local fail-pass-revalidation evidence.\nDesign approval only: public synthetic examples, declared imported evidence, real local subprocess execution and deferred automatic multi-PC collection remain distinct. Implementation and operational completion require separate evidence."
+}

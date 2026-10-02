@@ -1,0 +1,42 @@
+{
+  "status": "published_browser_followup_pending",
+  "automatic_collection_deferred": true,
+  "actual_multi_user_delivery_verified": false,
+  "github_public": false,
+  "dashboard_production": true,
+  "kit_production": true,
+  "dashboard_deployment": "dpl_CQqsF2z9ZpGDFtiEs1ak1Phb4ksM",
+  "kit_deployment": "dpl_7x1kMKUiKW64wT59DczivDHY4c9A",
+  "browser": {
+    "people_many_projects": true,
+    "shared_project": true,
+    "phase_tasks": true,
+    "manager_action": true,
+    "import_preserves": true,
+    "mobile_390": true,
+    "live_public_path": false,
+    "kit_bilingual": false
+  },
+  "mobile_scope": "project detail and expanded task evidence only; overview/report pending",
+  "public_bytes_verified": 44,
+  "remaining": [
+    "browser export download",
+    "mobile overview and report interactions",
+    "production browser",
+    "Kit bilingual production browser"
+  ],
+  "sha256": {
+    "specs/ai-pms-dashboard/work.py": "46486249689c1cef59afb03177a38cc832e0ed687409c52bd056845e76da5012",
+    "specs/ai-pms-dashboard/dashboard.html": "03807eb680f0e65160784be6d1333547b904501b205f01fe49db66ee8e7ab2d9",
+    "specs/ai-pms-work-management/sample/catalog-work.json": "48c432a7dbe288eb03c7b6917e94a1bff22103f6b52dd2feaa2361ae884683fb",
+    "docs/json-contracts.md": "f85f1342debd74ad90d7ea0cba6d50457dd9e422ddee8bc4ab276e4c47bdfb88",
+    "apps/dashboard/public/index.html": "8c20e31a461170d7ed307b6fe58188c5cf163fea2fb55daeffab15184e0c934d",
+    "apps/dashboard/public/snapshot.json": "d6320c769b0db7f7da4d06a7249cdada76a4009a19da000928132b27f5584a8b",
+    "apps/dashboard/public/report.html": "b9df4db38f556747b793d1272974a15b2915537beaadaaa687d4f82058b1259a"
+  },
+  "publication_transform": {
+    "source_receipt_sha256": "6e812fda5a06f2437e61f44e795cddc13692ba685a5048026ba6c78a13689102",
+    "changed_paths": [],
+    "reason": "Personal home paths replaced with $HOME; publication hash reconciliation, not another independent review."
+  }
+}

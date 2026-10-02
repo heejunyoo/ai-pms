@@ -159,3 +159,29 @@ The worktree digest covers Git's tracked diff/status and untracked regular proje
 `record` imports one exact decision, handoff, or capture object from a reviewed project-relative JSON file. Decisions preserve earlier decisions via `supersedes`, require explicit alternatives/reasons and reject cycles. Record the rationale you want to share, not private model reasoning. Handoff `usage: not_observed` stays unobserved; installing a skill, generating a packet or exporting a log never changes it to observed. Declared/observed usage requires a timestamp and concrete evidence; imported observed evidence is still not authenticated execution. Capture status is a historical source report with capabilities, observation time and reason, not a live heartbeat. Silence never establishes inactivity, completion, or unsupported tooling. All source tuples and referenced records must belong to the selected project; malformed imports preserve the original file.
 
 변경 근거에서 목표·판단·세션·코드·검사를 이어 볼 수 있습니다. 판단 이유와 대안은 직접 작성하고, 인계 패킷을 만든 사실과 다음 세션이 실제로 사용한 근거를 구분합니다. 기록 중지·오류·미지원은 명시 보고로 남기며, 수집되지 않은 작업을 정체나 실패로 판단하지 않습니다. 자동 PC 수집·전역 훅 설치는 포함하지 않습니다.
+
+## 사람·Phase·원자화 작업 관리 (2026-10-02)
+
+`catalog-work.template.json`과 `json-contracts.md`를 사용합니다. `management.py`, `work.py`, `management_recorder.py`는 함께 배치합니다. 기존 v3 template의 작업 계획 생략도 지원하지만 작업 진척은 미관측입니다.
+
+완전한 Kit Handoff 계획을 가져오면 목표·Phase·작업 ID·목적·완료 조건·의존성과 작업/단계/전체 인수 검사를 보존합니다. 담당자는 import 명령의 actor로 명시되며, 공동 작업은 catalog의 source_refs와 work.tasks.owner를 검토하여 배정합니다. 파일 범위와 인수 기준을 검토한 뒤 실제 runner를 실행하세요.
+
+```sh
+python3 management_recorder.py --project "$PMS_PROJECT" --management management.json handoff \
+  --plan plan.json --plan-id implementation --version v2 --reason '검토한 현재 작업 계획' \
+  --test-file checks/acceptance.py --actor-id ExampleUser --environment-id example-laptop --session-id session-1
+python3 management_recorder.py --project "$PMS_PROJECT" --management management.json update \
+  --task implement --state in_progress --summary '자료 연결 구현 시작' --next-action '인수 검사 실행'
+python3 management_recorder.py --project "$PMS_PROJECT" --management management.json run \
+  --test-plan handoff-implement --version v2 --actor-id ExampleUser --environment-id example-laptop --session-id session-1
+python3 management_recorder.py --project "$PMS_PROJECT" --management management.json review \
+  --task implement --reviewer ExampleUser --decision approved --summary '현재 산출물과 완료 조건을 검토했다'
+```
+
+`PMS_PROJECT`에는 실제 프로젝트 디렉터리를 지정합니다. HOME 자체는 금지합니다. 예시 task ID는 자신의 계획 ID로 바꾸세요. update는 진행 선언, review는 명시적인 판단 기록이며 사용자 신원을 인증하지 않습니다. review 명령은 현재 실제 manifest와 인수 기준/테스트 계획의 해시를 자동 연결합니다. 승인 뒤 파일·계획·기준이 바뀌면 과거 승인은 현재 완료에 사용할 수 없습니다. 원본이 잘못되거나 실행 중 파일이 바뀌면 기존 관리 파일을 보존합니다.
+
+task의 `expect_contains`는 원문 조건을 done_when에 보존하고 사람 검토를 필수로 설정합니다. 출력 문자열을 자동 판정하는 runner는 현재 없습니다. phase/project의 출력 문자열 조건, 프로젝트 밖 cwd는 지원하지 않아 명확히 거부합니다. 명령은 shell=False이며 셸 파이프라인을 해석하지 않습니다. 필요한 검증은 프로젝트 내 명시적 스크립트로 감싸세요. 이것을 임의 종료 코드로 바꿔 성공으로 기록하지 않습니다.
+
+기존 Phase의 문서/검사 근거가 있는 상태에서 Phase를 없애거나 기존 task 기준을 참조하는 작업을 제거하는 계획은 자동으로 마이그레이션하지 않습니다. 원본을 보존하고 명시적인 범위 정리를 요구합니다. 새 작업 계획 버전은 과거 실행을 보수적으로 재검증합니다. 완료 조건 산문의 의미와 전체 파일 범위가 충분한지는 별도 사람 검토가 필요합니다.
+
+구형의 불완전한 Handoff 입력(Phase/원자화 작업이 없는 테스트 결과만 있는 자료)은 기존 선언 검사 import로 지원합니다. 완전한 작업 계획으로 꾸며 진행을 계산하지 않습니다. 자동 PC 전달·전역 훅·운영 인증은 설치하지 않습니다.

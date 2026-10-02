@@ -11,7 +11,15 @@ spec=importlib.util.spec_from_file_location('portfolio',DASH/'portfolio.py')
 portfolio=importlib.util.module_from_spec(spec);spec.loader.exec_module(portfolio)
 def main():
     out=ROOT/'apps/dashboard/public';out.mkdir(parents=True,exist_ok=True)
-    model=portfolio.build_model(portfolio.read_json(DASH/'sample/central.json'),portfolio.read_json(ROOT/'specs/ai-pms-management/sample/catalog-v3.json'),now='2026-10-01T12:00:00Z')
+    catalog=portfolio.read_json(ROOT/'specs/ai-pms-work-management/sample/catalog-work.json')
+    store=portfolio.read_json(DASH/'sample/central.json')
+    # New fictional participant environments have zero events; never fabricate hook observations.
+    for project in catalog['projects']:
+        for ref in project['source_refs']:
+            key=portfolio.central.source_key(ref)
+            if key not in store['sources']:
+                store['sources'][key]=dict(ref,label='합성 예시 · 활동 미관측',evidence_mode='synthetic',events={})
+    model=portfolio.build_model(store,catalog,now='2026-10-01T12:00:00Z')
     assert model['evidence_mode']=='synthetic'
     pages={'index.html':portfolio.render_html(model),'empty.html':portfolio.render_html(portfolio.build_model(now='2026-10-01T12:00:00Z'))}
     report=(ROOT/'reports/ai-pms-eli20/index.html').read_text()

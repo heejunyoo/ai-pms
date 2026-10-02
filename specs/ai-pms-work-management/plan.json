@@ -1,0 +1,326 @@
+{
+  "goal": "다수 사람의 목표와 Phase별 원자화 작업을 중앙에서 검증 근거로 관리하고 구체적 개입을 결정한다",
+  "author": "root-work-management-author",
+  "spec_ref": "spec.md",
+  "intent_guard": {
+    "source_ref": "source.md",
+    "requirements": [
+      {
+        "id": "people",
+        "quote": "다수의 사람 각각을 필터할 수 있어야 한다는 이야기가 되는거고",
+        "outcome": "담당 사람별 여러 프로젝트와 목표 및 책임 작업을 탐색한다"
+      },
+      {
+        "id": "work",
+        "quote": "그게 어디까지 되었는지 기계적으로 확인 할 수도 있어야 하는거 아닌지.",
+        "outcome": "Phase별 원자화 작업 의존성 및 현재 검증 근거로 진행을 계산한다"
+      },
+      {
+        "id": "interventions",
+        "quote": "각 사람의 상세 작업에서, 사람으로서 캐치해야 하는 부분이 명확해야 하고",
+        "outcome": "사람의 개입 항목과 담당자 및 다음 행동을 명확히 표시한다"
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-work-management/verify_work.py",
+      "expect_exit_code": 0
+    }
+  },
+  "open_decisions": [],
+  "phases": [
+    {
+      "id": "build",
+      "name": "작업 모델과 관리 화면 구현",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-work-management/verify_work.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "work-backend",
+      "requirement_ids": [
+        "people",
+        "work",
+        "interventions"
+      ],
+      "kind": "implement",
+      "phase": "build",
+      "depends_on": [],
+      "objective": "구현: 원자화 작업 계약과 의존성·검증·승인 기반 진행 집계 및 다양한 사람 샘플",
+      "done_when": [
+        "명세의 정확한 계약과 소유 파일 경계를 지킨다",
+        "실행 가능한 검증에서 거짓 완료와 잘못된 귀속 반례를 차단한다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-work-management/test_work.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/management.py",
+          "symbol": "module",
+          "what": "공유 spec 계약과 실제 목적에 따라 수정"
+        },
+        {
+          "path": "specs/ai-pms-dashboard/portfolio.py",
+          "symbol": "module",
+          "what": "공유 spec 계약과 실제 목적에 따라 수정"
+        },
+        {
+          "path": "specs/ai-pms-management/generate_sample.py",
+          "symbol": "module",
+          "what": "공유 spec 계약과 실제 목적에 따라 수정"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-dashboard/work.py",
+        "specs/ai-pms-work-management/test_work.py",
+        "specs/ai-pms-work-management/generate_sample.py",
+        "specs/ai-pms-work-management/sample/catalog-work.json",
+        "specs/ai-pms-work-management/work-backend-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/management.py",
+        "why": "기존 stdlib 검증과 선언/실행 근거 분리 및 개인정보 경계를 재사용"
+      },
+      "already_tried": [
+        {
+          "what": "python3 specs/ai-pms-management/test_management.py",
+          "result": "기존 기준선 26 tests OK; 새 기능 검사는 구현 전에 아직 없음"
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-work-management/spec.md",
+        "facts": [
+          "repo=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "정본 구현은 research, public 복사본/빌드/배포는 부모 담당",
+          "세션/호출 수를 작업 진척이나 업무 성과로 계산하지 않는다",
+          "다른 태스크 파일 수정 금지; 공유 spec 변경은 부모에게 요청"
+        ],
+        "conventions": [
+          "stdlib Python, strict exact-key validation, safe DOM, bounded private-data checks"
+        ],
+        "files": [
+          "specs/ai-pms-work-management/source.md",
+          "specs/ai-pms-work-management/spec.md",
+          "PRODUCT-INTENT.md"
+        ],
+        "excluded": "DB/외부 API/인증/전역 훅/PC 자동 전달/배포/Git 쓰기"
+      },
+      "constraints": {
+        "must": [
+          "기존 테스트 보존, 실패는 수정하되 삭제/skip 금지",
+          "결과를 handoff result schema에 맞춰 task-result.json 작성",
+          "모호한 의미는 부모에게 문의; spec을 마음대로 바꾸지 말 것"
+        ],
+        "must_not": [
+          "다른 태스크 소유 파일 변경",
+          "새 의존성/전역 hooks/실사용자 로그 공개/배포"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 60
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      }
+    },
+    {
+      "task_id": "work-ui",
+      "requirement_ids": [
+        "people",
+        "work",
+        "interventions"
+      ],
+      "kind": "implement",
+      "phase": "build",
+      "depends_on": [],
+      "objective": "구현: 사람별 프로젝트·Phase·작업과 관리 개입 화면 및 Python과 동일한 JSON 검증",
+      "done_when": [
+        "명세의 정확한 계약과 소유 파일 경계를 지킨다",
+        "실행 가능한 검증에서 거짓 완료와 잘못된 귀속 반례를 차단한다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-work-management/check_ui_work.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/dashboard.html",
+          "symbol": "module",
+          "what": "공유 spec 계약과 실제 목적에 따라 수정"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-work-management/check_ui_work.py",
+        "specs/ai-pms-work-management/work-ui-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/management.py",
+        "why": "기존 stdlib 검증과 선언/실행 근거 분리 및 개인정보 경계를 재사용"
+      },
+      "already_tried": [
+        {
+          "what": "python3 specs/ai-pms-management/test_management.py",
+          "result": "기존 기준선 26 tests OK; 새 기능 검사는 구현 전에 아직 없음"
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-work-management/spec.md",
+        "facts": [
+          "repo=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "정본 구현은 research, public 복사본/빌드/배포는 부모 담당",
+          "세션/호출 수를 작업 진척이나 업무 성과로 계산하지 않는다",
+          "다른 태스크 파일 수정 금지; 공유 spec 변경은 부모에게 요청"
+        ],
+        "conventions": [
+          "stdlib Python, strict exact-key validation, safe DOM, bounded private-data checks"
+        ],
+        "files": [
+          "specs/ai-pms-work-management/source.md",
+          "specs/ai-pms-work-management/spec.md",
+          "PRODUCT-INTENT.md"
+        ],
+        "excluded": "DB/외부 API/인증/전역 훅/PC 자동 전달/배포/Git 쓰기"
+      },
+      "constraints": {
+        "must": [
+          "기존 테스트 보존, 실패는 수정하되 삭제/skip 금지",
+          "결과를 handoff result schema에 맞춰 task-result.json 작성",
+          "모호한 의미는 부모에게 문의; spec을 마음대로 바꾸지 말 것"
+        ],
+        "must_not": [
+          "다른 태스크 소유 파일 변경",
+          "새 의존성/전역 hooks/실사용자 로그 공개/배포"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 60
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      }
+    },
+    {
+      "task_id": "work-kit",
+      "requirement_ids": [
+        "people",
+        "work",
+        "interventions"
+      ],
+      "kind": "implement",
+      "phase": "build",
+      "depends_on": [
+        "work-backend"
+      ],
+      "objective": "구현: Kit Handoff 계획의 Phase·작업 전체 보존과 로컬 기록·템플릿·한영 안내",
+      "done_when": [
+        "명세의 정확한 계약과 소유 파일 경계를 지킨다",
+        "실행 가능한 검증에서 거짓 완료와 잘못된 귀속 반례를 차단한다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-work-management/test_kit_work.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "$HOME/.claude/harness/activity/management_recorder.py",
+          "symbol": "module",
+          "what": "공유 spec 계약과 실제 목적에 따라 수정"
+        },
+        {
+          "path": "$HOME/.claude/harness/activity/test_management_recorder.py",
+          "symbol": "module",
+          "what": "공유 spec 계약과 실제 목적에 따라 수정"
+        },
+        {
+          "path": "$HOME/.claude/harness/activity/README.md",
+          "symbol": "module",
+          "what": "공유 spec 계약과 실제 목적에 따라 수정"
+        },
+        {
+          "path": "$HOME/.claude/harness/build/current_content.py",
+          "symbol": "module",
+          "what": "공유 spec 계약과 실제 목적에 따라 수정"
+        },
+        {
+          "path": "$HOME/.claude/harness/build/build_current.py",
+          "symbol": "module",
+          "what": "공유 spec 계약과 실제 목적에 따라 수정"
+        }
+      ],
+      "files_to_create": [
+        "$HOME/.claude/harness/activity/catalog-work.template.json",
+        "$HOME/.claude/harness/activity/work.py",
+        "specs/ai-pms-work-management/test_kit_work.py",
+        "specs/ai-pms-work-management/work-kit-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/management.py",
+        "why": "기존 stdlib 검증과 선언/실행 근거 분리 및 개인정보 경계를 재사용"
+      },
+      "already_tried": [
+        {
+          "what": "python3 specs/ai-pms-management/test_management.py",
+          "result": "기존 기준선 26 tests OK; 새 기능 검사는 구현 전에 아직 없음"
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-work-management/spec.md",
+        "facts": [
+          "repo=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "정본 구현은 research, public 복사본/빌드/배포는 부모 담당",
+          "세션/호출 수를 작업 진척이나 업무 성과로 계산하지 않는다",
+          "다른 태스크 파일 수정 금지; 공유 spec 변경은 부모에게 요청"
+        ],
+        "conventions": [
+          "stdlib Python, strict exact-key validation, safe DOM, bounded private-data checks"
+        ],
+        "files": [
+          "specs/ai-pms-work-management/source.md",
+          "specs/ai-pms-work-management/spec.md",
+          "PRODUCT-INTENT.md"
+        ],
+        "excluded": "DB/외부 API/인증/전역 훅/PC 자동 전달/배포/Git 쓰기"
+      },
+      "constraints": {
+        "must": [
+          "기존 테스트 보존, 실패는 수정하되 삭제/skip 금지",
+          "결과를 handoff result schema에 맞춰 task-result.json 작성",
+          "모호한 의미는 부모에게 문의; spec을 마음대로 바꾸지 말 것"
+        ],
+        "must_not": [
+          "다른 태스크 소유 파일 변경",
+          "새 의존성/전역 hooks/실사용자 로그 공개/배포"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 60
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      }
+    }
+  ]
+}

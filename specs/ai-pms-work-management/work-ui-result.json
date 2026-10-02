@@ -1,0 +1,36 @@
+{
+  "task_id": "work-ui",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/dashboard.html",
+      "action": "modified",
+      "summary": "Current work management integration"
+    },
+    {
+      "path": "specs/ai-pms-work-management/check_ui_work.py",
+      "action": "modified",
+      "summary": "Current work management integration"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-work-management/check_ui_work.py",
+    "exit_code": 0,
+    "output_tail": "24 Python snapshots; 36 forged imports; existing v3 checks PASS"
+  },
+  "done_when_check": [
+    {
+      "condition": "명세의 정확한 계약과 소유 파일 경계를 지킨다",
+      "met": true,
+      "evidence": "24 Python snapshots; 36 forged imports; existing v3 checks PASS"
+    },
+    {
+      "condition": "실행 가능한 검증에서 거짓 완료와 잘못된 귀속 반례를 차단한다",
+      "met": true,
+      "evidence": "24 Python snapshots; 36 forged imports; existing v3 checks PASS"
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.9,
+  "notes_for_orchestrator": "Parent-authored integration result. Original delegate hit usage limit; parent completed remaining code and checks. Independent Astra review and actual browser/public acceptance are separate."
+}

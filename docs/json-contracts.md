@@ -94,3 +94,23 @@ UI new tab '변경 · 판단 · 인계 · 기록 상태': checkpoints commit+dir
 Acceptance: backend/Kit actual temp Git commits and dirty/untracked/noGit/ref rejection; UI backend parity, forged references/attribution cycles/private text/unknown keys; existing tests; actual browser new tab+390px+invalid import; public byte match and GitHub publication. No effect on configured technical completion; no actual multi-PC delivery claim.
 
 Git 커밋은 코드 상태 관측이며 세션 기여는 명시적 선언입니다. 검사 연결은 선언 manifest의 revision·hash 일치이며 Git 전체 tree가 검사됐다는 증명은 아닙니다. 원문 프롬프트·비공개 추론·Git diff는 중앙에 저장하지 않습니다. 실제 Git 루트에만 실행하며 최초 커밋 전 저장소는 checkpoint 생성을 거절합니다. Git 없는 독립 폴더는 null Git 정보와 산출물 해시를 유지합니다.
+
+## 사람·Phase·원자화 작업 관리 — v3 선택 확장 `management.work`
+
+작업 계획 템플릿: `templates/catalog-work.template.json` (Kit ZIP: `activity/catalog-work.template.json`). 구버전 v3의 work 생략은 지원하며 작업 진행은 미관측입니다. 훅 활동으로 목적·담당자·작업 진척을 자동 추측하지 않습니다.
+
+| 객체 | 필드와 의미 |
+|---|---|
+| work | `plan_id`, `plan_version`: plans 참조. `at`: 현재 계획 적용 UTC 시각. `tasks`, `phase_gates`, `updates`, `reviews`: 아래 기록. 현재 계획 전체를 보존합니다. |
+| tasks | `id`, `title`, `phase_id`, `owner`(명시적 사용자 또는 null), `required`, `depends_on`(선행 작업 ID), `requirement_ids`, `done_when`(완료 조건 목록), `criterion_ids`(해당 task 범위 검사 ID), `document_ids`(연결 문서 ID), `review_required`. 의존성 순환·잘못된 참조·중복을 거부합니다. |
+| phase_gates | `phase_id`, `criterion_ids`: 단계 종료 검사. 비어 있거나 없으면 Phase를 완료로 판정하지 않습니다. |
+| updates | `id`, `task_id`, `at`, `state`(not_started/in_progress/blocked), `summary`, `next_action`: 시작/막힘의 명시적 보고. 검사 통과 증거가 아닙니다. |
+| reviews | `id`, `task_id`, `at`, `reviewer`, `decision`(approved/changes_requested), `summary`, `artifact_sha256`, `task_sha256`: 사람 판단 기록. 현재 작업·인수 기준·테스트 계획·파일을 묶고 오래된 승인은 재사용하지 않습니다. 인증된 승인 서비스가 아닙니다. |
+
+`work.task_digest(project,task)`는 현재 계획 ID/버전/시각, 작업 전체, 작업의 현재 criterion 정의, 최신 test_plan 전체를 canonical JSON으로 해시합니다. review 시각도 계획 및 최신 testplan 이후여야 합니다. 결과 파일에서 SHA를 임의 입력해 통과시키는 것이 아니라 명시적 승인 시점의 동일성을 확인합니다. 필드 의미와 Python/JS 파생 계약의 정본은 `specs/ai-pms-work-management/spec.md`입니다.
+
+정규화 snapshot의 `project.work`는 입력을 복사한 진척이 아니라 다시 계산한 작업/Phase 상태·필수 분모·관리 개입을 담습니다. 브라우저 가져오기는 파생 값도 검증하므로 완료 수나 상태만 바꾼 JSON을 거부하고 기존 화면을 유지합니다. `completed`는 선행 작업과 필요한 승인까지 충족한 필수 작업 수, `technical_complete`는 해당 검사 조건을 충족한 필수 작업 수입니다. 선택 작업은 total에 포함하지만 필수 분모에서는 제외합니다.
+
+작업 상태: unknown(담당자/기준 미입력 등), not_started(미시작 선언), ready(착수 조건 충족), in_progress(진행 선언/관측), blocked(선행 작업/명시적 막힘), failed(최신 검증 실패), revalidation(근거 오래됨), review_pending(사람 검토), changes_requested(수정 요청), complete(작업 인수 조건 충족). 세션/호출 횟수로 진행을 추정하지 않습니다. 현재 계획 적용 전 검사는 보수적으로 재검증합니다.
+
+프로젝트 전체 검사만 통과해도 미완료 작업이나 작업 누락 Phase가 있으면 완료가 아닙니다. 모든 선언 Phase의 필수 작업·종료 검사와 프로젝트 전체 인수 조건을 확인합니다. 원래 계획에 빠진 요구사항이나 실제 사업 목표의 달성까지 자동 보장하지 않습니다.

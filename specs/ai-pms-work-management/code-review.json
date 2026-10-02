@@ -1,0 +1,86 @@
+{
+  "reviewer": "astra-independent-work-review",
+  "verdict": "no_blockers",
+  "at": "2026-10-02T01:34:07.494677+00:00",
+  "sha256": {
+    "specs/ai-pms-work-management/source.md": "33d9be108200400d68ee72e3ce63572626cecf4c78b9e2e5dbbf21f5bfe9e703",
+    "specs/ai-pms-work-management/spec.md": "bae80baee73521597bcb36ff29b4201be958962ab24c0b45c8ba02a17bb5190d",
+    "specs/ai-pms-work-management/plan.json": "5beaf8b05736c383194bfb413d171c10003bda4451aa1b5bd192d450ea564b3a",
+    "specs/ai-pms-dashboard/work.py": "46486249689c1cef59afb03177a38cc832e0ed687409c52bd056845e76da5012",
+    "specs/ai-pms-dashboard/management.py": "e05caa3a45417cb1aa6312bce61cc2df24951a46b0278c788ce6cab5215fe7ee",
+    "specs/ai-pms-dashboard/portfolio.py": "d9deeced62e9783fba7b0239d4b1be2dd023e18e2f62514200607d1da5c2357a",
+    "specs/ai-pms-dashboard/dashboard.html": "03807eb680f0e65160784be6d1333547b904501b205f01fe49db66ee8e7ab2d9",
+    "specs/ai-pms-work-management/test_work.py": "392bd4e8275f61dd760802dce0936c1ff0ab5beaea483c4e1fb9c1588d9c0c76",
+    "specs/ai-pms-work-management/check_ui_work.py": "95f28aae2d10b6359a5d3402e62b42bd7d003e33d143a398069a3ecc37674896",
+    "specs/ai-pms-work-management/test_kit_work.py": "665c04c5249be226a2509ba886bf12fc26f11da3d9d7829751a71ea3de108d72",
+    "specs/ai-pms-work-management/exercise_work.py": "157e97bbfb045d39dd9f822d69f04da2f04a934515aaa85097a4974a3e2bb34d",
+    "specs/ai-pms-work-management/verify_work.py": "ca3e7adcffba50c67945eb99d08e46cc7f48e4b169ac6c2d5160ca4a1b911055",
+    "specs/ai-pms-work-management/generate_sample.py": "17276e2605cf0e3396676e72c93c59b82a63d5e1d78ad9826a0d006ab69bfa2f",
+    "specs/ai-pms-work-management/sample/catalog-work.json": "48c432a7dbe288eb03c7b6917e94a1bff22103f6b52dd2feaa2361ae884683fb",
+    "specs/ai-pms-work-management/README.md": "7eabf3bdba86e47dda1cae03bfae24cea2875268f1836271bc408d63fde85488",
+    "docs/json-contracts.md": "f85f1342debd74ad90d7ea0cba6d50457dd9e422ddee8bc4ab276e4c47bdfb88",
+    "kit/activity/management.py": "e05caa3a45417cb1aa6312bce61cc2df24951a46b0278c788ce6cab5215fe7ee",
+    "kit/activity/work.py": "46486249689c1cef59afb03177a38cc832e0ed687409c52bd056845e76da5012",
+    "kit/activity/management_recorder.py": "4c5cac6d488be6449a4bc4a9c1575c43bdbe387f8ed51d91e8b89e15988af4b8",
+    "kit/activity/test_management_recorder.py": "a6315e6dbf6468ec87a698cdacd75f68826f00f67f64fb33f659d5ef5a226b7a",
+    "kit/activity/catalog-work.template.json": "f91a1555041bcbaee208498826cd700ee1a8be3fa7d9364297cdbed6e447d19e",
+    "kit/activity/README.md": "cd69b211714a606d1a00fea84f2b990617b85fd030d4af20ebc1650819f6399c",
+    "kit/activity/json-contracts.md": "f85f1342debd74ad90d7ea0cba6d50457dd9e422ddee8bc4ab276e4c47bdfb88"
+  },
+  "canonical_kit_build_sha256": {
+    "build_current.py": "f3754a93186fd0580941574f96ed156bdfa0a14c2217240d2193dda0e1cf1bb3",
+    "current_content.py": "79c6e4f5ac95764512b556ca63e29b003759c8935f8af96ec118405245618bfe"
+  },
+  "requirements_covered": [
+    "people",
+    "work",
+    "interventions"
+  ],
+  "findings": [],
+  "resolved_findings": [
+    {
+      "id": "R1",
+      "severity": "P1",
+      "resolution": "Work project acceptance now uses the latest observed attempt including declared/unknown, with current revision/artifact/plan time checks. Independently reproduced old-pass plus newer-declared: no completion and JS parity passed."
+    },
+    {
+      "id": "R2",
+      "severity": "P1",
+      "resolution": "Unresolved project blockers prevent project completion and relevant phase gate blockers prevent phase completion. Independent project and phase gate counterexamples passed in Python and JS."
+    },
+    {
+      "id": "R3",
+      "severity": "P2",
+      "resolution": "JS latest selection uses ASCII identifier ordering matching Python. Independent same-time A/a update AND review snapshots were accepted with A selected."
+    }
+  ],
+  "evidence": [
+    "Independently ran test_work.py: 27 tests passed.",
+    "Independently ran check_ui_work.py: 24 Python snapshots accepted; 36 forged imports rejected; prior state preservation and owner counts passed; existing v3/v2 UI checks passed.",
+    "Independently ran test_kit_work.py: 6 tests passed, including full Handoff structure, declared result, unsupported acceptance rejection, atomic failure preservation and template no-completion.",
+    "Independently ran exercise_work.py: actual subprocess task failure -> dependent blocked -> runner pass -> recorded human-review workflow -> phase/project completion -> file-change revalidation; synthetic identities only.",
+    "Independently ran existing test_management_recorder.py (13), test_management.py (26), test_portfolio.py (17): all passed.",
+    "Copied only management.py/work.py/management_recorder.py into a temporary separate Kit directory. Explicit review CLI bound current task/artifact digests, approval without runner evidence did not complete, unknown reviewer and private-text input failed while preserving original file bytes.",
+    "Reviewed strict work input and derived contracts, current acceptance digest, dependencies, phase gates, person-required-task counts, participant/owner distinction, safe DOM, privacy tree and read-only snapshot verification.",
+    "Reviewed complete Handoff goal/phases/tasks/dependencies/acceptance preservation, legacy no-work boundary, task output-string conditions requiring recorded review and unsupported upper-scope output conditions/cwd failing atomically.",
+    "Confirmed canonical Kit management.py/work.py and JSON field guide match dashboard/repository copies byte-for-byte. Reviewed build allowlist includes work.py and catalog-work.template.json plus bilingual work-management guide source.",
+    "Re-reviewed three changed sample/UI-fixture files: sample equals make_catalog(multiple_phases=True), shared project has plan/build/release with incomplete later phases, seven distinct done_when conditions and valid document links, and Alice personal project has no company assignment. Backend 27 and UI 24 snapshots/36 forged imports rerun passed. Independently forged build-phase state=complete using a valid enum; JS rejected it.",
+    "Final UI regression now uses valid-enum build phase state=complete rather than an invalid enum; check_ui_work.py rerun passed (24 snapshots, 36 forged imports)."
+  ],
+  "limits": [
+    "No actual browser/mobile interaction or deployed/public byte verification performed by this reviewer. Parent must complete those acceptance steps separately.",
+    "Public samples and exercised identities are synthetic. Local subprocess execution is real; no actual human approval or authenticated multi-PC collection is established.",
+    "Declared runner/reviewer identity, manifest completeness and semantic sufficiency of task decomposition are not authenticated or proved by these checks.",
+    "Task expect_contains is preserved as a required human-review condition, not automatically checked against captured output. Phase/project output expectations and non-root cwd are explicitly unsupported and rejected.",
+    "Portability exercise ran on the current POSIX host; Windows compatibility was not tested.",
+    "Original UI worker stopped at usage limit before its result receipt; original Kit worker did not implement due to usage limit. Parent authored integration/corrections. This independent review covers the current hashed files and does not claim those original workers completed their tasks.",
+    "Canonical Kit build hashes are recorded separately from distributable sha256 mapping; build and live publication acceptance remains parent-owned."
+  ],
+  "publication_transform": {
+    "source_receipt_sha256": "61413f28af54b37b82f51d3a0dbcfb30b21366ecb7d1c3b2d26ba432aff2f891",
+    "changed_paths": [
+      "specs/ai-pms-work-management/plan.json"
+    ],
+    "reason": "Personal home paths replaced with $HOME; publication hash reconciliation, not another independent review."
+  }
+}

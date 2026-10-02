@@ -191,7 +191,7 @@ def render(key, lang, evidence):
     if key=='skills':
         cards+='<div class="downloads">'+''.join(f'<a class="button" href="./{filename(k,lang)}">{LABELS[lang][k]} →</a>' for k in ('handoff','expert-panel','eli5'))+'</div>'
     if key=='ai-pms':
-        cards='<div class="downloads">'+''.join(f'<a class="button" href="{url}" rel="noreferrer">{html.escape(label)} ↗</a>' for label,url in [(('JSON 템플릿' if lang=='ko' else 'JSON template'),'https://github.com/heejunyoo/ai-pms/blob/main/templates/catalog-v3.template.json'),(('전체 필드 설명' if lang=='ko' else 'Complete field guide'),'https://github.com/heejunyoo/ai-pms/blob/main/docs/json-contracts.md'),(('기록기 사용 안내' if lang=='ko' else 'Recorder instructions'),'https://github.com/heejunyoo/ai-pms/blob/main/kit/activity/README.md'),(('구현 소스 ZIP' if lang=='ko' else 'Implementation ZIP'),'./implementation.zip')])+'</div>'+cards
+        cards='<div class="downloads">'+''.join(f'<a class="button" href="{url}" rel="noreferrer">{html.escape(label)} ↗</a>' for label,url in [(('JSON 템플릿' if lang=='ko' else 'JSON template'),'https://github.com/heejunyoo/ai-pms/blob/main/templates/catalog-work.template.json'),(('전체 필드 설명' if lang=='ko' else 'Complete field guide'),'https://github.com/heejunyoo/ai-pms/blob/main/docs/json-contracts.md'),(('기록기 사용 안내' if lang=='ko' else 'Recorder instructions'),'https://github.com/heejunyoo/ai-pms/blob/main/kit/activity/README.md'),(('구현 소스 ZIP' if lang=='ko' else 'Implementation ZIP'),'./implementation.zip')])+'</div>'+cards
         cards+='<div class="downloads">'+''.join(f'<a class="button" href="{url}" rel="noreferrer">{html.escape(label)} ↗</a>' for label,url in [(('합성 대시보드' if lang=='ko' else 'Synthetic dashboard'),'https://ai-pms-dashboard.vercel.app'),(('ELI20 보고서' if lang=='ko' else 'ELI20 report'),'https://ai-pms-dashboard.vercel.app/report.html'),(('공개 소스' if lang=='ko' else 'Public source'),'https://github.com/heejunyoo/ai-pms')])+'</div>'
     trust='기존 설정을 백업한 뒤 필요한 항목을 병합하세요.' if lang=='ko' else 'Back up existing settings, then merge the entries you need.'
     stats=''
@@ -234,7 +234,7 @@ def build(output):
         'claude/session_gate.py': '.claude/hooks/session_gate.py',
         'claude/test_session_gate.py': '.claude/hooks/test_session_gate.py',
     }
-    for name in ('logger.py', 'connectivity.py', 'management.py', 'management_recorder.py', 'test_management_recorder.py', 'catalog-v3.template.json', 'json-contracts.md', 'test_logger.py', 'viewer.html', 'README.md', 'example-project.jsonl'):
+    for name in ('logger.py', 'connectivity.py', 'management.py', 'work.py', 'management_recorder.py', 'test_management_recorder.py', 'catalog-v3.template.json', 'catalog-work.template.json', 'json-contracts.md', 'test_logger.py', 'viewer.html', 'README.md', 'example-project.jsonl'):
         implementation['activity/'+name] = '.claude/harness/activity/'+name
     # Only these authored skill packages are exportable; never walk all user settings.
     skill_roots = {

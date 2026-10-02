@@ -1,0 +1,61 @@
+{
+  "task_id": "work-backend",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/work.py",
+      "action": "created",
+      "summary": "엄격한 작업 계약·digest·현재 근거 기반 진행과 개입 계산"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/management.py",
+      "action": "modified",
+      "summary": "optional work 계약 및 portable loader"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/portfolio.py",
+      "action": "modified",
+      "summary": "work projection 및 전체 Phase를 포함한 보수적 완료 gate"
+    },
+    {
+      "path": "specs/ai-pms-work-management/test_work.py",
+      "action": "created",
+      "summary": "거짓 완료·정의/산출물 변경·귀속의 25 실행 반례"
+    },
+    {
+      "path": "specs/ai-pms-work-management/generate_sample.py",
+      "action": "created",
+      "summary": "사람별 다중 프로젝트·공동 작업·혼합 상태의 합성 예시"
+    },
+    {
+      "path": "specs/ai-pms-work-management/sample/catalog-work.json",
+      "action": "created",
+      "summary": "공개용 합성 작업 카탈로그"
+    },
+    {
+      "path": "specs/ai-pms-work-management/work-backend-result.json",
+      "action": "created",
+      "summary": "handoff 결과"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-work-management/test_work.py",
+    "exit_code": 0,
+    "output_tail": "Ran 25 tests; OK"
+  },
+  "done_when_check": [
+    {
+      "condition": "명세의 정확한 계약과 소유 파일 경계를 지킨다",
+      "met": true,
+      "evidence": "Exact keys/ref/cycle validation, full task/testplan digest, optional work projection and declared Phase gate; only packet files changed."
+    },
+    {
+      "condition": "실행 가능한 검증에서 거짓 완료와 잘못된 귀속 반례를 차단한다",
+      "met": true,
+      "evidence": "25 work counterexamples pass; legacy management 26 and portfolio 17 tests pass; shared people and Alice multi-project sample validates."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.94,
+  "notes_for_orchestrator": "Backend packet only complete. Full verify_work waits UI/Kit/exercise tasks. Synthetic mock receipts are not live execution or authenticated attestation; done_when prose is declared, criterion passes prove only declared technical acceptance. Current sample generated at 2026-10-02T12:00:00Z in tests; historical example attempts Sep29 are before any current real wallclock. Existing management/generate_sample.py unchanged intentionally to preserve legacy sample. UI notified final algorithm, freshness and project scoped blockers. No DB/API/network/Git/deployment/hooks changed. Dependency derivation uses bounded O(n²) topological batches, no recursion."
+}

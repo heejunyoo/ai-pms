@@ -8,27 +8,28 @@
       "name": "고객 요청 지식 검색과 출처 표시 · 합성 예시",
       "goal": "고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다",
       "owners": [
-        "Alice"
+        "Alice",
+        "Bob"
       ],
       "current_revision": "v1",
       "current_phase": "build",
-      "status": "complete",
-      "status_reason": "현재 revision의 프로젝트 범위 최신 검사 기록이 모두 통과했습니다. 목표/문서는 catalog.projects[0]의 명시적 입력입니다.",
+      "status": "in_progress",
+      "status_reason": "현재 revision의 프로젝트 범위 검사 기록이 부족하거나 불명입니다. 필수 작업·단계·전체 검사·승인·막힘 해결 조건을 모두 확인해야 합니다. 목표/문서는 catalog.projects[0]의 명시적 입력입니다.",
       "phases": [
         {
           "id": "plan",
-          "name": "기획",
-          "status": "unknown"
-        },
-        {
-          "id": "design",
-          "name": "설계",
+          "name": "목표와 인수 기준 확정",
           "status": "complete"
         },
         {
           "id": "build",
-          "name": "구현",
-          "status": "unknown"
+          "name": "구현과 검증",
+          "status": "complete"
+        },
+        {
+          "id": "release",
+          "name": "인수와 후속 책임",
+          "status": "complete"
         }
       ],
       "documents": [
@@ -37,7 +38,7 @@
           "title": "고객 지식 검색 prd",
           "kind": "prd",
           "version": "v1",
-          "phase_id": "plan",
+          "phase_id": "build",
           "at": "2026-09-29T01:00:00Z",
           "session_id": "alice-1",
           "actor_id": "Alice",
@@ -51,7 +52,7 @@
           "title": "고객 지식 검색 설계",
           "kind": "design",
           "version": "v1",
-          "phase_id": "design",
+          "phase_id": "plan",
           "at": "2026-09-29T03:00:00Z",
           "session_id": "alice-1",
           "actor_id": "Alice",
@@ -65,7 +66,7 @@
           "title": "고객 지식 검색 설계",
           "kind": "design",
           "version": "v2",
-          "phase_id": "design",
+          "phase_id": "plan",
           "at": "2026-09-30T03:00:00Z",
           "session_id": "alice-2",
           "actor_id": "Alice",
@@ -91,94 +92,150 @@
       ],
       "criteria": [
         {
-          "id": "recall-acceptance",
-          "label": "전체 인수 검사",
+          "id": "action-1-check",
+          "label": "합성 기술 검사 · action-1-check",
+          "scope": "task",
+          "target_id": "action-1",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "action-2-check",
+          "label": "합성 기술 검사 · action-2-check",
+          "scope": "task",
+          "target_id": "action-2",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "action-3-check",
+          "label": "합성 기술 검사 · action-3-check",
+          "scope": "task",
+          "target_id": "action-3",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "action-4-check",
+          "label": "합성 기술 검사 · action-4-check",
+          "scope": "task",
+          "target_id": "action-4",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "action-5-check",
+          "label": "합성 기술 검사 · action-5-check",
+          "scope": "task",
+          "target_id": "action-5",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "action-6-check",
+          "label": "합성 기술 검사 · action-6-check",
+          "scope": "task",
+          "target_id": "action-6",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "phase-exit",
+          "label": "합성 기술 검사 · phase-exit",
+          "scope": "phase",
+          "target_id": "plan",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "project-exit",
+          "label": "합성 기술 검사 · project-exit",
           "scope": "project",
           "target_id": "alice-recall",
-          "command": "python3 checks/recall-acceptance.py",
+          "command": "python3 synthetic-test.py",
           "expected_exit_code": 0
         },
         {
-          "id": "design-review",
-          "label": "설계 단계 검사",
+          "id": "phase-exit-build",
+          "label": "합성 기술 검사 · phase-exit",
           "scope": "phase",
-          "target_id": "design",
-          "command": "python3 checks/design-review.py",
+          "target_id": "build",
+          "command": "python3 synthetic-test.py",
           "expected_exit_code": 0
         },
         {
-          "id": "single-task",
-          "label": "개별 작업 검사",
-          "scope": "task",
-          "target_id": "quiz-component",
-          "command": "python3 checks/single-task.py",
+          "id": "phase-exit-release",
+          "label": "합성 기술 검사 · phase-exit",
+          "scope": "phase",
+          "target_id": "release",
+          "command": "python3 synthetic-test.py",
           "expected_exit_code": 0
         }
       ],
       "runs": [
         {
-          "criterion_id": "recall-acceptance",
-          "revision": "v1",
-          "at": "2026-09-29T03:00:00Z",
-          "exit_code": 1,
-          "session_id": "alice-management",
-          "evidence": "management attempt attempt-recall-acceptance-fail · runner · 실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-          "criterion_signature": "2e85d86516a525c02029be9d743ae8af218359602e98e4508275c05474fb278b",
-          "status": "fail",
-          "source_ref": "catalog.projects[0].runs[0]"
-        },
-        {
-          "criterion_id": "recall-acceptance",
+          "criterion_id": "action-1-check",
           "revision": "v1",
           "at": "2026-09-29T04:00:00Z",
           "exit_code": 0,
-          "session_id": "alice-management",
-          "evidence": "management attempt attempt-recall-acceptance-pass · runner · 수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-          "criterion_signature": "2e85d86516a525c02029be9d743ae8af218359602e98e4508275c05474fb278b",
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-action-1-check · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "473c0cb0d62a22acd56d6d361b78d1964c4e37cec141d896d9d99f3f68f10e04",
+          "status": "pass",
+          "source_ref": "catalog.projects[0].runs[0]"
+        },
+        {
+          "criterion_id": "action-2-check",
+          "revision": "v1",
+          "at": "2026-09-29T04:00:00Z",
+          "exit_code": 0,
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-action-2-check · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "66355ba1989a79dbca8dbbf620af32e5f015c2312edb1ba59b89fc79a2d572ee",
           "status": "pass",
           "source_ref": "catalog.projects[0].runs[1]"
         },
         {
-          "criterion_id": "design-review",
-          "revision": "v1",
-          "at": "2026-09-29T03:00:00Z",
-          "exit_code": 1,
-          "session_id": "alice-management",
-          "evidence": "management attempt attempt-design-review-fail · runner · 실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-          "criterion_signature": "9f3f3e89c5cc8fface90aa007665f33471bc822fb963bfc542e501cd2d8b2f10",
-          "status": "fail",
-          "source_ref": "catalog.projects[0].runs[2]"
-        },
-        {
-          "criterion_id": "design-review",
+          "criterion_id": "phase-exit",
           "revision": "v1",
           "at": "2026-09-29T04:00:00Z",
           "exit_code": 0,
-          "session_id": "alice-management",
-          "evidence": "management attempt attempt-design-review-pass · runner · 수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-          "criterion_signature": "9f3f3e89c5cc8fface90aa007665f33471bc822fb963bfc542e501cd2d8b2f10",
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-phase-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "409aefea5ede1731a68b08902e1aaee54cc955b31a8a2d4ba1c3a6f93a00db9f",
+          "status": "pass",
+          "source_ref": "catalog.projects[0].runs[2]"
+        },
+        {
+          "criterion_id": "project-exit",
+          "revision": "v1",
+          "at": "2026-09-29T04:00:00Z",
+          "exit_code": 0,
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-project-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "82bfe49763549edeee626ef961a13fad2ce039b7d3b0e89418951476749363bf",
           "status": "pass",
           "source_ref": "catalog.projects[0].runs[3]"
         },
         {
-          "criterion_id": "single-task",
-          "revision": "v1",
-          "at": "2026-09-29T03:00:00Z",
-          "exit_code": 1,
-          "session_id": "alice-management",
-          "evidence": "management attempt attempt-single-task-fail · runner · 실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-          "criterion_signature": "dad1d2eca95a658cbdd51b916a9698d135e88d7c506e34dacce99906ed89ff52",
-          "status": "fail",
-          "source_ref": "catalog.projects[0].runs[4]"
-        },
-        {
-          "criterion_id": "single-task",
+          "criterion_id": "phase-exit-build",
           "revision": "v1",
           "at": "2026-09-29T04:00:00Z",
           "exit_code": 0,
-          "session_id": "alice-management",
-          "evidence": "management attempt attempt-single-task-pass · runner · 수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-          "criterion_signature": "dad1d2eca95a658cbdd51b916a9698d135e88d7c506e34dacce99906ed89ff52",
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-phase-exit-build · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "e38e082286cc90e0d8f24ce64766465298c3524941f2848f46661d07a3ee4b31",
+          "status": "pass",
+          "source_ref": "catalog.projects[0].runs[4]"
+        },
+        {
+          "criterion_id": "phase-exit-release",
+          "revision": "v1",
+          "at": "2026-09-29T04:00:00Z",
+          "exit_code": 0,
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-phase-exit-release · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "2e83dd6f4f0abe992dc332e3affaab480208a61caefb1220d0737e76f82d59ab",
           "status": "pass",
           "source_ref": "catalog.projects[0].runs[5]"
         }
@@ -203,7 +260,7 @@
           "event_count": 2
         },
         {
-          "id": "alice-management",
+          "id": "synthetic-work",
           "actor_id": "Alice",
           "environment_id": "laptop",
           "event_count": 0
@@ -245,50 +302,82 @@
         {
           "at": "2026-09-29T02:00:00Z",
           "kind": "management",
-          "title": "test_plans · test-recall-acceptance",
-          "detail": "업무 요구사항의 기술 동작을 검사: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다; 전체 인수 검사",
+          "title": "test_plans · test-action-1-check",
+          "detail": "합성 작업 기준을 확인",
           "session_id": null,
           "source_ref": "catalog.projects[0].management.test_plans[0]"
         },
         {
           "at": "2026-09-29T02:00:00Z",
           "kind": "management",
-          "title": "test_plans · test-design-review",
-          "detail": "업무 요구사항의 기술 동작을 검사: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다; 설계 단계 검사",
+          "title": "test_plans · test-action-2-check",
+          "detail": "합성 작업 기준을 확인",
           "session_id": null,
           "source_ref": "catalog.projects[0].management.test_plans[1]"
         },
         {
           "at": "2026-09-29T02:00:00Z",
           "kind": "management",
-          "title": "test_plans · test-single-task",
-          "detail": "업무 요구사항의 기술 동작을 검사: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다; 개별 작업 검사",
+          "title": "test_plans · test-action-3-check",
+          "detail": "합성 작업 기준을 확인",
           "session_id": null,
           "source_ref": "catalog.projects[0].management.test_plans[2]"
         },
         {
-          "at": "2026-09-29T03:00:00Z",
-          "kind": "check",
-          "title": "전체 인수 검사 · fail",
-          "detail": "v1 · python3 checks/recall-acceptance.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-recall-acceptance-fail · runner · 실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-          "session_id": "alice-management",
-          "source_ref": "catalog.projects[0].runs[0]"
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-action-4-check",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.test_plans[3]"
         },
         {
-          "at": "2026-09-29T03:00:00Z",
-          "kind": "check",
-          "title": "설계 단계 검사 · fail",
-          "detail": "v1 · python3 checks/design-review.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-design-review-fail · runner · 실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-          "session_id": "alice-management",
-          "source_ref": "catalog.projects[0].runs[2]"
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-action-5-check",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.test_plans[4]"
         },
         {
-          "at": "2026-09-29T03:00:00Z",
-          "kind": "check",
-          "title": "개별 작업 검사 · fail",
-          "detail": "v1 · python3 checks/single-task.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-single-task-fail · runner · 실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-          "session_id": "alice-management",
-          "source_ref": "catalog.projects[0].runs[4]"
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-action-6-check",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.test_plans[5]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-phase-exit",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.test_plans[6]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-project-exit",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.test_plans[7]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-phase-exit-build",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.test_plans[8]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-phase-exit-release",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.test_plans[9]"
         },
         {
           "at": "2026-09-29T03:00:00Z",
@@ -301,31 +390,55 @@
         {
           "at": "2026-09-29T04:00:00Z",
           "kind": "check",
-          "title": "전체 인수 검사 · pass",
-          "detail": "v1 · python3 checks/recall-acceptance.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-recall-acceptance-pass · runner · 수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-          "session_id": "alice-management",
+          "title": "합성 기술 검사 · action-1-check · pass",
+          "detail": "v1 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-action-1-check · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
+          "source_ref": "catalog.projects[0].runs[0]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "check",
+          "title": "합성 기술 검사 · action-2-check · pass",
+          "detail": "v1 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-action-2-check · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
           "source_ref": "catalog.projects[0].runs[1]"
         },
         {
           "at": "2026-09-29T04:00:00Z",
           "kind": "check",
-          "title": "설계 단계 검사 · pass",
-          "detail": "v1 · python3 checks/design-review.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-design-review-pass · runner · 수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-          "session_id": "alice-management",
+          "title": "합성 기술 검사 · phase-exit · pass",
+          "detail": "v1 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-phase-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
+          "source_ref": "catalog.projects[0].runs[2]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "check",
+          "title": "합성 기술 검사 · project-exit · pass",
+          "detail": "v1 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-project-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
           "source_ref": "catalog.projects[0].runs[3]"
         },
         {
           "at": "2026-09-29T04:00:00Z",
           "kind": "check",
-          "title": "개별 작업 검사 · pass",
-          "detail": "v1 · python3 checks/single-task.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-single-task-pass · runner · 수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-          "session_id": "alice-management",
+          "title": "합성 기술 검사 · phase-exit · pass",
+          "detail": "v1 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-phase-exit-build · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
+          "source_ref": "catalog.projects[0].runs[4]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "check",
+          "title": "합성 기술 검사 · phase-exit · pass",
+          "detail": "v1 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-phase-exit-release · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
           "source_ref": "catalog.projects[0].runs[5]"
         },
         {
           "at": "2026-09-29T04:00:00Z",
           "kind": "milestone",
-          "title": "프로젝트 완료 기준 충족 · v1",
+          "title": "전체 검사 통과 이력 · v1",
           "detail": "당시 기준의 가져온 검사 기록이 모두 통과했습니다.",
           "session_id": null,
           "source_ref": "catalog.projects[0].runs"
@@ -441,6 +554,13 @@
           "project_id": "11111111-1111-4111-8111-111111111111",
           "evidence_mode": "synthetic",
           "event_count": 3
+        },
+        {
+          "actor_id": "Bob",
+          "environment_id": "bob-work",
+          "project_id": "77777777-7777-4777-8777-777777777777",
+          "evidence_mode": "synthetic",
+          "event_count": 0
         }
       ],
       "alerts": [],
@@ -569,23 +689,212 @@
         ],
         "test_plans": [
           {
-            "id": "test-recall-acceptance",
+            "id": "test-action-1-check",
             "version": "v1",
             "plan_id": "implementation",
             "plan_version": "v1",
-            "criterion_id": "recall-acceptance",
+            "criterion_id": "action-1-check",
             "requirement_ids": [
               "req-core"
             ],
-            "reason": "업무 요구사항의 기술 동작을 검사: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다; 전체 인수 검사",
-            "excluded": "외부 provider 및 실제 업무 성과는 관측하지 않음",
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
             "at": "2026-09-29T02:00:00Z",
             "definition": {
-              "id": "recall-acceptance",
-              "label": "전체 인수 검사",
+              "id": "action-1-check",
+              "label": "합성 기술 검사 · action-1-check",
+              "scope": "task",
+              "target_id": "action-1",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-action-2-check",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "action-2-check",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "action-2-check",
+              "label": "합성 기술 검사 · action-2-check",
+              "scope": "task",
+              "target_id": "action-2",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-action-3-check",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "action-3-check",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "action-3-check",
+              "label": "합성 기술 검사 · action-3-check",
+              "scope": "task",
+              "target_id": "action-3",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-action-4-check",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "action-4-check",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "action-4-check",
+              "label": "합성 기술 검사 · action-4-check",
+              "scope": "task",
+              "target_id": "action-4",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-action-5-check",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "action-5-check",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "action-5-check",
+              "label": "합성 기술 검사 · action-5-check",
+              "scope": "task",
+              "target_id": "action-5",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-action-6-check",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "action-6-check",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "action-6-check",
+              "label": "합성 기술 검사 · action-6-check",
+              "scope": "task",
+              "target_id": "action-6",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-phase-exit",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "phase-exit",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "phase-exit",
+              "label": "합성 기술 검사 · phase-exit",
+              "scope": "phase",
+              "target_id": "plan",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-project-exit",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "project-exit",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "project-exit",
+              "label": "합성 기술 검사 · project-exit",
               "scope": "project",
               "target_id": "alice-recall",
-              "command": "python3 checks/recall-acceptance.py",
+              "command": "python3 synthetic-test.py",
               "expected_exit_code": 0
             },
             "test_files": [
@@ -596,23 +905,23 @@
             ]
           },
           {
-            "id": "test-design-review",
+            "id": "test-phase-exit-build",
             "version": "v1",
             "plan_id": "implementation",
             "plan_version": "v1",
-            "criterion_id": "design-review",
+            "criterion_id": "phase-exit-build",
             "requirement_ids": [
               "req-core"
             ],
-            "reason": "업무 요구사항의 기술 동작을 검사: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다; 설계 단계 검사",
-            "excluded": "외부 provider 및 실제 업무 성과는 관측하지 않음",
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
             "at": "2026-09-29T02:00:00Z",
             "definition": {
-              "id": "design-review",
-              "label": "설계 단계 검사",
+              "id": "phase-exit-build",
+              "label": "합성 기술 검사 · phase-exit",
               "scope": "phase",
-              "target_id": "design",
-              "command": "python3 checks/design-review.py",
+              "target_id": "build",
+              "command": "python3 synthetic-test.py",
               "expected_exit_code": 0
             },
             "test_files": [
@@ -623,23 +932,23 @@
             ]
           },
           {
-            "id": "test-single-task",
+            "id": "test-phase-exit-release",
             "version": "v1",
             "plan_id": "implementation",
             "plan_version": "v1",
-            "criterion_id": "single-task",
+            "criterion_id": "phase-exit-release",
             "requirement_ids": [
               "req-core"
             ],
-            "reason": "업무 요구사항의 기술 동작을 검사: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다; 개별 작업 검사",
-            "excluded": "외부 provider 및 실제 업무 성과는 관측하지 않음",
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
             "at": "2026-09-29T02:00:00Z",
             "definition": {
-              "id": "single-task",
-              "label": "개별 작업 검사",
-              "scope": "task",
-              "target_id": "quiz-component",
-              "command": "python3 checks/single-task.py",
+              "id": "phase-exit-release",
+              "label": "합성 기술 검사 · phase-exit",
+              "scope": "phase",
+              "target_id": "release",
+              "command": "python3 synthetic-test.py",
               "expected_exit_code": 0
             },
             "test_files": [
@@ -662,164 +971,134 @@
         },
         "attempts": [
           {
-            "id": "attempt-recall-acceptance-fail",
-            "test_plan_id": "test-recall-acceptance",
+            "id": "mock-action-1-check",
+            "test_plan_id": "test-action-1-check",
             "test_plan_version": "v1",
-            "test_plan_sha256": "c49ecd26ee02d03924e4666c000bc9576173c4457b9ff0dfdfec6f1bf58fa6c6",
-            "criterion_signature": "2e85d86516a525c02029be9d743ae8af218359602e98e4508275c05474fb278b",
+            "test_plan_sha256": "b3f0457a2dc988db79bf88ed045883841b9682302b8aa413e88ddf49c7e47332",
+            "criterion_signature": "473c0cb0d62a22acd56d6d361b78d1964c4e37cec141d896d9d99f3f68f10e04",
             "revision": "v1",
             "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
-            "command": "python3 checks/recall-acceptance.py",
-            "started_at": "2026-09-29T03:00:00Z",
-            "at": "2026-09-29T03:00:00Z",
-            "exit_code": 1,
-            "actor_id": "Alice",
-            "environment_id": "laptop",
-            "session_id": "alice-management",
-            "environment": "mock",
-            "runner": "synthetic-example",
-            "summary": "실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-            "provenance": "runner",
-            "status": "fail"
-          },
-          {
-            "id": "attempt-recall-acceptance-pass",
-            "test_plan_id": "test-recall-acceptance",
-            "test_plan_version": "v1",
-            "test_plan_sha256": "c49ecd26ee02d03924e4666c000bc9576173c4457b9ff0dfdfec6f1bf58fa6c6",
-            "criterion_signature": "2e85d86516a525c02029be9d743ae8af218359602e98e4508275c05474fb278b",
-            "revision": "v1",
-            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
-            "command": "python3 checks/recall-acceptance.py",
+            "command": "python3 synthetic-test.py",
             "started_at": "2026-09-29T04:00:00Z",
             "at": "2026-09-29T04:00:00Z",
             "exit_code": 0,
             "actor_id": "Alice",
             "environment_id": "laptop",
-            "session_id": "alice-management",
+            "session_id": "synthetic-work",
             "environment": "mock",
             "runner": "synthetic-example",
-            "summary": "수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
             "provenance": "runner",
             "status": "pass"
           },
           {
-            "id": "attempt-design-review-fail",
-            "test_plan_id": "test-design-review",
+            "id": "mock-action-2-check",
+            "test_plan_id": "test-action-2-check",
             "test_plan_version": "v1",
-            "test_plan_sha256": "5fab18fed4efdf98b626598c89d06fb010dd48b46e815977340f79957f861750",
-            "criterion_signature": "9f3f3e89c5cc8fface90aa007665f33471bc822fb963bfc542e501cd2d8b2f10",
+            "test_plan_sha256": "8e07324b6f19b59bac2dd7d5fb1b4c23dc90c6f4e2724dc240e3cbc4a87566d8",
+            "criterion_signature": "66355ba1989a79dbca8dbbf620af32e5f015c2312edb1ba59b89fc79a2d572ee",
             "revision": "v1",
             "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
-            "command": "python3 checks/design-review.py",
-            "started_at": "2026-09-29T03:00:00Z",
-            "at": "2026-09-29T03:00:00Z",
-            "exit_code": 1,
-            "actor_id": "Alice",
-            "environment_id": "laptop",
-            "session_id": "alice-management",
-            "environment": "mock",
-            "runner": "synthetic-example",
-            "summary": "실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-            "provenance": "runner",
-            "status": "fail"
-          },
-          {
-            "id": "attempt-design-review-pass",
-            "test_plan_id": "test-design-review",
-            "test_plan_version": "v1",
-            "test_plan_sha256": "5fab18fed4efdf98b626598c89d06fb010dd48b46e815977340f79957f861750",
-            "criterion_signature": "9f3f3e89c5cc8fface90aa007665f33471bc822fb963bfc542e501cd2d8b2f10",
-            "revision": "v1",
-            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
-            "command": "python3 checks/design-review.py",
+            "command": "python3 synthetic-test.py",
             "started_at": "2026-09-29T04:00:00Z",
             "at": "2026-09-29T04:00:00Z",
             "exit_code": 0,
             "actor_id": "Alice",
             "environment_id": "laptop",
-            "session_id": "alice-management",
+            "session_id": "synthetic-work",
             "environment": "mock",
             "runner": "synthetic-example",
-            "summary": "수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
             "provenance": "runner",
             "status": "pass"
           },
           {
-            "id": "attempt-single-task-fail",
-            "test_plan_id": "test-single-task",
+            "id": "mock-phase-exit",
+            "test_plan_id": "test-phase-exit",
             "test_plan_version": "v1",
-            "test_plan_sha256": "8b5ea81b5f2636aeb2f6ddf8cdabc41de4647eae61f67929362bf24311356782",
-            "criterion_signature": "dad1d2eca95a658cbdd51b916a9698d135e88d7c506e34dacce99906ed89ff52",
+            "test_plan_sha256": "0b4281a0b87874834dfb542ab33995be58dd33a4b87c85884dec1e468f73e8a0",
+            "criterion_signature": "409aefea5ede1731a68b08902e1aaee54cc955b31a8a2d4ba1c3a6f93a00db9f",
             "revision": "v1",
             "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
-            "command": "python3 checks/single-task.py",
-            "started_at": "2026-09-29T03:00:00Z",
-            "at": "2026-09-29T03:00:00Z",
-            "exit_code": 1,
-            "actor_id": "Alice",
-            "environment_id": "laptop",
-            "session_id": "alice-management",
-            "environment": "mock",
-            "runner": "synthetic-example",
-            "summary": "실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
-            "provenance": "runner",
-            "status": "fail"
-          },
-          {
-            "id": "attempt-single-task-pass",
-            "test_plan_id": "test-single-task",
-            "test_plan_version": "v1",
-            "test_plan_sha256": "8b5ea81b5f2636aeb2f6ddf8cdabc41de4647eae61f67929362bf24311356782",
-            "criterion_signature": "dad1d2eca95a658cbdd51b916a9698d135e88d7c506e34dacce99906ed89ff52",
-            "revision": "v1",
-            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
-            "command": "python3 checks/single-task.py",
+            "command": "python3 synthetic-test.py",
             "started_at": "2026-09-29T04:00:00Z",
             "at": "2026-09-29T04:00:00Z",
             "exit_code": 0,
             "actor_id": "Alice",
             "environment_id": "laptop",
-            "session_id": "alice-management",
+            "session_id": "synthetic-work",
             "environment": "mock",
             "runner": "synthetic-example",
-            "summary": "수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
+            "provenance": "runner",
+            "status": "pass"
+          },
+          {
+            "id": "mock-project-exit",
+            "test_plan_id": "test-project-exit",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "3f41642e9252c80f72e2c683a62aea5624d59847d320c5ba06d1c6c03403dae0",
+            "criterion_signature": "82bfe49763549edeee626ef961a13fad2ce039b7d3b0e89418951476749363bf",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 synthetic-test.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
+            "exit_code": 0,
+            "actor_id": "Alice",
+            "environment_id": "laptop",
+            "session_id": "synthetic-work",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
+            "provenance": "runner",
+            "status": "pass"
+          },
+          {
+            "id": "mock-phase-exit-build",
+            "test_plan_id": "test-phase-exit-build",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "b52a872d55b7a72d13d021cc0b5bd1f246f6adfd49adc2b34f7d986edf870b83",
+            "criterion_signature": "e38e082286cc90e0d8f24ce64766465298c3524941f2848f46661d07a3ee4b31",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 synthetic-test.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
+            "exit_code": 0,
+            "actor_id": "Alice",
+            "environment_id": "laptop",
+            "session_id": "synthetic-work",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
+            "provenance": "runner",
+            "status": "pass"
+          },
+          {
+            "id": "mock-phase-exit-release",
+            "test_plan_id": "test-phase-exit-release",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "ddc850188721dd5c04a11f9881ebab4f737d7f576236ff099469497a4baf2125",
+            "criterion_signature": "2e83dd6f4f0abe992dc332e3affaab480208a61caefb1220d0737e76f82d59ab",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 synthetic-test.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
+            "exit_code": 0,
+            "actor_id": "Alice",
+            "environment_id": "laptop",
+            "session_id": "synthetic-work",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
             "provenance": "runner",
             "status": "pass"
           }
         ],
-        "blockers": [
-          {
-            "id": "blocker-main",
-            "status": "resolved",
-            "summary": "출처 누락 수정 후 재검사 통과",
-            "cause_state": "confirmed",
-            "cause": "출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다",
-            "attempt_ids": [
-              "attempt-recall-acceptance-fail"
-            ],
-            "owner": "Alice",
-            "next_action": "검사 재실행 및 담당자 지원",
-            "resolved_by": "attempt-recall-acceptance-pass",
-            "verification": "current"
-          }
-        ],
-        "improvements": [
-          {
-            "id": "loop-change",
-            "area": "loop",
-            "version": "v1",
-            "hypothesis": "실패 입력을 검증 루프에 포함하면 같은 오류를 찾을 수 있다",
-            "change": "합성 검사 검증 루프에 실패 사례 추가",
-            "evidence_attempt_ids": [
-              "attempt-recall-acceptance-fail"
-            ],
-            "validation_attempt_ids": [
-              "attempt-recall-acceptance-pass"
-            ],
-            "decision": "adopt"
-          }
-        ],
+        "blockers": [],
+        "improvements": [],
         "harness": [
           {
             "id": "kit",
@@ -842,107 +1121,478 @@
           }
         ],
         "traceability": {
-          "checkpoints": [
+          "checkpoints": [],
+          "decisions": [],
+          "handoffs": [],
+          "capture": []
+        },
+        "work": {
+          "plan_id": "implementation",
+          "plan_version": "v1",
+          "at": "2026-09-29T01:00:00Z",
+          "tasks": [
             {
-              "id": "checkpoint-synthetic",
-              "at": "2026-09-29T05:00:00Z",
-              "actor_id": "Alice",
-              "environment_id": "laptop",
-              "session_id": "alice-management",
-              "agent_id": "synthetic-agent",
-              "revision": "v1",
-              "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
-              "commit": "1111111111111111111111111111111111111111",
-              "parent_commits": [
-                "2222222222222222222222222222222222222222"
-              ],
-              "dirty": true,
-              "worktree_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
-              "attempt_ids": [
-                "attempt-recall-acceptance-fail",
-                "attempt-recall-acceptance-pass",
-                "attempt-design-review-fail",
-                "attempt-design-review-pass",
-                "attempt-single-task-fail",
-                "attempt-single-task-pass"
-              ],
-              "decision_ids": [
-                "decision-approach"
-              ],
-              "provenance": "declared",
-              "summary": "합성 예시: 제출 코드와 검사 산출물 연결; 실제 Git 관측 아님"
-            }
-          ],
-          "decisions": [
-            {
-              "id": "decision-approach",
-              "at": "2026-09-29T02:10:00Z",
-              "actor_id": "Alice",
-              "environment_id": "laptop",
-              "session_id": "alice-management",
-              "summary": "합성 판단: 요구사항을 명시적 검사로 연결",
-              "alternatives": [
-                "출처 확인 후 응답",
-                "출처 없는 응답 허용"
-              ],
-              "reason": "놓친 조건을 재현 가능한 검사로 보존하기 위해 선택",
+              "id": "action-1",
+              "title": "출처 검증 인수 기준 확정",
+              "phase_id": "plan",
+              "owner": "Alice",
+              "required": true,
+              "depends_on": [],
               "requirement_ids": [
                 "req-core"
               ],
-              "supersedes": null,
-              "provenance": "declared"
-            }
-          ],
-          "handoffs": [
+              "done_when": [
+                "출처 없는 답변을 차단하는 인수 기준을 문서에 확정한다"
+              ],
+              "criterion_ids": [
+                "action-1-check"
+              ],
+              "document_ids": [
+                "design"
+              ],
+              "review_required": false
+            },
             {
-              "id": "handoff-synthetic",
-              "at": "2026-09-29T05:10:00Z",
-              "from_actor_id": "Alice",
-              "from_environment_id": "laptop",
-              "from_session_id": "alice-management",
-              "to_actor_id": "Alice",
-              "to_environment_id": "laptop",
-              "to_session_id": "alice-next-session",
-              "summary": "합성 인계: 선택한 접근과 실패 검사 전달",
+              "id": "action-2",
+              "title": "인수 조건과 산출물 검토",
+              "phase_id": "release",
+              "owner": "Alice",
+              "required": true,
+              "depends_on": [],
               "requirement_ids": [
                 "req-core"
               ],
-              "decision_ids": [
-                "decision-approach"
+              "done_when": [
+                "현재 출처 표시 화면과 결과물을 사람이 검토한다"
               ],
-              "attempt_ids": [
-                "attempt-recall-acceptance-fail",
-                "attempt-recall-acceptance-pass",
-                "attempt-design-review-fail",
-                "attempt-design-review-pass",
-                "attempt-single-task-fail",
-                "attempt-single-task-pass"
+              "criterion_ids": [
+                "action-2-check"
               ],
-              "packet_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
-              "usage": "observed",
-              "usage_at": "2026-09-29T05:20:00Z",
-              "usage_evidence": "합성 도구 조회 예시: 다음 세션에서 인계 문서 읽음; 실제 실행 근거 아님"
+              "document_ids": [],
+              "review_required": true
+            },
+            {
+              "id": "action-3",
+              "title": "담당자와 중복 처리 정책 결정",
+              "phase_id": "build",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "중복 요청의 우선 처리 정책을 담당자와 결정한다"
+              ],
+              "criterion_ids": [
+                "action-3-check"
+              ],
+              "document_ids": [],
+              "review_required": false
+            },
+            {
+              "id": "action-4",
+              "title": "문서 근거 확인 검사 추가",
+              "phase_id": "build",
+              "owner": "Alice",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "출처가 있는 답변과 없는 답변의 검사 결과를 확인한다"
+              ],
+              "criterion_ids": [
+                "action-4-check"
+              ],
+              "document_ids": [],
+              "review_required": false
+            },
+            {
+              "id": "action-5",
+              "title": "자료 연결 구현",
+              "phase_id": "build",
+              "owner": "Alice",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "자료에서 찾아낸 근거와 답변의 연결을 구현한다"
+              ],
+              "criterion_ids": [
+                "action-5-check"
+              ],
+              "document_ids": [
+                "prd",
+                "implementation"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "action-6",
+              "title": "후속 책임자 지정",
+              "phase_id": "release",
+              "owner": null,
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "후속 관리를 책임질 담당자를 정한다"
+              ],
+              "criterion_ids": [
+                "action-6-check"
+              ],
+              "document_ids": [],
+              "review_required": false
+            },
+            {
+              "id": "action-7",
+              "title": "자료 완료 기준 합의",
+              "phase_id": "release",
+              "owner": "Alice",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "회사 목표에 맞는 업무 성과 평가 기준을 합의한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [],
+              "review_required": false
             }
           ],
-          "capture": [
+          "phase_gates": [
             {
-              "id": "capture-synthetic",
-              "actor_id": "Alice",
-              "environment_id": "laptop",
-              "tool": "synthetic-kit",
-              "capabilities": [
-                "tests",
-                "handoff",
-                "git"
-              ],
-              "status": "active",
-              "last_observed_at": "2026-09-29T05:20:00Z",
-              "at": "2026-09-29T06:00:00Z",
-              "reason": "합성 기록 상태 보고; 현재 연결이나 heartbeat를 증명하지 않음",
-              "provenance": "declared"
+              "phase_id": "plan",
+              "criterion_ids": [
+                "phase-exit"
+              ]
+            },
+            {
+              "phase_id": "build",
+              "criterion_ids": [
+                "phase-exit-build"
+              ]
+            },
+            {
+              "phase_id": "release",
+              "criterion_ids": [
+                "phase-exit-release"
+              ]
             }
-          ]
+          ],
+          "updates": [
+            {
+              "id": "update-action-3",
+              "task_id": "action-3",
+              "at": "2026-09-29T03:00:00Z",
+              "state": "blocked",
+              "summary": "합성 담당자 진행 선언",
+              "next_action": "중복 요청의 우선 처리 정책을 담당자와 결정하세요."
+            },
+            {
+              "id": "update-action-5",
+              "task_id": "action-5",
+              "at": "2026-09-29T03:00:00Z",
+              "state": "in_progress",
+              "summary": "합성 담당자 진행 선언",
+              "next_action": "자료 연결 구현을 마치고 현재 작업 검사를 실행하세요."
+            }
+          ],
+          "reviews": []
         }
+      },
+      "work": {
+        "plan_id": "implementation",
+        "plan_version": "v1",
+        "at": "2026-09-29T01:00:00Z",
+        "tasks": [
+          {
+            "id": "action-1",
+            "title": "출처 검증 인수 기준 확정",
+            "phase_id": "plan",
+            "owner": "Alice",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "출처 없는 답변을 차단하는 인수 기준을 문서에 확정한다"
+            ],
+            "criterion_ids": [
+              "action-1-check"
+            ],
+            "document_ids": [
+              "design"
+            ],
+            "review_required": false,
+            "state": "complete",
+            "reason": "현재 작업 검사·의존성·필요 승인이 충족되었습니다.",
+            "technical_complete": true,
+            "completed": true,
+            "latest_update": null,
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "action-2",
+            "title": "인수 조건과 산출물 검토",
+            "phase_id": "release",
+            "owner": "Alice",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "현재 출처 표시 화면과 결과물을 사람이 검토한다"
+            ],
+            "criterion_ids": [
+              "action-2-check"
+            ],
+            "document_ids": [],
+            "review_required": true,
+            "state": "review_pending",
+            "reason": "현재 작업과 산출물에 대한 사람의 승인이 필요합니다.",
+            "technical_complete": true,
+            "completed": false,
+            "latest_update": null,
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "action-3",
+            "title": "담당자와 중복 처리 정책 결정",
+            "phase_id": "build",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "중복 요청의 우선 처리 정책을 담당자와 결정한다"
+            ],
+            "criterion_ids": [
+              "action-3-check"
+            ],
+            "document_ids": [],
+            "review_required": false,
+            "state": "blocked",
+            "reason": "의존 작업 또는 명시적 막힘을 해결해야 합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-action-3",
+              "task_id": "action-3",
+              "at": "2026-09-29T03:00:00Z",
+              "state": "blocked",
+              "summary": "합성 담당자 진행 선언",
+              "next_action": "중복 요청의 우선 처리 정책을 담당자와 결정하세요."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "action-4",
+            "title": "문서 근거 확인 검사 추가",
+            "phase_id": "build",
+            "owner": "Alice",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "출처가 있는 답변과 없는 답변의 검사 결과를 확인한다"
+            ],
+            "criterion_ids": [
+              "action-4-check"
+            ],
+            "document_ids": [],
+            "review_required": false,
+            "state": "ready",
+            "reason": "의존 작업이 충족되어 시작할 수 있습니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": null,
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "action-5",
+            "title": "자료 연결 구현",
+            "phase_id": "build",
+            "owner": "Alice",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "자료에서 찾아낸 근거와 답변의 연결을 구현한다"
+            ],
+            "criterion_ids": [
+              "action-5-check"
+            ],
+            "document_ids": [
+              "prd",
+              "implementation"
+            ],
+            "review_required": false,
+            "state": "in_progress",
+            "reason": "작업 진행 선언 또는 미완료 검사 근거가 있습니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-action-5",
+              "task_id": "action-5",
+              "at": "2026-09-29T03:00:00Z",
+              "state": "in_progress",
+              "summary": "합성 담당자 진행 선언",
+              "next_action": "자료 연결 구현을 마치고 현재 작업 검사를 실행하세요."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "action-6",
+            "title": "후속 책임자 지정",
+            "phase_id": "release",
+            "owner": null,
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "후속 관리를 책임질 담당자를 정한다"
+            ],
+            "criterion_ids": [
+              "action-6-check"
+            ],
+            "document_ids": [],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": null,
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "action-7",
+            "title": "자료 완료 기준 합의",
+            "phase_id": "release",
+            "owner": "Alice",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "회사 목표에 맞는 업무 성과 평가 기준을 합의한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": null,
+            "latest_review": null,
+            "waiting_on": []
+          }
+        ],
+        "phases": [
+          {
+            "id": "plan",
+            "name": "목표와 인수 기준 확정",
+            "state": "complete",
+            "required": 1,
+            "completed": 1,
+            "technical_complete": 1,
+            "gate_state": "complete"
+          },
+          {
+            "id": "build",
+            "name": "구현과 검증",
+            "state": "blocked",
+            "required": 3,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "complete"
+          },
+          {
+            "id": "release",
+            "name": "인수와 후속 책임",
+            "state": "review_pending",
+            "required": 3,
+            "completed": 0,
+            "technical_complete": 1,
+            "gate_state": "complete"
+          }
+        ],
+        "summary": {
+          "total": 7,
+          "required": 7,
+          "completed": 1,
+          "technical_complete": 2,
+          "blocked": 1,
+          "failed": 0,
+          "review_pending": 1,
+          "ready": 1,
+          "unknown": 2,
+          "revalidation": 0
+        },
+        "interventions": [
+          {
+            "id": "review-action-2",
+            "kind": "review",
+            "task_id": "action-2",
+            "phase_id": "release",
+            "owner": "Alice",
+            "summary": "현재 작업과 산출물에 대한 사람의 승인이 필요합니다.",
+            "next_action": "현재 산출물과 작업 기준을 검토하고 승인 또는 수정 요청을 기록하세요."
+          },
+          {
+            "id": "blocked-action-3",
+            "kind": "blocked",
+            "task_id": "action-3",
+            "phase_id": "build",
+            "owner": "Bob",
+            "summary": "의존 작업 또는 명시적 막힘을 해결해야 합니다.",
+            "next_action": "중복 요청의 우선 처리 정책을 담당자와 결정하세요."
+          },
+          {
+            "id": "missing_owner-action-6",
+            "kind": "missing_owner",
+            "task_id": "action-6",
+            "phase_id": "release",
+            "owner": null,
+            "summary": "작업 담당자가 없습니다.",
+            "next_action": "작업을 책임질 사람을 지정하세요."
+          },
+          {
+            "id": "missing_acceptance-action-7",
+            "kind": "missing_acceptance",
+            "task_id": "action-7",
+            "phase_id": "release",
+            "owner": "Alice",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          }
+        ]
       }
     },
     {
@@ -953,67 +1603,76 @@
         "Bob"
       ],
       "current_revision": "v1",
-      "current_phase": "build",
+      "current_phase": "plan",
       "status": "failed",
-      "status_reason": "현재 revision의 프로젝트 범위 최신 검사 기록에 실패가 있습니다. 목표/문서는 catalog.projects[1]의 명시적 입력입니다.",
+      "status_reason": "현재 revision의 프로젝트 범위 최신 검사 기록에 실패가 있습니다. 필수 작업·단계·전체 검사·승인·막힘 해결 조건을 모두 확인해야 합니다. 목표/문서는 catalog.projects[1]의 명시적 입력입니다.",
       "phases": [
         {
           "id": "plan",
-          "name": "기획",
-          "status": "unknown"
-        },
-        {
-          "id": "design",
-          "name": "설계",
-          "status": "failed"
-        },
-        {
-          "id": "build",
-          "name": "구현",
-          "status": "unknown"
+          "name": "구현과 검증",
+          "status": "complete"
         }
       ],
       "documents": [],
       "criteria": [
         {
-          "id": "payments-acceptance",
-          "label": "전체 인수 검사",
-          "scope": "project",
-          "target_id": "bob-payments",
-          "command": "python3 checks/payments-acceptance.py",
+          "id": "action-1-check",
+          "label": "합성 기술 검사 · action-1-check",
+          "scope": "task",
+          "target_id": "action-1",
+          "command": "python3 synthetic-test.py",
           "expected_exit_code": 0
         },
         {
-          "id": "payment-design",
-          "label": "설계 단계 검사",
+          "id": "phase-exit",
+          "label": "합성 기술 검사 · phase-exit",
           "scope": "phase",
-          "target_id": "design",
-          "command": "python3 checks/payment-design.py",
+          "target_id": "plan",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "project-exit",
+          "label": "합성 기술 검사 · project-exit",
+          "scope": "project",
+          "target_id": "bob-payments",
+          "command": "python3 synthetic-test.py",
           "expected_exit_code": 0
         }
       ],
       "runs": [
         {
-          "criterion_id": "payments-acceptance",
+          "criterion_id": "action-1-check",
           "revision": "v1",
-          "at": "2026-09-29T03:00:00Z",
+          "at": "2026-09-29T04:00:00Z",
           "exit_code": 1,
-          "session_id": "bob-management",
-          "evidence": "management attempt attempt-payments-acceptance-fail · runner · 실패: 중복 요청의 처리 순서가 불명확하여 담당자 지원이 필요하다 · 합성 실행 예시",
-          "criterion_signature": "0671daf3359a1d27af7fc9475d52d27b8f45aca10fade58fde26517534b5f2ed",
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-action-1-check · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "473c0cb0d62a22acd56d6d361b78d1964c4e37cec141d896d9d99f3f68f10e04",
           "status": "fail",
           "source_ref": "catalog.projects[1].runs[0]"
         },
         {
-          "criterion_id": "payment-design",
+          "criterion_id": "phase-exit",
           "revision": "v1",
-          "at": "2026-09-29T03:00:00Z",
-          "exit_code": 1,
-          "session_id": "bob-management",
-          "evidence": "management attempt attempt-payment-design-fail · runner · 실패: 중복 요청의 처리 순서가 불명확하여 담당자 지원이 필요하다 · 합성 실행 예시",
-          "criterion_signature": "9c9a29aae5873252b4ff30ca00890644731181c588939c00763aad2ee52c0ef5",
-          "status": "fail",
+          "at": "2026-09-29T04:00:00Z",
+          "exit_code": 0,
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-phase-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "409aefea5ede1731a68b08902e1aaee54cc955b31a8a2d4ba1c3a6f93a00db9f",
+          "status": "pass",
           "source_ref": "catalog.projects[1].runs[1]"
+        },
+        {
+          "criterion_id": "project-exit",
+          "revision": "v1",
+          "at": "2026-09-29T04:00:00Z",
+          "exit_code": 0,
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-project-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "312bddc7d4a64e432fa6b87841743748d1d2e521b0c9b65798c4926874b41a26",
+          "status": "pass",
+          "source_ref": "catalog.projects[1].runs[2]"
         }
       ],
       "sessions": [
@@ -1024,7 +1683,7 @@
           "event_count": 3
         },
         {
-          "id": "bob-management",
+          "id": "synthetic-work",
           "actor_id": "Bob",
           "environment_id": "laptop",
           "event_count": 0
@@ -1058,34 +1717,58 @@
         {
           "at": "2026-09-29T02:00:00Z",
           "kind": "management",
-          "title": "test_plans · test-payments-acceptance",
-          "detail": "업무 요구사항의 기술 동작을 검사: 중복 결제 요청과 누락 금액을 검증한다; 전체 인수 검사",
+          "title": "test_plans · test-action-1-check",
+          "detail": "합성 작업 기준을 확인",
           "session_id": null,
           "source_ref": "catalog.projects[1].management.test_plans[0]"
         },
         {
           "at": "2026-09-29T02:00:00Z",
           "kind": "management",
-          "title": "test_plans · test-payment-design",
-          "detail": "업무 요구사항의 기술 동작을 검사: 중복 결제 요청과 누락 금액을 검증한다; 설계 단계 검사",
+          "title": "test_plans · test-phase-exit",
+          "detail": "합성 작업 기준을 확인",
           "session_id": null,
           "source_ref": "catalog.projects[1].management.test_plans[1]"
         },
         {
-          "at": "2026-09-29T03:00:00Z",
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-project-exit",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[1].management.test_plans[2]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
           "kind": "check",
-          "title": "전체 인수 검사 · fail",
-          "detail": "v1 · python3 checks/payments-acceptance.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-payments-acceptance-fail · runner · 실패: 중복 요청의 처리 순서가 불명확하여 담당자 지원이 필요하다 · 합성 실행 예시",
-          "session_id": "bob-management",
+          "title": "합성 기술 검사 · action-1-check · fail",
+          "detail": "v1 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-action-1-check · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
           "source_ref": "catalog.projects[1].runs[0]"
         },
         {
-          "at": "2026-09-29T03:00:00Z",
+          "at": "2026-09-29T04:00:00Z",
           "kind": "check",
-          "title": "설계 단계 검사 · fail",
-          "detail": "v1 · python3 checks/payment-design.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-payment-design-fail · runner · 실패: 중복 요청의 처리 순서가 불명확하여 담당자 지원이 필요하다 · 합성 실행 예시",
-          "session_id": "bob-management",
+          "title": "합성 기술 검사 · phase-exit · pass",
+          "detail": "v1 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-phase-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
           "source_ref": "catalog.projects[1].runs[1]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "check",
+          "title": "합성 기술 검사 · project-exit · pass",
+          "detail": "v1 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-project-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
+          "source_ref": "catalog.projects[1].runs[2]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "milestone",
+          "title": "전체 검사 통과 이력 · v1",
+          "detail": "당시 기준의 가져온 검사 기록이 모두 통과했습니다.",
+          "session_id": null,
+          "source_ref": "catalog.projects[1].runs"
         },
         {
           "at": "2026-09-29T05:00:00Z",
@@ -1207,23 +1890,23 @@
         ],
         "test_plans": [
           {
-            "id": "test-payments-acceptance",
+            "id": "test-action-1-check",
             "version": "v1",
             "plan_id": "implementation",
             "plan_version": "v1",
-            "criterion_id": "payments-acceptance",
+            "criterion_id": "action-1-check",
             "requirement_ids": [
               "req-core"
             ],
-            "reason": "업무 요구사항의 기술 동작을 검사: 중복 결제 요청과 누락 금액을 검증한다; 전체 인수 검사",
-            "excluded": "외부 provider 및 실제 업무 성과는 관측하지 않음",
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
             "at": "2026-09-29T02:00:00Z",
             "definition": {
-              "id": "payments-acceptance",
-              "label": "전체 인수 검사",
-              "scope": "project",
-              "target_id": "bob-payments",
-              "command": "python3 checks/payments-acceptance.py",
+              "id": "action-1-check",
+              "label": "합성 기술 검사 · action-1-check",
+              "scope": "task",
+              "target_id": "action-1",
+              "command": "python3 synthetic-test.py",
               "expected_exit_code": 0
             },
             "test_files": [
@@ -1234,23 +1917,50 @@
             ]
           },
           {
-            "id": "test-payment-design",
+            "id": "test-phase-exit",
             "version": "v1",
             "plan_id": "implementation",
             "plan_version": "v1",
-            "criterion_id": "payment-design",
+            "criterion_id": "phase-exit",
             "requirement_ids": [
               "req-core"
             ],
-            "reason": "업무 요구사항의 기술 동작을 검사: 중복 결제 요청과 누락 금액을 검증한다; 설계 단계 검사",
-            "excluded": "외부 provider 및 실제 업무 성과는 관측하지 않음",
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
             "at": "2026-09-29T02:00:00Z",
             "definition": {
-              "id": "payment-design",
-              "label": "설계 단계 검사",
+              "id": "phase-exit",
+              "label": "합성 기술 검사 · phase-exit",
               "scope": "phase",
-              "target_id": "design",
-              "command": "python3 checks/payment-design.py",
+              "target_id": "plan",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-project-exit",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "project-exit",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "project-exit",
+              "label": "합성 기술 검사 · project-exit",
+              "scope": "project",
+              "target_id": "bob-payments",
+              "command": "python3 synthetic-test.py",
               "expected_exit_code": 0
             },
             "test_files": [
@@ -1273,78 +1983,71 @@
         },
         "attempts": [
           {
-            "id": "attempt-payments-acceptance-fail",
-            "test_plan_id": "test-payments-acceptance",
+            "id": "mock-action-1-check",
+            "test_plan_id": "test-action-1-check",
             "test_plan_version": "v1",
-            "test_plan_sha256": "2a91898613296a348ffeca7c3c147a40771b2f6f490b3b39aecee9ccb33bd878",
-            "criterion_signature": "0671daf3359a1d27af7fc9475d52d27b8f45aca10fade58fde26517534b5f2ed",
+            "test_plan_sha256": "b3f0457a2dc988db79bf88ed045883841b9682302b8aa413e88ddf49c7e47332",
+            "criterion_signature": "473c0cb0d62a22acd56d6d361b78d1964c4e37cec141d896d9d99f3f68f10e04",
             "revision": "v1",
             "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
-            "command": "python3 checks/payments-acceptance.py",
-            "started_at": "2026-09-29T03:00:00Z",
-            "at": "2026-09-29T03:00:00Z",
+            "command": "python3 synthetic-test.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
             "exit_code": 1,
             "actor_id": "Bob",
             "environment_id": "laptop",
-            "session_id": "bob-management",
+            "session_id": "synthetic-work",
             "environment": "mock",
             "runner": "synthetic-example",
-            "summary": "실패: 중복 요청의 처리 순서가 불명확하여 담당자 지원이 필요하다 · 합성 실행 예시",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
             "provenance": "runner",
             "status": "fail"
           },
           {
-            "id": "attempt-payment-design-fail",
-            "test_plan_id": "test-payment-design",
+            "id": "mock-phase-exit",
+            "test_plan_id": "test-phase-exit",
             "test_plan_version": "v1",
-            "test_plan_sha256": "73ec447116521440c27514fa5125ee014bc3fca283b6a53cb6ddf98fa551b493",
-            "criterion_signature": "9c9a29aae5873252b4ff30ca00890644731181c588939c00763aad2ee52c0ef5",
+            "test_plan_sha256": "0b4281a0b87874834dfb542ab33995be58dd33a4b87c85884dec1e468f73e8a0",
+            "criterion_signature": "409aefea5ede1731a68b08902e1aaee54cc955b31a8a2d4ba1c3a6f93a00db9f",
             "revision": "v1",
             "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
-            "command": "python3 checks/payment-design.py",
-            "started_at": "2026-09-29T03:00:00Z",
-            "at": "2026-09-29T03:00:00Z",
-            "exit_code": 1,
+            "command": "python3 synthetic-test.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
+            "exit_code": 0,
             "actor_id": "Bob",
             "environment_id": "laptop",
-            "session_id": "bob-management",
+            "session_id": "synthetic-work",
             "environment": "mock",
             "runner": "synthetic-example",
-            "summary": "실패: 중복 요청의 처리 순서가 불명확하여 담당자 지원이 필요하다 · 합성 실행 예시",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
             "provenance": "runner",
-            "status": "fail"
-          }
-        ],
-        "blockers": [
+            "status": "pass"
+          },
           {
-            "id": "blocker-main",
-            "status": "open",
-            "summary": "중복 결제 요청 처리 지원 요청",
-            "cause_state": "hypothesis",
-            "cause": "중복 요청의 처리 순서가 불명확하여 담당자 지원이 필요하다",
-            "attempt_ids": [
-              "attempt-payments-acceptance-fail"
-            ],
-            "owner": "Bob",
-            "next_action": "검사 재실행 및 담당자 지원",
-            "resolved_by": null,
-            "verification": "unknown"
+            "id": "mock-project-exit",
+            "test_plan_id": "test-project-exit",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "6a5ac21593c4bbd6fe2465d0a622c45c93c92678eae556bd7bb18f20749b2b36",
+            "criterion_signature": "312bddc7d4a64e432fa6b87841743748d1d2e521b0c9b65798c4926874b41a26",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 synthetic-test.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
+            "exit_code": 0,
+            "actor_id": "Bob",
+            "environment_id": "laptop",
+            "session_id": "synthetic-work",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
+            "provenance": "runner",
+            "status": "pass"
           }
         ],
-        "improvements": [
-          {
-            "id": "loop-change",
-            "area": "loop",
-            "version": "v1",
-            "hypothesis": "실패 입력을 검증 루프에 포함하면 같은 오류를 찾을 수 있다",
-            "change": "합성 검사 검증 루프에 실패 사례 추가",
-            "evidence_attempt_ids": [
-              "attempt-payments-acceptance-fail"
-            ],
-            "validation_attempt_ids": [],
-            "decision": "trial"
-          }
-        ],
+        "blockers": [],
+        "improvements": [],
         "harness": [
           {
             "id": "kit",
@@ -1367,99 +2070,114 @@
           }
         ],
         "traceability": {
-          "checkpoints": [
+          "checkpoints": [],
+          "decisions": [],
+          "handoffs": [],
+          "capture": []
+        },
+        "work": {
+          "plan_id": "implementation",
+          "plan_version": "v1",
+          "at": "2026-09-29T01:00:00Z",
+          "tasks": [
             {
-              "id": "checkpoint-synthetic",
-              "at": "2026-09-29T05:00:00Z",
-              "actor_id": "Bob",
-              "environment_id": "laptop",
-              "session_id": "bob-management",
-              "agent_id": "synthetic-agent",
-              "revision": "v1",
-              "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
-              "commit": "1111111111111111111111111111111111111111",
-              "parent_commits": [
-                "2222222222222222222222222222222222222222"
-              ],
-              "dirty": true,
-              "worktree_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
-              "attempt_ids": [
-                "attempt-payments-acceptance-fail",
-                "attempt-payment-design-fail"
-              ],
-              "decision_ids": [
-                "decision-approach"
-              ],
-              "provenance": "declared",
-              "summary": "합성 예시: 제출 코드와 검사 산출물 연결; 실제 Git 관측 아님"
-            }
-          ],
-          "decisions": [
-            {
-              "id": "decision-approach",
-              "at": "2026-09-29T02:10:00Z",
-              "actor_id": "Bob",
-              "environment_id": "laptop",
-              "session_id": "bob-management",
-              "summary": "합성 판단: 요구사항을 명시적 검사로 연결",
-              "alternatives": [
-                "실패 사례부터 검사",
-                "구현 후 수동 확인"
-              ],
-              "reason": "놓친 조건을 재현 가능한 검사로 보존하기 위해 선택",
+              "id": "action-1",
+              "title": "실패 입력 처리 수정",
+              "phase_id": "plan",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
               "requirement_ids": [
                 "req-core"
               ],
-              "supersedes": null,
-              "provenance": "declared"
+              "done_when": [
+                "선언된 기술 인수 조건의 검사 근거를 남긴다"
+              ],
+              "criterion_ids": [
+                "action-1-check"
+              ],
+              "document_ids": [],
+              "review_required": false
             }
           ],
-          "handoffs": [
+          "phase_gates": [
             {
-              "id": "handoff-synthetic",
-              "at": "2026-09-29T05:10:00Z",
-              "from_actor_id": "Bob",
-              "from_environment_id": "laptop",
-              "from_session_id": "bob-management",
-              "to_actor_id": "Bob",
-              "to_environment_id": "laptop",
-              "to_session_id": "bob-next-session",
-              "summary": "합성 인계: 선택한 접근과 실패 검사 전달",
-              "requirement_ids": [
-                "req-core"
-              ],
-              "decision_ids": [
-                "decision-approach"
-              ],
-              "attempt_ids": [
-                "attempt-payments-acceptance-fail",
-                "attempt-payment-design-fail"
-              ],
-              "packet_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
-              "usage": "not_observed",
-              "usage_at": null,
-              "usage_evidence": null
+              "phase_id": "plan",
+              "criterion_ids": [
+                "phase-exit"
+              ]
             }
           ],
-          "capture": [
-            {
-              "id": "capture-synthetic",
-              "actor_id": "Bob",
-              "environment_id": "laptop",
-              "tool": "synthetic-kit",
-              "capabilities": [
-                "tests",
-                "handoff",
-                "git"
-              ],
-              "status": "degraded",
-              "last_observed_at": "2026-09-29T03:00:00Z",
-              "at": "2026-09-29T06:00:00Z",
-              "reason": "합성 기록 상태 보고; 현재 연결이나 heartbeat를 증명하지 않음",
-              "provenance": "declared"
-            }
-          ]
+          "updates": [],
+          "reviews": []
         }
+      },
+      "work": {
+        "plan_id": "implementation",
+        "plan_version": "v1",
+        "at": "2026-09-29T01:00:00Z",
+        "tasks": [
+          {
+            "id": "action-1",
+            "title": "실패 입력 처리 수정",
+            "phase_id": "plan",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "선언된 기술 인수 조건의 검사 근거를 남긴다"
+            ],
+            "criterion_ids": [
+              "action-1-check"
+            ],
+            "document_ids": [],
+            "review_required": false,
+            "state": "failed",
+            "reason": "현재 작업 검사에 실패가 있습니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": null,
+            "latest_review": null,
+            "waiting_on": []
+          }
+        ],
+        "phases": [
+          {
+            "id": "plan",
+            "name": "구현과 검증",
+            "state": "failed",
+            "required": 1,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "complete"
+          }
+        ],
+        "summary": {
+          "total": 1,
+          "required": 1,
+          "completed": 0,
+          "technical_complete": 0,
+          "blocked": 0,
+          "failed": 1,
+          "review_pending": 0,
+          "ready": 0,
+          "unknown": 0,
+          "revalidation": 0
+        },
+        "interventions": [
+          {
+            "id": "failed-action-1",
+            "kind": "failed",
+            "task_id": "action-1",
+            "phase_id": "plan",
+            "owner": "Bob",
+            "summary": "현재 작업 검사에 실패가 있습니다.",
+            "next_action": "실패 검사 원인을 확인하고 수정 후 다시 실행하세요."
+          }
+        ]
       }
     },
     {
@@ -1470,48 +2188,76 @@
         "Carol"
       ],
       "current_revision": "v2",
-      "current_phase": "build",
+      "current_phase": "plan",
       "status": "revalidation",
-      "status_reason": "과거 revision 완료 후 현재 revision 검사 기록이 부족합니다. 목표/문서는 catalog.projects[2]의 명시적 입력입니다.",
+      "status_reason": "과거 revision 완료 후 현재 revision 검사 기록이 부족합니다. 필수 작업·단계·전체 검사·승인·막힘 해결 조건을 모두 확인해야 합니다. 목표/문서는 catalog.projects[2]의 명시적 입력입니다.",
       "phases": [
         {
           "id": "plan",
-          "name": "기획",
-          "status": "unknown"
-        },
-        {
-          "id": "design",
-          "name": "설계",
-          "status": "unknown"
-        },
-        {
-          "id": "build",
-          "name": "구현",
-          "status": "unknown"
+          "name": "구현과 검증",
+          "status": "complete"
         }
       ],
       "documents": [],
       "criteria": [
         {
-          "id": "dashboard-acceptance",
-          "label": "전체 인수 검사 · 개정",
+          "id": "action-1-check",
+          "label": "합성 기술 검사 · action-1-check",
+          "scope": "task",
+          "target_id": "action-1",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "phase-exit",
+          "label": "합성 기술 검사 · phase-exit",
+          "scope": "phase",
+          "target_id": "plan",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "project-exit",
+          "label": "합성 기술 검사 · project-exit",
           "scope": "project",
           "target_id": "carol-dashboard",
-          "command": "python3 checks/dashboard-acceptance.py",
+          "command": "python3 synthetic-test.py",
           "expected_exit_code": 0
         }
       ],
       "runs": [
         {
-          "criterion_id": "dashboard-acceptance",
+          "criterion_id": "action-1-check",
           "revision": "v2",
-          "at": "2026-09-29T03:00:00Z",
+          "at": "2026-09-29T04:00:00Z",
           "exit_code": null,
-          "session_id": "carol-management",
-          "evidence": "management attempt attempt-dashboard-acceptance-old · runner · 과거 기준 통과; 최신 기준과 산출물 재검증 필요 · 합성 실행 예시",
-          "criterion_signature": "5f115c20ef490d8eca4b645517426f05df7a225c9d15d149538ead0e3cfb102a",
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-action-1-check · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "473c0cb0d62a22acd56d6d361b78d1964c4e37cec141d896d9d99f3f68f10e04",
           "status": "unknown",
           "source_ref": "catalog.projects[2].runs[0]"
+        },
+        {
+          "criterion_id": "phase-exit",
+          "revision": "v2",
+          "at": "2026-09-29T04:00:00Z",
+          "exit_code": 0,
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-phase-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "409aefea5ede1731a68b08902e1aaee54cc955b31a8a2d4ba1c3a6f93a00db9f",
+          "status": "pass",
+          "source_ref": "catalog.projects[2].runs[1]"
+        },
+        {
+          "criterion_id": "project-exit",
+          "revision": "v2",
+          "at": "2026-09-29T04:00:00Z",
+          "exit_code": 0,
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-project-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "413284461d535488d9cf4aa3090a21db0de44b2369f8c787fc5158524e44d7e1",
+          "status": "pass",
+          "source_ref": "catalog.projects[2].runs[2]"
         }
       ],
       "sessions": [
@@ -1522,7 +2268,7 @@
           "event_count": 2
         },
         {
-          "id": "carol-management",
+          "id": "synthetic-work",
           "actor_id": "Carol",
           "environment_id": "desktop",
           "event_count": 0
@@ -1556,26 +2302,58 @@
         {
           "at": "2026-09-29T02:00:00Z",
           "kind": "management",
-          "title": "test_plans · test-dashboard-acceptance",
-          "detail": "업무 요구사항의 기술 동작을 검사: 프로젝트 현황과 최신 검사 시각을 표시한다; 전체 인수 검사",
+          "title": "test_plans · test-action-1-check",
+          "detail": "합성 작업 기준을 확인",
           "session_id": null,
           "source_ref": "catalog.projects[2].management.test_plans[0]"
         },
         {
-          "at": "2026-09-29T03:00:00Z",
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-phase-exit",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[2].management.test_plans[1]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-project-exit",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[2].management.test_plans[2]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
           "kind": "check",
-          "title": "전체 인수 검사 · 개정 · unknown",
-          "detail": "v2 · python3 checks/dashboard-acceptance.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-dashboard-acceptance-old · runner · 과거 기준 통과; 최신 기준과 산출물 재검증 필요 · 합성 실행 예시",
-          "session_id": "carol-management",
+          "title": "합성 기술 검사 · action-1-check · unknown",
+          "detail": "v2 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-action-1-check · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
           "source_ref": "catalog.projects[2].runs[0]"
         },
         {
           "at": "2026-09-29T04:00:00Z",
-          "kind": "management",
-          "title": "test_plans · test-dashboard-acceptance",
-          "detail": "최신 검사 시각 표시를 인수 기준에 추가; 과거 통과를 재검증해야 한다",
+          "kind": "check",
+          "title": "합성 기술 검사 · phase-exit · pass",
+          "detail": "v2 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-phase-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
+          "source_ref": "catalog.projects[2].runs[1]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "check",
+          "title": "합성 기술 검사 · project-exit · pass",
+          "detail": "v2 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-project-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
+          "source_ref": "catalog.projects[2].runs[2]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "milestone",
+          "title": "전체 검사 통과 이력 · v2",
+          "detail": "당시 기준의 가져온 검사 기록이 모두 통과했습니다.",
           "session_id": null,
-          "source_ref": "catalog.projects[2].management.test_plans[1]"
+          "source_ref": "catalog.projects[2].runs"
         },
         {
           "at": "2026-09-29T05:00:00Z",
@@ -1611,9 +2389,7 @@
           "event_count": 2
         }
       ],
-      "alerts": [
-        "기준 변경 또는 signature 불일치: dashboard-acceptance · 검사 재입력 필요"
-      ],
+      "alerts": [],
       "last_updated": "2026-09-30T01:00:00Z",
       "connections": [],
       "management": {
@@ -1652,23 +2428,23 @@
         ],
         "test_plans": [
           {
-            "id": "test-dashboard-acceptance",
+            "id": "test-action-1-check",
             "version": "v1",
             "plan_id": "implementation",
             "plan_version": "v1",
-            "criterion_id": "dashboard-acceptance",
+            "criterion_id": "action-1-check",
             "requirement_ids": [
               "req-core"
             ],
-            "reason": "업무 요구사항의 기술 동작을 검사: 프로젝트 현황과 최신 검사 시각을 표시한다; 전체 인수 검사",
-            "excluded": "외부 provider 및 실제 업무 성과는 관측하지 않음",
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
             "at": "2026-09-29T02:00:00Z",
             "definition": {
-              "id": "dashboard-acceptance",
-              "label": "전체 인수 검사",
-              "scope": "project",
-              "target_id": "carol-dashboard",
-              "command": "python3 checks/dashboard-acceptance.py",
+              "id": "action-1-check",
+              "label": "합성 기술 검사 · action-1-check",
+              "scope": "task",
+              "target_id": "action-1",
+              "command": "python3 synthetic-test.py",
               "expected_exit_code": 0
             },
             "test_files": [
@@ -1679,23 +2455,50 @@
             ]
           },
           {
-            "id": "test-dashboard-acceptance",
-            "version": "v2",
+            "id": "test-phase-exit",
+            "version": "v1",
             "plan_id": "implementation",
             "plan_version": "v1",
-            "criterion_id": "dashboard-acceptance",
+            "criterion_id": "phase-exit",
             "requirement_ids": [
               "req-core"
             ],
-            "reason": "최신 검사 시각 표시를 인수 기준에 추가; 과거 통과를 재검증해야 한다",
-            "excluded": "외부 provider 및 실제 업무 성과는 관측하지 않음",
-            "at": "2026-09-29T04:00:00Z",
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
             "definition": {
-              "id": "dashboard-acceptance",
-              "label": "전체 인수 검사 · 개정",
+              "id": "phase-exit",
+              "label": "합성 기술 검사 · phase-exit",
+              "scope": "phase",
+              "target_id": "plan",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-project-exit",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "project-exit",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "project-exit",
+              "label": "합성 기술 검사 · project-exit",
               "scope": "project",
               "target_id": "carol-dashboard",
-              "command": "python3 checks/dashboard-acceptance.py",
+              "command": "python3 synthetic-test.py",
               "expected_exit_code": 0
             },
             "test_files": [
@@ -1718,57 +2521,71 @@
         },
         "attempts": [
           {
-            "id": "attempt-dashboard-acceptance-old",
-            "test_plan_id": "test-dashboard-acceptance",
+            "id": "mock-action-1-check",
+            "test_plan_id": "test-action-1-check",
             "test_plan_version": "v1",
-            "test_plan_sha256": "2af9935db7eca42b4bd1bc88e8c775cf74257809247b1357e340cdc619017409",
-            "criterion_signature": "5f115c20ef490d8eca4b645517426f05df7a225c9d15d149538ead0e3cfb102a",
+            "test_plan_sha256": "b3f0457a2dc988db79bf88ed045883841b9682302b8aa413e88ddf49c7e47332",
+            "criterion_signature": "473c0cb0d62a22acd56d6d361b78d1964c4e37cec141d896d9d99f3f68f10e04",
             "revision": "v2",
             "artifact_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
-            "command": "python3 checks/dashboard-acceptance.py",
-            "started_at": "2026-09-29T03:00:00Z",
-            "at": "2026-09-29T03:00:00Z",
+            "command": "python3 synthetic-test.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
             "exit_code": 0,
             "actor_id": "Carol",
             "environment_id": "desktop",
-            "session_id": "carol-management",
+            "session_id": "synthetic-work",
             "environment": "mock",
             "runner": "synthetic-example",
-            "summary": "과거 기준 통과; 최신 기준과 산출물 재검증 필요 · 합성 실행 예시",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
             "provenance": "runner",
             "status": "unknown"
-          }
-        ],
-        "blockers": [
+          },
           {
-            "id": "blocker-main",
-            "status": "open",
-            "summary": "개정 기준과 변경된 산출물 재검증",
-            "cause_state": "hypothesis",
-            "cause": "최신 검사 시각 기준을 개정했으므로 과거 통과 기록을 재검증한다",
-            "attempt_ids": [
-              "attempt-dashboard-acceptance-old"
-            ],
-            "owner": "Carol",
-            "next_action": "검사 재실행 및 담당자 지원",
-            "resolved_by": null,
-            "verification": "unknown"
-          }
-        ],
-        "improvements": [
+            "id": "mock-phase-exit",
+            "test_plan_id": "test-phase-exit",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "0b4281a0b87874834dfb542ab33995be58dd33a4b87c85884dec1e468f73e8a0",
+            "criterion_signature": "409aefea5ede1731a68b08902e1aaee54cc955b31a8a2d4ba1c3a6f93a00db9f",
+            "revision": "v2",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 synthetic-test.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
+            "exit_code": 0,
+            "actor_id": "Carol",
+            "environment_id": "desktop",
+            "session_id": "synthetic-work",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
+            "provenance": "runner",
+            "status": "pass"
+          },
           {
-            "id": "loop-change",
-            "area": "loop",
-            "version": "v1",
-            "hypothesis": "실패 입력을 검증 루프에 포함하면 같은 오류를 찾을 수 있다",
-            "change": "합성 검사 검증 루프에 실패 사례 추가",
-            "evidence_attempt_ids": [
-              "attempt-dashboard-acceptance-old"
-            ],
-            "validation_attempt_ids": [],
-            "decision": "trial"
+            "id": "mock-project-exit",
+            "test_plan_id": "test-project-exit",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "e4dbb003304c73422af9cd028b1de450759a6cd933acd8438d14170468db5f6b",
+            "criterion_signature": "413284461d535488d9cf4aa3090a21db0de44b2369f8c787fc5158524e44d7e1",
+            "revision": "v2",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 synthetic-test.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
+            "exit_code": 0,
+            "actor_id": "Carol",
+            "environment_id": "desktop",
+            "session_id": "synthetic-work",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
+            "provenance": "runner",
+            "status": "pass"
           }
         ],
+        "blockers": [],
+        "improvements": [],
         "harness": [
           {
             "id": "kit",
@@ -1791,92 +2608,114 @@
           }
         ],
         "traceability": {
-          "checkpoints": [
+          "checkpoints": [],
+          "decisions": [],
+          "handoffs": [],
+          "capture": []
+        },
+        "work": {
+          "plan_id": "implementation",
+          "plan_version": "v1",
+          "at": "2026-09-29T01:00:00Z",
+          "tasks": [
             {
-              "id": "checkpoint-synthetic",
-              "at": "2026-09-29T05:00:00Z",
-              "actor_id": "Carol",
-              "environment_id": "desktop",
-              "session_id": "carol-management",
-              "agent_id": "synthetic-agent",
-              "revision": "v2",
-              "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
-              "commit": null,
-              "parent_commits": [],
-              "dirty": null,
-              "worktree_sha256": null,
-              "attempt_ids": [],
-              "decision_ids": [
-                "decision-approach"
-              ],
-              "provenance": "declared",
-              "summary": "합성 예시: 제출 코드와 검사 산출물 연결; 실제 Git 관측 아님"
-            }
-          ],
-          "decisions": [
-            {
-              "id": "decision-approach",
-              "at": "2026-09-29T02:10:00Z",
-              "actor_id": "Carol",
-              "environment_id": "desktop",
-              "session_id": "carol-management",
-              "summary": "합성 판단: 요구사항을 명시적 검사로 연결",
-              "alternatives": [
-                "실패 사례부터 검사",
-                "구현 후 수동 확인"
-              ],
-              "reason": "놓친 조건을 재현 가능한 검사로 보존하기 위해 선택",
+              "id": "action-1",
+              "title": "변경 산출물 재검증",
+              "phase_id": "plan",
+              "owner": "Carol",
+              "required": true,
+              "depends_on": [],
               "requirement_ids": [
                 "req-core"
               ],
-              "supersedes": null,
-              "provenance": "declared"
+              "done_when": [
+                "선언된 기술 인수 조건의 검사 근거를 남긴다"
+              ],
+              "criterion_ids": [
+                "action-1-check"
+              ],
+              "document_ids": [],
+              "review_required": false
             }
           ],
-          "handoffs": [
+          "phase_gates": [
             {
-              "id": "handoff-synthetic",
-              "at": "2026-09-29T05:10:00Z",
-              "from_actor_id": "Carol",
-              "from_environment_id": "desktop",
-              "from_session_id": "carol-management",
-              "to_actor_id": "Carol",
-              "to_environment_id": "desktop",
-              "to_session_id": "carol-next-session",
-              "summary": "합성 인계: 선택한 접근과 실패 검사 전달",
-              "requirement_ids": [
-                "req-core"
-              ],
-              "decision_ids": [
-                "decision-approach"
-              ],
-              "attempt_ids": [
-                "attempt-dashboard-acceptance-old"
-              ],
-              "packet_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
-              "usage": "not_observed",
-              "usage_at": null,
-              "usage_evidence": null
+              "phase_id": "plan",
+              "criterion_ids": [
+                "phase-exit"
+              ]
             }
           ],
-          "capture": [
-            {
-              "id": "capture-synthetic",
-              "actor_id": "Carol",
-              "environment_id": "desktop",
-              "tool": "synthetic-kit",
-              "capabilities": [
-                "tests",
-                "handoff"
-              ],
-              "status": "paused",
-              "last_observed_at": "2026-09-29T03:00:00Z",
-              "at": "2026-09-29T06:00:00Z",
-              "reason": "합성 기록 상태 보고; 현재 연결이나 heartbeat를 증명하지 않음",
-              "provenance": "declared"
-            }
-          ]
+          "updates": [],
+          "reviews": []
         }
+      },
+      "work": {
+        "plan_id": "implementation",
+        "plan_version": "v1",
+        "at": "2026-09-29T01:00:00Z",
+        "tasks": [
+          {
+            "id": "action-1",
+            "title": "변경 산출물 재검증",
+            "phase_id": "plan",
+            "owner": "Carol",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "선언된 기술 인수 조건의 검사 근거를 남긴다"
+            ],
+            "criterion_ids": [
+              "action-1-check"
+            ],
+            "document_ids": [],
+            "review_required": false,
+            "state": "revalidation",
+            "reason": "현재 계획·기준·산출물로 검사를 다시 실행해야 합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": null,
+            "latest_review": null,
+            "waiting_on": []
+          }
+        ],
+        "phases": [
+          {
+            "id": "plan",
+            "name": "구현과 검증",
+            "state": "revalidation",
+            "required": 1,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "complete"
+          }
+        ],
+        "summary": {
+          "total": 1,
+          "required": 1,
+          "completed": 0,
+          "technical_complete": 0,
+          "blocked": 0,
+          "failed": 0,
+          "review_pending": 0,
+          "ready": 0,
+          "unknown": 0,
+          "revalidation": 1
+        },
+        "interventions": [
+          {
+            "id": "revalidation-action-1",
+            "kind": "revalidation",
+            "task_id": "action-1",
+            "phase_id": "plan",
+            "owner": "Carol",
+            "summary": "현재 계획·기준·산출물로 검사를 다시 실행해야 합니다.",
+            "next_action": "현재 계획과 산출물로 작업 검사를 다시 실행하세요."
+          }
+        ]
       }
     },
     {
@@ -1887,35 +2726,79 @@
         "Dana"
       ],
       "current_revision": "v1",
-      "current_phase": "build",
-      "status": "unknown",
-      "status_reason": "프로젝트 범위 완료 기준이 없습니다. 목표/문서는 catalog.projects[3]의 명시적 입력입니다.",
+      "current_phase": "plan",
+      "status": "in_progress",
+      "status_reason": "현재 revision의 프로젝트 범위 검사 기록이 부족하거나 불명입니다. 필수 작업·단계·전체 검사·승인·막힘 해결 조건을 모두 확인해야 합니다. 목표/문서는 catalog.projects[3]의 명시적 입력입니다.",
       "phases": [
         {
           "id": "plan",
-          "name": "기획",
-          "status": "unknown"
-        },
-        {
-          "id": "design",
-          "name": "설계",
-          "status": "unknown"
-        },
-        {
-          "id": "build",
-          "name": "구현",
-          "status": "unknown"
+          "name": "구현과 검증",
+          "status": "complete"
         }
       ],
       "documents": [],
-      "criteria": [],
-      "runs": [],
+      "criteria": [
+        {
+          "id": "action-1-check",
+          "label": "합성 기술 검사 · action-1-check",
+          "scope": "task",
+          "target_id": "action-1",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "phase-exit",
+          "label": "합성 기술 검사 · phase-exit",
+          "scope": "phase",
+          "target_id": "plan",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "project-exit",
+          "label": "합성 기술 검사 · project-exit",
+          "scope": "project",
+          "target_id": "dana-discovery",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        }
+      ],
+      "runs": [
+        {
+          "criterion_id": "phase-exit",
+          "revision": "v1",
+          "at": "2026-09-29T04:00:00Z",
+          "exit_code": 0,
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-phase-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "409aefea5ede1731a68b08902e1aaee54cc955b31a8a2d4ba1c3a6f93a00db9f",
+          "status": "pass",
+          "source_ref": "catalog.projects[3].runs[0]"
+        },
+        {
+          "criterion_id": "project-exit",
+          "revision": "v1",
+          "at": "2026-09-29T04:00:00Z",
+          "exit_code": 0,
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-project-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "f03f5bf6eac8c40eabed36398ed046c46f94534f63ef1e2bbb25f2dfe132a494",
+          "status": "pass",
+          "source_ref": "catalog.projects[3].runs[1]"
+        }
+      ],
       "sessions": [
         {
           "id": "dana-1",
           "actor_id": "Dana",
           "environment_id": "laptop",
           "event_count": 2
+        },
+        {
+          "id": "synthetic-work",
+          "actor_id": "Dana",
+          "environment_id": "laptop",
+          "event_count": 0
         }
       ],
       "timeline": [
@@ -1942,6 +2825,54 @@
           "detail": "요구사항 원문을 구현과 검사로 연결: 아이디어의 요구사항을 정리한다",
           "session_id": null,
           "source_ref": "catalog.projects[3].management.plans[0]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-action-1-check",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[3].management.test_plans[0]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-phase-exit",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[3].management.test_plans[1]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-project-exit",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[3].management.test_plans[2]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "check",
+          "title": "합성 기술 검사 · phase-exit · pass",
+          "detail": "v1 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-phase-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
+          "source_ref": "catalog.projects[3].runs[0]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "check",
+          "title": "합성 기술 검사 · project-exit · pass",
+          "detail": "v1 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-project-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
+          "source_ref": "catalog.projects[3].runs[1]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "milestone",
+          "title": "전체 검사 통과 이력 · v1",
+          "detail": "당시 기준의 가져온 검사 기록이 모두 통과했습니다.",
+          "session_id": null,
+          "source_ref": "catalog.projects[3].runs"
         },
         {
           "at": "2026-09-29T05:00:00Z",
@@ -2045,7 +2976,89 @@
             "handoff_ref": "synthetic-plan.json"
           }
         ],
-        "test_plans": [],
+        "test_plans": [
+          {
+            "id": "test-action-1-check",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "action-1-check",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "action-1-check",
+              "label": "합성 기술 검사 · action-1-check",
+              "scope": "task",
+              "target_id": "action-1",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-phase-exit",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "phase-exit",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "phase-exit",
+              "label": "합성 기술 검사 · phase-exit",
+              "scope": "phase",
+              "target_id": "plan",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-project-exit",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "project-exit",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "project-exit",
+              "label": "합성 기술 검사 · project-exit",
+              "scope": "project",
+              "target_id": "dana-discovery",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          }
+        ],
         "artifact": {
           "revision": "v1",
           "sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
@@ -2056,7 +3069,50 @@
             }
           ]
         },
-        "attempts": [],
+        "attempts": [
+          {
+            "id": "mock-phase-exit",
+            "test_plan_id": "test-phase-exit",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "0b4281a0b87874834dfb542ab33995be58dd33a4b87c85884dec1e468f73e8a0",
+            "criterion_signature": "409aefea5ede1731a68b08902e1aaee54cc955b31a8a2d4ba1c3a6f93a00db9f",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 synthetic-test.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
+            "exit_code": 0,
+            "actor_id": "Dana",
+            "environment_id": "laptop",
+            "session_id": "synthetic-work",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
+            "provenance": "runner",
+            "status": "pass"
+          },
+          {
+            "id": "mock-project-exit",
+            "test_plan_id": "test-project-exit",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "d3e9978b018aef52d25bd19578be52af0aa884693e5d23fe0f8ccc23f60cb65a",
+            "criterion_signature": "f03f5bf6eac8c40eabed36398ed046c46f94534f63ef1e2bbb25f2dfe132a494",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 synthetic-test.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
+            "exit_code": 0,
+            "actor_id": "Dana",
+            "environment_id": "laptop",
+            "session_id": "synthetic-work",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
+            "provenance": "runner",
+            "status": "pass"
+          }
+        ],
         "blockers": [],
         "improvements": [],
         "harness": [
@@ -2079,7 +3135,588 @@
             "status": "generated",
             "freshness": "current"
           }
-        ]
+        ],
+        "traceability": {
+          "checkpoints": [],
+          "decisions": [],
+          "handoffs": [],
+          "capture": []
+        },
+        "work": {
+          "plan_id": "implementation",
+          "plan_version": "v1",
+          "at": "2026-09-29T01:00:00Z",
+          "tasks": [
+            {
+              "id": "action-1",
+              "title": "문서 근거 확인 검사 추가",
+              "phase_id": "plan",
+              "owner": "Dana",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "선언된 기술 인수 조건의 검사 근거를 남긴다"
+              ],
+              "criterion_ids": [
+                "action-1-check"
+              ],
+              "document_ids": [],
+              "review_required": false
+            }
+          ],
+          "phase_gates": [
+            {
+              "phase_id": "plan",
+              "criterion_ids": [
+                "phase-exit"
+              ]
+            }
+          ],
+          "updates": [],
+          "reviews": []
+        }
+      },
+      "work": {
+        "plan_id": "implementation",
+        "plan_version": "v1",
+        "at": "2026-09-29T01:00:00Z",
+        "tasks": [
+          {
+            "id": "action-1",
+            "title": "문서 근거 확인 검사 추가",
+            "phase_id": "plan",
+            "owner": "Dana",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "선언된 기술 인수 조건의 검사 근거를 남긴다"
+            ],
+            "criterion_ids": [
+              "action-1-check"
+            ],
+            "document_ids": [],
+            "review_required": false,
+            "state": "ready",
+            "reason": "의존 작업이 충족되어 시작할 수 있습니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": null,
+            "latest_review": null,
+            "waiting_on": []
+          }
+        ],
+        "phases": [
+          {
+            "id": "plan",
+            "name": "구현과 검증",
+            "state": "in_progress",
+            "required": 1,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "complete"
+          }
+        ],
+        "summary": {
+          "total": 1,
+          "required": 1,
+          "completed": 0,
+          "technical_complete": 0,
+          "blocked": 0,
+          "failed": 0,
+          "review_pending": 0,
+          "ready": 1,
+          "unknown": 0,
+          "revalidation": 0
+        },
+        "interventions": []
+      }
+    },
+    {
+      "id": "alice-personal",
+      "name": "Alice 개인 자료 정리 · 합성 예시",
+      "goal": "여러 자료에서 찾아낸 근거를 다시 확인할 수 있게 정리한다",
+      "owners": [
+        "Alice"
+      ],
+      "current_revision": "v1",
+      "current_phase": "plan",
+      "status": "in_progress",
+      "status_reason": "현재 revision의 프로젝트 범위 검사 기록이 부족하거나 불명입니다. 필수 작업·단계·전체 검사·승인·막힘 해결 조건을 모두 확인해야 합니다. 목표/문서는 catalog.projects[4]의 명시적 입력입니다.",
+      "phases": [
+        {
+          "id": "plan",
+          "name": "구현과 검증",
+          "status": "complete"
+        }
+      ],
+      "documents": [],
+      "criteria": [
+        {
+          "id": "action-1-check",
+          "label": "합성 기술 검사 · action-1-check",
+          "scope": "task",
+          "target_id": "action-1",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "phase-exit",
+          "label": "합성 기술 검사 · phase-exit",
+          "scope": "phase",
+          "target_id": "plan",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        },
+        {
+          "id": "project-exit",
+          "label": "합성 기술 검사 · project-exit",
+          "scope": "project",
+          "target_id": "alice-personal",
+          "command": "python3 synthetic-test.py",
+          "expected_exit_code": 0
+        }
+      ],
+      "runs": [
+        {
+          "criterion_id": "phase-exit",
+          "revision": "v1",
+          "at": "2026-09-29T04:00:00Z",
+          "exit_code": 0,
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-phase-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "409aefea5ede1731a68b08902e1aaee54cc955b31a8a2d4ba1c3a6f93a00db9f",
+          "status": "pass",
+          "source_ref": "catalog.projects[4].runs[0]"
+        },
+        {
+          "criterion_id": "project-exit",
+          "revision": "v1",
+          "at": "2026-09-29T04:00:00Z",
+          "exit_code": 0,
+          "session_id": "synthetic-work",
+          "evidence": "management attempt mock-project-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "criterion_signature": "90243d2fb3e93880500f9074e2558b1476dfec9b9708b84c0aef96938b4f5e2e",
+          "status": "pass",
+          "source_ref": "catalog.projects[4].runs[1]"
+        }
+      ],
+      "sessions": [
+        {
+          "id": "synthetic-work",
+          "actor_id": "Alice",
+          "environment_id": "alice-personal",
+          "event_count": 0
+        }
+      ],
+      "timeline": [
+        {
+          "at": "2026-09-29T00:00:00Z",
+          "kind": "management",
+          "title": "objectives · objective-Alice",
+          "detail": "합성 Alice 개인 목표 노트",
+          "session_id": null,
+          "source_ref": "catalog.projects[4].management.objectives[0]"
+        },
+        {
+          "at": "2026-09-29T01:00:00Z",
+          "kind": "management",
+          "title": "harness · kit",
+          "detail": "합성 Kit 설치 선언; 실행 근거와 별도",
+          "session_id": null,
+          "source_ref": "catalog.projects[4].management.harness[0]"
+        },
+        {
+          "at": "2026-09-29T01:00:00Z",
+          "kind": "management",
+          "title": "plans · implementation",
+          "detail": "요구사항 원문을 구현과 검사로 연결: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다",
+          "session_id": null,
+          "source_ref": "catalog.projects[4].management.plans[0]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-action-1-check",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[4].management.test_plans[0]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-phase-exit",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[4].management.test_plans[1]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-project-exit",
+          "detail": "합성 작업 기준을 확인",
+          "session_id": null,
+          "source_ref": "catalog.projects[4].management.test_plans[2]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "check",
+          "title": "합성 기술 검사 · phase-exit · pass",
+          "detail": "v1 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-phase-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
+          "source_ref": "catalog.projects[4].runs[0]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "check",
+          "title": "합성 기술 검사 · project-exit · pass",
+          "detail": "v1 · python3 synthetic-test.py\n가져온 검사 기록 (실행하지 않음): management attempt mock-project-exit · runner · 합성 예시; 실제 subprocess 실행 영수증 아님",
+          "session_id": "synthetic-work",
+          "source_ref": "catalog.projects[4].runs[1]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "milestone",
+          "title": "전체 검사 통과 이력 · v1",
+          "detail": "당시 기준의 가져온 검사 기록이 모두 통과했습니다.",
+          "session_id": null,
+          "source_ref": "catalog.projects[4].runs"
+        },
+        {
+          "at": "2026-09-29T05:00:00Z",
+          "kind": "management",
+          "title": "graphs · graph-synthetic",
+          "detail": "synthetic-graphify",
+          "session_id": null,
+          "source_ref": "catalog.projects[4].management.graphs[0]"
+        }
+      ],
+      "sources": [
+        {
+          "actor_id": "Alice",
+          "environment_id": "alice-personal",
+          "project_id": "88888888-8888-4888-8888-888888888888",
+          "evidence_mode": "synthetic",
+          "event_count": 0
+        }
+      ],
+      "alerts": [],
+      "last_updated": "2026-09-29T05:00:00Z",
+      "connections": [],
+      "management": {
+        "objectives": [
+          {
+            "id": "objective-Alice",
+            "version": "v1",
+            "kind": "personal",
+            "parent_id": null,
+            "title": "여러 자료에서 찾아낸 근거를 다시 확인할 수 있게 정리한다",
+            "success_condition": "자료 정리 결과를 확인한다",
+            "source": "합성 Alice 개인 목표 노트",
+            "at": "2026-09-29T00:00:00Z"
+          }
+        ],
+        "assignment": null,
+        "requirements": [
+          {
+            "id": "req-core",
+            "text": "고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다",
+            "source": "합성 Company 요청분류 개선 지시문"
+          }
+        ],
+        "plans": [
+          {
+            "id": "implementation",
+            "version": "v1",
+            "at": "2026-09-29T01:00:00Z",
+            "summary": "고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다",
+            "reason": "요구사항 원문을 구현과 검사로 연결: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "handoff_ref": "synthetic-plan.json"
+          }
+        ],
+        "test_plans": [
+          {
+            "id": "test-action-1-check",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "action-1-check",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "action-1-check",
+              "label": "합성 기술 검사 · action-1-check",
+              "scope": "task",
+              "target_id": "action-1",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-phase-exit",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "phase-exit",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "phase-exit",
+              "label": "합성 기술 검사 · phase-exit",
+              "scope": "phase",
+              "target_id": "plan",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-project-exit",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "project-exit",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "합성 작업 기준을 확인",
+            "excluded": "실제 실행·업무 성과는 미관측",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "project-exit",
+              "label": "합성 기술 검사 · project-exit",
+              "scope": "project",
+              "target_id": "alice-personal",
+              "command": "python3 synthetic-test.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          }
+        ],
+        "artifact": {
+          "revision": "v1",
+          "sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+          "files": [
+            {
+              "path": "synthetic-test.py",
+              "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+            }
+          ]
+        },
+        "attempts": [
+          {
+            "id": "mock-phase-exit",
+            "test_plan_id": "test-phase-exit",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "0b4281a0b87874834dfb542ab33995be58dd33a4b87c85884dec1e468f73e8a0",
+            "criterion_signature": "409aefea5ede1731a68b08902e1aaee54cc955b31a8a2d4ba1c3a6f93a00db9f",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 synthetic-test.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
+            "exit_code": 0,
+            "actor_id": "Alice",
+            "environment_id": "alice-personal",
+            "session_id": "synthetic-work",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
+            "provenance": "runner",
+            "status": "pass"
+          },
+          {
+            "id": "mock-project-exit",
+            "test_plan_id": "test-project-exit",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "2663840824af77c3d94e651385c07359628ee6bbab221d03ca66328d9c14931d",
+            "criterion_signature": "90243d2fb3e93880500f9074e2558b1476dfec9b9708b84c0aef96938b4f5e2e",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 synthetic-test.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
+            "exit_code": 0,
+            "actor_id": "Alice",
+            "environment_id": "alice-personal",
+            "session_id": "synthetic-work",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "합성 예시; 실제 subprocess 실행 영수증 아님",
+            "provenance": "runner",
+            "status": "pass"
+          }
+        ],
+        "blockers": [],
+        "improvements": [],
+        "harness": [
+          {
+            "id": "kit",
+            "version": "v1",
+            "source": "합성 Kit 설치 선언; 실행 근거와 별도",
+            "at": "2026-09-29T01:00:00Z"
+          }
+        ],
+        "graphs": [
+          {
+            "id": "graph-synthetic",
+            "generator": "synthetic-graphify",
+            "version": "v1",
+            "mode": "code-only",
+            "source_revision": "v1",
+            "source_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "at": "2026-09-29T05:00:00Z",
+            "status": "generated",
+            "freshness": "current"
+          }
+        ],
+        "traceability": {
+          "checkpoints": [],
+          "decisions": [],
+          "handoffs": [],
+          "capture": []
+        },
+        "work": {
+          "plan_id": "implementation",
+          "plan_version": "v1",
+          "at": "2026-09-29T01:00:00Z",
+          "tasks": [
+            {
+              "id": "action-1",
+              "title": "자료 연결 구현",
+              "phase_id": "plan",
+              "owner": "Alice",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "선언된 기술 인수 조건의 검사 근거를 남긴다"
+              ],
+              "criterion_ids": [
+                "action-1-check"
+              ],
+              "document_ids": [],
+              "review_required": false
+            }
+          ],
+          "phase_gates": [
+            {
+              "phase_id": "plan",
+              "criterion_ids": [
+                "phase-exit"
+              ]
+            }
+          ],
+          "updates": [
+            {
+              "id": "update-action-1",
+              "task_id": "action-1",
+              "at": "2026-09-29T03:00:00Z",
+              "state": "in_progress",
+              "summary": "합성 담당자 진행 선언",
+              "next_action": "자료 연결 구현을 마치고 현재 작업 검사를 실행하세요."
+            }
+          ],
+          "reviews": []
+        }
+      },
+      "work": {
+        "plan_id": "implementation",
+        "plan_version": "v1",
+        "at": "2026-09-29T01:00:00Z",
+        "tasks": [
+          {
+            "id": "action-1",
+            "title": "자료 연결 구현",
+            "phase_id": "plan",
+            "owner": "Alice",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "선언된 기술 인수 조건의 검사 근거를 남긴다"
+            ],
+            "criterion_ids": [
+              "action-1-check"
+            ],
+            "document_ids": [],
+            "review_required": false,
+            "state": "in_progress",
+            "reason": "작업 진행 선언 또는 미완료 검사 근거가 있습니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-action-1",
+              "task_id": "action-1",
+              "at": "2026-09-29T03:00:00Z",
+              "state": "in_progress",
+              "summary": "합성 담당자 진행 선언",
+              "next_action": "자료 연결 구현을 마치고 현재 작업 검사를 실행하세요."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          }
+        ],
+        "phases": [
+          {
+            "id": "plan",
+            "name": "구현과 검증",
+            "state": "in_progress",
+            "required": 1,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "complete"
+          }
+        ],
+        "summary": {
+          "total": 1,
+          "required": 1,
+          "completed": 0,
+          "technical_complete": 0,
+          "blocked": 0,
+          "failed": 0,
+          "review_pending": 0,
+          "ready": 0,
+          "unknown": 0,
+          "revalidation": 0
+        },
+        "interventions": []
       }
     },
     {

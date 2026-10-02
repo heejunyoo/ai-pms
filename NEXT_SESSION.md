@@ -1,3 +1,13 @@
+## 최신 상태 — 2026-10-02 작업 관리 개편
+
+사람 필터 → 공동/개인 목표 → Phase → 담당 원자 작업 → 완료 조건/검사/승인/막힘/다음 행동을 구현했습니다. Kit Handoff import와 update/review 명령, 작업 JSON 템플릿과 문서를 함께 추가했습니다. 새 코드 위치는 `specs/ai-pms-work-management/`입니다. Astra 최종 검토는 no_blockers입니다. `python3 scripts/verify_public.py` 및 실제 로컬 subprocess 검증이 통과했습니다.
+
+대시보드와 기존 Kit는 공개 배포했습니다. 44개 공개 파일 바이트 대조를 통과했습니다. 자동 PC 수집과 실제 다중 사용자 전달은 계속 유예 상태입니다. 현재 화면은 합성 샘플입니다.
+
+실제 로컬 브라우저에서 사람 필터·공동 프로젝트 책임 분리·3개 Phase·관리 행동·390px 상세·잘못된 JSON 거부/기존 상태 보존을 확인했습니다. 도구 연결이 끊겨 내보내기 다운로드, 모바일 목록/보고서, 배포 후 브라우저 및 Kit 한/영 실화면 확인이 남았습니다. `specs/ai-pms-work-management/browser-observation.md`와 `release-proof.json`을 확인하고 이 경계부터 이어가세요. `verify_work.py --release`는 남은 브라우저 확인을 통과로 기록할 때까지 실패해야 합니다.
+
+아래는 이전 작업 이력입니다. 최신 승인과 상태를 덮어쓰지 않습니다.
+
 # 2026-10-02 추가 완료 — 변경·판단·인계·기록 상태
 
 Atlas-inspired four improvements are implemented as optional management.traceability, preserving old v3. New dashboardtab connects checkpoints/decisions/handoffs/capture. Kit checkpoint reads Git safely with explicit declared session/agent attribution; record imports decision/handoff/capture without promoting usage. Git roots excludeHOME; noGit works with nulls, unbornGit requiresinitialcommit; ignored/submodule content outofscope. Actual Git13checks, tracecontract19checks, legacy26, UI parity and malformedpreservation passed; actualproduction newtab/mobile/export verified. AutomaticPCcollection remainsdeferred. Currentcombinedreview is traceability-independent-review.json plus traceability-review.json; oldcode-review is historical. Currentacceptance command remains python3 specs/ai-pms-management/verify_management.py --release.
