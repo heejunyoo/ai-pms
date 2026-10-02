@@ -71,4 +71,3 @@ management 객체는 아래 정확한 필드만 허용. portfolio.validate_tree 
 - improvements: [{id,area:rule|harness|loop|skill|mcp,version,hypothesis,change,evidence_attempt_ids,validation_attempt_ids,decision:proposed|trial|adopt|hold}]. attempts참조; adoption 효과는 명시기록, 빈validation이면검증미관측표시. 자동생산성점수없음.
 - harness: [{id,version,source,at}]. 설치선언과실행근거구분.
 - graphs: [{id,generator,version,mode:code-only,source_revision,source_sha256,at,status:generated|failed|unknown}]. 최신성은 현재 artifact와revision 일치+미래아님이면current; 다르면stale, 생성실패면unknown. AST=runtime/coverage아님.
-
