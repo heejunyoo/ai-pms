@@ -1,0 +1,117 @@
+{
+  "goal": "Replace simplistic phase cards with designed hierarchical WBS and honest Gantt timeline",
+  "author": "root-wbs-timeline-author",
+  "spec_ref": "spec.md",
+  "intent_guard": {
+    "source_ref": "source.md",
+    "requirements": [
+      {
+        "id": "design",
+        "quote": "다른 디자인 컨셉을 가져와서 개선해야지",
+        "outcome": "Hierarchical WBS and timeline with task bars/milestones; real date-axis authored sample and explicit unscheduled Phase axis"
+      },
+      {
+        "id": "drilldown",
+        "quote": "flow 상세를 클릭하면 아래에서 더 자세한 내용 볼수 있게 하고.",
+        "outcome": "Phase/task selection inline evidence below chart"
+      },
+      {
+        "id": "scope",
+        "quote": "다수의 사람 각각을 필터할 수 있어야 한다는 이야기가 되는거고",
+        "outcome": "Whole plan retained under person scope; actual completion states preserved"
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-wbs-timeline/check_timeline.py",
+      "expect_exit_code": 0
+    }
+  },
+  "open_decisions": [],
+  "phases": [
+    {
+      "id": "flow",
+      "name": "그래프 UI",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-wbs-timeline/check_timeline.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "timeline-ui",
+      "requirement_ids": [
+        "design",
+        "drilldown",
+        "scope"
+      ],
+      "kind": "implement",
+      "phase": "flow",
+      "depends_on": [],
+      "objective": "Replace simplistic phase cards with designed hierarchical WBS and honest Gantt timeline",
+      "done_when": [
+        "Designed WBS hierarchy + date/Phase timeline and inline selection",
+        "Strict sample binding/no invented dates; regression and native accessibility"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-wbs-timeline/check_timeline.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/dashboard.html",
+          "symbol": "renderCards/renderOperations/renderWork/applyChanges",
+          "what": "Replace card graph with compact WBS/timeline, add native task selection/collapse"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-wbs-timeline/check_timeline.py",
+        "specs/ai-pms-wbs-timeline/ui-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-toss-ia/check_ia.py",
+        "why": "Reuse safe native DOM helper and existing work/live validators"
+      },
+      "already_tried": [
+        {
+          "what": "Previous arrow-card phase UI",
+          "result": "User rejected visual design; phase metadata is insufficient WBS/Gantt. Existing state/evidence contract is reusable."
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-wbs-timeline/spec.md",
+        "facts": [
+          "Source dashboard strict validators and safe text helpers remain unchanged.",
+          "p.work.phases is calculated from declared phase order and current verification. No Phase dependency contract exists.",
+          "Source ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research; no graphify-out exists."
+        ],
+        "excluded": "Other files, public deployment, canonical Kit and backend/API/DB/global settings; parent owns these."
+      },
+      "constraints": {
+        "must": [
+          "Preserve old tests and strict import validation",
+          "Safe text DOM/native keyboard buttons",
+          "Actual status and final gate with unknown/legacy states"
+        ],
+        "must_not": [
+          "Edit own review receipt",
+          "New dependency or backend contract",
+          "Public/deployment/global setting changes"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 40
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      }
+    }
+  ]
+}

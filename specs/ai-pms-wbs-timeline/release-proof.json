@@ -1,0 +1,35 @@
+{
+  "released_at": "2026-10-02T13:57:43.213090+00:00",
+  "dashboard_url": "https://ai-pms-dashboard.vercel.app",
+  "kit_url": "https://harness-kit.vercel.app/ai-pms.html",
+  "deployments": {
+    "dashboard": "dpl_EdvnDbKmt2RB99VxJGSEBAyjffh1",
+    "kit": "dpl_EZ2tvn5AP5Mygio2KDVpp75k4pHo"
+  },
+  "checks": {
+    "timeline": "python3 specs/ai-pms-wbs-timeline/check_timeline.py exit0",
+    "existing_flow": "python3 specs/ai-pms-phase-flow/check_flow.py exit0",
+    "public_suite": "python3 scripts/verify_public.py exit0 on final public implementation snapshot",
+    "kit": "36 pages/bundles check_site.py passed",
+    "bytes": "44 production files matched; env route404",
+    "independent_review": "Astra intent and code review pass; reviewer browser flags remain false (separate parent evidence)"
+  },
+  "sha256": {
+    "specs/ai-pms-dashboard/dashboard.html": "b658930d2ba0a2827422072794f2146cee51e2355e9c3b9eecb1deeea92e4565",
+    "apps/dashboard/public/index.html": "c9d5cea7b19cfb17d4f778f54743e49bf9c7f5c6e3fce987358ee66d2d4174c2",
+    "apps/dashboard/public/empty.html": "b2186a6d964bfa8d1f1c513de07ecdd62a38fcb87c611d6f7c0d050699d1c1cf",
+    "scripts/build_dashboard_app.py": "beee1d7ecfdcd6aae1c817c29c995542c4b8d65bfed89785485ec6a8f6d86086",
+    "specs/ai-pms-wbs-timeline/sample-schedule.json": "c23d9fd4091d0fc605d438f6375531e50427623398b9158ac9f3734ebd9e1813",
+    "specs/ai-pms-wbs-timeline/check_timeline.py": "6321b47f1be1a69c4a2b6f5cbf55922f61489a0d605ef876f83397a4917df867",
+    "specs/ai-pms-wbs-timeline/code-review.json": "93e2242e4531f0b49016343abe5909364a9b67dcb1859ccb8d0b14ed37df8fb7",
+    "specs/ai-pms-wbs-timeline/browser-observation.json": "68a25eb419540da051c259b7fe1debf12109eb758ee97ea5f45c543813e4f6a9",
+    "specs/ai-pms-wbs-timeline/public-bytes.json": "8706659a045cf6bf47cdfa113673bd9db274fa4a689431ea8bd27fb54fbe9ef2"
+  },
+  "actual_browser_render_verified": true,
+  "actual_390px_render_verified": true,
+  "wbs_timeline_ui_release_verified": true,
+  "public_gantt_demo_verified": true,
+  "schedule_boundary": "Authored fictional view fixture. No schedule inference, catalog/API schema change, drag scheduling or real deadlines. Unscheduled inputs use a Phase axis. Dependencies stay declared task evidence, not guessed phase order.",
+  "actual_multi_user_delivery_verified": false,
+  "product_complete": false
+}

@@ -1,0 +1,51 @@
+{
+  "observed_at": "2026-10-02T13:57:43.213090+00:00",
+  "observer": "parent",
+  "tool": "agent-browser isolated headless Chromium",
+  "url": "https://ai-pms-dashboard.vercel.app/",
+  "dashboard_sha256": "b658930d2ba0a2827422072794f2146cee51e2355e9c3b9eecb1deeea92e4565",
+  "desktop": {
+    "viewport": [
+      1440,
+      1000
+    ],
+    "document_width": 1440,
+    "actual_render_verified": true,
+    "full_project_chart_visually_inspected": true
+  },
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "document_width": 390,
+    "actual_render_verified": true,
+    "chart_client_width": 326,
+    "chart_scroll_width": 784,
+    "sticky_label_left_before": 32,
+    "sticky_label_left_after": 32,
+    "local_immediate_delta_scroll": [
+      400,
+      400
+    ],
+    "local_immediate_reset_scroll": [
+      400,
+      400
+    ]
+  },
+  "observations": [
+    "Public Gantt displays an authored fictional September28–October9 plan bound only to synthetic alice-recall implementation/v1 revision/v1. Other unscheduled projects use Phase axis.",
+    "Desktop whole project workspace shows three Phase summaries, seven nested task rows, owner initials, states, actual completed/required summary fills, planned date bars, example as_of marker and separate final diamond.",
+    "Native public final diamond click opens project completion conditions, retains in_progress despite project technical check pass.",
+    "Native public mobile task bar click opens exactly action-2 responsibility task. It naturally scrolls target into view (400→458), rather than returning to zero.",
+    "Local native keyboard Enter on task bar opens inspector; Space on close restores visible original task bar focus.",
+    "Actual browser caught detached restoration and async scroll-listener race; final synchronous capture plus after-append restore passed immediate set400→delta400→reset400. These are direct browser applyChanges calls, not private HTTP polling proof.",
+    "Public Bob person filter yields two projects; shared project retains four Phase/final nodes and seven task rows, with only one Bob row emphasized.",
+    "No application JavaScript errors reported. Desktop/mobile screenshots visually inspected."
+  ],
+  "screenshots_sha256": {
+    "production-desktop.png": "c4216471521164e54452d00a56206ba3b70d6a1a85403aedbd016b85b5db0b0e",
+    "production-mobile.png": "e49eb8b05ce1f73dccb14c2a63becf6c81138d97a83e1f5104557ded50135f0e"
+  },
+  "scope": "Synthetic static sample and direct in-browser update function checks. No actual provider hook or remote two-user/private authenticated browser delivery proof."
+}

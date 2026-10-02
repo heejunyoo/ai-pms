@@ -1,0 +1,41 @@
+{
+  "task_id": "timeline-ui",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/dashboard.html",
+      "action": "modified",
+      "summary": "Aligned numbered Phase/atomic task WBS with sticky labels, real authored synthetic date axis or honest Phase axis; actual owner/state/progress, task/Phase/gate native selection, inline evidence, collapse and horizontal-scroll/live/focus preservation."
+    },
+    {
+      "path": "specs/ai-pms-wbs-timeline/check_timeline.py",
+      "action": "created",
+      "summary": "Runnable native DOM checks for hierarchy, exact fixture binding and invalidation, no invented date axis, task/Phase/gate bar routing, collapse/person/live/scroll/focus preservation and text safety."
+    },
+    {
+      "path": "specs/ai-pms-wbs-timeline/ui-result.json",
+      "action": "created",
+      "summary": "Handoff implementation result and explicit browser verification boundary."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-wbs-timeline/check_timeline.py",
+    "exit_code": 0,
+    "output_tail": "WBS timeline PASS: hierarchy, task detail/focus, collapse/scope/live preservation, strict authored fixture binding/invalid fallback, no fabricated date axis, safe DOM. Actual browser/render unverified."
+  },
+  "done_when_check": [
+    {
+      "condition": "Designed WBS hierarchy + date/Phase timeline and inline selection",
+      "met": true,
+      "evidence": "renderPhaseFlow renders aligned numbered Phase summary/atomic task rows, owner initials and calculated states, planned date intervals or Phase-axis columns, calculated summary completion fill and final p.status diamond. check_timeline.py verifies label/bar task and Phase selection and final gate routing into inline evidence; check_flow.py existing full regression passed."
+    },
+    {
+      "condition": "Strict sample binding/no invented dates; regression and native accessibility",
+      "met": true,
+      "evidence": "sampleTimeline requires synthetic model, exact project/plan/version/revision, unique known task coverage, strict valid ordered ISO dates; invalid/non-synthetic schedules use Phase axis. Native buttons have stable IDs and aria controls. check_timeline.py verifies binding failures, focus return, collapse/person/live/scroll preservation and safety; existing check_flow.py and nested validators passed."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.87,
+  "notes_for_orchestrator": "Implementation and deterministic acceptance complete; actual desktop/mobile/native keyboard design acceptance, independent implementation review and any deployment remain parent responsibilities. Existing old Phase selectors/tests preserved exactly once per Phase/final. No API/DB/runtime dependency change. Schedule is authored planned synthetic duration, never inferred activity or completion. Parent owns sample-schedule/build injection. Parent browser found detached scrollLeft clamping; renderCards now restores synchronously after card attachment, and check_timeline models that clamp. This regression still requires actual browser recheck. Final refinement captures actual scroller positions synchronously at renderCards entry before replacement, including updates before native scroll events fire; detail close falls back from vanished timeline-bar origin to current label button. Both cases have runnable assertions. Frozen for parent native recheck and independent review."
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "synthetic-demo-schedule",
+  "as_of": "2026-10-02",
+  "projects": [
+    {
+      "project_id": "alice-recall",
+      "plan_id": "implementation",
+      "plan_version": "v1",
+      "revision": "v1",
+      "tasks": [
+        {
+          "task_id": "action-1",
+          "start": "2026-09-28",
+          "end": "2026-09-29"
+        },
+        {
+          "task_id": "action-3",
+          "start": "2026-09-30",
+          "end": "2026-10-02"
+        },
+        {
+          "task_id": "action-4",
+          "start": "2026-10-01",
+          "end": "2026-10-05"
+        },
+        {
+          "task_id": "action-5",
+          "start": "2026-10-01",
+          "end": "2026-10-06"
+        },
+        {
+          "task_id": "action-2",
+          "start": "2026-10-07",
+          "end": "2026-10-08"
+        },
+        {
+          "task_id": "action-6",
+          "start": "2026-10-07",
+          "end": "2026-10-09"
+        },
+        {
+          "task_id": "action-7",
+          "start": "2026-10-08",
+          "end": "2026-10-09"
+        }
+      ]
+    }
+  ]
+}

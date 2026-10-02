@@ -27,6 +27,10 @@ def main():
     assert model['evidence_mode']=='synthetic'
     if use_live: assert model['operations']['version']==1
     pages={'index.html':portfolio.render_html(model),'empty.html':portfolio.render_html(portfolio.build_model(now='2026-10-01T12:00:00Z'))}
+    # Authored fictional planning dates belong to the public demo view, never hook telemetry.
+    schedule=json.loads((ROOT/'specs/ai-pms-wbs-timeline/sample-schedule.json').read_text())
+    schedule_json=json.dumps(schedule,ensure_ascii=False).replace('<','\\u003c')
+    pages['index.html']=pages['index.html'].replace('</head>','<script type="application/json" id="sampleSchedule">'+schedule_json+'</script></head>')
     report=(ROOT/'reports/ai-pms-eli20/index.html').read_text()
     report=re.sub(r'href="../../specs/ai-pms-dashboard/evidence/dashboard.html"','href="/"',report)
     report=re.sub(r'href="../../([^"#]+)"',lambda m:'href="https://github.com/heejunyoo/ai-pms/blob/main/'+m[1]+'"',report)

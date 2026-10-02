@@ -1,3 +1,11 @@
+## 최신 진행 — WBS/timeline 시각 재구현
+
+사용자는 기존 Phase 화살표 카드를 시각적으로 부족하다고 거부했습니다. `specs/ai-pms-wbs-timeline/` 정본을 따릅니다. TeamGantt 계층형 작업표 + Linear milestone 구성을 참고해 WBS 행/담당/상태와 오른쪽 Gantt를 정렬하고 task/Phase 하단 상세를 제공합니다. 공개 날짜는 명시적 가상 schedule fixture이며 exact synthetic project/plan/revision 연결; 실제 일정 없는 입력은 Phase축입니다. 원래 목표와 완료 계산을 유지합니다.
+
+새 check_timeline + 기존 check_flow + 전체 공개 suite 통과, Astra 최종 코드 검토 pass. 실제1440/390 화면·막대/diamond 클릭·키보드 복귀·Bob scope 확인. 모바일400→증분400→reset400 실제 브라우저 확인. 공개 Dashboard/Kit READY 및44파일 byte대조 pass. 최신 인수는 specs/ai-pms-wbs-timeline/{release-proof.json,browser-observation.json,code-review.json}. 실사용자 원격 전달은 계속 false입니다.
+
+아래 Phase flow 배포는 이전 이력이며 이번 디자인 인수 증거가 아닙니다.
+
 ## 최신 화면 개편 — WBS/Phase flow
 
 사용자가 초기 WBS/Gantt 의도가 구현에서 누락되었다고 지적했습니다. UI 수정은 `specs/ai-pms-phase-flow/{source.md,spec.md,plan.json}` 정본과 별도 독립 검토에 따라 반영했습니다. 사람별 프로젝트 목표→모든 Phase→최종 완료 확인 그래프가 primary이며 클릭 하단 상세가 작업/완료 조건/검사 근거를 제공합니다. 이전 나열식 IA를 현재 목적 달성 증거로 사용하지 않습니다. 실제 일정 데이터 없이 Gantt 날짜/기간을 추정하지 않습니다.

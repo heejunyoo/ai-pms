@@ -1,0 +1,35 @@
+{
+  "reviewer": "astra-timeline-independent-review",
+  "verdict": "pass",
+  "findings": [],
+  "sha256": {
+    "specs/ai-pms-wbs-timeline/source.md": "cc96264c6db600385f6202c76d6b3c8dabf7bd8f30d935068fd1166fae46bca6",
+    "specs/ai-pms-wbs-timeline/spec.md": "0c6085d590cbca5c57abedbbf5d6cab60cb1988df0b097fc5d8b08d66f1182f0",
+    "specs/ai-pms-dashboard/dashboard.html": "b658930d2ba0a2827422072794f2146cee51e2355e9c3b9eecb1deeea92e4565",
+    "specs/ai-pms-wbs-timeline/check_timeline.py": "6321b47f1be1a69c4a2b6f5cbf55922f61489a0d605ef876f83397a4917df867",
+    "scripts/build_dashboard_app.py": "beee1d7ecfdcd6aae1c817c29c995542c4b8d65bfed89785485ec6a8f6d86086",
+    "specs/ai-pms-wbs-timeline/sample-schedule.json": "c23d9fd4091d0fc605d438f6375531e50427623398b9158ac9f3734ebd9e1813"
+  },
+  "checks": [
+    {
+      "command": "python3 specs/ai-pms-wbs-timeline/check_timeline.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 specs/ai-pms-phase-flow/check_flow.py",
+      "exit_code": 0
+    }
+  ],
+  "resolved_findings": [
+    "Horizontal chart position previously reset during selection/collapse and live card replacement. Current code captures existing chart positions synchronously before renderCards replacement, restores after card attachment, and captures/restores direct renderPhaseFlow rerenders. This fixes both detached-element clamping and deferred scroll-event races in source.",
+    "Detail close previously dereferenced a stale origin control. Current code resolves the origin element and falls back to the extant Phase/task label before focusing."
+  ],
+  "review_scope": [
+    "Exact synthetic evidence mode and project/plan/version/revision binding; duplicate, unknown and missing task rejection; UTC date format roundtrip, ordered ranges and 180-day bound; unscheduled fallback.",
+    "Whole-project authoritative Phase/project states retained under person scope; summary fill uses observed required-task completion, separate Phase and final gates remain explicit. No dates promote completion and no dependencies are fabricated.",
+    "Native task/Phase/bar/diamond selection, inline exact task evidence, collapse state, live selection and origin focus fallback; mobile scroll container and sticky labels inspected in source.",
+    "Builder injects authored synthetic schedule only into public sample index, escapes less-than before script embedding and recalculates CSP hashes. Fixture does not change model/API/DB contract. Safe text DOM retained."
+  ],
+  "actual_browser_verified_by_reviewer": false,
+  "evidence_boundary": "Independent source review and final runnable DOM/parity/regression checks only. Parent separately reports native 390px same-turn scroll 400 to delta 400 to reset 400, no document overflow, sticky labels and task-bar drilldown. Those parent observations are not independent reviewer browser verification. Visual acceptance, deployment/public bytes and actual remote multi-user delivery require their own receipts."
+}
