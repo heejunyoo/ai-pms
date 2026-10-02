@@ -1,6 +1,8 @@
-# 2026-10-02 중앙 관리 v3 진행
+# 2026-10-02 중앙 관리 v3 공개 릴리스
 
-목표/위임/개인 프로젝트·계획/테스트 선정 이유/버전·runner 시도·막힘·Kit 개선·선택 Graphify를 구현 중입니다. 최신 검증은 specs/ai-pms-management/verify_management.py이며 배포 및 실제 화면 인수까지 현재 턴에서 진행합니다. 이전 릴리스 증거는 최신 목적 전체 완료 증거가 아닙니다.
+목표/위임/개인 프로젝트·계획/테스트 선정 이유/버전·runner 시도·막힘·Kit 개선·선택 Graphify를 구현하고 공개 대시보드 및 한·영 Kit에 배포했습니다. 최신 검증은 `python3 specs/ai-pms-management/verify_management.py --release`; 현재 증거는 같은 폴더의 release-proof.json, browser-observation.md, code-review.json, public-bytes.json입니다. 공개 주소는 https://ai-pms-dashboard.vercel.app 및 https://harness-kit.vercel.app/ai-pms.html 입니다. 공개 소스 https://github.com/heejunyoo/ai-pms 의 templates/catalog-v3.template.json, docs/json-contracts.md 및 Kit ZIP activity/ 폴더에 템플릿·전체 필드 설명·실행 기록기가 있습니다.
+
+실제 subprocess 실패→수정→통과→파일 변경 후 재검증을 로컬로 확인했고 선택 Graphify의 실제 생성 및 오래된 근거도 확인했습니다. 대시보드 샘플은 합성 사용자이며 업무 성과는 미관측입니다. Graphify는 필수가 아니며 전역 훅을 설치하지 않았습니다. 자동 다중 PC 수집·인증된 운영 서버·실제 앱 훅 전달·Cursor/Gemini 어댑터는 후속 범위입니다. native file chooser는 미검증이며 JSON 붙여넣기 경로와 공개 앱에서 내보낸 v3 JSON의 snapshot 동일성은 실제로 확인했습니다. 이전 릴리스 증거는 최신 목적 전체 완료 증거가 아닙니다.
 
 # 2026-10-01 공개 연결 근거 릴리스
 

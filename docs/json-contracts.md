@@ -56,3 +56,19 @@ attempt는 실행 명령·시작/종료·종료코드·실행 환경·출처와 
 현재 버전과 현재 파일 manifest에서 모든 프로젝트 조건에 대한 최신 runner 실행이 통과해야 기술 조건 충족입니다. 선언, 미래 실행, 변경된 기준/검사 파일, 다른 manifest의 통과는 현재 완료 판정에 사용하지 않습니다. 업무 성과 달성 여부는 별도 근거가 필요하며 현재 v3에서는 미관측으로 표시합니다. blocker에는 실패 근거·원인 가설/확인·담당자·다음 조치·해결 재검증을 연결합니다. improvement에는 개선 가설·변경 버전·개선 전후 시도·적용 판단을 연결합니다.
 
 Graphify는 선택 분석이며 source revision/manifest 해시가 현재와 다르면 stale, 실패/미관측이면 unknown입니다. AST 관계를 실제 실행 경로나 테스트 커버리지로 해석하지 않습니다. 현재 소스 범위와 생성기 버전을 함께 확인해야 합니다.
+
+## v3 필드 계약 상세
+
+management 객체는 아래 정확한 필드만 허용. portfolio.validate_tree 안전 검사와 크기 한도를 공통 적용. null 허용은 명시된 것만. 모든 id/version은 기존 identifier, SHA256은 소문자64hex, 시각은 UTC Z, 상대파일 경로는 프로젝트 내(normalized relative, .. 및 absolute 거부). 새 코드 stdlib only.
+- objectives: [{id,version,kind:company|personal,parent_id:null|id,title,success_condition,source,at}]. 버전별 unique; parent는 같은 objective ID의 모든 버전에서 동일한 parent_id이어야 하며 ID 그래프 기준 cycle/참조 검증. 회사 success_condition은 선언이며 UI에 항상 업무 성과 미관측(기술 검사와 별도) 표시.
+- assignment: null|{objective_id,objective_version,kind:outcome|task,issuer,assignee,at,acceptance}; objective/owner 참조. 개인도 연결가능하나 필수아님.
+- requirements: [{id,text,source}]. unique.
+- plans: [{id,version,at,summary,reason,requirement_ids,handoff_ref:null|string}]. requirements 참조. 명시적 설명만 기록.
+- test_plans: [{id,version,plan_id,plan_version,criterion_id,requirement_ids,reason,excluded,at,definition,test_files}]. definition은 기존 six-field criterion. test_files=[{path,sha256}]. 현재 p.criteria 각각을 최신(at) test_plan이 정확하게 덮어야 함. 이전 정의 test_plan도 보존. 검사 계획 생성 이유/원문 연결/개정 이유는 reason에 남김.
+- artifact: {revision,sha256,files:[{path,sha256}]}; revision=current_revision. files는 unique normalized relative paths, sha256=actual file bytes digest. artifact.sha256=SHA256(canonical(files sorted by path)); canonical은 portfolio.canonical과 동일 ASCII JSON(sort_keys=True,separators=(comma,colon),allow_nan=False). runner --management 입력의 artifact.files에 명시된 파일만 읽고 실행 전/후 digest 갱신. artifact.files는 검사와 관련된 test_files를 모두 포함해야 하며 포괄성은 사용자 선언이지 전체 workspace 증명이 아님. 실행전 해시를 attempt.artifact_sha256에 기록하고 사후 실제 manifest를 management.artifact에 저장하므로 변경이 생기면 그 attempt는 현재 판정 unknown. attempt 자체는 보존. 사후 파일 없어지면 작업 실패로 반환하고 관리 파일 원본 유지; runner 실패 영수증은 별도 안전 receipt 보존. 동일 revision의 이전 해시 attempt는 stale(unknown)로 보존하며 구조 자체 거부하지 않는다.
+- attempts: [{id,test_plan_id,test_plan_version,test_plan_sha256,criterion_signature,revision,artifact_sha256,command,started_at,at,exit_code,actor_id,environment_id,session_id,environment:unit|mock|local|browser|live-provider|production,runner,summary,provenance:runner|declared}]. signature는 definition 기존 criterion_signature; test_plan_sha256=전체 test_plan canonical hash. 같은id unique; actor/environment mapped; command/planhash/signature 불일치 거부, 종료이전시작 거부. runner도 외부 서명 신뢰보증 아님. 미래 attempt는 unknown; declared는 completion 사용금지. 현재 revision인데 artifact hash 다르면 stale unknown. 과거 revision은 과거판정 가능하되 현재완료로승격금지.
+- blockers: [{id,status:open|resolved,summary,cause_state:hypothesis|confirmed,cause,attempt_ids,owner,next_action,resolved_by:null|attempt_id}]. attempts/owner참조; resolved는 실제 pass attempt 필요(derivedstatus; 최신artifact이면해결, 바뀌었으면revalidation). inactivity로추정금지.
+- improvements: [{id,area:rule|harness|loop|skill|mcp,version,hypothesis,change,evidence_attempt_ids,validation_attempt_ids,decision:proposed|trial|adopt|hold}]. attempts참조; adoption 효과는 명시기록, 빈validation이면검증미관측표시. 자동생산성점수없음.
+- harness: [{id,version,source,at}]. 설치선언과실행근거구분.
+- graphs: [{id,generator,version,mode:code-only,source_revision,source_sha256,at,status:generated|failed|unknown}]. 최신성은 현재 artifact와revision 일치+미래아님이면current; 다르면stale, 생성실패면unknown. AST=runtime/coverage아님.
+

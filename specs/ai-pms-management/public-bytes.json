@@ -1,0 +1,447 @@
+{
+  "production_bytes": [
+    {
+      "url": "https://harness-kit.vercel.app/index.html",
+      "sha256": "e8557e08ed7c355b8db8b9f53ec62d30917c02b847a0366bde71191212e0332f",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/index-en.html",
+      "sha256": "4fb063b6abd07f4244228acf2b8dad7382237d456a8daefe50dac62273e6ea5d",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/codex.html",
+      "sha256": "e176ede6a525584f69dacde91425d5ec595a6ac3175025e5bb2f54708da0821c",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/codex-en.html",
+      "sha256": "ffcdb125d97c1f124dff577b0cab782538a5917fd837f88f193725660755d9d1",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/claude.html",
+      "sha256": "236680ef21db950957ec23737d47f1b9222bdc56d5a725f83957ea012db6f0f8",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/claude-en.html",
+      "sha256": "2164ffadeffee948be0330512c5c2014fe9d06808667e65882dfa9b6ee1a27a2",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/skills.html",
+      "sha256": "a61514320be36b9072609f914f6fceebc8edf5dd097407435802663b02382fd5",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/skills-en.html",
+      "sha256": "ad8e37a2e1fac5201407828d91188d9b4961ec45f140af66bc420e2261483c0d",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/handoff.html",
+      "sha256": "f0c25682bc5ac7d49993432e35f3906176fa6383b3de6170c5be7fc944fe7055",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/handoff-en.html",
+      "sha256": "3229e444a81e905373b78b4153c334247c7973f37ee2a71dffa27d533e36db2d",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/expert-panel.html",
+      "sha256": "6b61a33dcd701709550aab901f3063baf95cd98feb8b0ee67af42282c068ce90",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/expert-panel-en.html",
+      "sha256": "bbaf7f783607533f9a79394397d8dca350e6c76f521c2837b6ec617e1d4c6e79",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/eli5.html",
+      "sha256": "84e747d8994e76f52593e52d3a837b502a161ee2fd3ff168a160c680fbe6102f",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/eli5-en.html",
+      "sha256": "703af11293d2dd0a4503dc9590ebfe8c4906893254bfc646b5c9cce8aeb736f4",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/maintenance.html",
+      "sha256": "52c845f87df014ca97569c476ff201bd3a99423d7128ce1dac1aec449f9f5fa0",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/maintenance-en.html",
+      "sha256": "7e476009b89106f6e323c4f4b7e435d751711c9fef9c47686d47d1d96d83e3f7",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/ai-pms.html",
+      "sha256": "d8e85e4f15e668f03b2624198fb28da445c8f977345d3060cc9b7de0733a177c",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/ai-pms-en.html",
+      "sha256": "372a918443cd545331f0f63cb91aa7742bb5751ceb23bdda1934e056b2d46a10",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/guide.html",
+      "sha256": "a8ba80cd42f2ca2917347bb8c0bb8e6159cd7c03ccca51225af1553ca5678acb",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/guide-en.html",
+      "sha256": "55db0d5317e2d15e8ab0ea12cf212ad353ab04078b9fdc7c4da458f11b106343",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/codex-harness-2026-08.html",
+      "sha256": "e176ede6a525584f69dacde91425d5ec595a6ac3175025e5bb2f54708da0821c",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/codex-harness-2026-08-en.html",
+      "sha256": "ffcdb125d97c1f124dff577b0cab782538a5917fd837f88f193725660755d9d1",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/harness-kit-2026-08.html",
+      "sha256": "236680ef21db950957ec23737d47f1b9222bdc56d5a725f83957ea012db6f0f8",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/harness-kit-2026-08-en.html",
+      "sha256": "2164ffadeffee948be0330512c5c2014fe9d06808667e65882dfa9b6ee1a27a2",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/shared-skills-2026-08.html",
+      "sha256": "a61514320be36b9072609f914f6fceebc8edf5dd097407435802663b02382fd5",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/shared-skills-2026-08-en.html",
+      "sha256": "ad8e37a2e1fac5201407828d91188d9b4961ec45f140af66bc420e2261483c0d",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/agent-harness-eli5-2026-08.html",
+      "sha256": "a8ba80cd42f2ca2917347bb8c0bb8e6159cd7c03ccca51225af1553ca5678acb",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/agent-harness-eli5-2026-08-en.html",
+      "sha256": "55db0d5317e2d15e8ab0ea12cf212ad353ab04078b9fdc7c4da458f11b106343",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/handoff-skill-2026-08.html",
+      "sha256": "f0c25682bc5ac7d49993432e35f3906176fa6383b3de6170c5be7fc944fe7055",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/handoff-skill-2026-08-en.html",
+      "sha256": "3229e444a81e905373b78b4153c334247c7973f37ee2a71dffa27d533e36db2d",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/expert-panel-2026-08.html",
+      "sha256": "6b61a33dcd701709550aab901f3063baf95cd98feb8b0ee67af42282c068ce90",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/expert-panel-2026-08-en.html",
+      "sha256": "bbaf7f783607533f9a79394397d8dca350e6c76f521c2837b6ec617e1d4c6e79",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/eli5-skill-2026-08.html",
+      "sha256": "84e747d8994e76f52593e52d3a837b502a161ee2fd3ff168a160c680fbe6102f",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/eli5-skill-2026-08-en.html",
+      "sha256": "703af11293d2dd0a4503dc9590ebfe8c4906893254bfc646b5c9cce8aeb736f4",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/codex-harness-eli5-2026-08.html",
+      "sha256": "a8ba80cd42f2ca2917347bb8c0bb8e6159cd7c03ccca51225af1553ca5678acb",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/codex-harness-eli5-2026-08-en.html",
+      "sha256": "55db0d5317e2d15e8ab0ea12cf212ad353ab04078b9fdc7c4da458f11b106343",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/manifest.json",
+      "sha256": "79352db15b9230f7ef3fc5564cf791c91cec71e450287c7340eec14af07013b3",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/implementation.zip",
+      "sha256": "21b3b3fa9603bdc4542f7eb9591287a4265013e0f47a02420e7ebcb67f5f2bfa",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/reference-ko.zip",
+      "sha256": "7543f4cb8b336955e8f62ab16cb9602294a3fa28b75e043c99cea2a2b44978ae",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://harness-kit.vercel.app/reference-en.zip",
+      "sha256": "14564912a2680a73c5c9d8934aea64edb9f50f61df60d496ff20ce5622b270bf",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://ai-pms-dashboard.vercel.app/",
+      "sha256": "4d66726196bdecde81b79b5a2c8dda501347d50d052e3c03b92420acf0b2fe79",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'none'; script-src 'sha256-crmAGkj8lMXk6iPNnymkpDgx+TNDCntSBm3mp1xmipc=' 'sha256-Mmwavl8MCuv3b7AiFXoE4o06KA77AruotSop0+HXjj0='; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://ai-pms-dashboard.vercel.app/empty.html",
+      "sha256": "55b9a99069846ae8572ed45c43f5a2445d817d5065ad6c8b79bfd0d7193c2703",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'none'; script-src 'sha256-/m6tuVgzcZg3mKwvHRNM32SJhpw92d70/1gDjBzqWC4=' 'sha256-Mmwavl8MCuv3b7AiFXoE4o06KA77AruotSop0+HXjj0='; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://ai-pms-dashboard.vercel.app/report.html",
+      "sha256": "552f8030eaf34a0af6e24309744a5a52b403ccfda3e3ad1db19c10896e085541",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": "default-src 'none'; script-src 'sha256-UgTr/Yf/fJA69cgWMhmJd2PQCfXMKfFuHRO4RZfOf4U='; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    },
+    {
+      "url": "https://ai-pms-dashboard.vercel.app/snapshot.json",
+      "sha256": "feb2a855fb2ee3eeb7c5e16359951196248453f9d01ede7ff6cf5fd5a8fd3769",
+      "bytes_equal": true,
+      "security_headers": {
+        "Content-Security-Policy": null,
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY"
+      }
+    }
+  ],
+  "env_route_status": 404,
+  "evidence_mode": "synthetic",
+  "personal_logs_uploaded": false
+}
