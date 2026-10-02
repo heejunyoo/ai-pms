@@ -1,6 +1,6 @@
 """Bilingual setup guides and retained ELI explanations."""
 import json
-RELEASE = '2026-09-30'
+RELEASE = '2026-10-02'
 
 PAGES = {'index': {'ko': ('이 운영 환경을\n다른 곳에서도.',
                   'Codex·Claude의 기본 하네스를 옮기고 적용 여부를 확인합니다. Ponytail·Graphify는 별도로 설치하고 검증합니다.',
@@ -710,6 +710,10 @@ for lang, label, text in [('ko', 'AI PMS 중앙 프로젝트', '여러 사용자
 
 
 # Management v3 retains explicit intent and actual execution separately.
+for lang in ('ko', 'en'):
+    PAGES['ai-pms'][lang][2].insert(0, ('release', '2026-10-02 업데이트 · 중앙 관리 v3' if lang=='ko' else '2026-10-02 update · Central management v3', [
+        ('이번에 추가된 내용' if lang=='ko' else 'What changed', '회사 목표·개인 위임 → 요구사항 → 계획과 테스트 설계 이유 → 실패·수정·통과 → 현재 산출물 검증을 연결했습니다. 막힘의 담당자·다음 조치, 철칙·하네스·검증 루프·스킬·MCP 개선 근거와 선택적 Graphify 최신성도 확인할 수 있습니다.' if lang=='ko' else 'Connect company goals and delegation to requirements, plan and test-design reasons, fail/fix/pass attempts and current artifact checks. Inspect blocker owners/next actions, evidence for rule/harness/loop/skill/MCP improvements and optional Graphify freshness.'),
+        ('JSON 템플릿과 설명 위치' if lang=='ko' else 'Where to find the JSON template and guide', '아래 직접 링크에서 전체 필드 설명과 v3 JSON 템플릿을 볼 수 있습니다. 구현 소스 ZIP의 activity/catalog-v3.template.json, activity/json-contracts.md, activity/README.md에도 포함됩니다. 목표·판단·검사 이유는 명시적으로 기록하고, runner는 실제 실행 결과를 남깁니다.' if lang=='ko' else 'Use the direct links below for the complete field guide and v3 JSON template. The implementation ZIP also contains activity/catalog-v3.template.json, activity/json-contracts.md and activity/README.md. Goals, decisions and test reasons are explicit records; the runner records actual execution results.')]))
 PAGES['ai-pms']['ko'][2].insert(2, ('management', '목표·위임·검사 설계와 개선 근거', [
     ('회사 목표와 개인 프로젝트', '회사 목표를 결과 달성(outcome) 또는 작업 지시(task)로 개인에게 넘기고 담당자·수락 기준·원문을 연결합니다. 개인 프로젝트도 독립적으로 관리하며 회사 목표 연결을 강제하지 않습니다. 회사의 업무 성과는 기술 검사 통과와 별도로 미관측입니다.'),
     ('왜 이 검사를 만들었나요?', 'requirements → plans의 버전·이유 → test_plans의 정의·설계 이유·제외 범위·파일 해시 → attempts의 실제 실행 영수증으로 연결합니다. 과거 계획과 시도를 보존하며 현재 revision·실제 산출물 해시·현재 검사 정의에 맞는 runner 기록만 완료 판정에 사용합니다. Handoff 결과 가져오기는 declared이며 실행 증거가 아닙니다.'),

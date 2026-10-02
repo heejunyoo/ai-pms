@@ -1,5 +1,16 @@
 # AI PMS
 
+**문서 업데이트: 2026-10-02 · 중앙 관리 v3**
+
+회사 목표·개인 위임 → 요구사항 → 계획·테스트 설계 이유 → 실제 실패·수정·통과 → 현재 산출물 검증을 연결했습니다. 막힘의 원인·도움 담당자·다음 행동, 철칙·하네스·검증 루프·스킬·MCP 개선 근거와 선택적 Graphify 최신성도 기록하고 표시합니다.
+
+- [v3 JSON 템플릿](templates/catalog-v3.template.json): 직접 입력할 기본 구조
+- [전체 JSON 필드 설명](docs/json-contracts.md): 수집·선언 항목과 근거·완료 판정의 한계
+- [관리 기록기 사용법](kit/activity/README.md): Handoff 계획 가져오기, 실제 검사 실행, 선택적 Graphify
+- [중앙 관리 v3 안내](specs/ai-pms-management/README.md): 입력에서 대시보드까지의 사용 순서
+
+Kit 구현 소스 ZIP에도 `activity/catalog-v3.template.json`, `activity/json-contracts.md`, `activity/README.md`가 포함됩니다. 목표와 판단 이유는 문서·명시적 기록으로 남기며, 훅 호출 기록에서 자동으로 추측하지 않습니다.
+
 여러 사용자가 각자 에이전트로 만드는 솔루션을 프로젝트 목표부터 문서·단계·검증·MCP와 데이터 참조까지 한곳에서 살펴보는 중앙 관리 프로토타입입니다.
 
 - [대시보드 샘플](https://ai-pms-dashboard.vercel.app)

@@ -28,3 +28,7 @@ Company task/Bob showed open blocker, hypothesis/owner/next action and no resolv
 Native file chooser is unverified; extension permission was not expanded. Paste/import validation and backend-to-UI parity were verified separately. The new production export file was verified as described above; earlier export observations remain historical evidence.
 
 These observations use public synthetic sample users and local controlled execution fixtures. They do not demonstrate automatic collection from multiple real PCs, external provider execution, business outcome achievement or authenticated operation. Graph generation is optional and no global hook was installed.
+
+## Documentation visibility follow-up — 2026-10-02
+
+The previous canonical Kit release label incorrectly remained2026-09-30; the GitHub landing README did not highlight v3. Corrected the release label to2026-10-02, added a bilingual first-section change summary and direct template/field-guide/recorder/ZIP links, and updated the public README entry points. Actual Chrome reload of the public Kit page showed the new update section and field-guide link. Existing open tabs retain their old loaded DOM until refreshed.

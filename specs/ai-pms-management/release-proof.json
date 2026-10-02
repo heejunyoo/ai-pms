@@ -12,7 +12,7 @@
   "dashboard_deployment_id": "dpl_E9VbXiUroMP1G3vWrnEgjqW2bgBV",
   "kit_production": true,
   "kit_url": "https://harness-kit.vercel.app/ai-pms.html",
-  "kit_deployment_id": "dpl_6Q79C49FDAMd6eQKECfQyokJrgs6",
+  "kit_deployment_id": "dpl_5yVLX6gWUSLc4axcaJ5AQCaYcFKU",
   "browser": {
     "goal_assignment_personal": true,
     "test_reason_attempts": true,
@@ -33,17 +33,20 @@
     "specs/ai-pms-management/check_ui_v3.py": "4d364aed5df872990414b070ffa9b25d6dca7869fd7de9a3f0016e396379e62c",
     "specs/ai-pms-management/spec.md": "de64970dafbe4627976b21119d25d88547728638050e0cd94ec4f17591283d85",
     "specs/ai-pms-management/code-review.json": "23fbfca8bfb2ba9ccc3fc44c742224aa6c3409caefaa445ce32b52a2daa4fc46",
-    "specs/ai-pms-management/browser-observation.md": "8de84c02c9ab16dd1f2e1731b6a19a51643f4819277c21805709dfbdc16f30de",
-    "specs/ai-pms-management/public-bytes.json": "c51a16ad6b39512828485ecef6e2f9de537e21c4ac20a3500533ed57d9f29219",
+    "specs/ai-pms-management/browser-observation.md": "1722e1ecb856621ccdb00737e2e49b3bbde0aadd4c6f60bdd1eb90ab67acd173",
+    "specs/ai-pms-management/public-bytes.json": "0fca8bd2b483d79501405bdc2a627eef5ffdb025a79d717eabaee4a998c1c44d",
     "templates/catalog-v3.template.json": "150cc40d3c14f56df1c2fe70ac48d9dc7d9abc56bba84f1d15b9650a46678777",
     "docs/json-contracts.md": "2771422c8509e1825e4a642a74541161e8c53ca1ed136f74a5f8ac8d5ca40915",
     "reports/ai-pms-eli20/index.html": "dfb831c2dfc4b279fea48c4b88bbbd123bb2571a641d75876f128cfda8edbf7a",
     "apps/dashboard/public/index.html": "4d66726196bdecde81b79b5a2c8dda501347d50d052e3c03b92420acf0b2fe79",
     "apps/dashboard/public/snapshot.json": "feb2a855fb2ee3eeb7c5e16359951196248453f9d01ede7ff6cf5fd5a8fd3769",
     "apps/dashboard/public/report.html": "552f8030eaf34a0af6e24309744a5a52b403ccfda3e3ad1db19c10896e085541",
-    "apps/dashboard/vercel.json": "91511d7bec2b21124278c2bb0281d3dde735b4f105c5158b08eff4c3c9f50324"
+    "apps/dashboard/vercel.json": "91511d7bec2b21124278c2bb0281d3dde735b4f105c5158b08eff4c3c9f50324",
+    "README.md": "bda432f9aab3e5ddf323eadeae535ea75ab3fda627d471f96312b92281c91556",
+    "scripts/prepare_public.py": "7afce30104b6d703c8252cc403beb99f2a3201e00e8aaf19896645567edbe8d8"
   },
-  "source_proof_sha256": "f44772440e4ed98938e9a93a1e1d52a7da281cb41d19d57cde12732ec535d8a1",
+  "documentation_visibility_corrected": true,
+  "source_proof_sha256": "e4c4982a305d4434e791c213de4072e207a050e458de9a70239b191d1c6ad03f",
   "publication_rebased": true,
   "publication_document_whitespace_normalized": [
     "docs/json-contracts.md",

@@ -31,6 +31,9 @@ def main():
         source=home/'.claude/harness/site/public'/name
         target=out/'kit/downloads'/name;target.parent.mkdir(parents=True,exist_ok=True)
         shutil.copyfile(source,target);copied.append(target.relative_to(out).as_posix())
+    for name in ('docs/json-contracts.md', 'kit/activity/json-contracts.md'):
+        target = out / name
+        target.write_text(target.read_text().rstrip() + '\n')
     (out/'.gitignore').write_text('__pycache__/\n*.pyc\n.vercel/\n.env*\n*.pem\n*.key\n.DS_Store\n')
     (out/'PUBLIC_SNAPSHOT.md').write_text('''# Publication boundary
 
@@ -43,6 +46,7 @@ Kit/build contains the canonical source used in the existing Harness Kit home in
         proof=json.loads(proof_path.read_text())
         proof['source_proof_sha256']=hashlib.sha256((ROOT/'specs/ai-pms-management/release-proof.json').read_bytes()).hexdigest()
         proof['publication_rebased']=True
+        proof['publication_document_whitespace_normalized']=['docs/json-contracts.md', 'kit/activity/json-contracts.md']
         proof['sha256']={name:hashlib.sha256((out/name).read_bytes()).hexdigest() for name in proof['sha256']}
         proof_path.write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n')
     (out/'publication-manifest.json').write_text(json.dumps({'kind':'sanitized-public-snapshot','files':sorted(copied),'excluded':['home Git history','credentials and settings','private audit backups','real runtime logs and inventory'],'personal_paths_replaced':True},indent=2)+'\n')
