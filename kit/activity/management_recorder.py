@@ -338,6 +338,93 @@ def import_handoff(root, project, handoff, result, plan_id, version, reason, tes
     management.validate(project)
 
 
+
+def trace_records(project):
+    return project['management'].setdefault('traceability',
+        {'checkpoints': [], 'decisions': [], 'handoffs': [], 'capture': []})
+
+
+def git_bytes(root, *args, optional=False):
+    env = {key: value for key, value in os.environ.items() if not key.startswith('GIT_')}
+    env['GIT_OPTIONAL_LOCKS'] = '0'
+    result = subprocess.run(['git', '-c', 'core.fsmonitor=false', '-C', str(root), *args],
+                            env=env,
+                            stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
+                            shell=False, timeout=30)
+    if len(result.stdout) > MAX_FILE or (result.returncode and not optional):
+        raise ValueError('Git observation failed or exceeded limit')
+    return result.returncode, result.stdout
+
+
+def git_fingerprint(root):
+    """Read Git identity and bounded dirty bytes; retain only digests, never diff text."""
+    root = project_root(root)
+    try:
+        code, top = git_bytes(root, 'rev-parse', '--show-toplevel', optional=True)
+    except FileNotFoundError:
+        return {'commit': None, 'parent_commits': [], 'dirty': None, 'worktree_sha256': None}
+    if code:
+        return {'commit': None, 'parent_commits': [], 'dirty': None, 'worktree_sha256': None}
+    git_root = Path(os.fsdecode(top).strip()).resolve(strict=True)
+    if git_root == Path.home().resolve() or git_root != root:
+        raise ValueError('checkpoint requires the explicit non-HOME Git root')
+    code, head = git_bytes(root, 'rev-parse', '--verify', 'HEAD', optional=True)
+    commit = head.decode('ascii').strip() if code == 0 else None
+    if commit is None:
+        raise ValueError('Git checkpoint requires an existing HEAD commit')
+    parents = []
+    if commit:
+        _, lineage = git_bytes(root, 'rev-list', '--parents', '-n', '1', commit)
+        parts = lineage.decode('ascii').split()
+        if not parts or parts[0] != commit:
+            raise ValueError('Git identity changed')
+        parents = parts[1:]
+    _, status = git_bytes(root, 'status', '--porcelain=v1', '-z', '--untracked-files=all')
+    _, diff = git_bytes(root, 'diff', '--no-ext-diff', '--no-textconv', '--binary', 'HEAD')
+    _, names = git_bytes(root, 'ls-files', '--others', '--exclude-standard', '-z')
+    digest = hashlib.sha256()
+    for body in (status, diff):
+        digest.update(len(body).to_bytes(8, 'big')); digest.update(body)
+    for name in sorted(n for n in names.split(b'\0') if n):
+        path = local_path(root, os.fsdecode(name))
+        if (root / os.fsdecode(name)).is_symlink() or not path.is_file():
+            raise ValueError('untracked checkpoint file must be a regular project file')
+        digest.update(len(name).to_bytes(8, 'big')); digest.update(name)
+        digest.update(bytes.fromhex(file_sha256(path)))
+    return {'commit': commit, 'parent_commits': parents, 'dirty': bool(status),
+            'worktree_sha256': digest.hexdigest()}
+
+
+def checkpoint_record(root, project, actor, environment_id, session, agent=None,
+                      attempt_ids=(), decision_ids=(), summary='Explicit local Git checkpoint.'):
+    root = project_root(root)
+    management.validate(project)
+    validate_actor(project, actor, environment_id)
+    management.ident(session)
+    if agent is not None:
+        management.ident(agent)
+    before = git_fingerprint(root)
+    refresh_artifact(root, project)
+    entry = {'id': 'checkpoint-' + uuid.uuid4().hex, 'at': now(), 'actor_id': actor,
+             'environment_id': environment_id, 'session_id': session, 'agent_id': agent,
+             'revision': project['current_revision'], 'artifact_sha256': project['management']['artifact']['sha256'],
+             **before, 'attempt_ids': list(attempt_ids), 'decision_ids': list(decision_ids),
+             'provenance': 'declared', 'summary': summary}
+    trace_records(project)['checkpoints'].append(entry)
+    management.validate(project)
+    if git_fingerprint(root) != before:
+        raise ValueError('Git changed during checkpoint observation')
+    return entry
+
+
+def import_trace_record(project, kind, entry):
+    """Import explicit schema records without promoting their attribution or usage."""
+    management.validate(project)
+    array = {'decision': 'decisions', 'handoff': 'handoffs', 'capture': 'capture'}[kind]
+    trace_records(project)[array].append(copy.deepcopy(entry))
+    management.validate(project)
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--project', required=True, help='explicit project directory, never HOME')
@@ -352,7 +439,14 @@ def main(argv=None):
     handoff.add_argument('--plan', required=True); handoff.add_argument('--result')
     handoff.add_argument('--plan-id', required=True); handoff.add_argument('--version', required=True)
     handoff.add_argument('--reason', required=True); handoff.add_argument('--test-file', action='append', required=True)
-    for command in (run, handoff):
+    checkpoint = commands.add_parser('checkpoint')
+    checkpoint.add_argument('--agent-id'); checkpoint.add_argument('--attempt-id', action='append', default=[])
+    checkpoint.add_argument('--decision-id', action='append', default=[])
+    checkpoint.add_argument('--summary', default='Explicit local Git checkpoint.')
+    record = commands.add_parser('record')
+    record.add_argument('--kind', required=True, choices=('decision', 'handoff', 'capture'))
+    record.add_argument('--record', required=True, help='project-relative explicit record JSON')
+    for command in (run, handoff, checkpoint):
         command.add_argument('--actor-id', required=True); command.add_argument('--environment-id', required=True)
         command.add_argument('--session-id', required=True)
     graph = commands.add_parser('graph'); graph.add_argument('--timeout', type=int, default=300)
@@ -378,6 +472,13 @@ def main(argv=None):
                 result = read_json(local_path(root, args.result)) if args.result else None
                 import_handoff(root, project, plan, result, args.plan_id, args.version, args.reason,
                                args.test_file, args.actor_id, args.environment_id, args.session_id)
+                code = 0
+            elif args.action == 'checkpoint':
+                checkpoint_record(root, project, args.actor_id, args.environment_id, args.session_id,
+                                  args.agent_id, args.attempt_id, args.decision_id, args.summary)
+                code = 0
+            elif args.action == 'record':
+                import_trace_record(project, args.kind, read_json(local_path(root, args.record)))
                 code = 0
             else:
                 management.validate(project)

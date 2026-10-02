@@ -1,3 +1,7 @@
+# 2026-10-02 추가 완료 — 변경·판단·인계·기록 상태
+
+Atlas-inspired four improvements are implemented as optional management.traceability, preserving old v3. New dashboardtab connects checkpoints/decisions/handoffs/capture. Kit checkpoint reads Git safely with explicit declared session/agent attribution; record imports decision/handoff/capture without promoting usage. Git roots excludeHOME; noGit works with nulls, unbornGit requiresinitialcommit; ignored/submodule content outofscope. Actual Git13checks, tracecontract19checks, legacy26, UI parity and malformedpreservation passed; actualproduction newtab/mobile/export verified. AutomaticPCcollection remainsdeferred. Currentcombinedreview is traceability-independent-review.json plus traceability-review.json; oldcode-review is historical. Currentacceptance command remains python3 specs/ai-pms-management/verify_management.py --release.
+
 # 2026-10-02 중앙 관리 v3 공개 릴리스
 
 목표/위임/개인 프로젝트·계획/테스트 선정 이유/버전·runner 시도·막힘·Kit 개선·선택 Graphify를 구현하고 공개 대시보드 및 한·영 Kit에 배포했습니다. 최신 검증은 `python3 specs/ai-pms-management/verify_management.py --release`; 현재 증거는 같은 폴더의 release-proof.json, browser-observation.md, code-review.json, public-bytes.json입니다. 공개 주소는 https://ai-pms-dashboard.vercel.app 및 https://harness-kit.vercel.app/ai-pms.html 입니다. 공개 소스 https://github.com/heejunyoo/ai-pms 의 templates/catalog-v3.template.json, docs/json-contracts.md 및 Kit ZIP activity/ 폴더에 템플릿·전체 필드 설명·실행 기록기가 있습니다.

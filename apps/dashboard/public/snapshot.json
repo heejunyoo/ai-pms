@@ -840,7 +840,109 @@
             "status": "generated",
             "freshness": "current"
           }
-        ]
+        ],
+        "traceability": {
+          "checkpoints": [
+            {
+              "id": "checkpoint-synthetic",
+              "at": "2026-09-29T05:00:00Z",
+              "actor_id": "Alice",
+              "environment_id": "laptop",
+              "session_id": "alice-management",
+              "agent_id": "synthetic-agent",
+              "revision": "v1",
+              "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+              "commit": "1111111111111111111111111111111111111111",
+              "parent_commits": [
+                "2222222222222222222222222222222222222222"
+              ],
+              "dirty": true,
+              "worktree_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+              "attempt_ids": [
+                "attempt-recall-acceptance-fail",
+                "attempt-recall-acceptance-pass",
+                "attempt-design-review-fail",
+                "attempt-design-review-pass",
+                "attempt-single-task-fail",
+                "attempt-single-task-pass"
+              ],
+              "decision_ids": [
+                "decision-approach"
+              ],
+              "provenance": "declared",
+              "summary": "합성 예시: 제출 코드와 검사 산출물 연결; 실제 Git 관측 아님"
+            }
+          ],
+          "decisions": [
+            {
+              "id": "decision-approach",
+              "at": "2026-09-29T02:10:00Z",
+              "actor_id": "Alice",
+              "environment_id": "laptop",
+              "session_id": "alice-management",
+              "summary": "합성 판단: 요구사항을 명시적 검사로 연결",
+              "alternatives": [
+                "출처 확인 후 응답",
+                "출처 없는 응답 허용"
+              ],
+              "reason": "놓친 조건을 재현 가능한 검사로 보존하기 위해 선택",
+              "requirement_ids": [
+                "req-core"
+              ],
+              "supersedes": null,
+              "provenance": "declared"
+            }
+          ],
+          "handoffs": [
+            {
+              "id": "handoff-synthetic",
+              "at": "2026-09-29T05:10:00Z",
+              "from_actor_id": "Alice",
+              "from_environment_id": "laptop",
+              "from_session_id": "alice-management",
+              "to_actor_id": "Alice",
+              "to_environment_id": "laptop",
+              "to_session_id": "alice-next-session",
+              "summary": "합성 인계: 선택한 접근과 실패 검사 전달",
+              "requirement_ids": [
+                "req-core"
+              ],
+              "decision_ids": [
+                "decision-approach"
+              ],
+              "attempt_ids": [
+                "attempt-recall-acceptance-fail",
+                "attempt-recall-acceptance-pass",
+                "attempt-design-review-fail",
+                "attempt-design-review-pass",
+                "attempt-single-task-fail",
+                "attempt-single-task-pass"
+              ],
+              "packet_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+              "usage": "observed",
+              "usage_at": "2026-09-29T05:20:00Z",
+              "usage_evidence": "합성 도구 조회 예시: 다음 세션에서 인계 문서 읽음; 실제 실행 근거 아님"
+            }
+          ],
+          "capture": [
+            {
+              "id": "capture-synthetic",
+              "actor_id": "Alice",
+              "environment_id": "laptop",
+              "tool": "synthetic-kit",
+              "capabilities": [
+                "tests",
+                "handoff",
+                "git"
+              ],
+              "status": "active",
+              "last_observed_at": "2026-09-29T05:20:00Z",
+              "at": "2026-09-29T06:00:00Z",
+              "reason": "합성 기록 상태 보고; 현재 연결이나 heartbeat를 증명하지 않음",
+              "provenance": "declared"
+            }
+          ]
+        }
       }
     },
     {
@@ -1263,7 +1365,101 @@
             "status": "failed",
             "freshness": "unknown"
           }
-        ]
+        ],
+        "traceability": {
+          "checkpoints": [
+            {
+              "id": "checkpoint-synthetic",
+              "at": "2026-09-29T05:00:00Z",
+              "actor_id": "Bob",
+              "environment_id": "laptop",
+              "session_id": "bob-management",
+              "agent_id": "synthetic-agent",
+              "revision": "v1",
+              "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+              "commit": "1111111111111111111111111111111111111111",
+              "parent_commits": [
+                "2222222222222222222222222222222222222222"
+              ],
+              "dirty": true,
+              "worktree_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+              "attempt_ids": [
+                "attempt-payments-acceptance-fail",
+                "attempt-payment-design-fail"
+              ],
+              "decision_ids": [
+                "decision-approach"
+              ],
+              "provenance": "declared",
+              "summary": "합성 예시: 제출 코드와 검사 산출물 연결; 실제 Git 관측 아님"
+            }
+          ],
+          "decisions": [
+            {
+              "id": "decision-approach",
+              "at": "2026-09-29T02:10:00Z",
+              "actor_id": "Bob",
+              "environment_id": "laptop",
+              "session_id": "bob-management",
+              "summary": "합성 판단: 요구사항을 명시적 검사로 연결",
+              "alternatives": [
+                "실패 사례부터 검사",
+                "구현 후 수동 확인"
+              ],
+              "reason": "놓친 조건을 재현 가능한 검사로 보존하기 위해 선택",
+              "requirement_ids": [
+                "req-core"
+              ],
+              "supersedes": null,
+              "provenance": "declared"
+            }
+          ],
+          "handoffs": [
+            {
+              "id": "handoff-synthetic",
+              "at": "2026-09-29T05:10:00Z",
+              "from_actor_id": "Bob",
+              "from_environment_id": "laptop",
+              "from_session_id": "bob-management",
+              "to_actor_id": "Bob",
+              "to_environment_id": "laptop",
+              "to_session_id": "bob-next-session",
+              "summary": "합성 인계: 선택한 접근과 실패 검사 전달",
+              "requirement_ids": [
+                "req-core"
+              ],
+              "decision_ids": [
+                "decision-approach"
+              ],
+              "attempt_ids": [
+                "attempt-payments-acceptance-fail",
+                "attempt-payment-design-fail"
+              ],
+              "packet_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+              "usage": "not_observed",
+              "usage_at": null,
+              "usage_evidence": null
+            }
+          ],
+          "capture": [
+            {
+              "id": "capture-synthetic",
+              "actor_id": "Bob",
+              "environment_id": "laptop",
+              "tool": "synthetic-kit",
+              "capabilities": [
+                "tests",
+                "handoff",
+                "git"
+              ],
+              "status": "degraded",
+              "last_observed_at": "2026-09-29T03:00:00Z",
+              "at": "2026-09-29T06:00:00Z",
+              "reason": "합성 기록 상태 보고; 현재 연결이나 heartbeat를 증명하지 않음",
+              "provenance": "declared"
+            }
+          ]
+        }
       }
     },
     {
@@ -1593,7 +1789,94 @@
             "status": "generated",
             "freshness": "stale"
           }
-        ]
+        ],
+        "traceability": {
+          "checkpoints": [
+            {
+              "id": "checkpoint-synthetic",
+              "at": "2026-09-29T05:00:00Z",
+              "actor_id": "Carol",
+              "environment_id": "desktop",
+              "session_id": "carol-management",
+              "agent_id": "synthetic-agent",
+              "revision": "v2",
+              "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+              "commit": null,
+              "parent_commits": [],
+              "dirty": null,
+              "worktree_sha256": null,
+              "attempt_ids": [],
+              "decision_ids": [
+                "decision-approach"
+              ],
+              "provenance": "declared",
+              "summary": "합성 예시: 제출 코드와 검사 산출물 연결; 실제 Git 관측 아님"
+            }
+          ],
+          "decisions": [
+            {
+              "id": "decision-approach",
+              "at": "2026-09-29T02:10:00Z",
+              "actor_id": "Carol",
+              "environment_id": "desktop",
+              "session_id": "carol-management",
+              "summary": "합성 판단: 요구사항을 명시적 검사로 연결",
+              "alternatives": [
+                "실패 사례부터 검사",
+                "구현 후 수동 확인"
+              ],
+              "reason": "놓친 조건을 재현 가능한 검사로 보존하기 위해 선택",
+              "requirement_ids": [
+                "req-core"
+              ],
+              "supersedes": null,
+              "provenance": "declared"
+            }
+          ],
+          "handoffs": [
+            {
+              "id": "handoff-synthetic",
+              "at": "2026-09-29T05:10:00Z",
+              "from_actor_id": "Carol",
+              "from_environment_id": "desktop",
+              "from_session_id": "carol-management",
+              "to_actor_id": "Carol",
+              "to_environment_id": "desktop",
+              "to_session_id": "carol-next-session",
+              "summary": "합성 인계: 선택한 접근과 실패 검사 전달",
+              "requirement_ids": [
+                "req-core"
+              ],
+              "decision_ids": [
+                "decision-approach"
+              ],
+              "attempt_ids": [
+                "attempt-dashboard-acceptance-old"
+              ],
+              "packet_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+              "usage": "not_observed",
+              "usage_at": null,
+              "usage_evidence": null
+            }
+          ],
+          "capture": [
+            {
+              "id": "capture-synthetic",
+              "actor_id": "Carol",
+              "environment_id": "desktop",
+              "tool": "synthetic-kit",
+              "capabilities": [
+                "tests",
+                "handoff"
+              ],
+              "status": "paused",
+              "last_observed_at": "2026-09-29T03:00:00Z",
+              "at": "2026-09-29T06:00:00Z",
+              "reason": "합성 기록 상태 보고; 현재 연결이나 heartbeat를 증명하지 않음",
+              "provenance": "declared"
+            }
+          ]
+        }
       }
     },
     {

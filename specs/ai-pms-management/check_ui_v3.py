@@ -29,7 +29,7 @@ def main():
     fixtures=[base]
     # Real backend projection must remain valid after provenance, content, time and criterion changes.
     for mutation in ['declared','artifact','future','graphfailed','graphstale','conflict','oldrevision','testfilemismatch','planrevision']:
-        c=copy.deepcopy(catalog);p=c['projects'][0];m=p['management']
+        c=copy.deepcopy(catalog);p=c['projects'][0];m=p['management'];m.pop('traceability',None)
         if mutation=='declared':
             for a in m['attempts']:a['provenance']='declared'
             for b in m['blockers']:b.update(status='open',resolved_by=None)
@@ -76,6 +76,19 @@ def main():
     def empty_historical(p):
         t=copy.deepcopy(p['management']['test_plans'][0]);t.update(version='old-empty',at='2020-01-01T00:00:00Z');t['definition'].update(label='',command='');p['management']['test_plans'].append(t)
     bad(empty_historical)
+    if 'traceability' in base['projects'][0]['management']:
+        bad(lambda p:p['management']['traceability']['checkpoints'][0].update(artifact_sha256='1'*64))
+        bad(lambda p:p['management']['traceability']['handoffs'][0].update(at='2026-09-29T00:00:00.000002Z',usage='observed',usage_at='2026-09-29T00:00:00.000001Z',usage_evidence='Synthetic read'))
+        bad(lambda p:p['management']['traceability']['capture'][0].update(at='2026-09-29T00:00:00.000001Z',last_observed_at='2026-09-29T00:00:00.000002Z'))
+        bad(lambda p:p['management']['traceability']['decisions'][0].update(at='0000-01-01T00:00:00Z'))
+        bad(lambda p:p['management']['traceability']['decisions'][0].update(alternatives=[]))
+        bad(lambda p:p['management']['traceability']['decisions'][0].update(supersedes='missing'))
+        bad(lambda p:p['management']['traceability']['decisions'][0].update(supersedes=p['management']['traceability']['decisions'][0]['id']))
+        bad(lambda p:p['management']['traceability']['handoffs'][0].update(usage='not_observed',usage_at='2026-09-29T06:00:00Z'))
+        bad(lambda p:p['management']['traceability']['capture'][0].update(status='unsupported'))
+        bad(lambda p:p['management']['traceability']['checkpoints'][0].update(actor_id='Other'))
+        bad(lambda p:p['management']['traceability']['decisions'][0].update(reason='token=unsafe'))
+        bad(lambda p:p['management']['traceability']['handoffs'][0].update(decision_ids=['missing']))
     validate=script[:script.index('function el(')]
     js=validate+'\nconst assert=require("node:assert/strict");\n'
     js+='const fixtures='+json.dumps(fixtures)+';const malformed='+json.dumps(malformed)+';\n'
@@ -83,7 +96,7 @@ def main():
     js+='for(const m of fixtures)validateModel(m);for(const m of malformed)assert.throws(()=>validateModel(m));\n'
     js+='let model=fixtures[0],activeTab="tests",selectedDocument="",renders=0;function renderPortfolio(){renders++;}function renderDetail(){renders++;}global.document={getElementById:()=>({textContent:""})};\n'
     js+=script[script.index('function applySnapshot('):script.index('function importError(')]
-    js+='for(const m of malformed){assert.throws(()=>applySnapshot(JSON.stringify(m)));assert.strictEqual(model,fixtures[0]);}assert.equal(renders,0);console.log("v3 backend parity: 11 valid snapshots, 23 forged/malformed imports, prior-state preservation PASS");\n'
+    js+='for(const m of malformed){assert.throws(()=>applySnapshot(JSON.stringify(m)));assert.strictEqual(model,fixtures[0]);}assert.equal(renders,0);console.log("v3 backend parity: 11 valid snapshots, extended forged/malformed imports, prior-state preservation PASS");\n'
     with tempfile.TemporaryDirectory() as td:
         path=Path(td)/'ui-v3.js';path.write_text(js)
         subprocess.run(['node',str(path)],check=True)

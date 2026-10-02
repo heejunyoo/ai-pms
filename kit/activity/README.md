@@ -130,3 +130,32 @@ The wrapper invokes only `graphify extract <project> --code-only --no-cluster`, 
 막힘은 원인 가설/확정, 담당자, 다음 행동과 시도를 명시적으로 연결합니다. 개선 제안은 rule/harness/loop/skill/mcp 영역과 변경 버전, 근거/검증 시도를 기록하며 검증이 없으면 효과 미관측으로 남깁니다. 비활동 시간으로 막힘을 추정하거나 자동 생산성 점수를 만들지 않습니다. 그래프는 선택적 로컬 AST 근거입니다. 전역 훅·trust·원격 sender는 변경하지 않고, 공개 자료에는 합성 기록만 사용합니다. 실제 로그는 개인정보 검토 후 선택적으로 공유하세요.
 
 Graphify 0.9.69의 실제 code-only 검사에서 외부 import를 가리키는 edge에 대응 node가 빠지는 경우를 확인했습니다. 이 경우 그래프를 성공으로 승격하지 않고 failed로 기록합니다. 검사 실행은 계속됩니다. 외부 의존성까지 분석하려면 생성기의 노드/edge 정합성을 보완한 뒤 다시 생성해야 합니다. 코드 구조의 부분 결과를 전체 런타임 근거로 사용하지 않습니다.
+
+### 변경 체크포인트 · 판단 · 인계 · 기록 범위 / Traceability
+
+Optional `management.traceability` connects code checkpoints, explicit decisions and alternatives, session handoff usage, and reported capture coverage. Existing v3 records without this object still work. It does not change technical completion criteria. Keep the four arrays `checkpoints`, `decisions`, `handoffs`, `capture`; the supplied field guide defines every field.
+
+```sh
+python3 ~/.agents/harness-activity/management_recorder.py \
+  --project ./my-project --management management.json --project-id my-project \
+  checkpoint --actor-id Alice --environment-id laptop --session-id session-1 \
+  --agent-id codex --attempt-id attempt-reviewed --decision-id decision-reviewed \
+  --summary 'Checkpoint for the reviewed requirement and matching test receipt.'
+python3 ~/.agents/harness-activity/management_recorder.py \
+  --project ./my-project --management management.json --project-id my-project \
+  record --kind decision --record decision.json
+python3 ~/.agents/harness-activity/management_recorder.py \
+  --project ./my-project --management management.json --project-id my-project \
+  record --kind handoff --record handoff-usage.json
+python3 ~/.agents/harness-activity/management_recorder.py \
+  --project ./my-project --management management.json --project-id my-project \
+  record --kind capture --record capture-report.json
+```
+
+Omit optional `--attempt-id`/`--decision-id` when no matching evidence exists; repeat them for multiple references. A checkpoint reads Git HEAD, parent commits, NUL-delimited status, a binary diff against HEAD, and hashes of untracked regular files. It stores only commit identifiers and a worktree digest, never raw status/diff/file contents or commit messages. Git must cover exactly the explicit non-HOME project root; nested repositories outside that boundary and escaping/untracked symlinks are rejected. Git absent leaves commit/dirty/worktree fields null while the declared artifact manifest is still hashed. Git repositories without an initial HEAD commit are rejected; create and review the initial commit before using a Git checkpoint. The recorder compares Git fingerprints before and after observation and preserves the original JSON if they change. It never commits, stages, installs hooks, or calls a remote API.
+
+The worktree digest covers Git's tracked diff/status and untracked regular project files; **ignored files and submodule contents are outside this coverage**. A checkpoint updates the explicitly listed artifact hashes; existing attempt links must match that exact revision and artifact hash. Git identity does not prove session authorship. Session/agent attribution is supplied by the operator and remains `provenance: declared`, even though the local command observed Git. Digests and imported JSON are not authenticated attestations.
+
+`record` imports one exact decision, handoff, or capture object from a reviewed project-relative JSON file. Decisions preserve earlier decisions via `supersedes`, require explicit alternatives/reasons and reject cycles. Record the rationale you want to share, not private model reasoning. Handoff `usage: not_observed` stays unobserved; installing a skill, generating a packet or exporting a log never changes it to observed. Declared/observed usage requires a timestamp and concrete evidence; imported observed evidence is still not authenticated execution. Capture status is a historical source report with capabilities, observation time and reason, not a live heartbeat. Silence never establishes inactivity, completion, or unsupported tooling. All source tuples and referenced records must belong to the selected project; malformed imports preserve the original file.
+
+변경 근거에서 목표·판단·세션·코드·검사를 이어 볼 수 있습니다. 판단 이유와 대안은 직접 작성하고, 인계 패킷을 만든 사실과 다음 세션이 실제로 사용한 근거를 구분합니다. 기록 중지·오류·미지원은 명시 보고로 남기며, 수집되지 않은 작업을 정체나 실패로 판단하지 않습니다. 자동 PC 수집·전역 훅 설치는 포함하지 않습니다.

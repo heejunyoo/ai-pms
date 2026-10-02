@@ -9,7 +9,7 @@ import re
 
 CRITERION_KEYS = {'id','label','scope','target_id','command','expected_exit_code'}
 FIELDS = {'objectives','assignment','requirements','plans','test_plans','artifact','attempts','blockers','improvements','harness','graphs'}
-PRIVATE = re.compile(r'(?i)(?:\bBearer\s+\S+|\b(?:sk|ghp|github_pat|AIza|xox[baprs])[-_][A-Za-z0-9_-]{8,}|\bAIza[A-Za-z0-9_-]{20,}|-----BEGIN .*PRIVATE KEY|\b(?:password|secret|token|api[_ -]?key)\s*[:=]\s*\S+|(?:/' + 'Users/' + r'|/home/|/private/|/tmp/|/root/|[A-Z]:[\\/]|~/)[^\s]*)')
+PRIVATE = re.compile(r'(?i)(?:\bBearer\s+\S+|\b(?:sk|ghp|github_pat|AIza|xox[baprs])[-_][A-Za-z0-9_-]{8,}|\bAIza[A-Za-z0-9_-]{20,}|-----BEGIN .*PRIVATE KEY|\b(?:password|secret|token|api[_ -]?key|access[_-]?token)\s*[:=]\s*\S+|(?:/' + 'Users/' + r'|/home/|/private/|/tmp/|/root/|[A-Z]:[\\/]|~/)[^\s]*)')
 ABSOLUTE = re.compile(r'(?:^|[\s\"\'=])/(?!/)[A-Za-z0-9_.-]+(?:/[^\s<>]*)?')
 
 def require(ok, message):
@@ -71,8 +71,60 @@ def criterion(c,p):
     require(c['scope']!='project' or c['target_id']==p['id'],'project target')
     require(c['scope']!='phase' or c['target_id'] in {x['id'] for x in p['phases']},'phase target')
 
+def validate_traceability(t,pairs,reqids,attemptmap):
+    keys(t,('checkpoints','decisions','handoffs','capture'),'traceability')
+    decisions=records(t,'decisions',('id','at','actor_id','environment_id','session_id','summary','alternatives','reason','requirement_ids','supersedes','provenance'))
+    decisionmap={r['id']:r for r in decisions}
+    def source(r,prefix=''):
+        for k in ('actor_id','environment_id','session_id'): ident(r[prefix+k])
+        require((r[prefix+'actor_id'],r[prefix+'environment_id']) in pairs,'trace source')
+    for r in decisions:
+        source(r); time(r['at']); text(r['summary']); text(r['reason']); refs(r['requirement_ids'],reqids)
+        require(bool(arr(r['alternatives'])),'decision alternatives')
+        for alternative in r['alternatives']: text(alternative)
+        require(r['provenance']=='declared','decision provenance')
+        if r['supersedes'] is not None: ident(r['supersedes'])
+        require(r['supersedes'] is None or r['supersedes'] in decisionmap,'supersedes reference')
+    for r in decisions:
+        seen=set(); cur=r['id']
+        while cur is not None:
+            require(cur not in seen,'decision cycle'); seen.add(cur); cur=decisionmap[cur]['supersedes']
+    def commit(v): require(isinstance(v,str) and re.fullmatch(r'(?:[a-f0-9]{40}|[a-f0-9]{64})',v),'git commit')
+    for r in records(t,'checkpoints',('id','at','actor_id','environment_id','session_id','agent_id','revision','artifact_sha256','commit','parent_commits','dirty','worktree_sha256','attempt_ids','decision_ids','provenance','summary')):
+        source(r); time(r['at']); ident(r['revision']); sha(r['artifact_sha256']); text(r['summary'])
+        if r['agent_id'] is not None: ident(r['agent_id'])
+        require(r['provenance'] in ('observed','declared','inferred'),'checkpoint provenance')
+        refs(r['attempt_ids'],attemptmap); refs(r['decision_ids'],decisionmap)
+        for aid in r['attempt_ids']:
+            a=attemptmap[aid]; require(a['revision']==r['revision'] and a['artifact_sha256']==r['artifact_sha256'],'checkpoint attempt identity')
+        parents=arr(r['parent_commits'])
+        for parent in parents: commit(parent)
+        require(len(parents)==len(set(parents)),'duplicate parent commits')
+        require(r['dirty'] is None or type(r['dirty']) is bool,'git dirty')
+        if r['worktree_sha256'] is not None: sha(r['worktree_sha256'])
+        if r['commit'] is None:
+            require(not parents and r['dirty'] is None and r['worktree_sha256'] is None,'no git checkpoint')
+        else: commit(r['commit'])
+    for r in records(t,'handoffs',('id','at','from_actor_id','from_environment_id','from_session_id','to_actor_id','to_environment_id','to_session_id','summary','requirement_ids','decision_ids','attempt_ids','packet_sha256','usage','usage_at','usage_evidence')):
+        source(r,'from_'); source(r,'to_'); at=time(r['at']); text(r['summary']); sha(r['packet_sha256'])
+        require(tuple(r['from_'+k] for k in ('actor_id','environment_id','session_id'))!=tuple(r['to_'+k] for k in ('actor_id','environment_id','session_id')),'handoff same session')
+        refs(r['requirement_ids'],reqids); refs(r['decision_ids'],decisionmap); refs(r['attempt_ids'],attemptmap)
+        require(r['usage'] in ('not_observed','declared','observed'),'handoff usage')
+        if r['usage']=='not_observed': require(r['usage_at'] is None and r['usage_evidence'] is None,'unobserved usage evidence')
+        else:
+            require(r['usage_at'] is not None and r['usage_evidence'] is not None,'usage evidence missing')
+            require(time(r['usage_at'])>=at,'usage time order'); text(r['usage_evidence'])
+    for r in records(t,'capture',('id','actor_id','environment_id','tool','capabilities','status','last_observed_at','at','reason','provenance')):
+        for k in ('actor_id','environment_id','tool'): ident(r[k])
+        require((r['actor_id'],r['environment_id']) in pairs,'capture source'); at=time(r['at']); text(r['reason'])
+        refs(r['capabilities'],{'events','tests','git','handoff','memory','mcp'})
+        require(r['status'] in ('active','paused','degraded','stopped','unsupported','unknown'),'capture status')
+        require(r['provenance'] in ('observed','declared'),'capture provenance')
+        require(r['status']!='unsupported' or not r['capabilities'],'unsupported capabilities')
+        if r['last_observed_at'] is not None: require(time(r['last_observed_at'])<=at,'capture time order')
+
 def validate(p,helpers=None):
-    m=p['management']; keys(m,FIELDS)
+    m=p['management']; keys(m,FIELDS | ({'traceability'} if 'traceability' in m else set()))
     require(len(canonical(m).encode())<=16*1024*1024,'size limit')
     (helpers.validate_tree if helpers else validate_tree)(m)
     owners={r['actor_id'] for r in p['source_refs']}; pairs={(r['actor_id'],r['environment_id']) for r in p['source_refs']}
@@ -146,6 +198,7 @@ def validate(p,helpers=None):
     for r in records(m,'graphs',('id','generator','version','mode','source_revision','source_sha256','at','status')):
         for k in ('generator','version','source_revision'): ident(r[k])
         sha(r['source_sha256']); time(r['at']); require(r['mode']=='code-only' and r['status'] in ('generated','failed','unknown'),'graph')
+    if 'traceability' in m: validate_traceability(m['traceability'],pairs,reqids,attemptmap)
     return m
 
 def derive(p,observed,helpers=None):

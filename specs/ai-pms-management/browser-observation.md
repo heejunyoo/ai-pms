@@ -32,3 +32,9 @@ These observations use public synthetic sample users and local controlled execut
 ## Documentation visibility follow-up — 2026-10-02
 
 The previous canonical Kit release label incorrectly remained2026-09-30; the GitHub landing README did not highlight v3. Corrected the release label to2026-10-02, added a bilingual first-section change summary and direct template/field-guide/recorder/ZIP links, and updated the public README entry points. Actual Chrome reload of the public Kit page showed the new update section and field-guide link. Existing open tabs retain their old loaded DOM until refreshed.
+
+## Traceability extension acceptance — 2026-10-02
+
+Actual production Chrome reload exposed the new 변경 · 판단 · 인계 · 기록 상태 tab. Alice showed a clearly synthetic declared checkpoint, Git parent/dirtystate/worktree digest, linked attempts/decision, alternatives/reason/requirement, source/destination session and illustrative read evidence, and historical capture status. Bob showed handoff use unobserved and degraded capture; Carol showed noGit nulls and paused capture. Existing technical completion states remained complete/failed/revalidation respectively. Console error log empty. At390×844, viewport and document scrollwidth both390; visible screenshot confirmed readable detail and horizontal tabstrip. Invalid JSON paste preserved Carol detail. Actual downloaded v3 JSON containing traceability exactly equalled production snapshot. Kit public page showed bilingual traceability instructions; template/field guide are bundled.
+
+No real multi-PC collection, authenticated session authorship, automatic memory consumption, wholeGit-tree testing or business outcome is claimed. Git fingerprint excludes ignored files and submodule contents; artifact manifest coverage remains declared.

@@ -18,6 +18,7 @@ def main():
     assert (kit / 'management.py').read_bytes() == (ROOT / 'specs/ai-pms-dashboard/management.py').read_bytes()
     for script in [
         'specs/ai-pms-management/test_management.py',
+        'specs/ai-pms-management/test_traceability.py',
         str(kit / 'test_management_recorder.py'),
         'specs/ai-pms-management/check_ui_v3.py',
         'specs/ai-pms-dashboard/test_portfolio.py',
@@ -35,7 +36,9 @@ def main():
             assert proof['browser'][flag], flag
         for name, digest in proof['sha256'].items():
             assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == digest, 'stale receipt: ' + name
-        review = json.loads((ROOT / 'specs/ai-pms-management/code-review.json').read_text())
+        review_path = ROOT / 'specs/ai-pms-management/traceability-independent-review.json'
+        if not review_path.exists(): review_path = ROOT / 'specs/ai-pms-management/code-review.json'
+        review = json.loads(review_path.read_text())
         assert review['verdict'] == 'no_blockers' and review['reviewer'] != 'root-management-author'
         for name, digest in review['sha256'].items():
             path = ROOT / name

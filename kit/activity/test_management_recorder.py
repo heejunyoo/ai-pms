@@ -190,5 +190,125 @@ class RecorderTests(unittest.TestCase):
         self.assertEqual(next(g for g in management.derive(p,recorder.now())[1]['graphs'] if g['id']==graph['id'])['freshness'],'stale')
 
 
+    def git(self, *args):
+        result = subprocess.run(['git', '-C', str(self.root), *args], capture_output=True)
+        self.assertEqual(result.returncode, 0, result.stderr.decode())
+        return result.stdout.decode().strip()
+
+    def checkpoint_args(self, *extra):
+        return ('checkpoint', '--actor-id', 'Alice', '--environment-id', 'local',
+                '--session-id', 'session-1', '--agent-id', 'codex', *extra)
+
+    def init_git(self):
+        self.git('init'); self.git('config', 'user.name', 'Synthetic test')
+        self.git('config', 'user.email', 'synthetic@example.test')
+        self.git('add', 'check.py', 'control.txt'); self.git('commit', '-m', 'Synthetic first')
+
+    def test_real_git_checkpoint_dirty_untracked_head_and_null_no_git(self):
+        run = self.invoke(*self.checkpoint_args()); self.assertEqual(run.returncode, 0, run.stdout)
+        entry = recorder.read_json(self.target)['management']['traceability']['checkpoints'][0]
+        self.assertEqual([entry[k] for k in ('commit', 'dirty', 'worktree_sha256')], [None, None, None])
+        self.init_git()
+        first = self.git('rev-parse', 'HEAD')
+        run = self.invoke(*self.checkpoint_args()); self.assertEqual(run.returncode, 0, run.stdout)
+        entry = recorder.read_json(self.target)['management']['traceability']['checkpoints'][-1]
+        self.assertEqual(entry['commit'], first); self.assertEqual(entry['parent_commits'], [])
+        self.assertEqual(entry['provenance'], 'declared'); self.assertTrue(entry['dirty'])
+        before = recorder.git_fingerprint(self.root)
+        (self.root/'untracked.txt').write_text('raw material never retained')
+        after = recorder.git_fingerprint(self.root)
+        self.assertNotEqual(before['worktree_sha256'], after['worktree_sha256'])
+        (self.root/'untracked.txt').write_text('changed material never retained')
+        self.assertNotEqual(after['worktree_sha256'], recorder.git_fingerprint(self.root)['worktree_sha256'])
+        (self.root/'control.txt').write_text('pass')
+        self.assertNotEqual(after['worktree_sha256'], recorder.git_fingerprint(self.root)['worktree_sha256'])
+        self.git('add', 'control.txt'); self.git('commit', '-m', 'Synthetic second')
+        run = self.invoke(*self.checkpoint_args()); self.assertEqual(run.returncode, 0, run.stdout)
+        p = recorder.read_json(self.target); entry = p['management']['traceability']['checkpoints'][-1]
+        self.assertNotEqual(entry['commit'], first); self.assertEqual(entry['parent_commits'], [first])
+        self.assertNotIn('raw material', self.target.read_text())
+        self.assertNotIn('changed material', self.target.read_text())
+
+    def test_unborn_git_and_changed_attempt_identity_preserve_original(self):
+        self.git('init')
+        before = self.target.read_bytes()
+        self.assertEqual(self.invoke(*self.checkpoint_args()).returncode, 2)
+        self.assertEqual(self.target.read_bytes(), before)
+        self.git('config', 'user.name', 'Synthetic test')
+        self.git('config', 'user.email', 'synthetic@example.test')
+        self.git('add', 'check.py', 'control.txt'); self.git('commit', '-m', 'Synthetic first')
+        self.assertEqual(self.invoke(*self.run_args()).returncode, 1)
+        p = recorder.read_json(self.target)
+        attempt = p['management']['attempts'][0]['id']
+        (self.root/'control.txt').write_text('changed after execution')
+        before = self.target.read_bytes()
+        self.assertEqual(self.invoke(*self.checkpoint_args('--attempt-id', attempt)).returncode, 2)
+        self.assertEqual(self.target.read_bytes(), before)
+
+    def decision(self, ident='decision-1', supersedes=None):
+        return {'id': ident, 'at': AT, 'actor_id': 'Alice', 'environment_id': 'local',
+                'session_id': 'session-1', 'summary': 'Choose checked approach.',
+                'alternatives': ['Use the reviewed implementation.', 'Keep the previous behavior.'],
+                'reason': 'Matches the stated requirement.', 'requirement_ids': ['req'],
+                'supersedes': supersedes, 'provenance': 'declared'}
+
+    def record(self, kind, entry):
+        recorder.atomic_json(self.root/'record.json', entry)
+        return self.invoke('record', '--kind', kind, '--record', 'record.json')
+
+    def test_trace_import_refs_cycles_usage_and_original_preservation(self):
+        d = self.decision(); self.assertEqual(self.record('decision', d).returncode, 0)
+        before = self.target.read_bytes()
+        for changed in ({**d, 'id': 'decision-2', 'requirement_ids': ['unknown']},
+                        {**d, 'id': 'decision-2', 'actor_id': 'unknown'},
+                        {**d, 'id': 'decision-2', 'supersedes': 'decision-2'},
+                        {**d, 'id': 'decision-2', 'extra': 'not allowed'}):
+            self.assertEqual(self.record('decision', changed).returncode, 2)
+            self.assertEqual(self.target.read_bytes(), before)
+        self.assertEqual(self.record('decision', self.decision('decision-2', 'decision-1')).returncode, 0)
+        cycle = recorder.read_json(self.target)
+        cycle['management']['traceability']['decisions'][0]['supersedes'] = 'decision-2'
+        with self.assertRaises(ValueError): management.validate(cycle)
+        handoff = {'id': 'transfer-1', 'at': AT, 'from_actor_id': 'Alice', 'from_environment_id': 'local',
+                   'from_session_id': 'session-1', 'to_actor_id': 'Alice', 'to_environment_id': 'local',
+                   'to_session_id': 'session-2', 'summary': 'Carry stated conditions forward.',
+                   'requirement_ids': ['req'], 'decision_ids': ['decision-2'], 'attempt_ids': [],
+                   'packet_sha256': 'a'*64, 'usage': 'not_observed', 'usage_at': None, 'usage_evidence': None}
+        self.assertEqual(self.record('handoff', handoff).returncode, 0)
+        p = recorder.read_json(self.target)
+        self.assertEqual(p['management']['traceability']['handoffs'][0]['usage'], 'not_observed')
+        before = self.target.read_bytes()
+        for changed in ({**handoff, 'id': 'transfer-2', 'usage': 'observed'},
+                        {**handoff, 'id': 'transfer-2', 'decision_ids': ['unknown']},
+                        {**handoff, 'id': 'transfer-2', 'to_session_id': 'session-1'}):
+            self.assertEqual(self.record('handoff', changed).returncode, 2)
+            self.assertEqual(self.target.read_bytes(), before)
+        capture = {'id': 'capture-1', 'actor_id': 'Alice', 'environment_id': 'local', 'tool': 'codex',
+                   'capabilities': ['git', 'handoff'], 'status': 'paused', 'last_observed_at': None,
+                   'at': AT, 'reason': 'Explicit report, not a live heartbeat.', 'provenance': 'declared'}
+        self.assertEqual(self.record('capture', capture).returncode, 0)
+        before = self.target.read_bytes()
+        self.assertEqual(self.record('capture', {**capture, 'id': 'capture-2', 'status': 'unsupported'}).returncode, 2)
+        self.assertEqual(self.target.read_bytes(), before)
+        self.assertEqual(self.invoke(*self.checkpoint_args('--attempt-id', 'unknown')).returncode, 2)
+        self.assertEqual(self.target.read_bytes(), before)
+
+    def test_checkpoint_concurrent_git_change_and_scope_rejected(self):
+        self.init_git()
+        original = self.target.read_bytes()
+        before = recorder.git_fingerprint(self.root)
+        changed = {**before, 'commit': 'b'*40}
+        with patch.object(recorder, 'git_fingerprint', side_effect=[before, changed]):
+            code = recorder.main(['--project', str(self.root), '--management', 'management.json', *self.checkpoint_args()])
+        self.assertEqual(code, 2); self.assertEqual(self.target.read_bytes(), original)
+        nested = self.root/'nested'; nested.mkdir()
+        with self.assertRaises(ValueError): recorder.git_fingerprint(nested)
+        with patch.object(recorder, 'git_bytes', return_value=(0, os.fsencode(str(Path.home())))):
+            with self.assertRaises(ValueError): recorder.git_fingerprint(self.root)
+        with tempfile.TemporaryDirectory(prefix='checkpoint-outside-') as outside:
+            (self.root/'escape-file').symlink_to(Path(outside)/'missing')
+            with self.assertRaises((ValueError, OSError)): recorder.git_fingerprint(self.root)
+
+
 if __name__=='__main__':
     unittest.main()

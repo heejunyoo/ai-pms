@@ -114,7 +114,13 @@
         "blockers": [],
         "improvements": [],
         "harness": [],
-        "graphs": []
+        "graphs": [],
+        "traceability": {
+          "checkpoints": [],
+          "decisions": [],
+          "handoffs": [],
+          "capture": []
+        }
       }
     }
   ]

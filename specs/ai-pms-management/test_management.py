@@ -41,6 +41,7 @@ class Contract(unittest.TestCase):
         self.m['artifact']['files'][0]['sha256']='0'*64;self.m['artifact']['sha256']=management.artifact_sha256(self.m['artifact']['files'])
         model=self.model()['projects'][0];self.assertEqual(model['status'],'revalidation');self.assertEqual(model['management']['blockers'][0]['verification'],'revalidation');self.assertTrue(all(a['status']=='unknown' for a in model['management']['attempts']))
     def test_test_file_hash_stale_even_current_attempt_manifest(self):
+        self.m.pop("traceability", None)  # This legacy completion fixture predates checkpoint links.
         self.m['artifact']['files'][0]['sha256']='0'*64;self.m['artifact']['sha256']=management.artifact_sha256(self.m['artifact']['files'])
         for a in self.m['attempts']: a['artifact_sha256']=self.m['artifact']['sha256']
         self.assertEqual(self.model()['projects'][0]['status'],'revalidation')
@@ -57,6 +58,7 @@ class Contract(unittest.TestCase):
         for a in self.m['attempts']: a['at']='2027-01-01T00:00:00Z'
         p=self.model()['projects'][0];self.assertNotEqual(p['status'],'complete');self.assertEqual(p['management']['blockers'][0]['verification'],'unknown')
     def test_historical_revision_does_not_complete_current(self):
+        self.m.pop("traceability", None)  # This legacy completion fixture predates checkpoint links.
         for a in self.m['attempts']: a['revision']='old'
         p=self.model()['projects'][0];self.assertEqual(p['status'],'revalidation');self.assertEqual(p['management']['attempts'][-1]['status'],'pass')
     def test_resolved_needs_runner_pass(self): self.m['blockers'][0]['resolved_by']=self.m['attempts'][0]['id'];self.reject()

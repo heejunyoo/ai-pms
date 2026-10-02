@@ -162,7 +162,7 @@
     },
     {
       "url": "https://harness-kit.vercel.app/ai-pms.html",
-      "sha256": "edd1131fdac643ac9860d594fd2adf5c71f5f0cc07218c8180f3bc3cf50346ba",
+      "sha256": "9634d10c878ecb655e452e872a4d2833493d09ee975db5d08c8b1b8f70e4e719",
       "bytes_equal": true,
       "security_headers": {
         "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
@@ -172,7 +172,7 @@
     },
     {
       "url": "https://harness-kit.vercel.app/ai-pms-en.html",
-      "sha256": "d02bbb20009552dedd611084464f319887001eacb635cb7a44dd48b490493c7e",
+      "sha256": "5370a2a43f927889457a2b05b2dfd50cbc4502070ce36c3fc61a55ba189ceaae",
       "bytes_equal": true,
       "security_headers": {
         "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
@@ -362,7 +362,7 @@
     },
     {
       "url": "https://harness-kit.vercel.app/manifest.json",
-      "sha256": "f32ff58dcc5a4938f4636a4d9aa501c95389c1b6d606e821f2a4e8adc8543e61",
+      "sha256": "02597c1597c4adca8da538567e4b0ee2ac2cd5a81d9d3b80adb6ca82cd1a7612",
       "bytes_equal": true,
       "security_headers": {
         "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
@@ -372,7 +372,7 @@
     },
     {
       "url": "https://harness-kit.vercel.app/implementation.zip",
-      "sha256": "21b3b3fa9603bdc4542f7eb9591287a4265013e0f47a02420e7ebcb67f5f2bfa",
+      "sha256": "92b934e1c8041078888b93416bee9e3ce2b48627afb0e4d804af295c871b886b",
       "bytes_equal": true,
       "security_headers": {
         "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
@@ -382,7 +382,7 @@
     },
     {
       "url": "https://harness-kit.vercel.app/reference-ko.zip",
-      "sha256": "d0ff0de6738908c73d1be24c6d68a022e214dcc097457afabf335374f9eec171",
+      "sha256": "8749498ebdcfb2325f984d8edf565494e6c02563bada3704b29d78b57962066b",
       "bytes_equal": true,
       "security_headers": {
         "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
@@ -392,7 +392,7 @@
     },
     {
       "url": "https://harness-kit.vercel.app/reference-en.zip",
-      "sha256": "7cda0da279ac86b0bd488681f0a8868e4301ff44e2b6fd251731b9de9660254a",
+      "sha256": "9e4b95f1c0e1f52443bee8dd1dbaf27d698fc77776825572d5dc2684477eb5a7",
       "bytes_equal": true,
       "security_headers": {
         "Content-Security-Policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'",
@@ -402,27 +402,27 @@
     },
     {
       "url": "https://ai-pms-dashboard.vercel.app/",
-      "sha256": "4d66726196bdecde81b79b5a2c8dda501347d50d052e3c03b92420acf0b2fe79",
+      "sha256": "ccda5f8cc4bee7aca92523bc9ee072bf74ea5af53397af69bb309a345760ee63",
       "bytes_equal": true,
       "security_headers": {
-        "Content-Security-Policy": "default-src 'none'; script-src 'sha256-crmAGkj8lMXk6iPNnymkpDgx+TNDCntSBm3mp1xmipc=' 'sha256-Mmwavl8MCuv3b7AiFXoE4o06KA77AruotSop0+HXjj0='; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+        "Content-Security-Policy": "default-src 'none'; script-src 'sha256-IAnikpuDcDGVQCIoXRcmwfhB9xrRs8SDvTGUEYWhp0U=' 'sha256-xKkrjmRgwnuYfUNpM3l7gpXzIcTsM4vGGKGIw7haHbA='; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
         "X-Content-Type-Options": "nosniff",
         "X-Frame-Options": "DENY"
       }
     },
     {
       "url": "https://ai-pms-dashboard.vercel.app/empty.html",
-      "sha256": "55b9a99069846ae8572ed45c43f5a2445d817d5065ad6c8b79bfd0d7193c2703",
+      "sha256": "4148c624748c5fc3ecf94cf30a139aa505bcede6fd15dc74a335f990d4e9d9d9",
       "bytes_equal": true,
       "security_headers": {
-        "Content-Security-Policy": "default-src 'none'; script-src 'sha256-/m6tuVgzcZg3mKwvHRNM32SJhpw92d70/1gDjBzqWC4=' 'sha256-Mmwavl8MCuv3b7AiFXoE4o06KA77AruotSop0+HXjj0='; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
+        "Content-Security-Policy": "default-src 'none'; script-src 'sha256-/m6tuVgzcZg3mKwvHRNM32SJhpw92d70/1gDjBzqWC4=' 'sha256-xKkrjmRgwnuYfUNpM3l7gpXzIcTsM4vGGKGIw7haHbA='; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
         "X-Content-Type-Options": "nosniff",
         "X-Frame-Options": "DENY"
       }
     },
     {
       "url": "https://ai-pms-dashboard.vercel.app/report.html",
-      "sha256": "552f8030eaf34a0af6e24309744a5a52b403ccfda3e3ad1db19c10896e085541",
+      "sha256": "5f09004920da116030deaa046a77010dce708c17a1e4ff4e1f1a7162ae451217",
       "bytes_equal": true,
       "security_headers": {
         "Content-Security-Policy": "default-src 'none'; script-src 'sha256-UgTr/Yf/fJA69cgWMhmJd2PQCfXMKfFuHRO4RZfOf4U='; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'",
@@ -432,7 +432,7 @@
     },
     {
       "url": "https://ai-pms-dashboard.vercel.app/snapshot.json",
-      "sha256": "feb2a855fb2ee3eeb7c5e16359951196248453f9d01ede7ff6cf5fd5a8fd3769",
+      "sha256": "4dc129aa5067ab6cd0ac7d8f96510efa63f83790e07da07f2b461a9e6f220663",
       "bytes_equal": true,
       "security_headers": {
         "Content-Security-Policy": null,
