@@ -1,0 +1,56 @@
+{
+  "task_id": "backend",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/management.py",
+      "action": "created",
+      "summary": "v3 공유 관리 계약 검증·파생 상태·합성 예시 및 의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/portfolio.py",
+      "action": "modified",
+      "summary": "v3 공유 관리 계약 검증·파생 상태·합성 예시 및 의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-management/test_management.py",
+      "action": "created",
+      "summary": "v3 공유 관리 계약 검증·파생 상태·합성 예시 및 의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-management/generate_sample.py",
+      "action": "created",
+      "summary": "v3 공유 관리 계약 검증·파생 상태·합성 예시 및 의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-management/sample/catalog-v3.json",
+      "action": "created",
+      "summary": "v3 공유 관리 계약 검증·파생 상태·합성 예시 및 의미 검증"
+    },
+    {
+      "path": "specs/ai-pms-management/backend-result.json",
+      "action": "created",
+      "summary": "v3 공유 관리 계약 검증·파생 상태·합성 예시 및 의미 검증"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-management/test_management.py",
+    "exit_code": 0,
+    "output_tail": "Ran 26 tests in 0.277s\nOK"
+  },
+  "done_when_check": [
+    {
+      "condition": "공유 계약과 파일 경계가 준수된다",
+      "met": true,
+      "evidence": "지정 backend 파일만 수정; selfcontained validate/derive/hash API; management exact keys and referenced identity/definitions/files/provenance 검증"
+    },
+    {
+      "condition": "지정 검증 명령이 통과하며 관측과 선언을 구분한다",
+      "met": true,
+      "evidence": "26 management tests and 17 legacy portfolio tests pass; declared attempts absent normalized runs; synthetic sample explicitly labeled; stale/future unknown and revalidation"
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.94,
+  "notes_for_orchestrator": "management.validate(project,helpers=None), derive(project,observed,helpers=None)->(runs,view); canonical/criterion_signature/test_plan_sha256/artifact_sha256(files) exported. artifact/test-file current hashes checked; older manifests retained. resolved blocker must address same criterion. Runner receipt is input, not cryptographic attestation. Snapshot /private/tmp/management-v3.json available, sample all synthetic; actual subprocess and browser/public delivery are Kit/root acceptance boundaries. Legacy v1/v2 retained. Copy module into Kit only after parent integration. Final review: current revision attempt must reference latest test_plan identity/hash even when criterion six fields unchanged; newer plan reason/version invalidates current completion and blocker resolution until new run."
+}

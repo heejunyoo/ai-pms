@@ -13,6 +13,9 @@ import sys
 _spec = importlib.util.spec_from_file_location('portfolio_central', Path(__file__).parent.parent / 'ai-pms-central' / 'central.py')
 central = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(central)
+_management_spec = importlib.util.spec_from_file_location('portfolio_management', Path(__file__).with_name('management.py'))
+management = importlib.util.module_from_spec(_management_spec)
+_management_spec.loader.exec_module(management)
 MAX_FILE = 16 * 1024 * 1024
 MAX_ARRAY = 10000
 CRITERION_KEYS = {'id', 'label', 'scope', 'target_id', 'command', 'expected_exit_code'}
@@ -91,11 +94,11 @@ def source_identity(ref):
 
 def validate_catalog(catalog):
     keys(catalog, ('version', 'projects'), 'catalog')
-    require(type(catalog['version']) is int and catalog['version'] in (1, 2), 'catalog 버전')
+    require(type(catalog['version']) is int and catalog['version'] in (1, 2, 3), 'catalog 버전')
     projects = array(catalog['projects'])
     mapped = set()
     for p in projects:
-        keys(p, ('id', 'name', 'goal', 'current_revision', 'current_phase', 'source_refs', 'phases', 'documents', 'criteria', 'runs', *(['connections'] if catalog['version'] == 2 else [])), '프로젝트')
+        keys(p, ('id', 'name', 'goal', 'current_revision', 'current_phase', 'source_refs', 'phases', 'documents', 'criteria', 'runs', *(['connections'] if catalog['version'] >= 2 else []), *(['management'] if catalog['version'] == 3 else [])), '프로젝트')
         for field in ('id', 'current_revision'):
             ident(p[field])
         text(p['name'], 160)
@@ -143,6 +146,9 @@ def validate_catalog(catalog):
             require(c['scope'] != 'project' or c['target_id'] == p['id'], '프로젝트 검사 대상')
             require(c['scope'] != 'phase' or c['target_id'] in phase_ids, '단계 검사 대상')
         unique(p['criteria'])
+        if catalog['version'] == 3:
+            require(p['runs'] == [], 'v3 legacy runs must be empty')
+            management.validate(p, sys.modules[__name__] if __name__ in sys.modules else None)
         criterion_ids = {c['id'] for c in p['criteria']}
         for run in array(p['runs']):
             keys(run, ('criterion_id', 'revision', 'at', 'exit_code', 'session_id', 'evidence', 'criterion_signature'), '검사 기록')
@@ -184,7 +190,8 @@ def build_model(store=None, catalog=None, now=None):
     observed = dt.datetime.now(dt.timezone.utc) if now is None else time(now) if isinstance(now, str) else now
     require(isinstance(observed, dt.datetime) and observed.utcoffset() == dt.timedelta(0), '현재 UTC 시각')
     generated = observed.isoformat().replace('+00:00', 'Z')
-    v2 = catalog['version'] == 2 or any(r['event']['schema_version'] == 2 for source in store['sources'].values() for r in source['events'].values())
+    v3 = catalog['version'] == 3
+    v2 = catalog['version'] >= 2 or any(r['event']['schema_version'] == 2 for source in store['sources'].values() for r in source['events'].values())
     projects, assigned, modes = [], set(), set()
     declarations = [(p, f'catalog.projects[{i}]') for i, p in enumerate(catalog['projects'])]
     for p in catalog['projects']:
@@ -195,6 +202,10 @@ def build_model(store=None, catalog=None, now=None):
     require(len(declarations) <= 1000, '프로젝트 한도')
     require(len({p['id'] for p, _ in declarations}) == len(declarations), 'fallback 프로젝트 ID 충돌')
     for p, ref in declarations:
+        management_view = None
+        if v3 and 'management' in p:
+            derived_runs, management_view = management.derive(p, observed)
+            p = dict(p, runs=derived_runs)
         alerts, timeline, sessions, sources = [], [], {}, []
         connections = [{**c, 'authority':'declared', 'source_ref':f'{ref}.connections[{i}]'} for i,c in enumerate(p.get('connections', []))]
         def add(at, kind, title, detail, session_id, source_ref):
@@ -230,6 +241,16 @@ def build_model(store=None, catalog=None, now=None):
             sessions.setdefault(identity, dict(id=doc['session_id'], actor_id=doc['actor_id'], environment_id=doc['environment_id'], event_count=0))
             if time(doc['at']) > observed:
                 alerts.append('미래 문서: ' + doc['id'])
+        if management_view:
+            for attempt in management_view['attempts']:
+                identity = (attempt['session_id'], attempt['actor_id'], attempt['environment_id'])
+                sessions.setdefault(identity, dict(id=attempt['session_id'], actor_id=attempt['actor_id'], environment_id=attempt['environment_id'], event_count=0))
+            for field in ('objectives','plans','test_plans','harness','graphs'):
+                for i, record in enumerate(management_view[field]):
+                    add(record['at'], 'management', field + ' · ' + record['id'], str(record.get('reason',record.get('summary',record.get('source',record.get('title',record.get('generator','관리 기록'))))))[:2000], None, f'{ref}.management.{field}[{i}]')
+            for i, attempt in enumerate(management_view['attempts']):
+                if attempt['provenance']=='declared':
+                    add(attempt['at'], 'management', '선언된 검사 · ' + attempt['id'], attempt['summary'], attempt['session_id'], f'{ref}.management.attempts[{i}]')
         criteria = {c['id']: c for c in p['criteria']}
         runs = []
         for i, run in enumerate(p['runs']):
@@ -282,15 +303,20 @@ def build_model(store=None, catalog=None, now=None):
                 if revision not in completed_revisions:
                     add(instant, 'milestone', '프로젝트 완료 기준 충족 · ' + revision, '당시 기준의 가져온 검사 기록이 모두 통과했습니다.', None, ref + '.runs')
                 completed_revisions.add(revision)
+        if status == 'in_progress' and management_view:
+            test_plans = {(t['id'],t['version']):t for t in management_view['test_plans']}
+            if any(a['provenance']=='runner' and time(a['at'])<=observed and a['exit_code']==test_plans[(a['test_plan_id'],a['test_plan_version'])]['definition']['expected_exit_code'] and (a['status']=='unknown' or a['criterion_signature'] != criterion_signature(criteria[test_plans[(a['test_plan_id'],a['test_plan_version'])]['criterion_id']])) for a in management_view['attempts']):
+                status = 'revalidation'
         if status == 'in_progress' and completed_revisions - {p['current_revision']}:
             status = 'revalidation'
         reason = {'unknown': '프로젝트 범위 완료 기준이 없습니다.', 'complete': '현재 revision의 프로젝트 범위 최신 검사 기록이 모두 통과했습니다.', 'failed': '현재 revision의 프로젝트 범위 최신 검사 기록에 실패가 있습니다.', 'revalidation': '과거 revision 완료 후 현재 revision 검사 기록이 부족합니다.', 'in_progress': '현재 revision의 프로젝트 범위 검사 기록이 부족하거나 불명입니다.'}[status]
         phases = [{**phase, 'status': state([c for c in p['criteria'] if c['scope'] == 'phase' and c['target_id'] == phase['id']], p['current_revision'])} for phase in p['phases']]
         projects.append(dict(id=p['id'], name=p['name'], goal=p['goal'], owners=sorted({r['actor_id'] for r in p['source_refs']}), current_revision=p['current_revision'], current_phase=p['current_phase'], status=status, status_reason=reason + ' 목표/문서는 ' + ref + '의 명시적 입력입니다.', phases=phases, documents=documents, criteria=p['criteria'], runs=runs, sessions=sorted(sessions.values(), key=lambda s: (s['actor_id'], s['environment_id'], s['id'])), timeline=sorted(timeline, key=lambda t: (time(t['at']), t['kind'], t['source_ref'], t['title'])), sources=sources, alerts=sorted(set(alerts)), last_updated=max((t['at'] for t in timeline), key=time, default=None)))
         if v2: projects[-1]['connections'] = connections
+        if v3: projects[-1]['management'] = management_view
     if catalog['projects'] and not modes:
         modes.add('declared')
-    model = dict(schema_version=2 if v2 else 1, generated_at=generated, evidence_mode='mixed' if len(modes) > 1 else next(iter(modes), 'declared'), projects=projects)
+    model = dict(schema_version=3 if v3 else 2 if v2 else 1, generated_at=generated, evidence_mode='mixed' if len(modes) > 1 else next(iter(modes), 'declared'), projects=projects)
     validate_tree(model)
     require(len(canonical(model).encode()) <= 6_000_000, '모델 출력 한도')
     return model

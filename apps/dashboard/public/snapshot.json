@@ -1,12 +1,12 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "generated_at": "2026-10-01T12:00:00Z",
   "evidence_mode": "synthetic",
   "projects": [
     {
       "id": "alice-recall",
-      "name": "Recall 학습 도우미",
-      "goal": "자료를 읽고 배운 내용을 회상 문제로 확인합니다.",
+      "name": "고객 요청 지식 검색과 출처 표시 · 합성 예시",
+      "goal": "고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다",
       "owners": [
         "Alice"
       ],
@@ -34,7 +34,7 @@
       "documents": [
         {
           "id": "prd",
-          "title": "제품 요구사항",
+          "title": "고객 지식 검색 prd",
           "kind": "prd",
           "version": "v1",
           "phase_id": "plan",
@@ -42,13 +42,13 @@
           "session_id": "alice-1",
           "actor_id": "Alice",
           "environment_id": "laptop",
-          "summary": "첫 요구사항",
-          "content": "사용자는 자료를 넣고 회상 문제를 풉니다. 출처를 함께 표시합니다.",
+          "summary": "합성 예시: 고객 질문에 대한 검색 결과와 출처 확인을 설계·구현합니다.",
+          "content": "합성 문서 v1\n요구사항: 출처 없는 답변을 차단합니다.\n검사: 검색 결과의 출처를 확인하고 누락된 경우 표시를 차단합니다.\n미검증: 실제 고객 요청 처리 시간 감소 여부.",
           "source_ref": "catalog.projects[0].documents[0]"
         },
         {
           "id": "design",
-          "title": "회상 흐름 설계",
+          "title": "고객 지식 검색 설계",
           "kind": "design",
           "version": "v1",
           "phase_id": "design",
@@ -56,13 +56,13 @@
           "session_id": "alice-1",
           "actor_id": "Alice",
           "environment_id": "laptop",
-          "summary": "설계 초안",
-          "content": "자료 입력 → 요약 → 문제 풀이. 실패 시 오류를 보여줍니다.",
+          "summary": "합성 예시: 고객 질문에 대한 검색 결과와 출처 확인을 설계·구현합니다.",
+          "content": "합성 문서 v1\n요구사항: 출처 없는 답변을 차단합니다.\n검사: 검색 결과의 출처를 확인하고 누락된 경우 표시를 차단합니다.\n미검증: 실제 고객 요청 처리 시간 감소 여부.",
           "source_ref": "catalog.projects[0].documents[1]"
         },
         {
           "id": "design",
-          "title": "회상 흐름 설계",
+          "title": "고객 지식 검색 설계",
           "kind": "design",
           "version": "v2",
           "phase_id": "design",
@@ -70,13 +70,13 @@
           "session_id": "alice-2",
           "actor_id": "Alice",
           "environment_id": "laptop",
-          "summary": "부분 결과 안내 추가",
-          "content": "자료 입력 → 출처 확인 → 문제 풀이. 부분 결과는 누락 범위를 표시하고 재시도합니다.",
+          "summary": "합성 예시: 고객 질문에 대한 검색 결과와 출처 확인을 설계·구현합니다.",
+          "content": "합성 문서 v2\n요구사항: 출처 없는 답변을 차단합니다.\n검사: 검색 결과의 출처를 확인하고 누락된 경우 표시를 차단합니다.\n미검증: 실제 고객 요청 처리 시간 감소 여부.",
           "source_ref": "catalog.projects[0].documents[2]"
         },
         {
           "id": "implementation",
-          "title": "구현 결과",
+          "title": "고객 지식 검색 구현 결과",
           "kind": "implementation",
           "version": "v1",
           "phase_id": "build",
@@ -84,8 +84,8 @@
           "session_id": "alice-3",
           "actor_id": "Alice",
           "environment_id": "desktop",
-          "summary": "인수 기준 충족",
-          "content": "출처 표시, 문제 풀이, 부분 결과 안내를 구현했습니다. 이 내용과 검사는 모두 합성 시연 입력입니다.",
+          "summary": "합성 예시: 고객 질문에 대한 검색 결과와 출처 확인을 설계·구현합니다.",
+          "content": "합성 문서 v1\n요구사항: 출처 없는 답변을 차단합니다.\n검사: 검색 결과의 출처를 확인하고 누락된 경우 표시를 차단합니다.\n미검증: 실제 고객 요청 처리 시간 감소 여부.",
           "source_ref": "catalog.projects[0].documents[3]"
         }
       ],
@@ -119,10 +119,10 @@
         {
           "criterion_id": "recall-acceptance",
           "revision": "v1",
-          "at": "2026-09-30T04:00:00Z",
+          "at": "2026-09-29T03:00:00Z",
           "exit_code": 1,
-          "session_id": "alice-2",
-          "evidence": "합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "session_id": "alice-management",
+          "evidence": "management attempt attempt-recall-acceptance-fail · runner · 실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
           "criterion_signature": "2e85d86516a525c02029be9d743ae8af218359602e98e4508275c05474fb278b",
           "status": "fail",
           "source_ref": "catalog.projects[0].runs[0]"
@@ -130,10 +130,10 @@
         {
           "criterion_id": "recall-acceptance",
           "revision": "v1",
-          "at": "2026-09-30T08:00:00Z",
+          "at": "2026-09-29T04:00:00Z",
           "exit_code": 0,
-          "session_id": "alice-3",
-          "evidence": "합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "session_id": "alice-management",
+          "evidence": "management attempt attempt-recall-acceptance-pass · runner · 수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
           "criterion_signature": "2e85d86516a525c02029be9d743ae8af218359602e98e4508275c05474fb278b",
           "status": "pass",
           "source_ref": "catalog.projects[0].runs[1]"
@@ -141,24 +141,46 @@
         {
           "criterion_id": "design-review",
           "revision": "v1",
-          "at": "2026-09-30T03:00:00Z",
+          "at": "2026-09-29T03:00:00Z",
+          "exit_code": 1,
+          "session_id": "alice-management",
+          "evidence": "management attempt attempt-design-review-fail · runner · 실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+          "criterion_signature": "9f3f3e89c5cc8fface90aa007665f33471bc822fb963bfc542e501cd2d8b2f10",
+          "status": "fail",
+          "source_ref": "catalog.projects[0].runs[2]"
+        },
+        {
+          "criterion_id": "design-review",
+          "revision": "v1",
+          "at": "2026-09-29T04:00:00Z",
           "exit_code": 0,
-          "session_id": "alice-1",
-          "evidence": "합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "session_id": "alice-management",
+          "evidence": "management attempt attempt-design-review-pass · runner · 수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
           "criterion_signature": "9f3f3e89c5cc8fface90aa007665f33471bc822fb963bfc542e501cd2d8b2f10",
           "status": "pass",
-          "source_ref": "catalog.projects[0].runs[2]"
+          "source_ref": "catalog.projects[0].runs[3]"
         },
         {
           "criterion_id": "single-task",
           "revision": "v1",
-          "at": "2026-09-30T05:00:00Z",
+          "at": "2026-09-29T03:00:00Z",
+          "exit_code": 1,
+          "session_id": "alice-management",
+          "evidence": "management attempt attempt-single-task-fail · runner · 실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+          "criterion_signature": "dad1d2eca95a658cbdd51b916a9698d135e88d7c506e34dacce99906ed89ff52",
+          "status": "fail",
+          "source_ref": "catalog.projects[0].runs[4]"
+        },
+        {
+          "criterion_id": "single-task",
+          "revision": "v1",
+          "at": "2026-09-29T04:00:00Z",
           "exit_code": 0,
-          "session_id": "alice-2",
-          "evidence": "합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "session_id": "alice-management",
+          "evidence": "management attempt attempt-single-task-pass · runner · 수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
           "criterion_signature": "dad1d2eca95a658cbdd51b916a9698d135e88d7c506e34dacce99906ed89ff52",
           "status": "pass",
-          "source_ref": "catalog.projects[0].runs[3]"
+          "source_ref": "catalog.projects[0].runs[5]"
         }
       ],
       "sessions": [
@@ -179,24 +201,142 @@
           "actor_id": "Alice",
           "environment_id": "laptop",
           "event_count": 2
+        },
+        {
+          "id": "alice-management",
+          "actor_id": "Alice",
+          "environment_id": "laptop",
+          "event_count": 0
         }
       ],
       "timeline": [
         {
+          "at": "2026-09-29T00:00:00Z",
+          "kind": "management",
+          "title": "objectives · objective-Alice",
+          "detail": "합성 Company 요청분류 개선 지시문",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.objectives[0]"
+        },
+        {
           "at": "2026-09-29T01:00:00Z",
           "kind": "document",
-          "title": "제품 요구사항 · v1",
-          "detail": "첫 요구사항",
+          "title": "고객 지식 검색 prd · v1",
+          "detail": "합성 예시: 고객 질문에 대한 검색 결과와 출처 확인을 설계·구현합니다.",
           "session_id": "alice-1",
           "source_ref": "catalog.projects[0].documents[0]"
         },
         {
+          "at": "2026-09-29T01:00:00Z",
+          "kind": "management",
+          "title": "harness · kit",
+          "detail": "합성 Kit 설치 선언; 실행 근거와 별도",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.harness[0]"
+        },
+        {
+          "at": "2026-09-29T01:00:00Z",
+          "kind": "management",
+          "title": "plans · implementation",
+          "detail": "요구사항 원문을 구현과 검사로 연결: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.plans[0]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-recall-acceptance",
+          "detail": "업무 요구사항의 기술 동작을 검사: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다; 전체 인수 검사",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.test_plans[0]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-design-review",
+          "detail": "업무 요구사항의 기술 동작을 검사: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다; 설계 단계 검사",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.test_plans[1]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-single-task",
+          "detail": "업무 요구사항의 기술 동작을 검사: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다; 개별 작업 검사",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.test_plans[2]"
+        },
+        {
+          "at": "2026-09-29T03:00:00Z",
+          "kind": "check",
+          "title": "전체 인수 검사 · fail",
+          "detail": "v1 · python3 checks/recall-acceptance.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-recall-acceptance-fail · runner · 실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+          "session_id": "alice-management",
+          "source_ref": "catalog.projects[0].runs[0]"
+        },
+        {
+          "at": "2026-09-29T03:00:00Z",
+          "kind": "check",
+          "title": "설계 단계 검사 · fail",
+          "detail": "v1 · python3 checks/design-review.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-design-review-fail · runner · 실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+          "session_id": "alice-management",
+          "source_ref": "catalog.projects[0].runs[2]"
+        },
+        {
+          "at": "2026-09-29T03:00:00Z",
+          "kind": "check",
+          "title": "개별 작업 검사 · fail",
+          "detail": "v1 · python3 checks/single-task.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-single-task-fail · runner · 실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+          "session_id": "alice-management",
+          "source_ref": "catalog.projects[0].runs[4]"
+        },
+        {
           "at": "2026-09-29T03:00:00Z",
           "kind": "document",
-          "title": "회상 흐름 설계 · v1",
-          "detail": "설계 초안",
+          "title": "고객 지식 검색 설계 · v1",
+          "detail": "합성 예시: 고객 질문에 대한 검색 결과와 출처 확인을 설계·구현합니다.",
           "session_id": "alice-1",
           "source_ref": "catalog.projects[0].documents[1]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "check",
+          "title": "전체 인수 검사 · pass",
+          "detail": "v1 · python3 checks/recall-acceptance.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-recall-acceptance-pass · runner · 수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+          "session_id": "alice-management",
+          "source_ref": "catalog.projects[0].runs[1]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "check",
+          "title": "설계 단계 검사 · pass",
+          "detail": "v1 · python3 checks/design-review.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-design-review-pass · runner · 수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+          "session_id": "alice-management",
+          "source_ref": "catalog.projects[0].runs[3]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "check",
+          "title": "개별 작업 검사 · pass",
+          "detail": "v1 · python3 checks/single-task.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-single-task-pass · runner · 수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+          "session_id": "alice-management",
+          "source_ref": "catalog.projects[0].runs[5]"
+        },
+        {
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "milestone",
+          "title": "프로젝트 완료 기준 충족 · v1",
+          "detail": "당시 기준의 가져온 검사 기록이 모두 통과했습니다.",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].runs"
+        },
+        {
+          "at": "2026-09-29T05:00:00Z",
+          "kind": "management",
+          "title": "graphs · graph-synthetic",
+          "detail": "synthetic-graphify",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.graphs[0]"
         },
         {
           "at": "2026-09-30T01:00:00Z",
@@ -272,59 +412,19 @@
         },
         {
           "at": "2026-09-30T03:00:00Z",
-          "kind": "check",
-          "title": "설계 단계 검사 · pass",
-          "detail": "v1 · python3 checks/design-review.py\n가져온 검사 기록 (실행하지 않음): 합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
-          "session_id": "alice-1",
-          "source_ref": "catalog.projects[0].runs[2]"
-        },
-        {
-          "at": "2026-09-30T03:00:00Z",
           "kind": "document",
-          "title": "회상 흐름 설계 · v2",
-          "detail": "부분 결과 안내 추가",
+          "title": "고객 지식 검색 설계 · v2",
+          "detail": "합성 예시: 고객 질문에 대한 검색 결과와 출처 확인을 설계·구현합니다.",
           "session_id": "alice-2",
           "source_ref": "catalog.projects[0].documents[2]"
         },
         {
-          "at": "2026-09-30T04:00:00Z",
-          "kind": "check",
-          "title": "전체 인수 검사 · fail",
-          "detail": "v1 · python3 checks/recall-acceptance.py\n가져온 검사 기록 (실행하지 않음): 합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
-          "session_id": "alice-2",
-          "source_ref": "catalog.projects[0].runs[0]"
-        },
-        {
-          "at": "2026-09-30T05:00:00Z",
-          "kind": "check",
-          "title": "개별 작업 검사 · pass",
-          "detail": "v1 · python3 checks/single-task.py\n가져온 검사 기록 (실행하지 않음): 합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
-          "session_id": "alice-2",
-          "source_ref": "catalog.projects[0].runs[3]"
-        },
-        {
-          "at": "2026-09-30T08:00:00Z",
-          "kind": "check",
-          "title": "전체 인수 검사 · pass",
-          "detail": "v1 · python3 checks/recall-acceptance.py\n가져온 검사 기록 (실행하지 않음): 합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
-          "session_id": "alice-3",
-          "source_ref": "catalog.projects[0].runs[1]"
-        },
-        {
           "at": "2026-09-30T08:00:00Z",
           "kind": "document",
-          "title": "구현 결과 · v1",
-          "detail": "인수 기준 충족",
+          "title": "고객 지식 검색 구현 결과 · v1",
+          "detail": "합성 예시: 고객 질문에 대한 검색 결과와 출처 확인을 설계·구현합니다.",
           "session_id": "alice-3",
           "source_ref": "catalog.projects[0].documents[3]"
-        },
-        {
-          "at": "2026-09-30T08:00:00Z",
-          "kind": "milestone",
-          "title": "프로젝트 완료 기준 충족 · v1",
-          "detail": "당시 기준의 가져온 검사 기록이 모두 통과했습니다.",
-          "session_id": null,
-          "source_ref": "catalog.projects[0].runs"
         }
       ],
       "sources": [
@@ -424,12 +524,329 @@
           "authority": "observed",
           "source_ref": "central Alice/desktop event_id=f82761d9-5fb8-5c9a-90b3-2df0bb857ee3 file_sha256=329f70cf8c98cd396d3c260205ebf446d5b176d6f5f08fa705f0bf9afb712b86 line=3"
         }
-      ]
+      ],
+      "management": {
+        "objectives": [
+          {
+            "id": "objective-Alice",
+            "version": "v1",
+            "kind": "company",
+            "parent_id": null,
+            "title": "고객 요청 분류 시간 단축",
+            "success_condition": "고객 요청 분류 시간 단축 여부는 실제 업무 성과 미관측",
+            "source": "합성 Company 요청분류 개선 지시문",
+            "at": "2026-09-29T00:00:00Z"
+          }
+        ],
+        "assignment": {
+          "objective_id": "objective-Alice",
+          "objective_version": "v1",
+          "kind": "outcome",
+          "issuer": "Company",
+          "assignee": "Alice",
+          "at": "2026-09-29T00:10:00Z",
+          "acceptance": "고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다"
+        },
+        "requirements": [
+          {
+            "id": "req-core",
+            "text": "고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다",
+            "source": "합성 Company 요청분류 개선 지시문"
+          }
+        ],
+        "plans": [
+          {
+            "id": "implementation",
+            "version": "v1",
+            "at": "2026-09-29T01:00:00Z",
+            "summary": "고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다",
+            "reason": "요구사항 원문을 구현과 검사로 연결: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "handoff_ref": "synthetic-plan.json"
+          }
+        ],
+        "test_plans": [
+          {
+            "id": "test-recall-acceptance",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "recall-acceptance",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "업무 요구사항의 기술 동작을 검사: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다; 전체 인수 검사",
+            "excluded": "외부 provider 및 실제 업무 성과는 관측하지 않음",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "recall-acceptance",
+              "label": "전체 인수 검사",
+              "scope": "project",
+              "target_id": "alice-recall",
+              "command": "python3 checks/recall-acceptance.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-design-review",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "design-review",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "업무 요구사항의 기술 동작을 검사: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다; 설계 단계 검사",
+            "excluded": "외부 provider 및 실제 업무 성과는 관측하지 않음",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "design-review",
+              "label": "설계 단계 검사",
+              "scope": "phase",
+              "target_id": "design",
+              "command": "python3 checks/design-review.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-single-task",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "single-task",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "업무 요구사항의 기술 동작을 검사: 고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다; 개별 작업 검사",
+            "excluded": "외부 provider 및 실제 업무 성과는 관측하지 않음",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "single-task",
+              "label": "개별 작업 검사",
+              "scope": "task",
+              "target_id": "quiz-component",
+              "command": "python3 checks/single-task.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          }
+        ],
+        "artifact": {
+          "revision": "v1",
+          "sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+          "files": [
+            {
+              "path": "synthetic-test.py",
+              "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+            }
+          ]
+        },
+        "attempts": [
+          {
+            "id": "attempt-recall-acceptance-fail",
+            "test_plan_id": "test-recall-acceptance",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "c49ecd26ee02d03924e4666c000bc9576173c4457b9ff0dfdfec6f1bf58fa6c6",
+            "criterion_signature": "2e85d86516a525c02029be9d743ae8af218359602e98e4508275c05474fb278b",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 checks/recall-acceptance.py",
+            "started_at": "2026-09-29T03:00:00Z",
+            "at": "2026-09-29T03:00:00Z",
+            "exit_code": 1,
+            "actor_id": "Alice",
+            "environment_id": "laptop",
+            "session_id": "alice-management",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+            "provenance": "runner",
+            "status": "fail"
+          },
+          {
+            "id": "attempt-recall-acceptance-pass",
+            "test_plan_id": "test-recall-acceptance",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "c49ecd26ee02d03924e4666c000bc9576173c4457b9ff0dfdfec6f1bf58fa6c6",
+            "criterion_signature": "2e85d86516a525c02029be9d743ae8af218359602e98e4508275c05474fb278b",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 checks/recall-acceptance.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
+            "exit_code": 0,
+            "actor_id": "Alice",
+            "environment_id": "laptop",
+            "session_id": "alice-management",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+            "provenance": "runner",
+            "status": "pass"
+          },
+          {
+            "id": "attempt-design-review-fail",
+            "test_plan_id": "test-design-review",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "5fab18fed4efdf98b626598c89d06fb010dd48b46e815977340f79957f861750",
+            "criterion_signature": "9f3f3e89c5cc8fface90aa007665f33471bc822fb963bfc542e501cd2d8b2f10",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 checks/design-review.py",
+            "started_at": "2026-09-29T03:00:00Z",
+            "at": "2026-09-29T03:00:00Z",
+            "exit_code": 1,
+            "actor_id": "Alice",
+            "environment_id": "laptop",
+            "session_id": "alice-management",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+            "provenance": "runner",
+            "status": "fail"
+          },
+          {
+            "id": "attempt-design-review-pass",
+            "test_plan_id": "test-design-review",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "5fab18fed4efdf98b626598c89d06fb010dd48b46e815977340f79957f861750",
+            "criterion_signature": "9f3f3e89c5cc8fface90aa007665f33471bc822fb963bfc542e501cd2d8b2f10",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 checks/design-review.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
+            "exit_code": 0,
+            "actor_id": "Alice",
+            "environment_id": "laptop",
+            "session_id": "alice-management",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+            "provenance": "runner",
+            "status": "pass"
+          },
+          {
+            "id": "attempt-single-task-fail",
+            "test_plan_id": "test-single-task",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "8b5ea81b5f2636aeb2f6ddf8cdabc41de4647eae61f67929362bf24311356782",
+            "criterion_signature": "dad1d2eca95a658cbdd51b916a9698d135e88d7c506e34dacce99906ed89ff52",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 checks/single-task.py",
+            "started_at": "2026-09-29T03:00:00Z",
+            "at": "2026-09-29T03:00:00Z",
+            "exit_code": 1,
+            "actor_id": "Alice",
+            "environment_id": "laptop",
+            "session_id": "alice-management",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "실패: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+            "provenance": "runner",
+            "status": "fail"
+          },
+          {
+            "id": "attempt-single-task-pass",
+            "test_plan_id": "test-single-task",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "8b5ea81b5f2636aeb2f6ddf8cdabc41de4647eae61f67929362bf24311356782",
+            "criterion_signature": "dad1d2eca95a658cbdd51b916a9698d135e88d7c506e34dacce99906ed89ff52",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 checks/single-task.py",
+            "started_at": "2026-09-29T04:00:00Z",
+            "at": "2026-09-29T04:00:00Z",
+            "exit_code": 0,
+            "actor_id": "Alice",
+            "environment_id": "laptop",
+            "session_id": "alice-management",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "수정 후 통과: 출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다 · 합성 실행 예시",
+            "provenance": "runner",
+            "status": "pass"
+          }
+        ],
+        "blockers": [
+          {
+            "id": "blocker-main",
+            "status": "resolved",
+            "summary": "출처 누락 수정 후 재검사 통과",
+            "cause_state": "confirmed",
+            "cause": "출처 누락을 탐지한 실패 입력을 검증하고 출처 확인 분기를 수정했다",
+            "attempt_ids": [
+              "attempt-recall-acceptance-fail"
+            ],
+            "owner": "Alice",
+            "next_action": "검사 재실행 및 담당자 지원",
+            "resolved_by": "attempt-recall-acceptance-pass",
+            "verification": "current"
+          }
+        ],
+        "improvements": [
+          {
+            "id": "loop-change",
+            "area": "loop",
+            "version": "v1",
+            "hypothesis": "실패 입력을 검증 루프에 포함하면 같은 오류를 찾을 수 있다",
+            "change": "합성 검사 검증 루프에 실패 사례 추가",
+            "evidence_attempt_ids": [
+              "attempt-recall-acceptance-fail"
+            ],
+            "validation_attempt_ids": [
+              "attempt-recall-acceptance-pass"
+            ],
+            "decision": "adopt"
+          }
+        ],
+        "harness": [
+          {
+            "id": "kit",
+            "version": "v1",
+            "source": "합성 Kit 설치 선언; 실행 근거와 별도",
+            "at": "2026-09-29T01:00:00Z"
+          }
+        ],
+        "graphs": [
+          {
+            "id": "graph-synthetic",
+            "generator": "synthetic-graphify",
+            "version": "v1",
+            "mode": "code-only",
+            "source_revision": "v1",
+            "source_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "at": "2026-09-29T05:00:00Z",
+            "status": "generated",
+            "freshness": "current"
+          }
+        ]
+      }
     },
     {
       "id": "bob-payments",
-      "name": "지급 내역 검토",
-      "goal": "지급 내역의 오류를 확인하는 화면을 만듭니다.",
+      "name": "결제 요청 검증 구현 · 합성 예시",
+      "goal": "중복 결제 요청과 누락 금액을 검증한다",
       "owners": [
         "Bob"
       ],
@@ -446,7 +863,7 @@
         {
           "id": "design",
           "name": "설계",
-          "status": "complete"
+          "status": "failed"
         },
         {
           "id": "build",
@@ -477,10 +894,10 @@
         {
           "criterion_id": "payments-acceptance",
           "revision": "v1",
-          "at": "2026-09-30T05:00:00Z",
+          "at": "2026-09-29T03:00:00Z",
           "exit_code": 1,
-          "session_id": "bob-1",
-          "evidence": "합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "session_id": "bob-management",
+          "evidence": "management attempt attempt-payments-acceptance-fail · runner · 실패: 중복 요청의 처리 순서가 불명확하여 담당자 지원이 필요하다 · 합성 실행 예시",
           "criterion_signature": "0671daf3359a1d27af7fc9475d52d27b8f45aca10fade58fde26517534b5f2ed",
           "status": "fail",
           "source_ref": "catalog.projects[1].runs[0]"
@@ -488,12 +905,12 @@
         {
           "criterion_id": "payment-design",
           "revision": "v1",
-          "at": "2026-09-30T03:00:00Z",
-          "exit_code": 0,
-          "session_id": "bob-1",
-          "evidence": "합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "at": "2026-09-29T03:00:00Z",
+          "exit_code": 1,
+          "session_id": "bob-management",
+          "evidence": "management attempt attempt-payment-design-fail · runner · 실패: 중복 요청의 처리 순서가 불명확하여 담당자 지원이 필요하다 · 합성 실행 예시",
           "criterion_signature": "9c9a29aae5873252b4ff30ca00890644731181c588939c00763aad2ee52c0ef5",
-          "status": "pass",
+          "status": "fail",
           "source_ref": "catalog.projects[1].runs[1]"
         }
       ],
@@ -503,9 +920,79 @@
           "actor_id": "Bob",
           "environment_id": "laptop",
           "event_count": 3
+        },
+        {
+          "id": "bob-management",
+          "actor_id": "Bob",
+          "environment_id": "laptop",
+          "event_count": 0
         }
       ],
       "timeline": [
+        {
+          "at": "2026-09-29T00:00:00Z",
+          "kind": "management",
+          "title": "objectives · objective-Bob",
+          "detail": "합성 Company 결제검증 작업 지시문",
+          "session_id": null,
+          "source_ref": "catalog.projects[1].management.objectives[0]"
+        },
+        {
+          "at": "2026-09-29T01:00:00Z",
+          "kind": "management",
+          "title": "harness · kit",
+          "detail": "합성 Kit 설치 선언; 실행 근거와 별도",
+          "session_id": null,
+          "source_ref": "catalog.projects[1].management.harness[0]"
+        },
+        {
+          "at": "2026-09-29T01:00:00Z",
+          "kind": "management",
+          "title": "plans · implementation",
+          "detail": "요구사항 원문을 구현과 검사로 연결: 중복 결제 요청과 누락 금액을 검증한다",
+          "session_id": null,
+          "source_ref": "catalog.projects[1].management.plans[0]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-payments-acceptance",
+          "detail": "업무 요구사항의 기술 동작을 검사: 중복 결제 요청과 누락 금액을 검증한다; 전체 인수 검사",
+          "session_id": null,
+          "source_ref": "catalog.projects[1].management.test_plans[0]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-payment-design",
+          "detail": "업무 요구사항의 기술 동작을 검사: 중복 결제 요청과 누락 금액을 검증한다; 설계 단계 검사",
+          "session_id": null,
+          "source_ref": "catalog.projects[1].management.test_plans[1]"
+        },
+        {
+          "at": "2026-09-29T03:00:00Z",
+          "kind": "check",
+          "title": "전체 인수 검사 · fail",
+          "detail": "v1 · python3 checks/payments-acceptance.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-payments-acceptance-fail · runner · 실패: 중복 요청의 처리 순서가 불명확하여 담당자 지원이 필요하다 · 합성 실행 예시",
+          "session_id": "bob-management",
+          "source_ref": "catalog.projects[1].runs[0]"
+        },
+        {
+          "at": "2026-09-29T03:00:00Z",
+          "kind": "check",
+          "title": "설계 단계 검사 · fail",
+          "detail": "v1 · python3 checks/payment-design.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-payment-design-fail · runner · 실패: 중복 요청의 처리 순서가 불명확하여 담당자 지원이 필요하다 · 합성 실행 예시",
+          "session_id": "bob-management",
+          "source_ref": "catalog.projects[1].runs[1]"
+        },
+        {
+          "at": "2026-09-29T05:00:00Z",
+          "kind": "management",
+          "title": "graphs · graph-synthetic",
+          "detail": "synthetic-graphify",
+          "session_id": null,
+          "source_ref": "catalog.projects[1].management.graphs[0]"
+        },
         {
           "at": "2026-09-30T01:00:00Z",
           "kind": "event",
@@ -529,22 +1016,6 @@
           "detail": "{\n  \"adapter_version\": \"2\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {\n    \"connection\": {\n      \"artifact_refs\": [\n        {\n          \"id\": \"design\",\n          \"version\": \"v2\"\n        }\n      ],\n      \"duration_ms\": null,\n      \"operation\": \"read\",\n      \"resources\": [\n        {\n          \"evidence\": \"input\",\n          \"id\": \"customers\",\n          \"kind\": \"database\",\n          \"label\": \"합성 고객 자료\"\n        }\n      ],\n      \"server\": \"sample-crm\",\n      \"status\": \"failed\",\n      \"tool\": \"lookup\"\n    }\n  },\n  \"event_id\": \"a6296aa3-3fe9-56a3-acc5-caf8f9ef9161\",\n  \"kind\": \"tool.failed\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"PostToolUseFailure\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 2,\n  \"session_id\": \"bob-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": \"synthetic-call\",\n  \"tool_name\": \"MCP\",\n  \"turn_id\": null\n}",
           "session_id": "bob-1",
           "source_ref": "central Bob/laptop event_id=a6296aa3-3fe9-56a3-acc5-caf8f9ef9161 file_sha256=2d74caeb2e8740c79705f76457e0b4507923b07a262f21670d8a9e4ec0823ea7 line=3"
-        },
-        {
-          "at": "2026-09-30T03:00:00Z",
-          "kind": "check",
-          "title": "설계 단계 검사 · pass",
-          "detail": "v1 · python3 checks/payment-design.py\n가져온 검사 기록 (실행하지 않음): 합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
-          "session_id": "bob-1",
-          "source_ref": "catalog.projects[1].runs[1]"
-        },
-        {
-          "at": "2026-09-30T05:00:00Z",
-          "kind": "check",
-          "title": "전체 인수 검사 · fail",
-          "detail": "v1 · python3 checks/payments-acceptance.py\n가져온 검사 기록 (실행하지 않음): 합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
-          "session_id": "bob-1",
-          "source_ref": "catalog.projects[1].runs[0]"
         }
       ],
       "sources": [
@@ -557,7 +1028,7 @@
         }
       ],
       "alerts": [],
-      "last_updated": "2026-09-30T05:00:00Z",
+      "last_updated": "2026-09-30T01:00:00Z",
       "connections": [
         {
           "server": "sample-crm",
@@ -589,12 +1060,216 @@
           "authority": "observed",
           "source_ref": "central Bob/laptop event_id=a6296aa3-3fe9-56a3-acc5-caf8f9ef9161 file_sha256=2d74caeb2e8740c79705f76457e0b4507923b07a262f21670d8a9e4ec0823ea7 line=3"
         }
-      ]
+      ],
+      "management": {
+        "objectives": [
+          {
+            "id": "objective-Bob",
+            "version": "v1",
+            "kind": "company",
+            "parent_id": null,
+            "title": "고객 요청 분류 시간 단축",
+            "success_condition": "고객 요청 분류 시간 단축 여부는 실제 업무 성과 미관측",
+            "source": "합성 Company 결제검증 작업 지시문",
+            "at": "2026-09-29T00:00:00Z"
+          }
+        ],
+        "assignment": {
+          "objective_id": "objective-Bob",
+          "objective_version": "v1",
+          "kind": "task",
+          "issuer": "Company",
+          "assignee": "Bob",
+          "at": "2026-09-29T00:10:00Z",
+          "acceptance": "중복 결제 요청과 누락 금액을 검증한다"
+        },
+        "requirements": [
+          {
+            "id": "req-core",
+            "text": "중복 결제 요청과 누락 금액을 검증한다",
+            "source": "합성 Company 결제검증 작업 지시문"
+          }
+        ],
+        "plans": [
+          {
+            "id": "implementation",
+            "version": "v1",
+            "at": "2026-09-29T01:00:00Z",
+            "summary": "중복 결제 요청과 누락 금액을 검증한다",
+            "reason": "요구사항 원문을 구현과 검사로 연결: 중복 결제 요청과 누락 금액을 검증한다",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "handoff_ref": "synthetic-plan.json"
+          }
+        ],
+        "test_plans": [
+          {
+            "id": "test-payments-acceptance",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "payments-acceptance",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "업무 요구사항의 기술 동작을 검사: 중복 결제 요청과 누락 금액을 검증한다; 전체 인수 검사",
+            "excluded": "외부 provider 및 실제 업무 성과는 관측하지 않음",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "payments-acceptance",
+              "label": "전체 인수 검사",
+              "scope": "project",
+              "target_id": "bob-payments",
+              "command": "python3 checks/payments-acceptance.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-payment-design",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "payment-design",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "업무 요구사항의 기술 동작을 검사: 중복 결제 요청과 누락 금액을 검증한다; 설계 단계 검사",
+            "excluded": "외부 provider 및 실제 업무 성과는 관측하지 않음",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "payment-design",
+              "label": "설계 단계 검사",
+              "scope": "phase",
+              "target_id": "design",
+              "command": "python3 checks/payment-design.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          }
+        ],
+        "artifact": {
+          "revision": "v1",
+          "sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+          "files": [
+            {
+              "path": "synthetic-test.py",
+              "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+            }
+          ]
+        },
+        "attempts": [
+          {
+            "id": "attempt-payments-acceptance-fail",
+            "test_plan_id": "test-payments-acceptance",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "2a91898613296a348ffeca7c3c147a40771b2f6f490b3b39aecee9ccb33bd878",
+            "criterion_signature": "0671daf3359a1d27af7fc9475d52d27b8f45aca10fade58fde26517534b5f2ed",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 checks/payments-acceptance.py",
+            "started_at": "2026-09-29T03:00:00Z",
+            "at": "2026-09-29T03:00:00Z",
+            "exit_code": 1,
+            "actor_id": "Bob",
+            "environment_id": "laptop",
+            "session_id": "bob-management",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "실패: 중복 요청의 처리 순서가 불명확하여 담당자 지원이 필요하다 · 합성 실행 예시",
+            "provenance": "runner",
+            "status": "fail"
+          },
+          {
+            "id": "attempt-payment-design-fail",
+            "test_plan_id": "test-payment-design",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "73ec447116521440c27514fa5125ee014bc3fca283b6a53cb6ddf98fa551b493",
+            "criterion_signature": "9c9a29aae5873252b4ff30ca00890644731181c588939c00763aad2ee52c0ef5",
+            "revision": "v1",
+            "artifact_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "command": "python3 checks/payment-design.py",
+            "started_at": "2026-09-29T03:00:00Z",
+            "at": "2026-09-29T03:00:00Z",
+            "exit_code": 1,
+            "actor_id": "Bob",
+            "environment_id": "laptop",
+            "session_id": "bob-management",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "실패: 중복 요청의 처리 순서가 불명확하여 담당자 지원이 필요하다 · 합성 실행 예시",
+            "provenance": "runner",
+            "status": "fail"
+          }
+        ],
+        "blockers": [
+          {
+            "id": "blocker-main",
+            "status": "open",
+            "summary": "중복 결제 요청 처리 지원 요청",
+            "cause_state": "hypothesis",
+            "cause": "중복 요청의 처리 순서가 불명확하여 담당자 지원이 필요하다",
+            "attempt_ids": [
+              "attempt-payments-acceptance-fail"
+            ],
+            "owner": "Bob",
+            "next_action": "검사 재실행 및 담당자 지원",
+            "resolved_by": null,
+            "verification": "unknown"
+          }
+        ],
+        "improvements": [
+          {
+            "id": "loop-change",
+            "area": "loop",
+            "version": "v1",
+            "hypothesis": "실패 입력을 검증 루프에 포함하면 같은 오류를 찾을 수 있다",
+            "change": "합성 검사 검증 루프에 실패 사례 추가",
+            "evidence_attempt_ids": [
+              "attempt-payments-acceptance-fail"
+            ],
+            "validation_attempt_ids": [],
+            "decision": "trial"
+          }
+        ],
+        "harness": [
+          {
+            "id": "kit",
+            "version": "v1",
+            "source": "합성 Kit 설치 선언; 실행 근거와 별도",
+            "at": "2026-09-29T01:00:00Z"
+          }
+        ],
+        "graphs": [
+          {
+            "id": "graph-synthetic",
+            "generator": "synthetic-graphify",
+            "version": "v1",
+            "mode": "code-only",
+            "source_revision": "v1",
+            "source_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "at": "2026-09-29T05:00:00Z",
+            "status": "failed",
+            "freshness": "unknown"
+          }
+        ]
+      }
     },
     {
       "id": "carol-dashboard",
-      "name": "운영 대시보드",
-      "goal": "운영 상태와 변경 이력을 함께 봅니다.",
+      "name": "개인 대시보드 · 합성 예시",
+      "goal": "프로젝트 현황과 최신 검사 시각을 표시한다",
       "owners": [
         "Carol"
       ],
@@ -623,7 +1298,7 @@
       "criteria": [
         {
           "id": "dashboard-acceptance",
-          "label": "전체 인수 검사",
+          "label": "전체 인수 검사 · 개정",
           "scope": "project",
           "target_id": "carol-dashboard",
           "command": "python3 checks/dashboard-acceptance.py",
@@ -633,13 +1308,13 @@
       "runs": [
         {
           "criterion_id": "dashboard-acceptance",
-          "revision": "v1",
-          "at": "2026-09-29T08:00:00Z",
-          "exit_code": 0,
-          "session_id": "carol-1",
-          "evidence": "합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
+          "revision": "v2",
+          "at": "2026-09-29T03:00:00Z",
+          "exit_code": null,
+          "session_id": "carol-management",
+          "evidence": "management attempt attempt-dashboard-acceptance-old · runner · 과거 기준 통과; 최신 기준과 산출물 재검증 필요 · 합성 실행 예시",
           "criterion_signature": "5f115c20ef490d8eca4b645517426f05df7a225c9d15d149538ead0e3cfb102a",
-          "status": "pass",
+          "status": "unknown",
           "source_ref": "catalog.projects[2].runs[0]"
         }
       ],
@@ -649,24 +1324,70 @@
           "actor_id": "Carol",
           "environment_id": "desktop",
           "event_count": 2
+        },
+        {
+          "id": "carol-management",
+          "actor_id": "Carol",
+          "environment_id": "desktop",
+          "event_count": 0
         }
       ],
       "timeline": [
         {
-          "at": "2026-09-29T08:00:00Z",
+          "at": "2026-09-29T00:00:00Z",
+          "kind": "management",
+          "title": "objectives · objective-Carol",
+          "detail": "합성 Carol 개인 요구사항 노트",
+          "session_id": null,
+          "source_ref": "catalog.projects[2].management.objectives[0]"
+        },
+        {
+          "at": "2026-09-29T01:00:00Z",
+          "kind": "management",
+          "title": "harness · kit",
+          "detail": "합성 Kit 설치 선언; 실행 근거와 별도",
+          "session_id": null,
+          "source_ref": "catalog.projects[2].management.harness[0]"
+        },
+        {
+          "at": "2026-09-29T01:00:00Z",
+          "kind": "management",
+          "title": "plans · implementation",
+          "detail": "요구사항 원문을 구현과 검사로 연결: 프로젝트 현황과 최신 검사 시각을 표시한다",
+          "session_id": null,
+          "source_ref": "catalog.projects[2].management.plans[0]"
+        },
+        {
+          "at": "2026-09-29T02:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-dashboard-acceptance",
+          "detail": "업무 요구사항의 기술 동작을 검사: 프로젝트 현황과 최신 검사 시각을 표시한다; 전체 인수 검사",
+          "session_id": null,
+          "source_ref": "catalog.projects[2].management.test_plans[0]"
+        },
+        {
+          "at": "2026-09-29T03:00:00Z",
           "kind": "check",
-          "title": "전체 인수 검사 · pass",
-          "detail": "v1 · python3 checks/dashboard-acceptance.py\n가져온 검사 기록 (실행하지 않음): 합성으로 입력한 검사 기록 · 명령은 실행하지 않았습니다.",
-          "session_id": "carol-1",
+          "title": "전체 인수 검사 · 개정 · unknown",
+          "detail": "v2 · python3 checks/dashboard-acceptance.py\n가져온 검사 기록 (실행하지 않음): management attempt attempt-dashboard-acceptance-old · runner · 과거 기준 통과; 최신 기준과 산출물 재검증 필요 · 합성 실행 예시",
+          "session_id": "carol-management",
           "source_ref": "catalog.projects[2].runs[0]"
         },
         {
-          "at": "2026-09-29T08:00:00Z",
-          "kind": "milestone",
-          "title": "프로젝트 완료 기준 충족 · v1",
-          "detail": "당시 기준의 가져온 검사 기록이 모두 통과했습니다.",
+          "at": "2026-09-29T04:00:00Z",
+          "kind": "management",
+          "title": "test_plans · test-dashboard-acceptance",
+          "detail": "최신 검사 시각 표시를 인수 기준에 추가; 과거 통과를 재검증해야 한다",
           "session_id": null,
-          "source_ref": "catalog.projects[2].runs"
+          "source_ref": "catalog.projects[2].management.test_plans[1]"
+        },
+        {
+          "at": "2026-09-29T05:00:00Z",
+          "kind": "management",
+          "title": "graphs · graph-synthetic",
+          "detail": "synthetic-graphify",
+          "session_id": null,
+          "source_ref": "catalog.projects[2].management.graphs[0]"
         },
         {
           "at": "2026-09-30T01:00:00Z",
@@ -694,14 +1415,191 @@
           "event_count": 2
         }
       ],
-      "alerts": [],
+      "alerts": [
+        "기준 변경 또는 signature 불일치: dashboard-acceptance · 검사 재입력 필요"
+      ],
       "last_updated": "2026-09-30T01:00:00Z",
-      "connections": []
+      "connections": [],
+      "management": {
+        "objectives": [
+          {
+            "id": "objective-Carol",
+            "version": "v1",
+            "kind": "personal",
+            "parent_id": null,
+            "title": "개인 프로젝트 현황을 한 화면에서 확인",
+            "success_condition": "개인 프로젝트 현황 파악; 합성 예시이며 실제 사용 결과 미관측",
+            "source": "합성 Carol 개인 요구사항 노트",
+            "at": "2026-09-29T00:00:00Z"
+          }
+        ],
+        "assignment": null,
+        "requirements": [
+          {
+            "id": "req-core",
+            "text": "프로젝트 현황과 최신 검사 시각을 표시한다",
+            "source": "합성 Carol 개인 요구사항 노트"
+          }
+        ],
+        "plans": [
+          {
+            "id": "implementation",
+            "version": "v1",
+            "at": "2026-09-29T01:00:00Z",
+            "summary": "프로젝트 현황과 최신 검사 시각을 표시한다",
+            "reason": "요구사항 원문을 구현과 검사로 연결: 프로젝트 현황과 최신 검사 시각을 표시한다",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "handoff_ref": "synthetic-plan.json"
+          }
+        ],
+        "test_plans": [
+          {
+            "id": "test-dashboard-acceptance",
+            "version": "v1",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "dashboard-acceptance",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "업무 요구사항의 기술 동작을 검사: 프로젝트 현황과 최신 검사 시각을 표시한다; 전체 인수 검사",
+            "excluded": "외부 provider 및 실제 업무 성과는 관측하지 않음",
+            "at": "2026-09-29T02:00:00Z",
+            "definition": {
+              "id": "dashboard-acceptance",
+              "label": "전체 인수 검사",
+              "scope": "project",
+              "target_id": "carol-dashboard",
+              "command": "python3 checks/dashboard-acceptance.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          },
+          {
+            "id": "test-dashboard-acceptance",
+            "version": "v2",
+            "plan_id": "implementation",
+            "plan_version": "v1",
+            "criterion_id": "dashboard-acceptance",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "reason": "최신 검사 시각 표시를 인수 기준에 추가; 과거 통과를 재검증해야 한다",
+            "excluded": "외부 provider 및 실제 업무 성과는 관측하지 않음",
+            "at": "2026-09-29T04:00:00Z",
+            "definition": {
+              "id": "dashboard-acceptance",
+              "label": "전체 인수 검사 · 개정",
+              "scope": "project",
+              "target_id": "carol-dashboard",
+              "command": "python3 checks/dashboard-acceptance.py",
+              "expected_exit_code": 0
+            },
+            "test_files": [
+              {
+                "path": "synthetic-test.py",
+                "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+              }
+            ]
+          }
+        ],
+        "artifact": {
+          "revision": "v2",
+          "sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+          "files": [
+            {
+              "path": "synthetic-test.py",
+              "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+            }
+          ]
+        },
+        "attempts": [
+          {
+            "id": "attempt-dashboard-acceptance-old",
+            "test_plan_id": "test-dashboard-acceptance",
+            "test_plan_version": "v1",
+            "test_plan_sha256": "2af9935db7eca42b4bd1bc88e8c775cf74257809247b1357e340cdc619017409",
+            "criterion_signature": "5f115c20ef490d8eca4b645517426f05df7a225c9d15d149538ead0e3cfb102a",
+            "revision": "v2",
+            "artifact_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "command": "python3 checks/dashboard-acceptance.py",
+            "started_at": "2026-09-29T03:00:00Z",
+            "at": "2026-09-29T03:00:00Z",
+            "exit_code": 0,
+            "actor_id": "Carol",
+            "environment_id": "desktop",
+            "session_id": "carol-management",
+            "environment": "mock",
+            "runner": "synthetic-example",
+            "summary": "과거 기준 통과; 최신 기준과 산출물 재검증 필요 · 합성 실행 예시",
+            "provenance": "runner",
+            "status": "unknown"
+          }
+        ],
+        "blockers": [
+          {
+            "id": "blocker-main",
+            "status": "open",
+            "summary": "개정 기준과 변경된 산출물 재검증",
+            "cause_state": "hypothesis",
+            "cause": "최신 검사 시각 기준을 개정했으므로 과거 통과 기록을 재검증한다",
+            "attempt_ids": [
+              "attempt-dashboard-acceptance-old"
+            ],
+            "owner": "Carol",
+            "next_action": "검사 재실행 및 담당자 지원",
+            "resolved_by": null,
+            "verification": "unknown"
+          }
+        ],
+        "improvements": [
+          {
+            "id": "loop-change",
+            "area": "loop",
+            "version": "v1",
+            "hypothesis": "실패 입력을 검증 루프에 포함하면 같은 오류를 찾을 수 있다",
+            "change": "합성 검사 검증 루프에 실패 사례 추가",
+            "evidence_attempt_ids": [
+              "attempt-dashboard-acceptance-old"
+            ],
+            "validation_attempt_ids": [],
+            "decision": "trial"
+          }
+        ],
+        "harness": [
+          {
+            "id": "kit",
+            "version": "v1",
+            "source": "합성 Kit 설치 선언; 실행 근거와 별도",
+            "at": "2026-09-29T01:00:00Z"
+          }
+        ],
+        "graphs": [
+          {
+            "id": "graph-synthetic",
+            "generator": "synthetic-graphify",
+            "version": "v1",
+            "mode": "code-only",
+            "source_revision": "v2",
+            "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "at": "2026-09-29T05:00:00Z",
+            "status": "generated",
+            "freshness": "stale"
+          }
+        ]
+      }
     },
     {
       "id": "dana-discovery",
-      "name": "고객 인터뷰 정리",
-      "goal": "고객 요구를 정리하고 다음 실험을 정합니다.",
+      "name": "개인 기획 · 합성 예시",
+      "goal": "아이디어의 요구사항을 정리한다",
       "owners": [
         "Dana"
       ],
@@ -738,6 +1636,38 @@
         }
       ],
       "timeline": [
+        {
+          "at": "2026-09-29T00:00:00Z",
+          "kind": "management",
+          "title": "objectives · objective-Dana",
+          "detail": "합성 개인 노트",
+          "session_id": null,
+          "source_ref": "catalog.projects[3].management.objectives[0]"
+        },
+        {
+          "at": "2026-09-29T01:00:00Z",
+          "kind": "management",
+          "title": "harness · kit",
+          "detail": "합성 Kit 설치 선언; 실행 근거와 별도",
+          "session_id": null,
+          "source_ref": "catalog.projects[3].management.harness[0]"
+        },
+        {
+          "at": "2026-09-29T01:00:00Z",
+          "kind": "management",
+          "title": "plans · implementation",
+          "detail": "요구사항 원문을 구현과 검사로 연결: 아이디어의 요구사항을 정리한다",
+          "session_id": null,
+          "source_ref": "catalog.projects[3].management.plans[0]"
+        },
+        {
+          "at": "2026-09-29T05:00:00Z",
+          "kind": "management",
+          "title": "graphs · graph-synthetic",
+          "detail": "synthetic-graphify",
+          "session_id": null,
+          "source_ref": "catalog.projects[3].management.graphs[0]"
+        },
         {
           "at": "2026-09-30T01:00:00Z",
           "kind": "event",
@@ -797,7 +1727,77 @@
           "authority": "declared",
           "source_ref": "catalog.projects[3].connections[0]"
         }
-      ]
+      ],
+      "management": {
+        "objectives": [
+          {
+            "id": "objective-Dana",
+            "version": "v1",
+            "kind": "personal",
+            "parent_id": null,
+            "title": "개인 아이디어 검토",
+            "success_condition": "개인 프로젝트 현황 파악; 합성 예시이며 실제 사용 결과 미관측",
+            "source": "합성 개인 노트",
+            "at": "2026-09-29T00:00:00Z"
+          }
+        ],
+        "assignment": null,
+        "requirements": [
+          {
+            "id": "req-core",
+            "text": "아이디어의 요구사항을 정리한다",
+            "source": "합성 개인 노트"
+          }
+        ],
+        "plans": [
+          {
+            "id": "implementation",
+            "version": "v1",
+            "at": "2026-09-29T01:00:00Z",
+            "summary": "아이디어의 요구사항을 정리한다",
+            "reason": "요구사항 원문을 구현과 검사로 연결: 아이디어의 요구사항을 정리한다",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "handoff_ref": "synthetic-plan.json"
+          }
+        ],
+        "test_plans": [],
+        "artifact": {
+          "revision": "v1",
+          "sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+          "files": [
+            {
+              "path": "synthetic-test.py",
+              "sha256": "672d0d8e4fcb6db3a2cd9b212991e7d15adf19076e4cec061ff96da099f288b3"
+            }
+          ]
+        },
+        "attempts": [],
+        "blockers": [],
+        "improvements": [],
+        "harness": [
+          {
+            "id": "kit",
+            "version": "v1",
+            "source": "합성 Kit 설치 선언; 실행 근거와 별도",
+            "at": "2026-09-29T01:00:00Z"
+          }
+        ],
+        "graphs": [
+          {
+            "id": "graph-synthetic",
+            "generator": "synthetic-graphify",
+            "version": "v1",
+            "mode": "code-only",
+            "source_revision": "v1",
+            "source_sha256": "dd9ffd37e024870f9110e454680f569848dc51f1b9e37d254be61254c67c1735",
+            "at": "2026-09-29T05:00:00Z",
+            "status": "generated",
+            "freshness": "current"
+          }
+        ]
+      }
     },
     {
       "id": "unmapped-f54926a3bf0a924b",
@@ -851,7 +1851,8 @@
       ],
       "alerts": [],
       "last_updated": "2026-09-30T01:00:00Z",
-      "connections": []
+      "connections": [],
+      "management": null
     }
   ]
 }

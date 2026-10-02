@@ -1,0 +1,14 @@
+{
+  "reviewer": "/root/management_intent_review",
+  "verdict": "aligned",
+  "source_sha256": "4fa9b19cb900d1c1181fdabf213e52b12232fe019e2f093533124e51b2fc3802",
+  "spec_sha256": "de64970dafbe4627976b21119d25d88547728638050e0cd94ec4f17591283d85",
+  "requirements_covered": [
+    "goals",
+    "tests",
+    "improve",
+    "graph"
+  ],
+  "unapproved_changes": [],
+  "evidence": "Independent review of source.md, spec.md, plan.json, PRODUCT-INTENT.md and docs/reviews/astra-central-management-review.md, plus existing portfolio canonical/signature/source mapping implementation. goals: outcome/task assignment, named owner and optional personal/company objective connection preserve the requested management purpose; company success conditions remain declarations and business outcome is explicitly unobserved independently of technical pass. tests: versioned requirement/plan/test-plan links, reasons/exclusions/test file hashes, exact command/definition checks, runner provenance, actual subprocess receipts and stale/future boundaries support the requested design and execution log. Initial shared-contract blockers were corrected: artifact.files has normalized unique paths and actual byte hashes, its canonical sorted-file digest matches portfolio.canonical, pre-run digest stays on receipt while post-run current manifest changes, and disappearing files preserve original management plus a separate failure receipt. Objective parent relationships now use stable parent IDs and ID-level cycle checks. improve: explicit blocker hypotheses/confirmed causes, owners/next actions/resolution attempts and improvement change/evidence/validation records permit review without inventing causes or productivity scores. graph: optional project-local code-only/no-cluster generation, failed/stale/unknown states and AST limits align with the conditional user request; no global hook installation or external semantic API is introduced. Scope remains Kit logging plus central imported management UI, with approved publication assigned to parent; deferred multi-PC collection is not an acceptance blocker. This receipt approves source/spec alignment for implementation dispatch only, not implemented behavior, browser acceptance, release bytes, actual user delivery, outcome achievement or cryptographic trust in input declarations."
+}

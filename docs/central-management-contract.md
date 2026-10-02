@@ -1,6 +1,6 @@
-# 중앙 관리 기록 계약 — 다음 구현 제안
+# 중앙 관리 기록 계약 — 목적과 구현 경계
 
-2026-10-01 사용자 설명과 Astra 소스 검토를 반영했습니다. **제안이며 현행 logger/catalog/snapshot import가 지원하는 새 스키마가 아닙니다.** 현재 실행 가능한 형식은 [json-contracts.md](json-contracts.md)에 있습니다.
+2026-10-02 사용자 설명과 독립 검토를 반영했습니다. 목표·위임·계획·테스트 시도·막힘·Kit 개선·선택 그래프를 v3 catalog/snapshot과 로컬 기록기로 구현했습니다. 기존 훅 JSONL 계약을 바꾸지 않고 별도 관리 기록을 연결합니다. 정확한 지원 필드와 CLI는 [JSON 안내](json-contracts.md), [구현 명세](../specs/ai-pms-management/spec.md), Kit activity/README.md에 있습니다. 아래 내용 중 회사 업무 성과 수집·외부 신뢰 서명·다중 PC 자동 전달은 구현 범위가 아닙니다.
 
 ## 관리 목적과 기록 연결
 

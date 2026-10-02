@@ -1,0 +1,15 @@
+{
+  "evidence": "actual-local-subprocess-with-synthetic-identities",
+  "actual_user_delivery": false,
+  "stages": [
+    "failed",
+    "complete",
+    "revalidation"
+  ],
+  "attempt_exit_codes": [
+    1,
+    0
+  ],
+  "raw_output_retained": false,
+  "graph_status": "not_requested"
+}

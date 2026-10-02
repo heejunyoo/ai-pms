@@ -121,7 +121,7 @@ def validate(public):
                     assert result.returncode==0,(prefix,args,result.stdout,result.stderr)
         check_intent_example('handoff/')
         check_intent_example('claude-handoff/')
-        activity = {'activity/'+name for name in ('logger.py','connectivity.py','test_logger.py','viewer.html','README.md','example-project.jsonl')}
+        activity = {'activity/'+name for name in ('logger.py','connectivity.py','management.py','management_recorder.py','test_management_recorder.py','catalog-v3.template.json','json-contracts.md','test_logger.py','viewer.html','README.md','example-project.jsonl')}
         assert {name for name in z.namelist() if name.startswith('activity/')} == activity, 'Activity export must use the exact public allowlist'
         sample_bytes = z.read('activity/example-project.jsonl')
         assert b'/Users/' not in sample_bytes and b'BEGIN PRIVATE KEY' not in sample_bytes

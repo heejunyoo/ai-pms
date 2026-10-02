@@ -22,7 +22,7 @@ def main():
         body=f.read_text();body=body.replace(str(Path.home()),'$HOME')
         target=out/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(body);copied.append(rel.as_posix())
     home=Path.home()
-    for folder,names in {'activity':['logger.py','connectivity.py','test_logger.py','test_workflow.py','viewer.html','README.md','example-project.jsonl'],'build':['current_content.py','build_current.py','check_current.py','check_site.py','BUILD.md']}.items():
+    for folder,names in {'activity':['logger.py','connectivity.py','management.py','management_recorder.py','test_management_recorder.py','catalog-v3.template.json','json-contracts.md','test_logger.py','test_workflow.py','viewer.html','README.md','example-project.jsonl'],'build':['current_content.py','build_current.py','check_current.py','check_site.py','BUILD.md']}.items():
         for name in names:
             source=home/'.claude/harness'/folder/name
             assert source.is_file(),source
@@ -34,14 +34,14 @@ def main():
     (out/'.gitignore').write_text('__pycache__/\n*.pyc\n.vercel/\n.env*\n*.pem\n*.key\n.DS_Store\n')
     (out/'PUBLIC_SNAPSHOT.md').write_text('''# Publication boundary
 
-This repository is a clean public snapshot of AI PMS research, implementation, tests, synthetic samples, ELI20 report, and changed canonical Harness Kit sources. It contains no original home Git history, credentials, account configuration, private audit backups, real user hook logs, or runtime identity inventory. Personal home paths in historical documentation are replaced with $HOME. Consequently historical hash receipts describe the original local artifacts and must not be treated as fresh public verification. Current release proof and the portable tests are the release evidence.
+This repository is a clean public snapshot of AI PMS research, implementation, tests, synthetic samples, ELI20 report, and changed canonical Harness Kit sources. It contains no original home Git history, credentials, account configuration, private audit backups, real user hook logs, or runtime identity inventory. Personal home paths in historical documentation are replaced with $HOME. Consequently historical hash receipts describe the original local artifacts and must not be treated as fresh public verification. The management release proof and portable tests are current evidence; dashboard/connectivity/transport receipts retain their historical scope.
 
 Kit/build contains the canonical source used in the existing Harness Kit home installation; that full generator needs the separately configured Harness Kit environment. Kit/activity is portable and independently testable. Public Kit downloads contain explicit, reviewed implementation sources. The sample app is a static synthetic dashboard, not a hosted receiver or an authenticated operations service. Automatic collection from users' PCs remains deferred.
 ''')
-    proof_path=out/'specs/ai-pms-connectivity/release-proof.json'
+    proof_path=out/'specs/ai-pms-management/release-proof.json'
     if proof_path.exists():
         proof=json.loads(proof_path.read_text())
-        proof['source_proof_sha256']=hashlib.sha256((ROOT/'specs/ai-pms-connectivity/release-proof.json').read_bytes()).hexdigest()
+        proof['source_proof_sha256']=hashlib.sha256((ROOT/'specs/ai-pms-management/release-proof.json').read_bytes()).hexdigest()
         proof['publication_rebased']=True
         proof['sha256']={name:hashlib.sha256((out/name).read_bytes()).hexdigest() for name in proof['sha256']}
         proof_path.write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n')

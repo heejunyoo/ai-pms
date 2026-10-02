@@ -6,6 +6,8 @@ import argparse
 
 ROOT = Path(__file__).resolve().parents[2]
 ROUTES = {
+    '/management': ('apps/dashboard/public/index.html', 'text/html; charset=utf-8'),
+    '/snapshot.json': ('apps/dashboard/public/snapshot.json', 'application/json; charset=utf-8'),
     '/': ('specs/ai-pms-dashboard/evidence/dashboard.html', 'text/html; charset=utf-8'),
     '/specs/ai-pms-dashboard/evidence/dashboard.html': ('specs/ai-pms-dashboard/evidence/dashboard.html', 'text/html; charset=utf-8'),
     '/empty': ('specs/ai-pms-dashboard/evidence/empty.html', 'text/html; charset=utf-8'),

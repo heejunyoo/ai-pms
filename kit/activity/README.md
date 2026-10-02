@@ -55,3 +55,78 @@ MCP `mcp__server__tool` hook은 v2 `data.connection`에 안전한 이름과 호�
 선택 `pms_metadata`는 정확히 `operation`, `resources`, `artifact_refs`만 받습니다. operation은 read/write/delete/unknown; resources는 최대32개 `{id,kind,label,evidence}`, kind는 database/document/repository/api/file/unknown, evidence는 declared/input/output입니다. artifact_refs는 최대32개 `{id,version}`의 명시적 참조입니다. URL·경로·SQL·비밀정보·원본 입력/출력은 금지합니다. 잘못된 메타데이터는 누락 표시와 함께 버립니다.
 
 `hook --resource-map reviewed-map.json`은 로컬 검토한 raw tool name → 위 metadata 객체를 사용하며 모든 resource evidence를 declared로 강제합니다. 기본은 미설치이며 외부 통신은 없습니다. 도구 성공은 데이터 감사 증거가 아닙니다. duration_ms는 hook이 제공한 0..86400000 정수만 기록합니다. actor/environment 귀속은 중앙 manifest에서 유지합니다.
+
+## Central management v3 / 중앙 관리 기록 v3
+
+The central dashboard manages multiple users' persistent projects. The retained `viewer.html` is a personal offline reference. Local management JSON is separate from the logger's unchanged v1/v2 event contract. It is either one catalog project object with `management` or a v3 catalog (`version: 3`, `projects: [...]`); select exactly one catalog project with `--project-id`.
+
+Copy `management_recorder.py`, `test_management_recorder.py`, and the identical portable `management.py` together. Start from the supplied v3 template and field guide, review the project identities and criteria, and explicitly list the artifact/test files. Python 3.11+ and POSIX file locking are required. These tools do not install hooks or send data.
+
+
+For a runnable **synthetic smoke check** without manually calculating hashes, create a fresh project directory and copy the template as `management.json`. Leave its `example-project` criterion and identities intact for this smoke check; replace them with reviewed real requirements before using it for real work. The import creates a new test-plan version with actual file hashes. It does not execute the test.
+
+```sh
+mkdir -p ./my-project/checks
+cp ~/.agents/harness-activity/catalog-v3.template.json ./my-project/management.json
+printf '%s\n' '# Synthetic artifact only' > ./my-project/app.py
+cat > ./my-project/checks/acceptance.py <<'PYTEST'
+assert sum((1, 2)) == 3
+PYTEST
+cat > ./my-project/handoff-plan.json <<'JSONPLAN'
+{"goal":"Synthetic smoke check only", "spec_ref":"smoke-source.md", "intent_guard":{"source_ref":"smoke-source.md","requirements":[{"id":"smoke-req","quote":"Verify synthetic local smoke behavior."}]}, "tasks":[{"task_id":"smoke","requirement_ids":["smoke-req"],"acceptance":{"command":"python3 checks/acceptance.py","expect_exit_code":0},"context":{"excluded":"Real product and provider behavior are not checked."}}]}
+JSONPLAN
+python3 ~/.agents/harness-activity/management_recorder.py \
+  --project ./my-project --management management.json --project-id example-project \
+  handoff --plan handoff-plan.json --plan-id implementation --version v2 \
+  --reason 'Synthetic smoke-plan import; real behavior remains unverified.' \
+  --test-file checks/acceptance.py \
+  --actor-id ExampleUser --environment-id example-laptop --session-id smoke-session
+python3 ~/.agents/harness-activity/management_recorder.py \
+  --project ./my-project --management management.json --project-id example-project \
+  run --test-plan handoff-smoke --version v2 \
+  --actor-id ExampleUser --environment-id example-laptop --session-id smoke-session
+```
+
+The following commands show the same workflow after replacing the example identities and test-plan IDs with reviewed real ones:
+
+```sh
+python3 ~/.agents/harness-activity/management_recorder.py \
+  --project ./my-project --management management.json --project-id my-project \
+  run --test-plan acceptance --version v1 \
+  --actor-id Alice --environment-id laptop --session-id session-1 \
+  --environment local --timeout 300
+python3 ~/.agents/harness-activity/test_management_recorder.py
+```
+
+`--project` must name a project directory, never HOME or the filesystem root. All management, Handoff and manifest filenames are normalized project-relative paths; `..`, absolute paths and symlinks escaping the project are rejected. The recorder validates mapped actor/environment and session identities before execution. It invokes the reviewed criterion command with `shlex` argv and `shell=False`, with stdin/stdout/stderr discarded and a timeout. Shell operators and environment expansion are not evaluated; use a checked project script for multi-step tests.
+
+Only the explicitly listed artifact files are hashed. Coverage of that manifest is a user declaration, not proof that every relevant workspace file was included. Test-plan file hashes must match actual bytes before a test runs; changes require an explicit new test-plan version with a reason. The attempt retains the pre-run artifact hash. The management artifact gets actual post-run hashes. A changed artifact makes that receipt stale/unknown; it cannot establish current completion. Older attempts and signed plans are retained. If a file disappears after execution, the original management file is preserved and a safe separate `.ai-pms/receipt-*.json` is written. No raw output is stored. Runner provenance means this local process executed the command, not an external signature or assurance against fabricated JSON. Timeout/start failures retain exit_code=null and cannot pass even if a criterion expects124/127. The CLI returns the actual completed test exit code when available, `1` for interrupted/unstarted tests, `2` for recording errors; optional graph failure never replaces a test result.
+
+```sh
+python3 ~/.agents/harness-activity/management_recorder.py \
+  --project ./my-project --management management.json --project-id my-project \
+  handoff --plan handoff-plan.json --result handoff-result.json \
+  --plan-id implementation --version v2 --reason 'Revised acceptance for the stated requirement.' \
+  --test-file checks/acceptance.py \
+  --actor-id Alice --environment-id laptop --session-id session-1
+```
+
+The helper seeds requirements from `intent_guard.requirements` with source references, plan/version/reason and versioned test plans from task acceptance. Each acceptance command/expected code must match exactly one existing project criterion; review the criteria first. Result `acceptance_run` is imported only as `provenance: declared`, even if it says complete or reports exit0. It never becomes an observed runner or current completion. Raw result `output_tail` is not copied. For real evidence, execute the matching test plan with `run`.
+
+### Optional project Graphify wrapper / 선택적 프로젝트 그래프
+
+Add `--graph` to `run`, or use the standalone `graph` subcommand after reviewing the project and installing Graphify separately. This is an opt-in project wrapper invocation suitable for an explicitly approved project-local hook; no global hook is installed or changed here.
+
+```sh
+python3 ~/.agents/harness-activity/management_recorder.py \
+  --project ./my-project --management management.json --project-id my-project \
+  graph --timeout 300
+```
+
+The wrapper invokes only `graphify extract <project> --code-only --no-cluster`, rejects HOME and a HOME git root, and rejects escaping output symlinks. It logs safe generator version when exposed, source revision/hash/time and generated/failed status into `management.graphs` and `.ai-pms/graphs.jsonl`. Failed generation does not block a test. A matching manifest/revision/version and validated graph file with a matching recorded digest can reuse a prior graph. Exit zero requires a newly written graph.json with valid nodes/edges and resolved endpoints; missing, corrupt or dangling artifacts are failed evidence. Freshness is current/stale/unknown; changed source hashes require revalidation. The hash covers the declared artifact manifest. An AST graph proves neither runtime integration nor test coverage. Semantic extraction, network APIs and automatic global installation are excluded.
+
+회사 목표와 결과/작업 위임, 개인 프로젝트는 함께 관리하되 개인 프로젝트에 회사 목표 연결을 강제하지 않습니다. 테스트 계획에는 요구사항·계획 버전·설계 이유·제외 범위·파일 해시를 남깁니다. 실제 실행과 Handoff 결과 선언을 나누고, 산출물 또는 검사 정의가 바뀌면 과거 통과를 현재 완료로 승격하지 않습니다. 회사의 업무 성과는 기술 검사 통과와 별개로 **미관측**입니다.
+
+막힘은 원인 가설/확정, 담당자, 다음 행동과 시도를 명시적으로 연결합니다. 개선 제안은 rule/harness/loop/skill/mcp 영역과 변경 버전, 근거/검증 시도를 기록하며 검증이 없으면 효과 미관측으로 남깁니다. 비활동 시간으로 막힘을 추정하거나 자동 생산성 점수를 만들지 않습니다. 그래프는 선택적 로컬 AST 근거입니다. 전역 훅·trust·원격 sender는 변경하지 않고, 공개 자료에는 합성 기록만 사용합니다. 실제 로그는 개인정보 검토 후 선택적으로 공유하세요.
+
+Graphify 0.9.69의 실제 code-only 검사에서 외부 import를 가리키는 edge에 대응 node가 빠지는 경우를 확인했습니다. 이 경우 그래프를 성공으로 승격하지 않고 failed로 기록합니다. 검사 실행은 계속됩니다. 외부 의존성까지 분석하려면 생성기의 노드/edge 정합성을 보완한 뒤 다시 생성해야 합니다. 코드 구조의 부분 결과를 전체 런타임 근거로 사용하지 않습니다.

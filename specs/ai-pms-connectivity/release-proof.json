@@ -53,12 +53,10 @@
     "apps/dashboard/public/snapshot.json": "a89e19d6199f52e2e874b25918b1bfbeefac6f5d420c0ad33ea7da228f395b05",
     "apps/dashboard/vercel.json": "0163c292d391e009e2a220aa2cb9028f49b787a757bbd7bcc18e3a0f35986d41",
     "specs/ai-pms-connectivity/browser-observation.md": "666da3fb7006ac28cc1eb6a352799eca0def111bc4351733c002d18d081f9397",
-    "specs/ai-pms-connectivity/code-review.json": "8fe6c311d53e6f8cdd3ad81a32d8b92b2493d97b3c2d954472eed2401756d74c",
+    "specs/ai-pms-connectivity/code-review.json": "bf268ccdf2bfb91fe73c29a7a57ccc2c96acb90234069ea2efb77c03d4f04f9b",
     "specs/ai-pms-connectivity/public-bytes.json": "a5b9e0f92335ecf0eb71c7abb5eefd546bd4206586457ca8db3d0d535b797152",
     "scripts/build_dashboard_app.py": "c1777daac9066b99f4d585db62a457f69b0fe73aed57dc078ed071616d696b66",
     "scripts/capture_release.py": "19d8adb8c31a70798154cbe09484aded7676c9aaba50f7f90941e8023b0eee07",
     "scripts/verify_public.py": "b5f8d7117070ca87ad5dbe66b100e16227b2afc98b5c0af67807eabc91aeb0b5"
-  },
-  "source_proof_sha256": "bf831685865d387fe41e0bbb83946c9f6f531b6ae31dbd81af81a1695ced2ca0",
-  "publication_rebased": true
+  }
 }

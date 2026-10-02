@@ -1,0 +1,318 @@
+{
+  "goal": "목표·위임·계획·테스트 시도·막힘·Kit 개선 근거를 다중사용자 중앙 관리 화면으로 연결",
+  "author": "root-management-author",
+  "spec_ref": "spec.md",
+  "intent_guard": {
+    "source_ref": "source.md",
+    "requirements": [
+      {
+        "id": "goals",
+        "quote": "회사가 목표로 하는 것이 있어. 그리고 그것을 개개인에게 넘겼어.",
+        "outcome": "회사 위임과 독립 개인 프로젝트 연결"
+      },
+      {
+        "id": "tests",
+        "quote": "그 테스트 플랜들, 어떻게 플랜이 만들어 졌고, 어떻게 통과 했는지에 대한 로깅은 왜 없는지?",
+        "outcome": "테스트 설계와 실행 영수증 연결"
+      },
+      {
+        "id": "improve",
+        "quote": "어느 부분에서 막혔을까?",
+        "outcome": "막힘 및 Kit 개선 근거 탐색"
+      },
+      {
+        "id": "graph",
+        "quote": "그것이 로깅에도 더 도움이 될것 같다면.",
+        "outcome": "선택적 로컬 그래프 근거와 최신성"
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-management/verify_management.py",
+      "expect_exit_code": 0
+    }
+  },
+  "open_decisions": [],
+  "phases": [
+    {
+      "id": "build",
+      "name": "기록 및 모델·화면 구현",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-management/test_management.py && python3 specs/ai-pms-management/check_ui_v3.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "backend",
+      "requirement_ids": [
+        "goals",
+        "tests",
+        "improve",
+        "graph"
+      ],
+      "kind": "implement",
+      "phase": "build",
+      "depends_on": [],
+      "objective": "명세대로 backend 구현",
+      "done_when": [
+        "공유 계약과 파일 경계가 준수된다",
+        "지정 검증 명령이 통과하며 관측과 선언을 구분한다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-management/test_management.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/management.py",
+          "symbol": "module",
+          "what": "공유 명세대로 구현"
+        },
+        {
+          "path": "specs/ai-pms-dashboard/portfolio.py",
+          "symbol": "module",
+          "what": "공유 명세대로 구현"
+        },
+        {
+          "path": "specs/ai-pms-management/test_management.py",
+          "symbol": "module",
+          "what": "공유 명세대로 구현"
+        },
+        {
+          "path": "specs/ai-pms-management/sample/catalog-v3.json",
+          "symbol": "module",
+          "what": "공유 명세대로 구현"
+        },
+        {
+          "path": "specs/ai-pms-management/generate_sample.py",
+          "symbol": "module",
+          "what": "공유 명세대로 구현"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-management/backend-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-central/central.py",
+        "why": "기존 event/source 근거 형식과 개인정보 경계 및 stdlib 스타일을 따른다"
+      },
+      "already_tried": [],
+      "context": {
+        "spec_ref": "specs/ai-pms-management/spec.md",
+        "facts": [
+          "다른 태스크 파일 수정 금지",
+          "배포/부모 browser 인수는 root 수행"
+        ],
+        "conventions": [
+          "stdlib, exact keys, 개인정보 경계"
+        ],
+        "files": [
+          "specs/ai-pms-management/spec.md",
+          "specs/ai-pms-management/source.md"
+        ],
+        "excluded": "네트워크API/DB/전역hooks/config/배포"
+      },
+      "constraints": {
+        "must": [
+          "spec의 공유 model을 준수",
+          "검사 후 지정 result schema로 반환",
+          "부모와 파일 경계를 유지"
+        ],
+        "must_not": [
+          "기존 코드·테스트 삭제/skip/계약 변경",
+          "네트워크/배포/의존성 추가",
+          "다른 태스크 소유 파일 수정"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": false,
+        "escalate_to": "main"
+      }
+    },
+    {
+      "task_id": "dashboard-ui",
+      "requirement_ids": [
+        "goals",
+        "tests",
+        "improve",
+        "graph"
+      ],
+      "kind": "implement",
+      "phase": "build",
+      "depends_on": [],
+      "objective": "명세대로 ui 구현",
+      "done_when": [
+        "공유 계약과 파일 경계가 준수된다",
+        "지정 검증 명령이 통과하며 관측과 선언을 구분한다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-management/check_ui_v3.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/dashboard.html",
+          "symbol": "module",
+          "what": "공유 명세대로 구현"
+        },
+        {
+          "path": "specs/ai-pms-management/check_ui_v3.py",
+          "symbol": "module",
+          "what": "공유 명세대로 구현"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-management/ui-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-central/central.py",
+        "why": "기존 event/source 근거 형식과 개인정보 경계 및 stdlib 스타일을 따른다"
+      },
+      "already_tried": [],
+      "context": {
+        "spec_ref": "specs/ai-pms-management/spec.md",
+        "facts": [
+          "다른 태스크 파일 수정 금지",
+          "배포/부모 browser 인수는 root 수행"
+        ],
+        "conventions": [
+          "stdlib, exact keys, 개인정보 경계"
+        ],
+        "files": [
+          "specs/ai-pms-management/spec.md",
+          "specs/ai-pms-management/source.md"
+        ],
+        "excluded": "네트워크API/DB/전역hooks/config/배포"
+      },
+      "constraints": {
+        "must": [
+          "spec의 공유 model을 준수",
+          "검사 후 지정 result schema로 반환",
+          "부모와 파일 경계를 유지"
+        ],
+        "must_not": [
+          "기존 코드·테스트 삭제/skip/계약 변경",
+          "네트워크/배포/의존성 추가",
+          "다른 태스크 소유 파일 수정"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": false,
+        "escalate_to": "main"
+      }
+    },
+    {
+      "task_id": "kit",
+      "requirement_ids": [
+        "goals",
+        "tests",
+        "improve",
+        "graph"
+      ],
+      "kind": "implement",
+      "phase": "build",
+      "depends_on": [],
+      "objective": "명세대로 kit 구현",
+      "done_when": [
+        "공유 계약과 파일 경계가 준수된다",
+        "지정 검증 명령이 통과하며 관측과 선언을 구분한다"
+      ],
+      "acceptance": {
+        "command": "python3 $HOME/.claude/harness/activity/test_management_recorder.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": ".claude/harness/activity/management_recorder.py",
+          "symbol": "module",
+          "what": "공유 명세대로 구현"
+        },
+        {
+          "path": ".claude/harness/activity/test_management_recorder.py",
+          "symbol": "module",
+          "what": "공유 명세대로 구현"
+        },
+        {
+          "path": ".claude/harness/activity/README.md",
+          "symbol": "module",
+          "what": "공유 명세대로 구현"
+        },
+        {
+          "path": ".claude/harness/build/current_content.py",
+          "symbol": "module",
+          "what": "공유 명세대로 구현"
+        },
+        {
+          "path": ".claude/harness/build/build_current.py",
+          "symbol": "module",
+          "what": "공유 명세대로 구현"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-management/kit-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-central/central.py",
+        "why": "기존 event/source 근거 형식과 개인정보 경계 및 stdlib 스타일을 따른다"
+      },
+      "already_tried": [],
+      "context": {
+        "spec_ref": "specs/ai-pms-management/spec.md",
+        "facts": [
+          "다른 태스크 파일 수정 금지",
+          "배포/부모 browser 인수는 root 수행"
+        ],
+        "conventions": [
+          "stdlib, exact keys, 개인정보 경계"
+        ],
+        "files": [
+          "specs/ai-pms-management/spec.md",
+          "specs/ai-pms-management/source.md"
+        ],
+        "excluded": "네트워크API/DB/전역hooks/config/배포"
+      },
+      "constraints": {
+        "must": [
+          "spec의 공유 model을 준수",
+          "검사 후 지정 result schema로 반환",
+          "부모와 파일 경계를 유지"
+        ],
+        "must_not": [
+          "기존 코드·테스트 삭제/skip/계약 변경",
+          "네트워크/배포/의존성 추가",
+          "다른 태스크 소유 파일 수정"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": false,
+        "escalate_to": "main"
+      }
+    }
+  ]
+}

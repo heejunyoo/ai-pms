@@ -1,0 +1,41 @@
+{
+  "task_id": "dashboard-ui",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/dashboard.html",
+      "action": "modified",
+      "summary": "v3 management tabs, goal delegation filters and independent attempt/run/completion validation while preserving legacy and MCP navigation"
+    },
+    {
+      "path": "specs/ai-pms-management/check_ui_v3.py",
+      "action": "created",
+      "summary": "Actual backend snapshot parity and forged import rejection checks"
+    },
+    {
+      "path": "specs/ai-pms-management/ui-result.json",
+      "action": "created",
+      "summary": "Task return receipt"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-management/check_ui_v3.py",
+    "exit_code": 0,
+    "output_tail": "v1/v2 validator PASS; v3 backend parity: 9 valid snapshots, 22 forged/malformed imports, prior-state preservation PASS; browser/mobile QA belongs to parent"
+  },
+  "done_when_check": [
+    {
+      "condition": "공유 계약과 파일 경계가 준수된다",
+      "met": true,
+      "evidence": "Only dashboard.html, check_ui_v3.py and ui-result.json edited; snapshot v3 exact management keys, Python canonical ASCII SHA256, reference validation and backend status derivation verified against generated actual backend models."
+    },
+    {
+      "condition": "지정 검증 명령이 통과하며 관측과 선언을 구분한다",
+      "met": true,
+      "evidence": "python3 specs/ai-pms-management/check_ui_v3.py exit 0. 9 valid backend snapshots and 22 mismatched command/hash/artifact/declared/forgedstatus imports; rejected import preserves prior state. UI shows company outcome unobserved, Kit installation declarations, runner vs declared attempts, optional AST limits."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.91,
+  "notes_for_orchestrator": "Parent must perform actual browser and 390px acceptance and deployment. Goals/delegation filter managementFilter; new management/tests tabs retain native roving keyboard tab controls. No deployment or API/config changes. Backend parity follows final derive runner-only runs, historical criterion handling, test_file-manifest mismatches and revision revalidation."
+}

@@ -55,6 +55,7 @@ def snapshot():
         'codex_script_regressions': '.codex/harness/verify.py',
         'claude_script_regressions': '.claude/harness/verify.py',
         'activity_logger_regressions': '.claude/harness/activity/test_logger.py',
+        'activity_management_regressions': '.claude/harness/activity/test_management_recorder.py',
         'activity_workflow_regressions': '.claude/harness/activity/test_workflow.py',
         'handoff_regressions': '.agents/skills/handoff/validate.py',
         'claude_handoff_regressions': '.claude/skills/handoff/validate.py',
@@ -232,7 +233,7 @@ def build(output):
         'claude/session_gate.py': '.claude/hooks/session_gate.py',
         'claude/test_session_gate.py': '.claude/hooks/test_session_gate.py',
     }
-    for name in ('logger.py', 'connectivity.py', 'test_logger.py', 'viewer.html', 'README.md', 'example-project.jsonl'):
+    for name in ('logger.py', 'connectivity.py', 'management.py', 'management_recorder.py', 'test_management_recorder.py', 'catalog-v3.template.json', 'json-contracts.md', 'test_logger.py', 'viewer.html', 'README.md', 'example-project.jsonl'):
         implementation['activity/'+name] = '.claude/harness/activity/'+name
     # Only these authored skill packages are exportable; never walk all user settings.
     skill_roots = {
