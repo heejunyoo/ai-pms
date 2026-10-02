@@ -4,7 +4,7 @@
 
 사람을 선택하면 그 사람이 여러 환경에서 시작한 세션들의 목표, 종료 상태와 현재 검증/인수 상태를 확인합니다. 세션에서 프로젝트 → Phase → 원자 작업 → 테스트 계획/실패·수정·통과/문서 근거로 내려갑니다. 회사·팀 북극성에서는 기간·실측·목표와 세션의 제안/확인된 기여 연결을 구분합니다. 개인 프로젝트는 회사 연결 없이 사용할 수 있습니다.
 
-[실행 가능한 Live Kit](specs/ai-pms-live/README.md) · [세션·북극성 JSON 템플릿](templates/operations.template.json) · [채워진 합성 예시](specs/ai-pms-live/sample/operations.json)
+[실행 가능한 Live Kit](specs/ai-pms-live/README.md) · [세션·북극성 JSON 템플릿](templates/operations.template.json) · [채워진 합성 예시](specs/ai-pms-live/sample/operations.json) · [최신 공개/검증 범위](specs/ai-pms-live/release-proof.json)
 
 로컬 훅은 이벤트별 JSONL과 fsync 이후 수집 상태를 생성합니다. opt-in sender는 이벤트·프로젝트·세션 목표·지표·기여·수집 상태를 내구 outbox에서 하나씩 중앙에 전달합니다. 자체 호스팅 서비스는 인증·원문 이력·cursor 증분 조회를 제공하고 연결 화면은2초 주기로 갱신합니다. 공개 Vercel은 합성 정적 샘플입니다.
 

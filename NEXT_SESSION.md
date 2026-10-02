@@ -6,7 +6,7 @@
 
 Astra는 원래 목적/간극/초기 spec을 검토했습니다. 후속 acceptance binding은 비작성 독립 검토자가 확인했고 sync 최초 독립 검토 blocker를 부모가 수정·실행 확인했습니다. 에이전트 사용량 한도로 최신 sync 변경의 새 독립/Astra 재검토는 미완료입니다. DOM 검사는 실제 브라우저 렌더가 아닙니다. 최신 CUA 연결은 apps/browsers 빈 목록·native pipe startup failure였으며 데스크톱/390px 인수는 남아 있습니다.
 
-**다음 운영 인수:** 실제 중앙 HTTPS 주소·서버/보관 정책·참여자 귀속·조회 권한을 정한 뒤 실제 두 사용자 환경의 native 앱 훅 생성→private sender ACK→중앙 원문/세션→브라우저 갱신을 같은 event ID로 대조합니다. 공개 Vercel은 합성 정적 앱이며 private 수신기가 아닙니다. 글로벌 훅/trust·실제 자격/로그는 자동 공개하지 않았습니다. Pilot 파일 저장은64MiB/10,000 receipts 한도이며 부하/운영 SLA 미검증입니다. 현재 release-proof.json의 배포/바이트 확인을 확인한 뒤 기존 이력을 현재 증거로 되살리지 마세요.
+**다음 운영 인수:** 실제 중앙 HTTPS 주소·서버/보관 정책·참여자 귀속·조회 권한을 정한 뒤 실제 두 사용자 환경의 native 앱 훅 생성→private sender ACK→중앙 원문/세션→브라우저 갱신을 같은 event ID로 대조합니다. 공개 Vercel은 합성 정적 앱이며 private 수신기가 아닙니다. 글로벌 훅/trust·실제 자격/로그는 자동 공개하지 않았습니다. Pilot 파일 저장은64MiB/10,000 receipts 한도이며 부하/운영 SLA 미검증입니다. `specs/ai-pms-live/release-proof.json`에 기존 주소 배포 READY와44개 공개 파일 바이트 일치를 기록했습니다. 이를 확인한 뒤 기존 이력을 현재 증거로 되살리지 마세요.
 
 아래는 이전 상태 기록입니다.
 

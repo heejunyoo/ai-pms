@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-02",
+  "release": "person-session-northstar-live",
+  "implementation_commit": "d34f779",
+  "dashboard_url": "https://ai-pms-dashboard.vercel.app",
+  "dashboard_deployment_id": "dpl_28t4hYd3crzuCYTqVdv6HdZ1P86S",
+  "kit_url": "https://harness-kit.vercel.app/ai-pms.html",
+  "kit_deployment_id": "dpl_5LY96jDDdBQuRApxtM9JUPAKy6bo",
+  "local_implementation_verified": true,
+  "public_synthetic_deployment_verified": true,
+  "actual_provider_hook_delivery_verified": false,
+  "actual_remote_multi_user_delivery_verified": false,
+  "current_browser_render_verified": false,
+  "fresh_independent_final_review_verified": false,
+  "product_complete": false,
+  "checks": {
+    "public_gate": {
+      "command": "python3 scripts/verify_public.py",
+      "exit_code": 0
+    },
+    "live_gate": {
+      "command": "python3 specs/ai-pms-live/verify_live.py",
+      "exit_code": 0
+    },
+    "kit_gate": {
+      "command": "python3 ~/.claude/harness/build/check_site.py",
+      "exit_code": 0
+    },
+    "harness_gate": {
+      "command": "python3 ~/.codex/harness/verify.py",
+      "exit_code": 0
+    },
+    "production_bytes": {
+      "command": "python3 scripts/capture_release.py --out specs/ai-pms-live/public-bytes.json",
+      "exit_code": 0,
+      "matched_files": 44,
+      "env_route_status": 404
+    }
+  },
+  "local_pilot": {
+    "synthetic_writer_environments": 7,
+    "logger_cli_to_central_update_seconds": 0.24,
+    "latency_scope": "local synthetic HTTP; not actual provider or remote latency",
+    "operations_tests": 44,
+    "http_tests": 38,
+    "kit_failure_tests": 6,
+    "python_js_parity_snapshots": 38
+  },
+  "review_boundary": "Astra reviewed initial purpose/spec; independent acceptance binding and original sync findings preserved. Root fixed/reproduced findings and finalized sync after agent usage limit. Latest independent/Astra review and actual browser/390px remain unverified.",
+  "remaining": [
+    "Actual HTTPS central destination and two consenting participant environments; native app hook trust/event generation-to-central matching",
+    "Actual browser desktop/390px interaction and render verification",
+    "Fresh independent final review of current sync/integration code",
+    "Load, backup, retention and operational SLA validation before production-scale use"
+  ],
+  "pilot_limits": {
+    "state_bytes": 67108864,
+    "receipts": 10000,
+    "change_history": 200,
+    "deletion_supported": false
+  },
+  "incidental_deployment": {
+    "id": "dpl_HWxpijUZrSCqwpqj42vQXasQCdmL",
+    "project": "dashboard",
+    "reason": "Missing local project link created auxiliary static app; subsequent explicit link deployed to existing ai-pms-dashboard alias. No private telemetry sent."
+  },
+  "sha256": {
+    "specs/ai-pms-dashboard/operations.py": "2c98bbb87bab5a0be3ad1a83e0f1751afd2a1189de9e097ae83ea0343c4332e4",
+    "specs/ai-pms-dashboard/portfolio.py": "68b1d44d0cea40f3fb16d222f23209f3ddb081ca538496ca2f47a41fe5ac5024",
+    "specs/ai-pms-dashboard/dashboard.html": "6b1f708e5682d5d56204000411b2c80f41838dd90e1947db5c860be41bb17336",
+    "specs/ai-pms-live/live_service.py": "17664dce70922f2ad195073aa8342e2af6a5115a69b529320603b8f9f634ef00",
+    "specs/ai-pms-live/live_sender.py": "88307cef313ac9813f6b2cc016199c405ba0fd0240e3177eef1a1e70ac9e4772",
+    "specs/ai-pms-live/session_goal.py": "6cb8678f89000c0977e8355b1d794cc13dc2dff8b06f7f62815d29922fc99d3f",
+    "specs/ai-pms-live/demo_setup.py": "1255d985ce7159e0e0b20ac05ad769bb1bb3139fb3b610ca60d4c775587c2fb0",
+    "specs/ai-pms-live/test_live.py": "044111a77068c5b6b91fa8f7616fecf049035a95cee91d21180bda490b31cee2",
+    "specs/ai-pms-live/test_demo.py": "ba2c5052099a16bd70c064f2f4f8dd20dbdbb23eec697baca53044e9ed7bdc0b",
+    "specs/ai-pms-live/check_ui_live.py": "3cf0e6426297ee920cf6c0be2a5ad6554c27800ca70ccd251cb1921428641dcf",
+    "specs/ai-pms-live/README.md": "5181bd4fb122f9d5c5db6b84cbc8a6491fd0e199c0d50dcaa434da4f6d82d4f2",
+    "scripts/package_live_kit.py": "447570a158bce5e4a9ebce8c670568fe0149f59fc29f6446f904bffb57f5c6c3",
+    "scripts/build_dashboard_app.py": "93d0b3ad7cd6a3a2a1d3752fd26e618562499b63a29ca036964729f7f929d3d4",
+    "scripts/capture_release.py": "4df68c31b278d161bf9bfd6be05871d54f7a05206729fabe679f82018551e677",
+    "templates/operations.template.json": "435c8764c112ca92ca6d4a7665968acc44b1b6ef1622ffa648a6306287a957bd",
+    "apps/dashboard/public/index.html": "f130f91ffdd2cbaa1c63ae255031ba0ae9c4c86ff6e287b6d47dd9bbe85b031b",
+    "apps/dashboard/public/snapshot.json": "5acc01b5ca5506ccbc784728d9641cb4dd608a69489479aa649c5cf55f39fe9f"
+  },
+  "production_bytes_receipt_sha256": "db086e48b0054bf35ac067d4d1bb4f30f09383324062c717fd18adf133f140d3"
+}

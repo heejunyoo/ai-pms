@@ -192,6 +192,8 @@
     "specs/ai-pms-live/live_service.py",
     "specs/ai-pms-live/operations-result.json",
     "specs/ai-pms-live/plan.json",
+    "specs/ai-pms-live/public-bytes.json",
+    "specs/ai-pms-live/release-proof.json",
     "specs/ai-pms-live/sample/catalog.json",
     "specs/ai-pms-live/sample/central.json",
     "specs/ai-pms-live/sample/operations.json",

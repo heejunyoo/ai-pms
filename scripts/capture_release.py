@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Compare public production bytes with reviewed local static artifacts."""
 from concurrent.futures import ThreadPoolExecutor
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -16,6 +17,7 @@ def fetch(pair):
     assert headers['X-Content-Type-Options']=='nosniff',url
     return {'url':url,'sha256':hashlib.sha256(data).hexdigest(),'bytes_equal':True,'security_headers':headers}
 def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--out',type=Path,default=Path('specs/ai-pms-management/public-bytes.json'));args=parser.parse_args()
     manifest=json.loads((KIT/'manifest.json').read_text());pairs=[('https://harness-kit.vercel.app/'+name,KIT/name) for name in list(manifest['routes'])+['manifest.json','implementation.zip','reference-ko.zip','reference-en.zip']]
     public=ROOT/'apps/dashboard/public'
     pairs += [('https://ai-pms-dashboard.vercel.app/'+('' if name=='index.html' else name),public/name) for name in ['index.html','empty.html','report.html','snapshot.json']]
@@ -27,6 +29,6 @@ def main():
     except HTTPError as e:status=e.code
     assert status==404,'Unexpected env file route status'
     proof={'production_bytes':results,'env_route_status':status,'evidence_mode':'synthetic','personal_logs_uploaded':False}
-    (ROOT/'specs/ai-pms-management/public-bytes.json').write_text(json.dumps(proof,indent=2)+'\n')
+    (ROOT/args.out).write_text(json.dumps(proof,indent=2)+'\n')
     print('PASS:',len(results),'production pages/bundles exactly match; env route404')
 if __name__=='__main__':main()
