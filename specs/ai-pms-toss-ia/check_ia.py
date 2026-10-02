@@ -41,7 +41,9 @@ def main():
     for id in ['statusFilter', 'phaseFilter', 'managementFilter']: under(id, 'advancedFilters')
     for id in ['stats', 'connectionTools']: under(id, 'portfolioEvidence')
     for id in ['serverFilter', 'resourceFilter']: under(id, 'connectionTools')
-    assert html.index('id="peopleList"') < html.index('id="interventionList"') < html.index('id="projectList"')
+    # The user replaced the intervention-first layout with primary WBS/Phase flow.
+    assert html.index('id="peopleList"') < html.index('id="projectList"') < html.index('id="interventionList"')
+    under('projectList', 'flowArea')
     under('resetFilters', 'scopeTools')
     for id in ['search', 'ownerFilter', 'resetFilters']:
         assert page.ids[id] not in descendants(page.ids['advancedFilters'])

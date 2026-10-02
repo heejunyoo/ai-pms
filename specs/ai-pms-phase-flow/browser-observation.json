@@ -1,0 +1,39 @@
+{
+  "observed_at": "2026-10-02T13:22:35.259895+00:00",
+  "observer": "parent",
+  "tool": "agent-browser 0.38.2 isolated headless Chromium",
+  "url": "https://ai-pms-dashboard.vercel.app/",
+  "dashboard_sha256": "0a6c6d07b645561bb7c0ec5ca6553fb1e3612cc9936d2a2632fbee8ff3766918",
+  "desktop": {
+    "viewport": [
+      1280,
+      900
+    ],
+    "document_width": 1280,
+    "direction": "row",
+    "actual_render_verified": true
+  },
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "document_width": 390,
+    "direction": "column",
+    "actual_render_verified": true,
+    "pointer_click_phase": true,
+    "pointer_click_project_completion": true
+  },
+  "observations": [
+    "Alice filter showed two projects, all project phases retained. Phase inspector showed three responsibility tasks with two Alice tasks emphasized.",
+    "Phase inspector heading received focus. Local Enter opens and Space closes inspector; focus returns to the selected node.",
+    "Project completion inspector lists all phase states, unmet owner/approval/blocker conditions and project check evidence.",
+    "Actual mobile click exposed full-width rotated arrow interception; 24px centered arrow fix independently reviewed and phase/final native pointer clicks passed on current production.",
+    "No application JavaScript errors reported. Current production desktop/mobile screenshots visually inspected."
+  ],
+  "screenshots_sha256": {
+    "production-desktop-current.png": "607aed6631d040681b9c68c164d54940a7a45962bf61b47eece25672f3a236a2",
+    "production-mobile-current.png": "cef1b5e297b1458d4c645cc730b0a66fa8a232cfa8e39ffb34efe11c95845205"
+  },
+  "scope": "Synthetic static sample. Not provider hook, authenticated live browser or real remote multi-user delivery proof."
+}

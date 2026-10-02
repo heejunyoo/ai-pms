@@ -1,0 +1,27 @@
+{
+  "reviewer": "phase-flow-independent-review",
+  "verdict": "pass",
+  "dashboard_sha256": "0a6c6d07b645561bb7c0ec5ca6553fb1e3612cc9936d2a2632fbee8ff3766918",
+  "acceptance_check_sha256": "54e5530bfb1fbd64551405af7fd1168cb53ee7148c470fdcb205463c001c6ec7",
+  "requirements_covered": [
+    "flow",
+    "drilldown",
+    "scope"
+  ],
+  "blockers": [],
+  "resolved_findings": [
+    "Updated peopleScope text now explains whole-project plan and remaining stages instead of former session-first guidance.",
+    "Flow area now precedes session and evidence areas in DOM, matching the primary visible plan order rather than CSS order alone.",
+    "Inspector close button has a stable ID for existing live-focus restoration; node selection and focus return request nearest scrolling.",
+    "Mobile rotated arrow was stretched across the full flow-step width; its transformed hit box could intercept node clicks. CSS now centers an explicit 24px-wide arrow, avoiding the full-width transformed overlay while retaining vertical connector semantics."
+  ],
+  "evidence": [
+    "Independently read renderCards, renderPhaseFlow, renderWork, renderOperations and applyChanges; whole-project Phase states come directly from existing work.phases, final node comes from p.status, and person scope emphasizes own tasks while retaining all Phase tasks.",
+    "No timing/dependency invention: arrows explicitly mean declared array order, task.depends_on remains evidence, current-phase declaration and first unresolved phase are separately labeled.",
+    "Ran python3 specs/ai-pms-phase-flow/check_flow.py successfully to completion: primary graph, scope, all-phases-complete but final project pending, inline evidence, selection/focus, merge/reset/removal, legacy/empty/text-safety plus existing live/IA/work/import parity checks passed.",
+    "Read current native-button aria-pressed/expanded/controls, focus-return and vertical mobile CSS. DOM simulation does not verify real keyboard events, layout, mobile overflow or browser rendering.",
+    "CSS-only follow-up reviewed: reversing the exact mobile arrow align-self:center;width:24px addition reproduces the prior independently reviewed dashboard SHA256, proving no other UI content changed. Parent reported the actual 390px pointer interception and is rerunning native browser validation; this independent reviewer did not execute or witness browser clicks, so both personal browser flags remain false."
+  ],
+  "actual_browser_render_verified": false,
+  "actual_390px_render_verified": false
+}

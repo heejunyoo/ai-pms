@@ -1,10 +1,18 @@
+## 최신 화면 개편 — WBS/Phase flow
+
+사용자가 초기 WBS/Gantt 의도가 구현에서 누락되었다고 지적했습니다. UI 수정은 `specs/ai-pms-phase-flow/{source.md,spec.md,plan.json}` 정본과 별도 독립 검토에 따라 반영했습니다. 사람별 프로젝트 목표→모든 Phase→최종 완료 확인 그래프가 primary이며 클릭 하단 상세가 작업/완료 조건/검사 근거를 제공합니다. 이전 나열식 IA를 현재 목적 달성 증거로 사용하지 않습니다. 실제 일정 데이터 없이 Gantt 날짜/기간을 추정하지 않습니다.
+
+`check_flow.py`와 공개 전체 검사 통과. 부모가 실제 headless Chromium에서 사람 필터, 전체 Phase 유지, 단계 상세/담당 작업 강조, 키보드 Enter/Space와 포커스 복귀, 1280px 및390px 가로 넘침 없음을 확인했습니다. 모바일 화살표가 클릭을 가리는 문제는24px 폭으로 수정했고 공개 배포에서 단계/최종 노드 실제 클릭을 재검증했습니다. 최신 배포/브라우저 영수증은 `specs/ai-pms-phase-flow/release-proof.json`과 `browser-observation.json`에 있습니다. 실사용자 원격 전달은 계속 미검증입니다.
+
+이전 실행/배포 기록은 아래와 같습니다. 최신 flow 인수 및 release-proof를 확인하세요.
+
 ## 최신 구현 — 사람·세션·북극성·Live 중앙 운영
 
 최신 정본은 `specs/ai-pms-live/README.md`와 spec/plan입니다. 사람 → 세션 → 목표/종료/현재 검증·인수 → Phase/작업/테스트·문서, 회사·팀 지표와 제안/확인 기여를 구현했습니다. 기술 완료와 업무 성과를 분리합니다. 캡처 health, private writer/manager 인증, entity별 durable ACK, 원문 기록 이력, cursor 증분 투영,2초 sender/화면 polling을 구현했습니다. Kit ZIP에는 실행 가능한 pms runtime과 operations JSON 템플릿/전체 필드 설명이 포함됩니다.
 
 부모 `verify_live.py` 통과:44 operations/38 실제 로컬 HTTP/6 Kit 오류·경합 검사,38 snapshot Python-JS parity·DOM 갱신 검사, 명시적인 세션 목표/인수 기록,7개 합성 writer full pilot. logger CLI 이벤트 생성→중앙 모델 업데이트 약0.24초는 로컬 합성 검사입니다. 실제 앱 훅 호출이나 원격 전달 latency 증거가 아닙니다. 하네스 구성 verify.py도 통과했습니다.
 
-Astra는 원래 목적/간극/초기 spec을 검토했습니다. 후속 acceptance binding은 비작성 독립 검토자가 확인했고 sync 최초 독립 검토 blocker를 부모가 수정·실행 확인했습니다. 에이전트 사용량 한도로 최신 sync 변경의 새 독립/Astra 재검토는 미완료입니다. DOM 검사는 실제 브라우저 렌더가 아닙니다. 최신 CUA 연결은 apps/browsers 빈 목록·native pipe startup failure였으며 데스크톱/390px 인수는 남아 있습니다.
+Astra는 원래 목적/간극/초기 spec을 검토했습니다. 후속 acceptance binding은 비작성 독립 검토자가 확인했고 sync 최초 독립 검토 blocker를 부모가 수정·실행 확인했습니다. 에이전트 사용량 한도로 최신 sync 변경의 새 독립/Astra 재검토는 미완료입니다. DOM 검사는 실제 브라우저 렌더가 아닙니다. 당시 CUA 연결은 apps/browsers 빈 목록·native pipe startup failure였습니다. 이후 Phase flow 개편은 agent-browser로 실제 데스크톱/390px를 별도로 확인했으며 최신 영수증을 우선합니다.
 
 **다음 운영 인수:** 실제 중앙 HTTPS 주소·서버/보관 정책·참여자 귀속·조회 권한을 정한 뒤 실제 두 사용자 환경의 native 앱 훅 생성→private sender ACK→중앙 원문/세션→브라우저 갱신을 같은 event ID로 대조합니다. 공개 Vercel은 합성 정적 앱이며 private 수신기가 아닙니다. 글로벌 훅/trust·실제 자격/로그는 자동 공개하지 않았습니다. Pilot 파일 저장은64MiB/10,000 receipts 한도이며 부하/운영 SLA 미검증입니다. `specs/ai-pms-live/release-proof.json`에 기존 주소 배포 READY와44개 공개 파일 바이트 일치를 기록했습니다. 이를 확인한 뒤 기존 이력을 현재 증거로 되살리지 마세요.
 

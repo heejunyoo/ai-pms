@@ -1,0 +1,36 @@
+{
+  "task_id": "flow-ui",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/dashboard.html",
+      "action": "modified",
+      "summary": "Primary person → project goal → all declared Phase buttons → final project gate in DOM order; inline all-task WBS detail with owner emphasis, safe evidence disclosures, native selection/focus return and live refresh preservation; secondary sessions and task metadata; mobile vertical flow CSS."
+    },
+    {
+      "path": "specs/ai-pms-phase-flow/check_flow.py",
+      "action": "created",
+      "summary": "Native DOM contract simulation reusing existing IA harness, independently derived project gate fixture and existing live/IA/work validators."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-phase-flow/check_flow.py",
+    "exit_code": 0,
+    "output_tail": "Phase flow acceptance PASS; actual browser/390px rendering unverified"
+  },
+  "done_when_check": [
+    {
+      "condition": "사람별 프로젝트 전체 Phase와 현재/완료/남은 단계 및 최종 gate를 한눈에 표시한다",
+      "met": true,
+      "evidence": "Runnable checks assert primary flowArea in initial people/projects views, native button order for every whole-project Phase, completion/failed/revalidation/in-progress state labels, goal/count/remaining names, unchanged whole-project status under Bob filtering and all responsible tasks visible in scoped inspector. Separate genuine all-Phase-complete/project-incomplete fixture confirms final p.status gate."
+    },
+    {
+      "condition": "Phase 클릭 상세와 live 갱신/키보드/기존 검증을 실행 검사로 확인한다",
+      "met": true,
+      "evidence": "DOM simulation checks native button/aria-expanded/pressed, inspector heading focus/scroll and close return, all Phase tasks/conditions/criteria/runner/doc/approval disclosures, real derived atomic-task content update via validated delta, merge/reset selected node retention, live close-button focus preservation, removed selection cleanup, legacy/no-plan/empty/text-injection cases. Existing live, IA, work import/derivation validators pass. Keyboard Enter/Space use native buttons; actual browser keyboard and mobile layout are not verified."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.9,
+  "notes_for_orchestrator": "Only assigned dashboard/check/result files edited. No backend/contracts/dependencies/settings/Kit/public/deployment changes. Parent updated old IA structure expectation to match approved flow-first DOM order while preserving behavior checks. Actual browser render, 390px overflow/readability, native keyboard interaction and browser scrolling remain unverified; mobile CSS/DOM evidence cannot establish those. Parent owns independent final review, artifacts/build/public/release."
+}

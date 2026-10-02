@@ -1,0 +1,31 @@
+{
+  "released_at": "2026-10-02T13:22:35.260286+00:00",
+  "dashboard": "https://ai-pms-dashboard.vercel.app",
+  "kit": "https://harness-kit.vercel.app/ai-pms.html",
+  "deployments": {
+    "dashboard": "dpl_HfkMzsReSPabEmPC8obqVScdWhqp",
+    "kit": "dpl_BdHT1SfBKfVHtDc41UDorLbXfYLf"
+  },
+  "checks": {
+    "phase_flow": "python3 specs/ai-pms-phase-flow/check_flow.py exit 0",
+    "public_suite": "python3 scripts/verify_public.py exit 0 on final sanitized public snapshot after mobile arrow fix",
+    "kit": "36 pages and bundles validation passed",
+    "production": "44 public files byte matched; env route404"
+  },
+  "sha256": {
+    "specs/ai-pms-dashboard/dashboard.html": "0a6c6d07b645561bb7c0ec5ca6553fb1e3612cc9936d2a2632fbee8ff3766918",
+    "apps/dashboard/public/index.html": "c20339bd8ae71ddb09b86b06735c23a174d2bbe51efcbb58b01a2df15aaa3b76",
+    "apps/dashboard/public/empty.html": "02388695f57469b8b69e1be9348bb0ab519d671ab166a743f0ee45db5457c734",
+    "specs/ai-pms-phase-flow/check_flow.py": "1054b0331dd120137ab3ab17922398bfb2127e6bb66f1b4d41b753aa8c0acbd2",
+    "specs/ai-pms-phase-flow/code-review.json": "44f8bdd3ba904e2d45fc432e6769e0757bd872272d67617b1b4044ac2accb8ae",
+    "specs/ai-pms-phase-flow/browser-observation.json": "4fdfeb32c48f196b3d8d4a93ebbf482a00b71c27e849490226d3600e61f1f688",
+    "specs/ai-pms-phase-flow/public-bytes.json": "dda48b9d128e72ad1cb8b8c4f17203ef0c048cfafe413e67500d9b5befbeda9e"
+  },
+  "actual_browser_render_verified": true,
+  "actual_390px_render_verified": true,
+  "graph_ui_release_verified": true,
+  "gantt_schedule_implemented": false,
+  "schedule_boundary": "No invented dates, durations or phase dependencies. Arrows show declared plan order. Task dependencies remain explicit evidence.",
+  "actual_multi_user_delivery_verified": false,
+  "product_complete": false
+}

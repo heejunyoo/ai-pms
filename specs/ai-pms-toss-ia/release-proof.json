@@ -40,6 +40,7 @@
     "changed_paths": [],
     "stale_source_paths": [
       "specs/ai-pms-dashboard/dashboard.html",
+      "specs/ai-pms-toss-ia/check_ia.py",
       "scripts/prepare_public.py",
       "scripts/verify_public.py",
       "apps/dashboard/public/index.html",

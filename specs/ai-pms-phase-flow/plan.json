@@ -1,0 +1,121 @@
+{
+  "goal": "사람별 프로젝트 전체 계획/현재 위치/마무리 조건을 Phase 그래프와 하단 상세로 보여준다",
+  "author": "root-phase-flow-author",
+  "spec_ref": "spec.md",
+  "intent_guard": {
+    "source_ref": "source.md",
+    "requirements": [
+      {
+        "id": "flow",
+        "quote": "단계 flow 를 표시하는 차트로 보여줘야",
+        "outcome": "전체 계획과 완료/남은 Phase 및 최종 gate"
+      },
+      {
+        "id": "drilldown",
+        "quote": "flow 상세를 클릭하면 아래에서 더 자세한 내용 볼수 있게 하고.",
+        "outcome": "Phase 클릭 하단 작업/조건/근거 상세"
+      },
+      {
+        "id": "scope",
+        "quote": "다수의 사람 각각을 필터할 수 있어야 한다는 이야기가 되는거고",
+        "outcome": "다수 사람 필터와 실제 완료 계산 보존"
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-phase-flow/check_flow.py",
+      "expect_exit_code": 0
+    }
+  },
+  "open_decisions": [],
+  "phases": [
+    {
+      "id": "flow",
+      "name": "그래프 UI",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-phase-flow/check_flow.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "flow-ui",
+      "requirement_ids": [
+        "flow",
+        "drilldown",
+        "scope"
+      ],
+      "kind": "implement",
+      "phase": "flow",
+      "depends_on": [],
+      "objective": "Primary clickable Phase chart with inline detail, people scope and preserved completion evidence",
+      "done_when": [
+        "사람별 프로젝트 전체 Phase와 현재/완료/남은 단계 및 최종 gate를 한눈에 표시한다",
+        "Phase 클릭 상세와 live 갱신/키보드/기존 검증을 실행 검사로 확인한다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-phase-flow/check_flow.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/dashboard.html",
+          "symbol": "renderCards/renderOperations/renderWork/applyChanges",
+          "what": "Phase flow as primary view; optional scoped work details and selection preservation"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-phase-flow/check_flow.py",
+        "specs/ai-pms-phase-flow/ui-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-toss-ia/check_ia.py",
+        "why": "Reuse safe native DOM helper and existing work/live validators"
+      },
+      "already_tried": [
+        {
+          "what": "Snapshot inspection and existing renderWork tracing",
+          "result": "5 synthetic projects; complete/blocked/review_pending/failed/revalidation/ready states; old renderWork expands every Phase and task."
+        },
+        {
+          "what": "python3 specs/ai-pms-phase-flow/check_flow.py",
+          "result": "Expected missing-file exit2 before new flow implementation."
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-phase-flow/spec.md",
+        "facts": [
+          "Source dashboard strict validators and safe text helpers remain unchanged.",
+          "p.work.phases is calculated from declared phase order and current verification. No Phase dependency contract exists.",
+          "Source ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research; no graphify-out exists."
+        ],
+        "excluded": "Other files, public deployment, canonical Kit and backend/API/DB/global settings; parent owns these."
+      },
+      "constraints": {
+        "must": [
+          "Preserve old tests and strict import validation",
+          "Safe text DOM/native keyboard buttons",
+          "Actual status and final gate with unknown/legacy states"
+        ],
+        "must_not": [
+          "Edit own review receipt",
+          "New dependency or backend contract",
+          "Public/deployment/global setting changes"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 40
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      }
+    }
+  ]
+}
