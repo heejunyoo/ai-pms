@@ -1,0 +1,117 @@
+{
+  "goal": "토스 원칙을 반영해 사람별 PMS 관리 판단과 단계별 책임 작업을 쉽게 탐색한다",
+  "author": "root-toss-ia",
+  "spec_ref": "spec.md",
+  "intent_guard": {
+    "source_ref": "source.md",
+    "requirements": [
+      {
+        "id": "ia",
+        "quote": "토스 디자인 IA 반영해.",
+        "outcome": "판단 우선 정보 계층과 단계적 근거 탐색을 구현하고 기존 PMS 목적을 보존한다"
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-toss-ia/check_ia.py",
+      "expect_exit_code": 0
+    }
+  },
+  "open_decisions": [],
+  "phases": [
+    {
+      "id": "build",
+      "name": "정보 구조와 시각 계층",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-toss-ia/check_ia.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "toss-ui",
+      "requirement_ids": [
+        "ia"
+      ],
+      "kind": "implement",
+      "phase": "build",
+      "depends_on": [],
+      "objective": "확정 IA에 따라 관리 화면과 시각 계층 개선",
+      "done_when": [
+        "명세의 정확한 계약과 소유 파일 경계를 지킨다",
+        "실행 가능한 검증에서 거짓 완료와 잘못된 귀속 반례를 차단한다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-toss-ia/check_ia.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/dashboard.html",
+          "symbol": "module",
+          "what": "공유 spec 계약과 실제 목적에 따라 수정"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-toss-ia/check_ia.py",
+        "specs/ai-pms-toss-ia/toss-ui-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/management.py",
+        "why": "기존 stdlib 검증과 선언/실행 근거 분리 및 개인정보 경계를 재사용"
+      },
+      "already_tried": [
+        {
+          "what": "python3 specs/ai-pms-work-management/check_ui_work.py",
+          "result": "24 valid snapshots/36 malformed plus previous UI checks PASS"
+        },
+        {
+          "what": "새 check_ia.py는 구현 태스크에서 생성하며 기존 check_ui_work.py도 호출한다",
+          "result": "기존 UI 회귀 기준선 통과; 새 IA 인수는 아직 미구현"
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-toss-ia/spec.md",
+        "facts": [
+          "repo=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "정본 구현은 research, public 복사본/빌드/배포는 부모 담당",
+          "세션/호출 수를 작업 진척이나 업무 성과로 계산하지 않는다",
+          "다른 태스크 파일 수정 금지; 공유 spec 변경은 부모에게 요청"
+        ],
+        "conventions": [
+          "stdlib Python, strict exact-key validation, safe DOM, bounded private-data checks"
+        ],
+        "files": [
+          "specs/ai-pms-toss-ia/source.md",
+          "specs/ai-pms-toss-ia/spec.md",
+          "PRODUCT-INTENT.md"
+        ],
+        "excluded": "DB/외부 API/인증/전역 훅/PC 자동 전달/배포/Git 쓰기"
+      },
+      "constraints": {
+        "must": [
+          "기존 테스트 보존, 실패는 수정하되 삭제/skip 금지",
+          "결과를 handoff result schema에 맞춰 task-result.json 작성",
+          "모호한 의미는 부모에게 문의; spec을 마음대로 바꾸지 말 것"
+        ],
+        "must_not": [
+          "다른 태스크 소유 파일 변경",
+          "새 의존성/전역 hooks/실사용자 로그 공개/배포"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 60
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      }
+    }
+  ]
+}

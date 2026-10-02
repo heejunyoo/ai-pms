@@ -1,0 +1,44 @@
+{
+  "scope": "Toss-principles-inspired PMS IA and visual hierarchy",
+  "dashboard_production": true,
+  "deployment_id": "dpl_EeXgepbQmRQo6dSeHmH8LkhBqScQ",
+  "dashboard_url": "https://ai-pms-dashboard.vercel.app",
+  "github_public": true,
+  "github_url": "https://github.com/heejunyoo/ai-pms",
+  "public_bytes_verified": 44,
+  "source_snapshot_unchanged": true,
+  "checks": {
+    "parent_ia_dom_simulation": true,
+    "keyboard_person_focus_regression": true,
+    "exact_task_focus_scroll": true,
+    "collapsed_filter_summary_and_reset": true,
+    "visible_keyboard_tabs_and_focus_return": true,
+    "existing_contract_regressions": true,
+    "portable_public_suite": true,
+    "small_text_contrast_aa": true
+  },
+  "independent_purpose_review": "aligned",
+  "independent_final_code_reapproval": false,
+  "final_code_check": "parent verified P2 correction after Astra usage limit",
+  "browser_render_verified": false,
+  "mobile_390_render_verified": false,
+  "browser_blocker": "Computer-use connection unavailable; no active browsers/apps returned",
+  "automatic_collection_deferred": true,
+  "actual_multi_user_delivery_verified": false,
+  "sha256": {
+    "specs/ai-pms-dashboard/dashboard.html": "172d6bfa8c0079c74c61ccb0619ea69af07ecd928e895040b7b5eed33feba87b",
+    "specs/ai-pms-toss-ia/check_ia.py": "4e86441edb53aa17619078b827569782f542b3a25167b227c3859ae2b975153c",
+    "scripts/prepare_public.py": "e9aff183d96f5eedaf52c25273a35c120b1f5e4eb6fdc694cc57d8d2bccc01f9",
+    "scripts/verify_public.py": "b2d0c0fdf84d661ae2739adc4a376a340fafc397c35ac082e31d1083e806ac99",
+    "apps/dashboard/public/index.html": "8964e15c420521a0be261baf77a8bd42141225481fb45aebfa1f0b5555066587",
+    "apps/dashboard/public/empty.html": "7960be1a418ed527e624b42e24978e9739b9dab03e9ca46d6e36416d7508d42c",
+    "apps/dashboard/vercel.json": "db88846583d0afb672693c2d6d5ea9a91a4f9929001b7fd822a05a5662f81cd4",
+    "apps/dashboard/public/snapshot.json": "d6320c769b0db7f7da4d06a7249cdada76a4009a19da000928132b27f5584a8b"
+  },
+  "publication_transform": {
+    "source_receipt_sha256": "976d83bb3d45253ddc3a968c2b423a5947d0517919749f8cf11b0befe469f53b",
+    "changed_paths": [],
+    "stale_source_paths": [],
+    "reason": "Only fresh source hashes reconciled after path/whitespace sanitization. Historical hashes preserved; not another independent review or browser verification."
+  }
+}

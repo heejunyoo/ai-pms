@@ -1,0 +1,11 @@
+{
+  "reviewer": "astra-independent-toss-ia-review",
+  "verdict": "aligned",
+  "source_sha256": "c1cd8a5b724fd74bfa574d4bb21d46dfae9caf58ff85cb0081a5628610ee07a9",
+  "spec_sha256": "5e7b322dc683860e570ef1454b5c952cf6298f271f997142e14811ea42e4b253",
+  "requirements_covered": [
+    "ia"
+  ],
+  "unapproved_changes": [],
+  "evidence": "Directly compared source.md, spec.md, plan.json and PRODUCT-INTENT.md. People scope -> decisions requiring attention -> project goals/work preserves central multi-person, multi-project management and makes intervention purpose explicit. Progressive disclosure retains evidence, documents, tests, sessions, history and MCP; exact task focus supports the requested management path. Existing source contracts, completion derivation, attribution and deferred automatic collection remain fixed. Official Toss product-principles and UX-writing pages were opened: Value First, Clear Action, One Thing and familiar concise language support this stated design interpretation, not a claim of official TDS installation. The initial acceptance only ran legacy work checks; parent corrected intent/phase/task acceptance to check_ia.py, which must test IA order, disclosure access and precise task focus and invoke existing check_ui_work.py. Approval covers purpose/design only; implementation, keyboard/focus behavior, desktop/mobile rendering and public delivery require later evidence."
+}

@@ -47,3 +47,7 @@ python3 scripts/verify_public.py
 입력 모델·완료 기준은 [대시보드 안내](specs/ai-pms-dashboard/README.md), 연결 로그 계약은 [연결 명세](specs/ai-pms-connectivity/spec.md), 로컬 기록기는 [Kit 활동 기록 안내](kit/activity/README.md)를 참고하세요. [공개 경계](PUBLIC_SNAPSHOT.md)에는 제외된 개인 자료와 역사적 검증 영수증의 한계를 설명합니다.
 
 각 PC에서 자동 수집하는 연결은 후속 과제입니다. 공개 앱은 합성 샘플을 보여주는 정적 앱이며 실제 다중 PC 전송·앱 훅 전달의 증거로 사용하지 않습니다. 수신·재시도 구현은 `specs/ai-pms-transport`에 포함되며 현재 샘플 앱에는 연결하지 않았습니다.
+
+## 관리 화면 정보 구조
+
+사람 범위를 선택한 뒤 판단이 필요한 작업과 프로젝트 목표를 확인하고, 단계별 책임 작업에서 검증 근거를 펼치는 구조입니다. 토스 공개 디자인 원칙을 PMS에 맞게 적용했습니다. [정보 구조와 적용 범위](specs/ai-pms-toss-ia/README.md)를 참고하세요.

@@ -38,6 +38,10 @@
   "publication_transform": {
     "source_receipt_sha256": "8f5e67326563e203009c2588e15fa0e31fd290fbd49c928b296a48f06b88b746",
     "changed_paths": [],
-    "reason": "Personal home paths replaced with $HOME; publication hash reconciliation, not another independent review."
+    "stale_source_paths": [
+      "specs/ai-pms-dashboard/dashboard.html",
+      "apps/dashboard/public/index.html"
+    ],
+    "reason": "Only fresh source hashes reconciled after path/whitespace sanitization. Historical hashes preserved; not another independent review or browser verification."
   }
 }

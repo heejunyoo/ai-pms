@@ -1,0 +1,39 @@
+{
+  "reviewer": "root-final-integration-review",
+  "verdict": "parent_verified_after_independent_partial_review",
+  "sha256": {
+    "specs/ai-pms-dashboard/dashboard.html": "172d6bfa8c0079c74c61ccb0619ea69af07ecd928e895040b7b5eed33feba87b",
+    "specs/ai-pms-toss-ia/check_ia.py": "4e86441edb53aa17619078b827569782f542b3a25167b227c3859ae2b975153c",
+    "specs/ai-pms-toss-ia/source.md": "c1cd8a5b724fd74bfa574d4bb21d46dfae9caf58ff85cb0081a5628610ee07a9",
+    "specs/ai-pms-toss-ia/spec.md": "5e7b322dc683860e570ef1454b5c952cf6298f271f997142e14811ea42e4b253",
+    "scripts/prepare_public.py": "e9aff183d96f5eedaf52c25273a35c120b1f5e4eb6fdc694cc57d8d2bccc01f9",
+    "scripts/verify_public.py": "b2d0c0fdf84d661ae2739adc4a376a340fafc397c35ac082e31d1083e806ac99"
+  },
+  "independent_review": {
+    "reviewer": "astra-independent-toss-ia-review",
+    "scope": "Purpose alignment; task navigation/disclosure/hidden-filter summary and publication hash preservation reviewed. Found P2 keyboard focus after person-button replacement.",
+    "final_independent_reapproval": false,
+    "limit": "Astra usage limit before final receipt/reapproval"
+  },
+  "resolved_findings": [
+    {
+      "id": "P2-person-focus",
+      "resolution": "Stable person dataset and focus restored onto new connected person button after renderCards. Parent reran actual Bob focus/click simulation plus connected/pressed/owner checks; PASS."
+    }
+  ],
+  "parent_checks": [
+    "check_ia.py PASS after P2 correction",
+    "existing 24 valid snapshots and 36 forged imports PASS",
+    "public source model unchanged",
+    "historical stale receipt hashes preserved",
+    "Small button/eyebrow text uses darker blue; computed white contrast 5.41:1; IA and contract regression checks rerun PASS"
+  ],
+  "browser_render_verified": false,
+  "mobile_390_render_verified": false,
+  "publication_transform": {
+    "source_receipt_sha256": "d8bf11fef419d14e9ba1deb7079f7ba82b044de8907b359ff31e88b775e1adb5",
+    "changed_paths": [],
+    "stale_source_paths": [],
+    "reason": "Only fresh source hashes reconciled after path/whitespace sanitization. Historical hashes preserved; not another independent review or browser verification."
+  }
+}

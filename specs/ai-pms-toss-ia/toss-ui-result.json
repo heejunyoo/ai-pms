@@ -1,0 +1,36 @@
+{
+  "task_id": "toss-ui",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/dashboard.html",
+      "action": "modified",
+      "summary": "People-first IA, compact people scopes, first-three intervention disclosure, precise task navigation, native tool/evidence disclosure and blue-white hierarchy; collapsed filter summaries expose active counts and always-visible scope reset clears all conditions; stable person dataset restores focus to the replaced selected-person button"
+    },
+    {
+      "path": "specs/ai-pms-toss-ia/check_ia.py",
+      "action": "created",
+      "summary": "HTML structure plus native DOM contract simulation and existing work UI regression invocation"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-toss-ia/check_ia.py",
+    "exit_code": 0,
+    "output_tail": "IA structure and DOM simulation + existing work UI regressions PASS; browser/mobile rendering unverified"
+  },
+  "done_when_check": [
+    {
+      "condition": "명세의 정확한 계약과 소유 파일 경계를 지킨다",
+      "met": true,
+      "evidence": "Only assigned dashboard/check/result paths modified; existing validators and 24 Python snapshots/36 forged imports pass unchanged."
+    },
+    {
+      "condition": "실행 가능한 검증에서 거짓 완료와 잘못된 귀속 반례를 차단한다",
+      "met": true,
+      "evidence": "Existing work parity and malformed import checks retained; IA simulation checks real intervention button wiring, exact task focus/scroll after repeated render, owner filtering/counts, full intervention disclosure, native collapsed tools, visible-tab keyboard navigation, selected evidence-tab collapse to work and return focus. Collapsed status/phase/goal 3-active and MCP/data 2-active counts, outer evidence summary count, visible reset clearing all values/counts and restoring all projects pass. Bob person button focus→click→new connected Bob button focus, pressed=true and owner scope Bob regression passes."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.9,
+  "notes_for_orchestrator": "No network/dependency/backend/contract/Git/publish changes. DOM simulation is runnable behavior evidence only; actual desktop/390px browser rendering and interaction remain unverified because browser tool unavailable. Parent owns build/public copy/release. Intentional CSS overrides preserve existing base CSS literal checks. Native details reused; no custom menu/collapse component."
+}

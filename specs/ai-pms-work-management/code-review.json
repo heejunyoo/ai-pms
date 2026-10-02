@@ -81,6 +81,9 @@
     "changed_paths": [
       "specs/ai-pms-work-management/plan.json"
     ],
-    "reason": "Personal home paths replaced with $HOME; publication hash reconciliation, not another independent review."
+    "stale_source_paths": [
+      "specs/ai-pms-dashboard/dashboard.html"
+    ],
+    "reason": "Only fresh source hashes reconciled after path/whitespace sanitization. Historical hashes preserved; not another independent review or browser verification."
   }
 }
