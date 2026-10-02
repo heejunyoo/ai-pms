@@ -114,3 +114,11 @@ Git 커밋은 코드 상태 관측이며 세션 기여는 명시적 선언입니
 작업 상태: unknown(담당자/기준 미입력 등), not_started(미시작 선언), ready(착수 조건 충족), in_progress(진행 선언/관측), blocked(선행 작업/명시적 막힘), failed(최신 검증 실패), revalidation(근거 오래됨), review_pending(사람 검토), changes_requested(수정 요청), complete(작업 인수 조건 충족). 세션/호출 횟수로 진행을 추정하지 않습니다. 현재 계획 적용 전 검사는 보수적으로 재검증합니다.
 
 프로젝트 전체 검사만 통과해도 미완료 작업이나 작업 누락 Phase가 있으면 완료가 아닙니다. 모든 선언 Phase의 필수 작업·종료 검사와 프로젝트 전체 인수 조건을 확인합니다. 원래 계획에 빠진 요구사항이나 실제 사업 목표의 달성까지 자동 보장하지 않습니다.
+
+## 사람·세션·북극성 및 Live 계약
+
+`templates/operations.template.json`은 비어 있는 정확한 `{version:1,sessions,north_stars,contributions,capture}` 입력입니다. 필드가 채워진 합성 예시는 `specs/ai-pms-live/sample/operations.json`, 필드별 엄격한 계약은 `specs/ai-pms-live/spec.md`의 session/north star/contribution/capture 절을 참조합니다. Kit implementation ZIP에는 `activity/operations.template.json`, `pms/specs/ai-pms-live/README.md`와 실행 가능한 서비스·sender·session_goal 기록기가 포함됩니다.
+
+세션은 catalog 프로젝트와 native UUID, 사용자·환경·provider·native session ID, goal/goal_version, project_revision, task_ids 및 현재 목표/검증 해시에 묶인 acceptance를 기록합니다. 북극성은 회사/팀 scope, 담당자, 지표·단위·기간·baseline/target/direction 및 실측/선언 observations를 기록합니다. 기여는 세션과 북극성 정의에 묶인 proposed/confirmed이며 실제 인과 효과를 증명하지 않습니다. capture는 출처별 마지막 실제 기록과 오류/unknown·degraded 상태를 나타냅니다.
+
+훅은 실행 경계를 기록하며 목표·테스트 선정 이유·회사 기여를 자동 추측하지 않습니다. Handoff 계획/결과와 실제 runner 시도는 기존 management_recorder로 기록하고 session_goal.py로 현재 세션의 작업을 연결합니다. sender는 이 변경을 entity별 record로 전송합니다. 중앙 영속 원문 이력은 /api/history, 최신 화면 투영은 /api/changes로 조회합니다. 실제 private 설정·토큰·state·건강파일은 공개 자료가 아닙니다. 정확한 CLI, 설정 키, API ACK/cursor와 한도는 Live README를 참조합니다.

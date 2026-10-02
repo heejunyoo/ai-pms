@@ -33,7 +33,11 @@
   "publication_transform": {
     "source_receipt_sha256": "d8bf11fef419d14e9ba1deb7079f7ba82b044de8907b359ff31e88b775e1adb5",
     "changed_paths": [],
-    "stale_source_paths": [],
+    "stale_source_paths": [
+      "specs/ai-pms-dashboard/dashboard.html",
+      "scripts/prepare_public.py",
+      "scripts/verify_public.py"
+    ],
     "reason": "Only fresh source hashes reconciled after path/whitespace sanitization. Historical hashes preserved; not another independent review or browser verification."
   }
 }

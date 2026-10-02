@@ -10,4 +10,5 @@ subprocess.run([sys.executable,'scripts/build_dashboard_app.py'],cwd=ROOT,check=
 subprocess.run([sys.executable,'specs/ai-pms-management/verify_management.py'],cwd=ROOT,check=True)
 subprocess.run([sys.executable,'specs/ai-pms-work-management/verify_work.py'],cwd=ROOT,check=True)
 subprocess.run([sys.executable,'specs/ai-pms-toss-ia/check_ia.py'],cwd=ROOT,check=True)
+subprocess.run([sys.executable,'specs/ai-pms-live/verify_live.py'],cwd=ROOT,check=True)
 print('PASS: portable public source, privacy, completion, snapshot and app checks')

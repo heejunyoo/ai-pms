@@ -115,7 +115,7 @@ def base_event(source, native, kind, project, payload):
 
 
 def hook_event(args, root):
-    raw = sys.stdin.buffer.read(MAX_INPUT + 1)
+    raw = args.raw_input
     if len(raw) > MAX_INPUT:
         raise ValueError('input too large')
     payload = parse_json(raw)
@@ -209,6 +209,81 @@ def record_event(args):
     return event
 
 
+HEALTH = 'capture-health.json'
+SAFE_INT = 9007199254740991
+
+
+def health_unknown():
+    return dict(version=1, last_event_id=None, last_recorded_at=None, errors=0,
+                last_failure_at=None, status='unknown', at=None)
+
+
+def utc_now():
+    return dt.datetime.now(dt.timezone.utc).isoformat().replace('+00:00', 'Z')
+
+
+def health_read(root):
+    path = root / HEALTH
+    if not path.exists() and not path.is_symlink():
+        return health_unknown()
+    fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW)
+    try:
+        info = os.fstat(fd)
+        if info.st_uid != os.getuid() or not stat.S_ISREG(info.st_mode) or info.st_nlink != 1 or info.st_mode & 0o077:
+            raise ValueError('unsafe health')
+        with os.fdopen(fd, 'r', encoding='utf-8') as file:
+            fd = None
+            raw = file.read(4097)
+        if len(raw) > 4096:
+            raise ValueError('oversized health')
+        def pairs(items):
+            result = {}
+            for key, value in items:
+                if key in result: raise ValueError('duplicate health key')
+                result[key] = value
+            return result
+        value = json.loads(raw, object_pairs_hook=pairs)
+        if not isinstance(value, dict) or set(value) != set(health_unknown()) or type(value['version']) is not int or value['version'] != 1:
+            raise ValueError('invalid health')
+        if type(value['errors']) is not int or not 0 <= value['errors'] <= SAFE_INT or value['status'] not in ('observed', 'degraded', 'unknown'):
+            raise ValueError('invalid health')
+        if value['last_event_id'] is not None: project_uuid(value['last_event_id'])
+        for key in ('last_recorded_at', 'last_failure_at', 'at'):
+            stamp = value[key]
+            if stamp is not None:
+                if not isinstance(stamp, str) or len(stamp) > 40 or not stamp.endswith('Z'):
+                    raise ValueError('invalid health time')
+                dt.datetime.fromisoformat(stamp.replace('Z', '+00:00'))
+        if (value['last_event_id'] is None) != (value['last_recorded_at'] is None):
+            raise ValueError('invalid health observation')
+        return value
+    finally:
+        if fd is not None: os.close(fd)
+
+
+def health_write(root, event=None):
+    # Caller holds the shared capture lock through append/fsync and this update.
+    value = health_read(root)  # Corrupt evidence is preserved, never overwritten.
+    value['at'] = utc_now()
+    if event is not None:
+        value.update(last_event_id=event['event_id'], last_recorded_at=event['observed_at'], status='observed')
+    else:
+        value.update(errors=min(SAFE_INT, value['errors'] + 1), last_failure_at=value['at'], status='degraded')
+    temporary = root / ('.capture-health-' + str(uuid.uuid4()) + '.tmp')
+    try:
+        fd = os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+        with os.fdopen(fd, 'w', encoding='utf-8') as file:
+            file.write(json.dumps(value, allow_nan=False) + '\n')
+            file.flush()
+            os.fsync(file.fileno())
+        os.replace(temporary, root / HEALTH)
+        directory = os.open(root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+        try: os.fsync(directory)
+        finally: os.close(directory)
+    finally:
+        if temporary.exists(): temporary.unlink()
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest='command', required=True)
@@ -223,26 +298,76 @@ def main():
         record.add_argument('--' + key.replace('_', '-'))
     record.add_argument('--data', required=True)
     record.add_argument('--links', default='{}')
-    for command in (hook, record):
+    health = commands.add_parser('health')
+    for command in (hook, record, health):
         command.add_argument('--log-dir', default='~/.local/state/harness-activity')
     args = parser.parse_args()
+    requested = Path(os.path.abspath(os.path.expanduser(args.log_dir)))
+    root = requested.parent.resolve() / requested.name
+    recorded = False
+    storage_ready = False
+    stop_response = False
+    valid_hook_input = False
+    if args.command == 'hook':
+        args.raw_input = sys.stdin.buffer.read(MAX_INPUT + 1)
+        try:
+            payload = parse_json(args.raw_input)
+            valid_hook_input = isinstance(payload, dict) and payload.get('hook_event_name') in EVENTS
+            stop_response = args.source == 'codex' and isinstance(payload, dict) and payload.get('hook_event_name') in ('Stop', 'SubagentStop')
+        except Exception:
+            pass
     try:
-        requested = Path(os.path.abspath(os.path.expanduser(args.log_dir)))
-        root = requested.parent.resolve() / requested.name
-        # Validate explicit records before creating any local storage.
+        for part in (requested, *requested.parents):
+            # macOS standard temporary-directory aliases are system-owned.
+            if part.is_symlink() and str(part) not in ('/var', '/tmp'):
+                raise ValueError('symlink directory')
+        if args.command == 'health':
+            # A missing directory/file is unknown, and a read never creates one.
+            for part in (root, *root.parents):
+                if part.is_symlink(): raise ValueError('symlink directory')
+            if root.exists():
+                info = root.stat()
+                if info.st_uid != os.getuid() or not stat.S_ISDIR(info.st_mode) or info.st_mode & 0o077:
+                    raise ValueError('unsafe health directory')
+            value = health_read(root)
+            print(json.dumps(value, allow_nan=False))
+            return 0
         event = record_event(args) if args.command == 'record' else None
         private_dir(root)
+        storage_ready = True
         event = event or hook_event(args, root)
-        with locked_file(root / (event['observed_at'][:10] + '.jsonl')) as file:
-            file.seek(0, os.SEEK_END)
-            file.write(json.dumps(event, ensure_ascii=False, allow_nan=False) + '\n')
-            file.flush()
-            os.fsync(file.fileno())
+        with locked_file(root / '.capture-health.lock'):
+            with locked_file(root / (event['observed_at'][:10] + '.jsonl')) as file:
+                file.seek(0, os.SEEK_END)
+                file.write(json.dumps(event, ensure_ascii=False, allow_nan=False) + '\n')
+                file.flush()
+                os.fsync(file.fileno())
+            recorded = True
+            health_write(root, event)
         return 0
     except Exception:
         # Never include exception text: it may contain a path or user payload.
-        sys.stderr.write('[harness-activity] event not recorded: invalid input or storage failure\n')
+        if args.command == 'health':
+            print(json.dumps(health_unknown()))
+            sys.stderr.write('[harness-activity] capture health unavailable\n')
+            return 1
+        if recorded:
+            sys.stderr.write('[harness-activity] event recorded; capture health update failed\n')
+        else:
+            sys.stderr.write('[harness-activity] event not recorded: invalid input or storage failure\n')
+            # Preserve validation-before-storage for invalid explicit input and
+            # avoid creating health evidence when no observation exists yet.
+            try:
+                if storage_ready and (valid_hook_input or (root / HEALTH).exists() or (root / HEALTH).is_symlink()):
+                    private_dir(root)
+                    with locked_file(root / '.capture-health.lock'):
+                        health_write(root)
+            except Exception:
+                sys.stderr.write('[harness-activity] capture health update failed\n')
         return 0 if args.command == 'hook' else 1
+    finally:
+        if stop_response:
+            print('{}')
 
 
 if __name__ == '__main__':

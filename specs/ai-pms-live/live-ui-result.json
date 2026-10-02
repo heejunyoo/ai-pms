@@ -1,0 +1,41 @@
+{
+  "task_id": "live-ui",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/dashboard.html",
+      "action": "modified",
+      "summary": "Person/session goals and proof paths, organization measurements/contribution states, separate capture health; exact optional operations validation and Python-parity derivation; same-origin login/polling and transactional merges preserving selection/focus."
+    },
+    {
+      "path": "specs/ai-pms-live/check_ui_live.py",
+      "action": "created",
+      "summary": "38 Python snapshots plus forged imports and executable lightweight DOM/poll/login/reset checks; preserves and runs existing IA/work/management/dashboard checks."
+    },
+    {
+      "path": "specs/ai-pms-live/live-ui-result.json",
+      "action": "created",
+      "summary": "Actual acceptance evidence and explicit browser/mobile boundary."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-live/check_ui_live.py",
+    "exit_code": 0,
+    "output_tail": "Live parity PASS: 38 Python snapshots, forged completion/lifecycle/hash/metric/capture and source/ownership/privacy cases rejected\nLive DOM/poll mock PASS: person → sessions → task evidence, organization measurements, validated merge/reset, focus/filter/tab/scroll preservation, static no request, cookie login, failures retain state (no browser/layout claim)\nIA structure and DOM simulation + existing work UI regressions PASS; browser/mobile rendering unverified\nLive UI acceptance PASS; actual browser and 390px rendering remain unverified"
+  },
+  "done_when_check": [
+    {
+      "condition": "공유 계약과 소유 파일 경계를 지킨다",
+      "met": true,
+      "evidence": "Only dashboard.html/check_ui_live.py/live-ui-result.json modified under validated new packet. Exact operations field keys/source_project_id and raw verification digest normalization match operations.py. Existing strict v1/v2/v3/work import validators preserved."
+    },
+    {
+      "condition": "실행 검사와 반례로 실제 동작/미확인 경계를 구별한다",
+      "met": true,
+      "evidence": "check_ui_live.py actual exit0: 38 Python snapshots parity, forged derived states/hashes/metrics/source ownership rejected, native DOM person/session/work drilldown, cookie login and polling mock, validated merge/reset and state retention. Existing IA/work/dashboard/v3 checks execute without deletion or skip. Actual browser layout, 390px render, remote delivery, installed provider hook coverage are unverified and parent-owned. Source-mode transition/reset, connected footer and session-origin return-label assertions also pass."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.92,
+  "notes_for_orchestrator": "Connected mode only document.body.dataset.live=true (service already inserts body flag and full v3 snapshot). POST /api/login body {token}; input cleared before request; GET /api/changes cursor every2000ms; static default never calls network. Original owner/project/tab/session selection and known focus/task identities and scroll preserved across validated updates. Metrics remain company/team measurements rather than per-person productivity. Native lifecycle is recomputed from safe event JSON embedded in existing project timeline, linked via source-project UUID and central actor/environment source_ref. Current service must send changed project freshness and nonnull operations when time-driven derived states change. Real browser/mobile acceptance still pending; no public/deploy/Git edits were performed. Parent review P1 fixes verified: applyChanges recalculates evidence_mode from all current source modes (declared empty → synthetic and mixed → synthetic reset DOM checks), live footer describes central connected management, and session-origin detail returns with a session-list label. check_ui_live.py rerun exit0 after these changes."
+}

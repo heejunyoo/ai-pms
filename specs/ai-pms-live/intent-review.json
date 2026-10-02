@@ -1,0 +1,14 @@
+{
+  "reviewer": "astra-independent-live-intent-review",
+  "verdict": "aligned",
+  "source_sha256": "d16f49275118cbf17368806c79e2281c9a5e076403fd30b9f089481a8f98e81e",
+  "spec_sha256": "6480247c278cef16f163c2803cf6680468d73e22a1644a012023791a15b21caf",
+  "requirements_covered": [
+    "sessions",
+    "northstar",
+    "capture",
+    "delivery"
+  ],
+  "unapproved_changes": [],
+  "evidence": "Independently compared the exact source.md, spec.md, plan.json, verify_live.py and current PRODUCT-INTENT.md. The runnable central service, HTTPS-capable opt-in sender, durable event and management-entity synchronization, cursor projection and live UI preserve the requested multi-person purpose; the public static sample is explicitly synthetic and does not substitute for remote delivery. Prior review blockers were corrected before approval: capture health is a central entity separate from goal completeness; source admission and authenticated actor checks constrain shared-project writes; native hooks preceding catalog registration remain durable and unmapped; goal acceptance binds current definition digest and cannot override failed, stale or unobserved work; lifecycle uses event time and end precedence; north-star measurements exclude future/declared/conflicting values and do not equate below-target with on-track; contribution confirmation binds goal and north-star definitions; unsupported deletion is visible. The final schema adds source_project_id to sessions and goal digests, distinguishes catalog IDs from native UUIDs, and requires an exact source_ref, resolving same-native-session collisions. Person-to-session-to-work evidence, independent personal goals, measured versus declared outcomes, keyboard/mobile behavior and Python/JS forged-state parity remain acceptance requirements. Opened current official Codex and Claude hook documentation; Codex Stop/SubagentStop event-specific sections expect JSON stdout and the spec requires a harmless empty object. Approval is for intent and bounded design dispatch, not implementation correctness, authenticated human review, actual installed-provider hook coverage, real remote two-environment delivery, browser rendering or operational deployment; those need fresh independent evidence and remain unverified."
+}

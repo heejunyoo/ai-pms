@@ -10,7 +10,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'none'; script-src 'sha256-rgUyrz13Mjw7WJPIvBsHxpdJUWZp4EscEhtzwobL3WU=' 'sha256-eCH+K/v58WjSq+1bsqvbef9zi/UgFj9+EPkXI6wiQHY='; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'"
+          "value": "default-src 'none'; script-src 'sha256-lvCKsQDtXf9JkzOXctrSyBloyfGSik81JwdL5C4cKxw=' 'sha256-0WoaokZtybY1GJby9Nn2Hi7aXtDEhaD8ytWamkwpJFQ='; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'"
         }
       ]
     },
@@ -19,7 +19,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'none'; script-src 'sha256-rgUyrz13Mjw7WJPIvBsHxpdJUWZp4EscEhtzwobL3WU=' 'sha256-eCH+K/v58WjSq+1bsqvbef9zi/UgFj9+EPkXI6wiQHY='; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'"
+          "value": "default-src 'none'; script-src 'sha256-lvCKsQDtXf9JkzOXctrSyBloyfGSik81JwdL5C4cKxw=' 'sha256-0WoaokZtybY1GJby9Nn2Hi7aXtDEhaD8ytWamkwpJFQ='; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'"
         }
       ]
     },
@@ -28,7 +28,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'none'; script-src 'sha256-/m6tuVgzcZg3mKwvHRNM32SJhpw92d70/1gDjBzqWC4=' 'sha256-eCH+K/v58WjSq+1bsqvbef9zi/UgFj9+EPkXI6wiQHY='; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'"
+          "value": "default-src 'none'; script-src 'sha256-/m6tuVgzcZg3mKwvHRNM32SJhpw92d70/1gDjBzqWC4=' 'sha256-0WoaokZtybY1GJby9Nn2Hi7aXtDEhaD8ytWamkwpJFQ='; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'"
         }
       ]
     },

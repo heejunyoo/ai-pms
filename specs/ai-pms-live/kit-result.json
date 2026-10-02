@@ -1,0 +1,51 @@
+{
+  "task_id": "kit",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "$HOME/.claude/harness/activity/logger.py",
+      "action": "modified",
+      "summary": "Safe owner-only atomic capture-health.json, health CLI, durable append-first observations, cumulative failure reporting, Codex Stop/SubagentStop JSON stdout."
+    },
+    {
+      "path": "$HOME/.claude/harness/activity/README.md",
+      "action": "modified",
+      "summary": "Health boundaries, optional hook entries, Codex/Claude source contracts, unsupported adapters and actual-app proof pending."
+    },
+    {
+      "path": "specs/ai-pms-live/test_kit_live.py",
+      "action": "created",
+      "summary": "Six subprocess/concurrency/fsync/privacy/corrupt/symlink/stdout checks with exported logger priority and canonical fallback."
+    },
+    {
+      "path": "specs/ai-pms-live/README.md",
+      "action": "created",
+      "summary": "Capture and opt-in live operation guide; actual sender/service CLI reconciliation delegated to parent integration."
+    },
+    {
+      "path": "specs/ai-pms-live/kit-result.json",
+      "action": "created",
+      "summary": "Actual bounded packet handoff result."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-live/test_kit_live.py",
+    "exit_code": 0,
+    "output_tail": "Ran 6 tests in 1.055s\nOK"
+  },
+  "done_when_check": [
+    {
+      "condition": "공유 계약과 소유 파일 경계를 지킨다",
+      "met": true,
+      "evidence": "Only canonical logger/README and kit-owned live test/README/result edited. capture-health.json exactly version/last_event_id/last_recorded_at/errors/last_failure_at/status/at; no global configuration, hook trust, external services, UI or model edited."
+    },
+    {
+      "condition": "실행 검사와 반례로 실제 동작/미확인 경계를 구별한다",
+      "met": true,
+      "evidence": "test_kit_live.py 6 checks passed; legacy test_logger.py 11 checks passed; legacy test_workflow.py exit0. Synthetic input and local storage only; actual installed provider hooks, remote two-environment delivery and production browser remain unverified."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.93,
+  "notes_for_orchestrator": "Health filename capture-health.json. Global logdir writer observation is not per-project heartbeat. Malformed initial stdin without prior successful observation leaves health missing/unknown to preserve legacy validation/storage behavior. Valid hook recording failures or later malformed input accumulate degraded errors. Recorded-event health failures retain JSONL and distinct safe stderr. Canonical builder/export changes remain parent-owned. live README contains an explicit CLI integration placeholder: sync implementation files were absent at guide writing, so parent must replace --help-only stage with actual CLI/config setup. Independent acceptance-binding-review.json was created under separate explicit root authorization; it is not Astra and is not part of this kit packet."
+}

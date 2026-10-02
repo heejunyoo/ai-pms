@@ -40,7 +40,10 @@
     "changed_paths": [],
     "stale_source_paths": [
       "specs/ai-pms-dashboard/dashboard.html",
-      "apps/dashboard/public/index.html"
+      "docs/json-contracts.md",
+      "apps/dashboard/public/index.html",
+      "apps/dashboard/public/snapshot.json",
+      "apps/dashboard/public/report.html"
     ],
     "reason": "Only fresh source hashes reconciled after path/whitespace sanitization. Historical hashes preserved; not another independent review or browser verification."
   }

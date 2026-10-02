@@ -24,7 +24,7 @@ python3 "$HOME/.agents/harness-activity/logger.py" hook --source claude
 python3 "$HOME/.agents/harness-activity/test_logger.py"
 ```
 
-These commands consume provider JSON on stdin. Supported native names are SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop, SessionEnd; Claude also supplies PostToolUseFailure, SubagentStart, SubagentStop. Codex SubagentStop installation is deferred until its required stdout response is supported. Cursor/Gemini adapters are deferred. A passing stdin test does not prove that an installed app delivered a hook.
+These commands consume provider JSON on stdin. Supported native names are SessionStart, UserPromptSubmit, PreToolUse, PostToolUse, Stop, SessionEnd; Claude also supplies PostToolUseFailure, SubagentStart, SubagentStop. Codex Stop/SubagentStop now return JSON `{}` on stdout on both success and fail-open failure, as required by the Codex hook response contract. Cursor/Gemini adapters are deferred. A passing stdin test does not prove that an installed app delivered a hook.
 
 ## Schema v1 / 스키마 v1
 
@@ -185,3 +185,28 @@ task의 `expect_contains`는 원문 조건을 done_when에 보존하고 사람 �
 기존 Phase의 문서/검사 근거가 있는 상태에서 Phase를 없애거나 기존 task 기준을 참조하는 작업을 제거하는 계획은 자동으로 마이그레이션하지 않습니다. 원본을 보존하고 명시적인 범위 정리를 요구합니다. 새 작업 계획 버전은 과거 실행을 보수적으로 재검증합니다. 완료 조건 산문의 의미와 전체 파일 범위가 충분한지는 별도 사람 검토가 필요합니다.
 
 구형의 불완전한 Handoff 입력(Phase/원자화 작업이 없는 테스트 결과만 있는 자료)은 기존 선언 검사 import로 지원합니다. 완전한 작업 계획으로 꾸며 진행을 계산하지 않습니다. 자동 PC 전달·전역 훅·운영 인증은 설치하지 않습니다.
+
+
+## Live capture health / 실시간 로컬 기록 상태
+
+```sh
+python3 ~/.agents/harness-activity/logger.py health --log-dir ~/.local/state/harness-activity
+```
+
+`capture-health.json`은 owner-only(파일0600/디렉터리0700) atomic replace로 저장합니다. 정확한 필드는 `{version:1,last_event_id,last_recorded_at,errors,last_failure_at,status,at}`이며 `status`는 observed/degraded/unknown입니다. 정상 이벤트의 append와 fsync 뒤에만 성공을 기록합니다. 오류수는 누적되고 마지막 정상 ID/시각은 실패 뒤에도 보존됩니다. 재성공은 observed로 회복하지만 오류 이력은 지우지 않습니다. 경로·actor·environment·project·raw input·비밀정보는 건강파일에 없습니다. 파일은 **logdir 기록기 전체**의 관측이며 프로젝트별 훅 건강 주장이 아닙니다. sender가 identity를 붙이는 것은 운영자의 출처 연결 선언입니다.
+
+건강파일이 없으면 unknown입니다. 읽기 실패·손상·symlink·공유 권한은 unknown과 안전한 stderr/exit1로 표시합니다. 손상된 원본은 덮어쓰지 않습니다. 이벤트 저장은 성공했으나 건강 저장이 실패하면 `event recorded; capture health update failed`라고 stderr에 표시하며 이벤트가 소실됐다고 주장하지 않습니다. 최초 잘못된 JSON은 정상 관측이 없으므로 missing/unknown으로 남을 수 있습니다. Hook 오류는 에이전트를 막지 않도록 exit0이지만 정상 저장을 뜻하지 않습니다. manual record 실패는 exit1입니다.
+
+지원은 [Codex hooks](https://developers.openai.com/codex/hooks), [Claude Code hooks](https://code.claude.com/docs/en/hooks)의 command-hook stdin 계약입니다. Cursor/Gemini adapter는 미지원입니다. 설정 파일·stdin 검사 통과는 실제 앱 호출 증명이 아닙니다. 실제 앱별 호출/건강파일/이벤트 ID를 확인하기 전에는 앱 커버리지와 원격 두 환경 전달은 미검증입니다. Stop은 턴 종료이며 목표 완료·SessionEnd와 구별합니다.
+
+선택 설치 예시(기존 hooks에 검토하여 병합, 경로를 설치 위치로 변경):
+
+```json
+{"hooks":{"Stop":[{"hooks":[{"type":"command","command":"python3 ~/.agents/harness-activity/logger.py hook --source codex"}]}],"SubagentStop":[{"hooks":[{"type":"command","command":"python3 ~/.agents/harness-activity/logger.py hook --source codex"}]}]}}
+```
+
+Claude 설정에도 같은 구조에서 `--source claude`를 사용합니다. 지원 native 이름에 한하여 별도 이벤트 entry를 추가합니다. 사용자가 Codex `/hooks`에서 리뷰하고 trust를 승인합니다. 이 Kit는 전역 hooks를 설치하거나 trust를 대신 승인하지 않습니다. 중앙 sender는 별도 opt-in이며 `live/README.md`의 로컬 서비스 안내를 따릅니다. 오프라인 viewer는 자동 전달하지 않습니다.
+
+## 사람·세션·실시간 중앙 운영
+
+`operations.template.json`과 `json-contracts.md`에 세션 목표/인수·회사/팀 북극성·기여·수집 상태 입력을 안내합니다. ZIP의 `pms/README.md`에서 실행 가능한 private 합성 파일럿과 opt-in sender를 시작하세요. 훅만으로 업무 목적을 추측하지 않으며 Handoff 관리 자료와 명시적인 session_goal 연결을 사용합니다. 전역 hook/trust 설정은 자동 변경하지 않습니다.

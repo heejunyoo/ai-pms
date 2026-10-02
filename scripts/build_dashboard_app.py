@@ -11,16 +11,21 @@ spec=importlib.util.spec_from_file_location('portfolio',DASH/'portfolio.py')
 portfolio=importlib.util.module_from_spec(spec);spec.loader.exec_module(portfolio)
 def main():
     out=ROOT/'apps/dashboard/public';out.mkdir(parents=True,exist_ok=True)
-    catalog=portfolio.read_json(ROOT/'specs/ai-pms-work-management/sample/catalog-work.json')
-    store=portfolio.read_json(DASH/'sample/central.json')
+    live=ROOT/'specs/ai-pms-live/sample'
+    use_live=(live/'operations.json').is_file()
+    catalog=portfolio.read_json(live/'catalog.json' if use_live else ROOT/'specs/ai-pms-work-management/sample/catalog-work.json')
+    store=portfolio.read_json(live/'central.json' if use_live else DASH/'sample/central.json')
+    operations=portfolio.read_json(live/'operations.json') if use_live else None
     # New fictional participant environments have zero events; never fabricate hook observations.
     for project in catalog['projects']:
         for ref in project['source_refs']:
             key=portfolio.central.source_key(ref)
             if key not in store['sources']:
                 store['sources'][key]=dict(ref,label='합성 예시 · 활동 미관측',evidence_mode='synthetic',events={})
-    model=portfolio.build_model(store,catalog,now='2026-10-01T12:00:00Z')
+    instant='2026-10-02T12:00:00Z' if use_live else '2026-10-01T12:00:00Z'
+    model=portfolio.build_model(store,catalog,now=instant,**({'operations':operations} if use_live else {}))
     assert model['evidence_mode']=='synthetic'
+    if use_live: assert model['operations']['version']==1
     pages={'index.html':portfolio.render_html(model),'empty.html':portfolio.render_html(portfolio.build_model(now='2026-10-01T12:00:00Z'))}
     report=(ROOT/'reports/ai-pms-eli20/index.html').read_text()
     report=re.sub(r'href="../../specs/ai-pms-dashboard/evidence/dashboard.html"','href="/"',report)

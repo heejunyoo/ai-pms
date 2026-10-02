@@ -1,0 +1,66 @@
+{
+  "task_id": "operations",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/operations.py",
+      "action": "created",
+      "summary": "严格session/northstar/capture契约与保守派生"
+    },
+    {
+      "path": "specs/ai-pms-dashboard/portfolio.py",
+      "action": "modified",
+      "summary": "optional operations模型整合"
+    },
+    {
+      "path": "specs/ai-pms-live/test_operations.py",
+      "action": "created",
+      "summary": "合成样例与可运行检查"
+    },
+    {
+      "path": "specs/ai-pms-live/generate_sample.py",
+      "action": "created",
+      "summary": "合成样例与可运行检查"
+    },
+    {
+      "path": "specs/ai-pms-live/sample/operations.json",
+      "action": "created",
+      "summary": "合成样例与可运行检查"
+    },
+    {
+      "path": "specs/ai-pms-live/sample/catalog.json",
+      "action": "created",
+      "summary": "合成样例与可运行检查"
+    },
+    {
+      "path": "specs/ai-pms-live/sample/central.json",
+      "action": "created",
+      "summary": "合成样例与可运行检查"
+    },
+    {
+      "path": "specs/ai-pms-live/operations-result.json",
+      "action": "created",
+      "summary": "handoff结果"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-live/test_operations.py",
+    "exit_code": 0,
+    "output_tail": "Ran 44 tests; OK"
+  },
+  "done_when_check": [
+    {
+      "condition": "공유 계약과 소유 파일 경계를 지킨다",
+      "met": true,
+      "evidence": "Exact records fields, optional build_model input, standalone lazy helpers; only operations packet files changed."
+    },
+    {
+      "condition": "실행 검사와 반례로 실제 동작/미확인 경계를 구별한다",
+      "met": true,
+      "evidence": "44 operations counterexamples (artifact/task repass old acceptance rejection and clock-stable raw verification digest included), 17 old portfolio and 27 work tests pass; all sample sources synthetic."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.9,
+  "notes_for_orchestrator": "Operations packet only. Implements final verification_sha256 contract, raw six-field management proof binding strips only explicit derived testplan/attempt/blocker fields; current/old artifact and same-version task repass require fresh acceptance, clock alone does not change digest. Records are declared goal/acceptance and contribution links, never authenticated human attestations or business causal proof. Same native session ID isolated by actor/environment/raw UUID/source. Sample fixed 2026-10-02T12:00:00Z and every eventlog synthetic. Live apps, remote delivery and browser rendering unverified. No service/sender/UI/Kit/Git/deployment modified."
+}

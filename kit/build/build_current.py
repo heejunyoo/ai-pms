@@ -234,8 +234,10 @@ def build(output):
         'claude/session_gate.py': '.claude/hooks/session_gate.py',
         'claude/test_session_gate.py': '.claude/hooks/test_session_gate.py',
     }
-    for name in ('logger.py', 'connectivity.py', 'management.py', 'work.py', 'management_recorder.py', 'test_management_recorder.py', 'catalog-v3.template.json', 'catalog-work.template.json', 'json-contracts.md', 'test_logger.py', 'viewer.html', 'README.md', 'example-project.jsonl'):
+    for name in ('logger.py', 'connectivity.py', 'management.py', 'work.py', 'management_recorder.py', 'test_management_recorder.py', 'catalog-v3.template.json', 'catalog-work.template.json', 'operations.template.json', 'json-contracts.md', 'test_logger.py', 'viewer.html', 'README.md', 'example-project.jsonl'):
         implementation['activity/'+name] = '.claude/harness/activity/'+name
+    for name in ['specs/ai-pms-live/live_service.py', 'specs/ai-pms-live/live_sender.py', 'specs/ai-pms-live/session_goal.py', 'specs/ai-pms-live/demo_setup.py', 'specs/ai-pms-live/README.md', 'specs/ai-pms-live/sample/catalog.json', 'specs/ai-pms-live/sample/operations.json', 'specs/ai-pms-live/sample/central.json', 'specs/ai-pms-dashboard/portfolio.py', 'specs/ai-pms-dashboard/management.py', 'specs/ai-pms-dashboard/work.py', 'specs/ai-pms-dashboard/operations.py', 'specs/ai-pms-dashboard/dashboard.html', 'specs/ai-pms-central/central.py', 'specs/ai-pms-central/connectivity.py', 'specs/ai-pms-transport/common.py', 'README.md']:
+        implementation['pms/'+name] = '.claude/harness/activity/pms/'+name
     # Only these authored skill packages are exportable; never walk all user settings.
     skill_roots = {
         'handoff': '.agents/skills/handoff',

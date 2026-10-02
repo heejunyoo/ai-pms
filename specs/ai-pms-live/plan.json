@@ -1,0 +1,396 @@
+{
+  "goal": "사람·세션·목표·북극성을 실제 로그 및 관리 변경의 증분 동기화로 연결한다",
+  "author": "root-live-author",
+  "spec_ref": "spec.md",
+  "intent_guard": {
+    "source_ref": "source.md",
+    "requirements": [
+      {
+        "id": "sessions",
+        "quote": "사람으로 시작해서, 그 사람이 관리하는 세션들",
+        "outcome": "사람별 세션 목표와 종료/인수 구별"
+      },
+      {
+        "id": "northstar",
+        "quote": "회사 / 팀 차원에서의 북극성 관리 부분도 필요",
+        "outcome": "실측과 기여 연결 분리"
+      },
+      {
+        "id": "capture",
+        "quote": "훅 마다 로그 생성 정상적으로 되도록 kit 은 준비되어 있는건지.",
+        "outcome": "실시간 로컬 기록 상태"
+      },
+      {
+        "id": "delivery",
+        "quote": "세분화된 로그들을 받아서 정보의 실시간 업데이트가 가능해야 하는거 아닌지.",
+        "outcome": "관리 변경 포함 증분 중앙 전달/화면 갱신"
+      }
+    ],
+    "review_ref": "acceptance-binding-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-live/verify_live.py",
+      "expect_exit_code": 0
+    }
+  },
+  "open_decisions": [],
+  "phases": [
+    {
+      "id": "model",
+      "name": "model",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-live/test_operations.py",
+        "expect_exit_code": 0
+      }
+    },
+    {
+      "id": "connect",
+      "name": "connect",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-live/test_live.py",
+        "expect_exit_code": 0
+      }
+    },
+    {
+      "id": "integrate",
+      "name": "integrate",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-live/verify_live.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "operations",
+      "requirement_ids": [
+        "sessions",
+        "northstar"
+      ],
+      "kind": "implement",
+      "phase": "model",
+      "depends_on": [],
+      "objective": "세션/북극성 계약과 안전한 파생 계산·샘플 구현",
+      "done_when": [
+        "공유 계약과 소유 파일 경계를 지킨다",
+        "실행 검사와 반례로 실제 동작/미확인 경계를 구별한다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-live/test_operations.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/portfolio.py",
+          "symbol": "build_model",
+          "what": "spec.md 계약에 따른 구현"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-dashboard/operations.py",
+        "specs/ai-pms-live/test_operations.py",
+        "specs/ai-pms-live/generate_sample.py",
+        "specs/ai-pms-live/sample/operations.json",
+        "specs/ai-pms-live/sample/catalog.json",
+        "specs/ai-pms-live/sample/central.json",
+        "specs/ai-pms-live/operations-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/portfolio.py",
+        "why": "strict bounded validation/원본 근거와 파생 구별"
+      },
+      "already_tried": [
+        {
+          "what": "sender/receiver 기준선 및 verify_live.py",
+          "result": "기존 sender/receiver 통과; 새 verifier는 누락 test_operations.py에서 기대대로 실패"
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-live/spec.md",
+        "facts": [
+          "repo=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "정본 sources만 변경; public/배포/Git 부모 담당",
+          "실제 앱/원격 다중 사용자 미검증을 합성 성공으로 덮지 않는다"
+        ],
+        "conventions": [
+          "stdlib strict JSON safe DOM; 기존 검증 삭제/skip 금지"
+        ],
+        "files": [
+          "specs/ai-pms-live/source.md",
+          "specs/ai-pms-live/spec.md",
+          "PRODUCT-INTENT.md"
+        ],
+        "excluded": "다른 태스크 소유 파일/실제 비공개 로그/전역 설정/trust/배포"
+      },
+      "constraints": {
+        "must": [
+          "기존 테스트 보존",
+          "자기 task-result.json을 handoff schema로 작성",
+          "계약 불명확/변경은 부모에게 요청"
+        ],
+        "must_not": [
+          "소유 경계 밖 파일 수정",
+          "새 의존성/전역 hooks/실사용자 로그 공개/배포"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 60
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      }
+    },
+    {
+      "task_id": "sync",
+      "requirement_ids": [
+        "capture",
+        "delivery"
+      ],
+      "kind": "implement",
+      "phase": "connect",
+      "depends_on": [
+        "operations"
+      ],
+      "objective": "내구 증분 서비스/송신기와 인증·재시작·2환경 HTTP 인수",
+      "done_when": [
+        "공유 계약과 소유 파일 경계를 지킨다",
+        "실행 검사와 반례로 실제 동작/미확인 경계를 구별한다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-live/test_live.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [],
+      "files_to_create": [
+        "specs/ai-pms-live/live_service.py",
+        "specs/ai-pms-live/live_sender.py",
+        "specs/ai-pms-live/test_live.py",
+        "specs/ai-pms-live/sync-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/portfolio.py",
+        "why": "strict bounded validation/원본 근거와 파생 구별"
+      },
+      "already_tried": [
+        {
+          "what": "sender/receiver 기준선 및 verify_live.py",
+          "result": "기존 sender/receiver 통과; 새 verifier는 누락 test_operations.py에서 기대대로 실패"
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-live/spec.md",
+        "facts": [
+          "repo=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "정본 sources만 변경; public/배포/Git 부모 담당",
+          "실제 앱/원격 다중 사용자 미검증을 합성 성공으로 덮지 않는다"
+        ],
+        "conventions": [
+          "stdlib strict JSON safe DOM; 기존 검증 삭제/skip 금지"
+        ],
+        "files": [
+          "specs/ai-pms-live/source.md",
+          "specs/ai-pms-live/spec.md",
+          "PRODUCT-INTENT.md"
+        ],
+        "excluded": "다른 태스크 소유 파일/실제 비공개 로그/전역 설정/trust/배포"
+      },
+      "constraints": {
+        "must": [
+          "기존 테스트 보존",
+          "자기 task-result.json을 handoff schema로 작성",
+          "계약 불명확/변경은 부모에게 요청"
+        ],
+        "must_not": [
+          "소유 경계 밖 파일 수정",
+          "새 의존성/전역 hooks/실사용자 로그 공개/배포"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 60
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      }
+    },
+    {
+      "task_id": "live-ui",
+      "requirement_ids": [
+        "sessions",
+        "northstar",
+        "delivery"
+      ],
+      "kind": "implement",
+      "phase": "connect",
+      "depends_on": [
+        "operations"
+      ],
+      "objective": "사람→세션→근거 및 북극성 화면·로그인/polling·검증",
+      "done_when": [
+        "공유 계약과 소유 파일 경계를 지킨다",
+        "실행 검사와 반례로 실제 동작/미확인 경계를 구별한다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-live/check_ui_live.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/dashboard.html",
+          "symbol": "validateModel/renderPortfolio",
+          "what": "spec.md 계약에 따른 구현"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-live/check_ui_live.py",
+        "specs/ai-pms-live/live-ui-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/portfolio.py",
+        "why": "strict bounded validation/원본 근거와 파생 구별"
+      },
+      "already_tried": [
+        {
+          "what": "sender/receiver 기준선 및 verify_live.py",
+          "result": "기존 sender/receiver 통과; 새 verifier는 누락 test_operations.py에서 기대대로 실패"
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-live/spec.md",
+        "facts": [
+          "repo=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "정본 sources만 변경; public/배포/Git 부모 담당",
+          "실제 앱/원격 다중 사용자 미검증을 합성 성공으로 덮지 않는다"
+        ],
+        "conventions": [
+          "stdlib strict JSON safe DOM; 기존 검증 삭제/skip 금지"
+        ],
+        "files": [
+          "specs/ai-pms-live/source.md",
+          "specs/ai-pms-live/spec.md",
+          "PRODUCT-INTENT.md"
+        ],
+        "excluded": "다른 태스크 소유 파일/실제 비공개 로그/전역 설정/trust/배포"
+      },
+      "constraints": {
+        "must": [
+          "기존 테스트 보존",
+          "자기 task-result.json을 handoff schema로 작성",
+          "계약 불명확/변경은 부모에게 요청"
+        ],
+        "must_not": [
+          "소유 경계 밖 파일 수정",
+          "새 의존성/전역 hooks/실사용자 로그 공개/배포"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 60
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      }
+    },
+    {
+      "task_id": "kit",
+      "requirement_ids": [
+        "capture",
+        "delivery"
+      ],
+      "kind": "implement",
+      "phase": "model",
+      "depends_on": [],
+      "objective": "독립 Kit 기록 건강 상태·Codex 훅 응답·실행 안내 구현; bundle 연결은 부모 통합",
+      "done_when": [
+        "공유 계약과 소유 파일 경계를 지킨다",
+        "실행 검사와 반례로 실제 동작/미확인 경계를 구별한다"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-live/test_kit_live.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "$HOME/.claude/harness/activity/logger.py",
+          "symbol": "hook/main",
+          "what": "spec.md 계약에 따른 구현"
+        },
+        {
+          "path": "$HOME/.claude/harness/activity/README.md",
+          "symbol": "module",
+          "what": "spec.md 계약에 따른 구현"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-live/test_kit_live.py",
+        "specs/ai-pms-live/README.md",
+        "specs/ai-pms-live/kit-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/portfolio.py",
+        "why": "strict bounded validation/원본 근거와 파생 구별"
+      },
+      "already_tried": [
+        {
+          "what": "sender/receiver 기준선 및 verify_live.py",
+          "result": "기존 sender/receiver 통과; 새 verifier는 누락 test_operations.py에서 기대대로 실패"
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-live/spec.md",
+        "facts": [
+          "repo=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "정본 sources만 변경; public/배포/Git 부모 담당",
+          "실제 앱/원격 다중 사용자 미검증을 합성 성공으로 덮지 않는다"
+        ],
+        "conventions": [
+          "stdlib strict JSON safe DOM; 기존 검증 삭제/skip 금지"
+        ],
+        "files": [
+          "specs/ai-pms-live/source.md",
+          "specs/ai-pms-live/spec.md",
+          "PRODUCT-INTENT.md"
+        ],
+        "excluded": "다른 태스크 소유 파일/실제 비공개 로그/전역 설정/trust/배포"
+      },
+      "constraints": {
+        "must": [
+          "기존 테스트 보존",
+          "자기 task-result.json을 handoff schema로 작성",
+          "계약 불명확/변경은 부모에게 요청"
+        ],
+        "must_not": [
+          "소유 경계 밖 파일 수정",
+          "새 의존성/전역 hooks/실사용자 로그 공개/배포"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 60
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      }
+    }
+  ]
+}

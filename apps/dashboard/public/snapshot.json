@@ -1,6 +1,6 @@
 {
   "schema_version": 3,
-  "generated_at": "2026-10-01T12:00:00Z",
+  "generated_at": "2026-10-02T12:00:00Z",
   "evidence_mode": "synthetic",
   "projects": [
     {
@@ -245,16 +245,22 @@
           "id": "alice-3",
           "actor_id": "Alice",
           "environment_id": "desktop",
-          "event_count": 3
+          "event_count": 0
         },
         {
           "id": "alice-1",
           "actor_id": "Alice",
           "environment_id": "laptop",
-          "event_count": 4
+          "event_count": 0
         },
         {
           "id": "alice-2",
+          "actor_id": "Alice",
+          "environment_id": "laptop",
+          "event_count": 0
+        },
+        {
+          "id": "same-native-session",
           "actor_id": "Alice",
           "environment_id": "laptop",
           "event_count": 2
@@ -264,6 +270,12 @@
           "actor_id": "Alice",
           "environment_id": "laptop",
           "event_count": 0
+        },
+        {
+          "id": "unlinked-goal",
+          "actor_id": "Bob",
+          "environment_id": "bob-work",
+          "event_count": 1
         }
       ],
       "timeline": [
@@ -452,78 +464,6 @@
           "source_ref": "catalog.projects[0].management.graphs[0]"
         },
         {
-          "at": "2026-09-30T01:00:00Z",
-          "kind": "event",
-          "title": "turn.stopped",
-          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"62518ec8-84d9-5565-ba4f-2bfbc3330c4b\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"alice-3\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
-          "session_id": "alice-3",
-          "source_ref": "central Alice/desktop event_id=62518ec8-84d9-5565-ba4f-2bfbc3330c4b file_sha256=329f70cf8c98cd396d3c260205ebf446d5b176d6f5f08fa705f0bf9afb712b86 line=2"
-        },
-        {
-          "at": "2026-09-30T01:00:00Z",
-          "kind": "event",
-          "title": "session.start",
-          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"c1702f52-4397-5f5c-8f5e-b6a85f0b71ec\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"alice-3\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
-          "session_id": "alice-3",
-          "source_ref": "central Alice/desktop event_id=c1702f52-4397-5f5c-8f5e-b6a85f0b71ec file_sha256=329f70cf8c98cd396d3c260205ebf446d5b176d6f5f08fa705f0bf9afb712b86 line=1"
-        },
-        {
-          "at": "2026-09-30T01:00:00Z",
-          "kind": "event",
-          "title": "tool.completed",
-          "detail": "{\n  \"adapter_version\": \"2\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {\n    \"connection\": {\n      \"artifact_refs\": [],\n      \"duration_ms\": null,\n      \"operation\": \"unknown\",\n      \"resources\": [],\n      \"server\": null,\n      \"status\": \"completed\",\n      \"tool\": null\n    }\n  },\n  \"event_id\": \"f82761d9-5fb8-5c9a-90b3-2df0bb857ee3\",\n  \"kind\": \"tool.completed\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"PostToolUse\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 2,\n  \"session_id\": \"alice-3\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": \"MCP\",\n  \"turn_id\": null\n}",
-          "session_id": "alice-3",
-          "source_ref": "central Alice/desktop event_id=f82761d9-5fb8-5c9a-90b3-2df0bb857ee3 file_sha256=329f70cf8c98cd396d3c260205ebf446d5b176d6f5f08fa705f0bf9afb712b86 line=3"
-        },
-        {
-          "at": "2026-09-30T01:00:00Z",
-          "kind": "event",
-          "title": "tool.completed",
-          "detail": "{\n  \"adapter_version\": \"2\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {\n    \"connection\": {\n      \"artifact_refs\": [\n        {\n          \"id\": \"design\",\n          \"version\": \"v2\"\n        }\n      ],\n      \"duration_ms\": 42,\n      \"operation\": \"read\",\n      \"resources\": [\n        {\n          \"evidence\": \"output\",\n          \"id\": \"customers\",\n          \"kind\": \"database\",\n          \"label\": \"합성 고객 자료\"\n        }\n      ],\n      \"server\": \"sample-crm\",\n      \"status\": \"completed\",\n      \"tool\": \"lookup\"\n    }\n  },\n  \"event_id\": \"2042e4db-6979-5f97-9205-81e57de6f27d\",\n  \"kind\": \"tool.completed\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"PostToolUse\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 2,\n  \"session_id\": \"alice-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": \"synthetic-call\",\n  \"tool_name\": \"MCP\",\n  \"turn_id\": null\n}",
-          "session_id": "alice-1",
-          "source_ref": "central Alice/laptop event_id=2042e4db-6979-5f97-9205-81e57de6f27d file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=6"
-        },
-        {
-          "at": "2026-09-30T01:00:00Z",
-          "kind": "event",
-          "title": "turn.stopped",
-          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"7891c70d-9a77-5ec7-9ef2-1ef2a981ae04\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"alice-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
-          "session_id": "alice-1",
-          "source_ref": "central Alice/laptop event_id=7891c70d-9a77-5ec7-9ef2-1ef2a981ae04 file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=2"
-        },
-        {
-          "at": "2026-09-30T01:00:00Z",
-          "kind": "event",
-          "title": "session.start",
-          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"dc8d894b-e49f-5543-8e5b-712672ba8a2d\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"alice-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
-          "session_id": "alice-1",
-          "source_ref": "central Alice/laptop event_id=dc8d894b-e49f-5543-8e5b-712672ba8a2d file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=1"
-        },
-        {
-          "at": "2026-09-30T01:00:00Z",
-          "kind": "event",
-          "title": "tool.requested",
-          "detail": "{\n  \"adapter_version\": \"2\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {\n    \"connection\": {\n      \"artifact_refs\": [\n        {\n          \"id\": \"design\",\n          \"version\": \"v2\"\n        }\n      ],\n      \"duration_ms\": null,\n      \"operation\": \"read\",\n      \"resources\": [\n        {\n          \"evidence\": \"declared\",\n          \"id\": \"customers\",\n          \"kind\": \"database\",\n          \"label\": \"합성 고객 자료\"\n        }\n      ],\n      \"server\": \"sample-crm\",\n      \"status\": \"requested\",\n      \"tool\": \"lookup\"\n    }\n  },\n  \"event_id\": \"e06718eb-4da1-5381-ad0c-76ba1c973279\",\n  \"kind\": \"tool.requested\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"PreToolUse\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 2,\n  \"session_id\": \"alice-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": \"synthetic-call\",\n  \"tool_name\": \"MCP\",\n  \"turn_id\": null\n}",
-          "session_id": "alice-1",
-          "source_ref": "central Alice/laptop event_id=e06718eb-4da1-5381-ad0c-76ba1c973279 file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=5"
-        },
-        {
-          "at": "2026-09-30T02:00:00Z",
-          "kind": "event",
-          "title": "turn.stopped",
-          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"689976cf-ad5d-56f8-903d-c0c244fbe1fe\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-09-30T02:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"alice-2\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
-          "session_id": "alice-2",
-          "source_ref": "central Alice/laptop event_id=689976cf-ad5d-56f8-903d-c0c244fbe1fe file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=4"
-        },
-        {
-          "at": "2026-09-30T02:00:00Z",
-          "kind": "event",
-          "title": "session.start",
-          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"ac903ec5-a4a9-5e0c-b711-14efbe1e38c8\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-09-30T02:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"alice-2\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
-          "session_id": "alice-2",
-          "source_ref": "central Alice/laptop event_id=ac903ec5-a4a9-5e0c-b711-14efbe1e38c8 file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=3"
-        },
-        {
           "at": "2026-09-30T03:00:00Z",
           "kind": "document",
           "title": "고객 지식 검색 설계 · v2",
@@ -538,6 +478,30 @@
           "detail": "합성 예시: 고객 질문에 대한 검색 결과와 출처 확인을 설계·구현합니다.",
           "session_id": "alice-3",
           "source_ref": "catalog.projects[0].documents[3]"
+        },
+        {
+          "at": "2026-10-02T11:00:00Z",
+          "kind": "event",
+          "title": "session.start",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"81b28c3f-19cb-5ddd-a894-46645483683d\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-10-02T11:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"same-native-session\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "same-native-session",
+          "source_ref": "central Alice/laptop event_id=81b28c3f-19cb-5ddd-a894-46645483683d file_sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa line=1"
+        },
+        {
+          "at": "2026-10-02T11:05:00Z",
+          "kind": "event",
+          "title": "turn.stopped",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"92870c69-3043-5d03-a26a-b65feb2ea95a\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-10-02T11:05:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"same-native-session\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "same-native-session",
+          "source_ref": "central Alice/laptop event_id=92870c69-3043-5d03-a26a-b65feb2ea95a file_sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa line=2"
+        },
+        {
+          "at": "2026-10-02T11:40:00Z",
+          "kind": "event",
+          "title": "session.start",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"edb3c353-a791-54cb-b03d-0b360dd2888a\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-10-02T11:40:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"77777777-7777-4777-8777-777777777777\",\n  \"schema_version\": 1,\n  \"session_id\": \"unlinked-goal\",\n  \"source\": \"claude\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "unlinked-goal",
+          "source_ref": "central Bob/bob-work event_id=edb3c353-a791-54cb-b03d-0b360dd2888a file_sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa line=1"
         }
       ],
       "sources": [
@@ -546,105 +510,26 @@
           "environment_id": "laptop",
           "project_id": "11111111-1111-4111-8111-111111111111",
           "evidence_mode": "synthetic",
-          "event_count": 6
+          "event_count": 2
         },
         {
           "actor_id": "Alice",
           "environment_id": "desktop",
           "project_id": "11111111-1111-4111-8111-111111111111",
           "evidence_mode": "synthetic",
-          "event_count": 3
+          "event_count": 0
         },
         {
           "actor_id": "Bob",
           "environment_id": "bob-work",
           "project_id": "77777777-7777-4777-8777-777777777777",
           "evidence_mode": "synthetic",
-          "event_count": 0
+          "event_count": 1
         }
       ],
       "alerts": [],
-      "last_updated": "2026-09-30T08:00:00Z",
-      "connections": [
-        {
-          "server": "sample-crm",
-          "tool": "lookup",
-          "status": "completed",
-          "duration_ms": 42,
-          "operation": "read",
-          "resources": [
-            {
-              "id": "customers",
-              "kind": "database",
-              "label": "합성 고객 자료",
-              "evidence": "output"
-            }
-          ],
-          "artifact_refs": [
-            {
-              "id": "design",
-              "version": "v2"
-            }
-          ],
-          "id": "connection-74b0b230774a69caf4f11137412f801c",
-          "actor_id": "Alice",
-          "environment_id": "laptop",
-          "session_id": "alice-1",
-          "agent_id": null,
-          "tool_call_id": "synthetic-call",
-          "at": "2026-09-30T01:00:00Z",
-          "authority": "observed",
-          "source_ref": "central Alice/laptop event_id=2042e4db-6979-5f97-9205-81e57de6f27d file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=6"
-        },
-        {
-          "server": "sample-crm",
-          "tool": "lookup",
-          "status": "requested",
-          "duration_ms": null,
-          "operation": "read",
-          "resources": [
-            {
-              "id": "customers",
-              "kind": "database",
-              "label": "합성 고객 자료",
-              "evidence": "declared"
-            }
-          ],
-          "artifact_refs": [
-            {
-              "id": "design",
-              "version": "v2"
-            }
-          ],
-          "id": "connection-b4d69138e27ec7a5a2c3b7116ef4b07a",
-          "actor_id": "Alice",
-          "environment_id": "laptop",
-          "session_id": "alice-1",
-          "agent_id": null,
-          "tool_call_id": "synthetic-call",
-          "at": "2026-09-30T01:00:00Z",
-          "authority": "observed",
-          "source_ref": "central Alice/laptop event_id=e06718eb-4da1-5381-ad0c-76ba1c973279 file_sha256=2b4ddbe62cdf7e08912f12543902100ec3a4c4e813c440d10d75b739785626c3 line=5"
-        },
-        {
-          "server": null,
-          "tool": null,
-          "status": "completed",
-          "duration_ms": null,
-          "operation": "unknown",
-          "resources": [],
-          "artifact_refs": [],
-          "id": "connection-cd8a72b059ec84fde8a698a6bc8d3026",
-          "actor_id": "Alice",
-          "environment_id": "desktop",
-          "session_id": "alice-3",
-          "agent_id": null,
-          "tool_call_id": null,
-          "at": "2026-09-30T01:00:00Z",
-          "authority": "observed",
-          "source_ref": "central Alice/desktop event_id=f82761d9-5fb8-5c9a-90b3-2df0bb857ee3 file_sha256=329f70cf8c98cd396d3c260205ebf446d5b176d6f5f08fa705f0bf9afb712b86 line=3"
-        }
-      ],
+      "last_updated": "2026-10-02T11:40:00Z",
+      "connections": [],
       "management": {
         "objectives": [
           {
@@ -1677,7 +1562,7 @@
       ],
       "sessions": [
         {
-          "id": "bob-1",
+          "id": "session-1",
           "actor_id": "Bob",
           "environment_id": "laptop",
           "event_count": 3
@@ -1779,28 +1664,28 @@
           "source_ref": "catalog.projects[1].management.graphs[0]"
         },
         {
-          "at": "2026-09-30T01:00:00Z",
-          "kind": "event",
-          "title": "turn.stopped",
-          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"104c2eff-11fb-520f-9d70-4c83be23eb1c\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"bob-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
-          "session_id": "bob-1",
-          "source_ref": "central Bob/laptop event_id=104c2eff-11fb-520f-9d70-4c83be23eb1c file_sha256=2d74caeb2e8740c79705f76457e0b4507923b07a262f21670d8a9e4ec0823ea7 line=2"
-        },
-        {
-          "at": "2026-09-30T01:00:00Z",
+          "at": "2026-10-02T11:00:00Z",
           "kind": "event",
           "title": "session.start",
-          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"4f14b406-f4bc-58b0-81fe-26143fb33860\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"bob-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
-          "session_id": "bob-1",
-          "source_ref": "central Bob/laptop event_id=4f14b406-f4bc-58b0-81fe-26143fb33860 file_sha256=2d74caeb2e8740c79705f76457e0b4507923b07a262f21670d8a9e4ec0823ea7 line=1"
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"5bc976b1-6471-5a8c-a476-b73c7f7fa453\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-10-02T11:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"session-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "session-1",
+          "source_ref": "central Bob/laptop event_id=5bc976b1-6471-5a8c-a476-b73c7f7fa453 file_sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa line=1"
         },
         {
-          "at": "2026-09-30T01:00:00Z",
+          "at": "2026-10-02T11:05:00Z",
           "kind": "event",
-          "title": "tool.failed",
-          "detail": "{\n  \"adapter_version\": \"2\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {\n    \"connection\": {\n      \"artifact_refs\": [\n        {\n          \"id\": \"design\",\n          \"version\": \"v2\"\n        }\n      ],\n      \"duration_ms\": null,\n      \"operation\": \"read\",\n      \"resources\": [\n        {\n          \"evidence\": \"input\",\n          \"id\": \"customers\",\n          \"kind\": \"database\",\n          \"label\": \"합성 고객 자료\"\n        }\n      ],\n      \"server\": \"sample-crm\",\n      \"status\": \"failed\",\n      \"tool\": \"lookup\"\n    }\n  },\n  \"event_id\": \"a6296aa3-3fe9-56a3-acc5-caf8f9ef9161\",\n  \"kind\": \"tool.failed\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"PostToolUseFailure\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 2,\n  \"session_id\": \"bob-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": \"synthetic-call\",\n  \"tool_name\": \"MCP\",\n  \"turn_id\": null\n}",
-          "session_id": "bob-1",
-          "source_ref": "central Bob/laptop event_id=a6296aa3-3fe9-56a3-acc5-caf8f9ef9161 file_sha256=2d74caeb2e8740c79705f76457e0b4507923b07a262f21670d8a9e4ec0823ea7 line=3"
+          "title": "turn.stopped",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"8a5834d1-8871-5f52-8c46-0c4057c5bbff\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-10-02T11:05:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"session-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "session-1",
+          "source_ref": "central Bob/laptop event_id=8a5834d1-8871-5f52-8c46-0c4057c5bbff file_sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa line=2"
+        },
+        {
+          "at": "2026-10-02T11:10:00Z",
+          "kind": "event",
+          "title": "session.end",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"65db4b0c-0709-52bf-b098-32ebdcf7cc88\",\n  \"kind\": \"session.end\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionEnd\",\n  \"observed_at\": \"2026-10-02T11:10:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"11111111-1111-4111-8111-111111111111\",\n  \"schema_version\": 1,\n  \"session_id\": \"session-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "session-1",
+          "source_ref": "central Bob/laptop event_id=65db4b0c-0709-52bf-b098-32ebdcf7cc88 file_sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa line=3"
         }
       ],
       "sources": [
@@ -1813,39 +1698,8 @@
         }
       ],
       "alerts": [],
-      "last_updated": "2026-09-30T01:00:00Z",
-      "connections": [
-        {
-          "server": "sample-crm",
-          "tool": "lookup",
-          "status": "failed",
-          "duration_ms": null,
-          "operation": "read",
-          "resources": [
-            {
-              "id": "customers",
-              "kind": "database",
-              "label": "합성 고객 자료",
-              "evidence": "input"
-            }
-          ],
-          "artifact_refs": [
-            {
-              "id": "design",
-              "version": "v2"
-            }
-          ],
-          "id": "connection-77914218a3ca848f7535db22d9f9c1bb",
-          "actor_id": "Bob",
-          "environment_id": "laptop",
-          "session_id": "bob-1",
-          "agent_id": null,
-          "tool_call_id": "synthetic-call",
-          "at": "2026-09-30T01:00:00Z",
-          "authority": "observed",
-          "source_ref": "central Bob/laptop event_id=a6296aa3-3fe9-56a3-acc5-caf8f9ef9161 file_sha256=2d74caeb2e8740c79705f76457e0b4507923b07a262f21670d8a9e4ec0823ea7 line=3"
-        }
-      ],
+      "last_updated": "2026-10-02T11:10:00Z",
+      "connections": [],
       "management": {
         "objectives": [
           {
@@ -2262,7 +2116,7 @@
       ],
       "sessions": [
         {
-          "id": "carol-1",
+          "id": "session-2",
           "actor_id": "Carol",
           "environment_id": "desktop",
           "event_count": 2
@@ -2364,20 +2218,20 @@
           "source_ref": "catalog.projects[2].management.graphs[0]"
         },
         {
-          "at": "2026-09-30T01:00:00Z",
+          "at": "2026-10-02T11:00:00Z",
           "kind": "event",
           "title": "session.start",
-          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"106ae5a6-0293-57c3-965d-99c3725e1d5c\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"22222222-2222-4222-8222-222222222222\",\n  \"schema_version\": 1,\n  \"session_id\": \"carol-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
-          "session_id": "carol-1",
-          "source_ref": "central Carol/desktop event_id=106ae5a6-0293-57c3-965d-99c3725e1d5c file_sha256=88688a7a0dc4f342ebc8c5a54ae5ad8646d2540ffc92dfa7cc279e66640b71d6 line=1"
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"fe4fd3c5-710e-53bb-8c3d-088a67d2ee65\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-10-02T11:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"22222222-2222-4222-8222-222222222222\",\n  \"schema_version\": 1,\n  \"session_id\": \"session-2\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "session-2",
+          "source_ref": "central Carol/desktop event_id=fe4fd3c5-710e-53bb-8c3d-088a67d2ee65 file_sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa line=1"
         },
         {
-          "at": "2026-09-30T01:00:00Z",
+          "at": "2026-10-02T11:05:00Z",
           "kind": "event",
           "title": "turn.stopped",
-          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"4129176c-4474-502f-8187-e0232e7641b3\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"22222222-2222-4222-8222-222222222222\",\n  \"schema_version\": 1,\n  \"session_id\": \"carol-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
-          "session_id": "carol-1",
-          "source_ref": "central Carol/desktop event_id=4129176c-4474-502f-8187-e0232e7641b3 file_sha256=88688a7a0dc4f342ebc8c5a54ae5ad8646d2540ffc92dfa7cc279e66640b71d6 line=2"
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"7f028f0c-49a6-5076-920c-4a13e8bd9fe1\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-10-02T11:05:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"22222222-2222-4222-8222-222222222222\",\n  \"schema_version\": 1,\n  \"session_id\": \"session-2\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "session-2",
+          "source_ref": "central Carol/desktop event_id=7f028f0c-49a6-5076-920c-4a13e8bd9fe1 file_sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa line=2"
         }
       ],
       "sources": [
@@ -2390,7 +2244,7 @@
         }
       ],
       "alerts": [],
-      "last_updated": "2026-09-30T01:00:00Z",
+      "last_updated": "2026-10-02T11:05:00Z",
       "connections": [],
       "management": {
         "objectives": [
@@ -2789,7 +2643,7 @@
       ],
       "sessions": [
         {
-          "id": "dana-1",
+          "id": "session-3",
           "actor_id": "Dana",
           "environment_id": "laptop",
           "event_count": 2
@@ -2883,20 +2737,20 @@
           "source_ref": "catalog.projects[3].management.graphs[0]"
         },
         {
-          "at": "2026-09-30T01:00:00Z",
+          "at": "2026-10-02T11:00:00Z",
           "kind": "event",
           "title": "session.start",
-          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"6a8e67e4-0021-526a-9c3f-953cb986a8d6\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"33333333-3333-4333-8333-333333333333\",\n  \"schema_version\": 1,\n  \"session_id\": \"dana-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
-          "session_id": "dana-1",
-          "source_ref": "central Dana/laptop event_id=6a8e67e4-0021-526a-9c3f-953cb986a8d6 file_sha256=fd761d8ff675b40415d7b827a66634f40194b23a54373d2bbca1e57587af7047 line=1"
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"0185f622-7b87-5f8d-a96f-aa5f86d1ed98\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-10-02T11:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"33333333-3333-4333-8333-333333333333\",\n  \"schema_version\": 1,\n  \"session_id\": \"session-3\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "session-3",
+          "source_ref": "central Dana/laptop event_id=0185f622-7b87-5f8d-a96f-aa5f86d1ed98 file_sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa line=1"
         },
         {
-          "at": "2026-09-30T01:00:00Z",
+          "at": "2026-10-02T11:05:00Z",
           "kind": "event",
           "title": "turn.stopped",
-          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"fa1e4a74-3dda-5f7d-ab74-41af52dae6e7\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"33333333-3333-4333-8333-333333333333\",\n  \"schema_version\": 1,\n  \"session_id\": \"dana-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
-          "session_id": "dana-1",
-          "source_ref": "central Dana/laptop event_id=fa1e4a74-3dda-5f7d-ab74-41af52dae6e7 file_sha256=fd761d8ff675b40415d7b827a66634f40194b23a54373d2bbca1e57587af7047 line=2"
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"02e109e2-30a5-5bf4-9430-98f5de8656c8\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-10-02T11:05:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"33333333-3333-4333-8333-333333333333\",\n  \"schema_version\": 1,\n  \"session_id\": \"session-3\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "session-3",
+          "source_ref": "central Dana/laptop event_id=02e109e2-30a5-5bf4-9430-98f5de8656c8 file_sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa line=2"
         }
       ],
       "sources": [
@@ -2909,7 +2763,7 @@
         }
       ],
       "alerts": [],
-      "last_updated": "2026-09-30T01:00:00Z",
+      "last_updated": "2026-10-02T11:05:00Z",
       "connections": [
         {
           "server": "sample-crm",
@@ -3308,6 +3162,12 @@
       ],
       "sessions": [
         {
+          "id": "same-native-session",
+          "actor_id": "Alice",
+          "environment_id": "alice-personal",
+          "event_count": 2
+        },
+        {
           "id": "synthetic-work",
           "actor_id": "Alice",
           "environment_id": "alice-personal",
@@ -3394,6 +3254,22 @@
           "detail": "synthetic-graphify",
           "session_id": null,
           "source_ref": "catalog.projects[4].management.graphs[0]"
+        },
+        {
+          "at": "2026-10-02T11:00:00Z",
+          "kind": "event",
+          "title": "session.start",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"f07e50c3-54f2-50c7-8f11-0820bca8676f\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-10-02T11:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"88888888-8888-4888-8888-888888888888\",\n  \"schema_version\": 1,\n  \"session_id\": \"same-native-session\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "same-native-session",
+          "source_ref": "central Alice/alice-personal event_id=f07e50c3-54f2-50c7-8f11-0820bca8676f file_sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa line=1"
+        },
+        {
+          "at": "2026-10-02T11:05:00Z",
+          "kind": "event",
+          "title": "turn.stopped",
+          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"d3be375c-c98d-5f61-8c42-0ba469998ec9\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-10-02T11:05:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"88888888-8888-4888-8888-888888888888\",\n  \"schema_version\": 1,\n  \"session_id\": \"same-native-session\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
+          "session_id": "same-native-session",
+          "source_ref": "central Alice/alice-personal event_id=d3be375c-c98d-5f61-8c42-0ba469998ec9 file_sha256=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa line=2"
         }
       ],
       "sources": [
@@ -3402,11 +3278,11 @@
           "environment_id": "alice-personal",
           "project_id": "88888888-8888-4888-8888-888888888888",
           "evidence_mode": "synthetic",
-          "event_count": 0
+          "event_count": 2
         }
       ],
       "alerts": [],
-      "last_updated": "2026-09-29T05:00:00Z",
+      "last_updated": "2026-10-02T11:05:00Z",
       "connections": [],
       "management": {
         "objectives": [
@@ -3718,61 +3594,537 @@
         },
         "interventions": []
       }
-    },
-    {
-      "id": "unmapped-f54926a3bf0a924b",
-      "name": "Eve 합성 환경",
-      "goal": "목표 미입력 · 출처 미연결",
-      "owners": [
-        "Eve"
-      ],
-      "current_revision": "unknown",
-      "current_phase": null,
-      "status": "unknown",
-      "status_reason": "프로젝트 범위 완료 기준이 없습니다. 목표/문서는 central.unmapped의 명시적 입력입니다.",
-      "phases": [],
-      "documents": [],
-      "criteria": [],
-      "runs": [],
+    }
+  ],
+  "operations": {
+    "version": 1,
+    "records": {
+      "version": 1,
       "sessions": [
         {
-          "id": "eve-1",
-          "actor_id": "Eve",
-          "environment_id": "unmapped",
-          "event_count": 2
-        }
-      ],
-      "timeline": [
-        {
-          "at": "2026-09-30T01:00:00Z",
-          "kind": "event",
-          "title": "session.start",
-          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"a7b6c60a-d07b-5ede-9847-5145aab6fa56\",\n  \"kind\": \"session.start\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"SessionStart\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"44444444-4444-4444-8444-444444444444\",\n  \"schema_version\": 1,\n  \"session_id\": \"eve-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
-          "session_id": "eve-1",
-          "source_ref": "central Eve/unmapped event_id=a7b6c60a-d07b-5ede-9847-5145aab6fa56 file_sha256=e7ff32b272d1043f8819ee3ee1d459cf1643c018935c4cff4fba367834784165 line=1"
+          "id": "goal-0",
+          "project_id": "alice-recall",
+          "source_project_id": "11111111-1111-4111-8111-111111111111",
+          "actor_id": "Alice",
+          "environment_id": "laptop",
+          "source": "codex",
+          "session_id": "same-native-session",
+          "goal": "합성 목표: 출처 검증 인수 기준 확정",
+          "goal_version": "v1",
+          "project_revision": "v1",
+          "task_ids": [
+            "action-1"
+          ],
+          "acceptance": {
+            "goal_version": "v1",
+            "goal_sha256": "e385b9ca97c986f022079b85dd83570b5ba9a64d6acf9f5f1ced23a28e61f121",
+            "verification_sha256": "255bc1c01ddb55dcb92495afb8864c4bf9d1fcfd72ee8563d5f28624527a3411",
+            "decision": "accepted",
+            "actor_id": "Alice",
+            "at": "2026-10-02T11:30:00Z"
+          }
         },
         {
-          "at": "2026-09-30T01:00:00Z",
-          "kind": "event",
-          "title": "turn.stopped",
-          "detail": "{\n  \"adapter_version\": \"1\",\n  \"agent_id\": null,\n  \"authority\": \"observed\",\n  \"data\": {},\n  \"event_id\": \"b8e09338-9893-553a-84eb-13052072ac51\",\n  \"kind\": \"turn.stopped\",\n  \"links\": {\n    \"artifact_id\": null,\n    \"artifact_version\": null,\n    \"baseline_version\": null,\n    \"check_id\": null,\n    \"decision_id\": null,\n    \"phase_id\": null,\n    \"task_id\": null\n  },\n  \"missing_fields\": [],\n  \"native_event\": \"Stop\",\n  \"observed_at\": \"2026-09-30T01:00:00Z\",\n  \"occurred_at\": null,\n  \"parent_agent_id\": null,\n  \"project_id\": \"44444444-4444-4444-8444-444444444444\",\n  \"schema_version\": 1,\n  \"session_id\": \"eve-1\",\n  \"source\": \"codex\",\n  \"tool_call_id\": null,\n  \"tool_name\": null,\n  \"turn_id\": null\n}",
-          "session_id": "eve-1",
-          "source_ref": "central Eve/unmapped event_id=b8e09338-9893-553a-84eb-13052072ac51 file_sha256=e7ff32b272d1043f8819ee3ee1d459cf1643c018935c4cff4fba367834784165 line=2"
-        }
-      ],
-      "sources": [
+          "id": "goal-1",
+          "project_id": "bob-payments",
+          "source_project_id": "11111111-1111-4111-8111-111111111111",
+          "actor_id": "Bob",
+          "environment_id": "laptop",
+          "source": "codex",
+          "session_id": "session-1",
+          "goal": "합성 목표: 실패 입력 처리 수정",
+          "goal_version": "v1",
+          "project_revision": "v1",
+          "task_ids": [
+            "action-1"
+          ],
+          "acceptance": null
+        },
         {
-          "actor_id": "Eve",
-          "environment_id": "unmapped",
-          "project_id": "44444444-4444-4444-8444-444444444444",
-          "evidence_mode": "synthetic",
-          "event_count": 2
+          "id": "goal-2",
+          "project_id": "carol-dashboard",
+          "source_project_id": "22222222-2222-4222-8222-222222222222",
+          "actor_id": "Carol",
+          "environment_id": "desktop",
+          "source": "codex",
+          "session_id": "session-2",
+          "goal": "합성 목표: 변경 산출물 재검증",
+          "goal_version": "v1",
+          "project_revision": "v2",
+          "task_ids": [
+            "action-1"
+          ],
+          "acceptance": null
+        },
+        {
+          "id": "goal-3",
+          "project_id": "dana-discovery",
+          "source_project_id": "33333333-3333-4333-8333-333333333333",
+          "actor_id": "Dana",
+          "environment_id": "laptop",
+          "source": "codex",
+          "session_id": "session-3",
+          "goal": "합성 목표: 문서 근거 확인 검사 추가",
+          "goal_version": "v1",
+          "project_revision": "v1",
+          "task_ids": [
+            "action-1"
+          ],
+          "acceptance": null
+        },
+        {
+          "id": "goal-4",
+          "project_id": "alice-personal",
+          "source_project_id": "88888888-8888-4888-8888-888888888888",
+          "actor_id": "Alice",
+          "environment_id": "alice-personal",
+          "source": "codex",
+          "session_id": "same-native-session",
+          "goal": "합성 목표: 자료 연결 구현",
+          "goal_version": "v1",
+          "project_revision": "v1",
+          "task_ids": [
+            "action-1"
+          ],
+          "acceptance": null
         }
       ],
-      "alerts": [],
-      "last_updated": "2026-09-30T01:00:00Z",
-      "connections": [],
-      "management": null
-    }
-  ]
+      "north_stars": [
+        {
+          "id": "company-quality",
+          "scope": "company",
+          "scope_id": "sample-company",
+          "name": "합성 company 북극성",
+          "metric": "근거 확인 사용자",
+          "unit": "명",
+          "period_start": "2026-10-01T00:00:00Z",
+          "period_end": "2026-10-31T23:59:59Z",
+          "baseline": 10,
+          "target": 30,
+          "direction": "increase",
+          "owner": "Alice",
+          "observations": [
+            {
+              "id": "measured",
+              "at": "2026-10-02T11:00:00Z",
+              "value": 20,
+              "evidence": "합성 사업 관측; 실제 측정 아님",
+              "provenance": "measured"
+            },
+            {
+              "id": "declared",
+              "at": "2026-10-02T11:50:00Z",
+              "value": 100,
+              "evidence": "합성 담당자 선언",
+              "provenance": "declared"
+            }
+          ]
+        },
+        {
+          "id": "team-usage",
+          "scope": "team",
+          "scope_id": "sample-team",
+          "name": "합성 team 북극성",
+          "metric": "근거 확인 사용자",
+          "unit": "명",
+          "period_start": "2026-10-01T00:00:00Z",
+          "period_end": "2026-10-31T23:59:59Z",
+          "baseline": 10,
+          "target": 30,
+          "direction": "increase",
+          "owner": "Alice",
+          "observations": [
+            {
+              "id": "measured",
+              "at": "2026-10-02T11:00:00Z",
+              "value": 20,
+              "evidence": "합성 사업 관측; 실제 측정 아님",
+              "provenance": "measured"
+            },
+            {
+              "id": "declared",
+              "at": "2026-10-02T11:50:00Z",
+              "value": 100,
+              "evidence": "합성 담당자 선언",
+              "provenance": "declared"
+            }
+          ]
+        }
+      ],
+      "contributions": [
+        {
+          "id": "link-0",
+          "session_record_id": "goal-0",
+          "north_star_id": "company-quality",
+          "status": "proposed",
+          "rationale": "합성 기여 연결; 인과 증명 아님",
+          "evidence": "합성 검토 메모",
+          "confirmed_by": null,
+          "goal_sha256": "e385b9ca97c986f022079b85dd83570b5ba9a64d6acf9f5f1ced23a28e61f121",
+          "north_star_sha256": "6e4832f3354d9f1322886b125e81a7b4f75ed62b618bd0540b9fb19c078f1b78",
+          "at": "2026-10-02T11:30:00Z"
+        },
+        {
+          "id": "link-1",
+          "session_record_id": "goal-0",
+          "north_star_id": "team-usage",
+          "status": "confirmed",
+          "rationale": "합성 기여 연결; 인과 증명 아님",
+          "evidence": "합성 검토 메모",
+          "confirmed_by": "Alice",
+          "goal_sha256": "e385b9ca97c986f022079b85dd83570b5ba9a64d6acf9f5f1ced23a28e61f121",
+          "north_star_sha256": "c263d53e351b414a2c5bf39e112664474ee3ab4c009eafc9267874c0f3d7903a",
+          "at": "2026-10-02T11:30:00Z"
+        }
+      ],
+      "capture": [
+        {
+          "id": "capture-alice",
+          "project_id": "11111111-1111-4111-8111-111111111111",
+          "actor_id": "Alice",
+          "environment_id": "laptop",
+          "source": "codex",
+          "last_event_id": "81b28c3f-19cb-5ddd-a894-46645483683d",
+          "last_recorded_at": "2026-10-02T11:59:30Z",
+          "errors": 0,
+          "last_failure_at": null,
+          "status": "observed",
+          "at": "2026-10-02T11:59:30Z"
+        }
+      ]
+    },
+    "sessions": [
+      {
+        "id": "goal-4",
+        "project_id": "alice-personal",
+        "source_project_id": "88888888-8888-4888-8888-888888888888",
+        "actor_id": "Alice",
+        "environment_id": "alice-personal",
+        "source": "codex",
+        "session_id": "same-native-session",
+        "goal": "합성 목표: 자료 연결 구현",
+        "goal_version": "v1",
+        "project_revision": "v1",
+        "task_ids": [
+          "action-1"
+        ],
+        "acceptance": null,
+        "lifecycle": "active",
+        "last_activity_at": "2026-10-02T11:05:00Z",
+        "started_at": "2026-10-02T11:00:00Z",
+        "ended_at": null,
+        "completion": "in_progress",
+        "reason": "연결 작업의 검사·막힘·사람 검토가 충족되지 않았습니다.",
+        "event_ids": [
+          "f07e50c3-54f2-50c7-8f11-0820bca8676f",
+          "d3be375c-c98d-5f61-8c42-0ba469998ec9"
+        ]
+      },
+      {
+        "id": "goal-0",
+        "project_id": "alice-recall",
+        "source_project_id": "11111111-1111-4111-8111-111111111111",
+        "actor_id": "Alice",
+        "environment_id": "laptop",
+        "source": "codex",
+        "session_id": "same-native-session",
+        "goal": "합성 목표: 출처 검증 인수 기준 확정",
+        "goal_version": "v1",
+        "project_revision": "v1",
+        "task_ids": [
+          "action-1"
+        ],
+        "acceptance": {
+          "goal_version": "v1",
+          "goal_sha256": "e385b9ca97c986f022079b85dd83570b5ba9a64d6acf9f5f1ced23a28e61f121",
+          "verification_sha256": "255bc1c01ddb55dcb92495afb8864c4bf9d1fcfd72ee8563d5f28624527a3411",
+          "decision": "accepted",
+          "actor_id": "Alice",
+          "at": "2026-10-02T11:30:00Z"
+        },
+        "lifecycle": "active",
+        "last_activity_at": "2026-10-02T11:05:00Z",
+        "started_at": "2026-10-02T11:00:00Z",
+        "ended_at": null,
+        "completion": "accepted",
+        "reason": "현재 목표 정의에 대한 인수 선언과 연결 작업 검증을 확인했습니다.",
+        "event_ids": [
+          "81b28c3f-19cb-5ddd-a894-46645483683d",
+          "92870c69-3043-5d03-a26a-b65feb2ea95a"
+        ]
+      },
+      {
+        "id": "auto-0381837bf97dace69c8e3019e25a7606",
+        "project_id": "alice-recall",
+        "source_project_id": "77777777-7777-4777-8777-777777777777",
+        "actor_id": "Bob",
+        "environment_id": "bob-work",
+        "source": "claude",
+        "session_id": "unlinked-goal",
+        "goal": "",
+        "goal_version": "unknown",
+        "project_revision": "v1",
+        "task_ids": [],
+        "acceptance": null,
+        "lifecycle": "started",
+        "last_activity_at": "2026-10-02T11:40:00Z",
+        "started_at": "2026-10-02T11:40:00Z",
+        "ended_at": null,
+        "completion": "unknown",
+        "reason": "목표 또는 연결 작업의 현재 검증 근거가 없습니다.",
+        "event_ids": [
+          "edb3c353-a791-54cb-b03d-0b360dd2888a"
+        ]
+      },
+      {
+        "id": "goal-1",
+        "project_id": "bob-payments",
+        "source_project_id": "11111111-1111-4111-8111-111111111111",
+        "actor_id": "Bob",
+        "environment_id": "laptop",
+        "source": "codex",
+        "session_id": "session-1",
+        "goal": "합성 목표: 실패 입력 처리 수정",
+        "goal_version": "v1",
+        "project_revision": "v1",
+        "task_ids": [
+          "action-1"
+        ],
+        "acceptance": null,
+        "lifecycle": "ended",
+        "last_activity_at": "2026-10-02T11:10:00Z",
+        "started_at": "2026-10-02T11:00:00Z",
+        "ended_at": "2026-10-02T11:10:00Z",
+        "completion": "failed",
+        "reason": "연결된 현재 작업 검사가 실패했습니다.",
+        "event_ids": [
+          "5bc976b1-6471-5a8c-a476-b73c7f7fa453",
+          "8a5834d1-8871-5f52-8c46-0c4057c5bbff",
+          "65db4b0c-0709-52bf-b098-32ebdcf7cc88"
+        ]
+      },
+      {
+        "id": "goal-2",
+        "project_id": "carol-dashboard",
+        "source_project_id": "22222222-2222-4222-8222-222222222222",
+        "actor_id": "Carol",
+        "environment_id": "desktop",
+        "source": "codex",
+        "session_id": "session-2",
+        "goal": "합성 목표: 변경 산출물 재검증",
+        "goal_version": "v1",
+        "project_revision": "v2",
+        "task_ids": [
+          "action-1"
+        ],
+        "acceptance": null,
+        "lifecycle": "active",
+        "last_activity_at": "2026-10-02T11:05:00Z",
+        "started_at": "2026-10-02T11:00:00Z",
+        "ended_at": null,
+        "completion": "revalidation",
+        "reason": "현재 revision·작업·산출물로 재검증이 필요합니다.",
+        "event_ids": [
+          "fe4fd3c5-710e-53bb-8c3d-088a67d2ee65",
+          "7f028f0c-49a6-5076-920c-4a13e8bd9fe1"
+        ]
+      },
+      {
+        "id": "goal-3",
+        "project_id": "dana-discovery",
+        "source_project_id": "33333333-3333-4333-8333-333333333333",
+        "actor_id": "Dana",
+        "environment_id": "laptop",
+        "source": "codex",
+        "session_id": "session-3",
+        "goal": "합성 목표: 문서 근거 확인 검사 추가",
+        "goal_version": "v1",
+        "project_revision": "v1",
+        "task_ids": [
+          "action-1"
+        ],
+        "acceptance": null,
+        "lifecycle": "active",
+        "last_activity_at": "2026-10-02T11:05:00Z",
+        "started_at": "2026-10-02T11:00:00Z",
+        "ended_at": null,
+        "completion": "in_progress",
+        "reason": "연결 작업의 검사·막힘·사람 검토가 충족되지 않았습니다.",
+        "event_ids": [
+          "0185f622-7b87-5f8d-a96f-aa5f86d1ed98",
+          "02e109e2-30a5-5bf4-9430-98f5de8656c8"
+        ]
+      }
+    ],
+    "people": [
+      {
+        "actor_id": "Alice",
+        "session_ids": [
+          "goal-4",
+          "goal-0"
+        ],
+        "project_ids": [
+          "alice-personal",
+          "alice-recall"
+        ],
+        "attention_session_ids": [
+          "goal-4"
+        ]
+      },
+      {
+        "actor_id": "Bob",
+        "session_ids": [
+          "auto-0381837bf97dace69c8e3019e25a7606",
+          "goal-1"
+        ],
+        "project_ids": [
+          "alice-recall",
+          "bob-payments"
+        ],
+        "attention_session_ids": [
+          "auto-0381837bf97dace69c8e3019e25a7606",
+          "goal-1"
+        ]
+      },
+      {
+        "actor_id": "Carol",
+        "session_ids": [
+          "goal-2"
+        ],
+        "project_ids": [
+          "carol-dashboard"
+        ],
+        "attention_session_ids": [
+          "goal-2"
+        ]
+      },
+      {
+        "actor_id": "Dana",
+        "session_ids": [
+          "goal-3"
+        ],
+        "project_ids": [
+          "dana-discovery"
+        ],
+        "attention_session_ids": [
+          "goal-3"
+        ]
+      }
+    ],
+    "north_stars": [
+      {
+        "id": "company-quality",
+        "scope": "company",
+        "scope_id": "sample-company",
+        "name": "합성 company 북극성",
+        "metric": "근거 확인 사용자",
+        "unit": "명",
+        "period_start": "2026-10-01T00:00:00Z",
+        "period_end": "2026-10-31T23:59:59Z",
+        "baseline": 10,
+        "target": 30,
+        "direction": "increase",
+        "owner": "Alice",
+        "observations": [
+          {
+            "id": "measured",
+            "at": "2026-10-02T11:00:00Z",
+            "value": 20,
+            "evidence": "합성 사업 관측; 실제 측정 아님",
+            "provenance": "measured"
+          },
+          {
+            "id": "declared",
+            "at": "2026-10-02T11:50:00Z",
+            "value": 100,
+            "evidence": "합성 담당자 선언",
+            "provenance": "declared"
+          }
+        ],
+        "current_value": 20,
+        "current_at": "2026-10-02T11:00:00Z",
+        "measurement_state": "below_target"
+      },
+      {
+        "id": "team-usage",
+        "scope": "team",
+        "scope_id": "sample-team",
+        "name": "합성 team 북극성",
+        "metric": "근거 확인 사용자",
+        "unit": "명",
+        "period_start": "2026-10-01T00:00:00Z",
+        "period_end": "2026-10-31T23:59:59Z",
+        "baseline": 10,
+        "target": 30,
+        "direction": "increase",
+        "owner": "Alice",
+        "observations": [
+          {
+            "id": "measured",
+            "at": "2026-10-02T11:00:00Z",
+            "value": 20,
+            "evidence": "합성 사업 관측; 실제 측정 아님",
+            "provenance": "measured"
+          },
+          {
+            "id": "declared",
+            "at": "2026-10-02T11:50:00Z",
+            "value": 100,
+            "evidence": "합성 담당자 선언",
+            "provenance": "declared"
+          }
+        ],
+        "current_value": 20,
+        "current_at": "2026-10-02T11:00:00Z",
+        "measurement_state": "below_target"
+      }
+    ],
+    "contributions": [
+      {
+        "id": "link-0",
+        "session_record_id": "goal-0",
+        "north_star_id": "company-quality",
+        "status": "proposed",
+        "rationale": "합성 기여 연결; 인과 증명 아님",
+        "evidence": "합성 검토 메모",
+        "confirmed_by": null,
+        "goal_sha256": "e385b9ca97c986f022079b85dd83570b5ba9a64d6acf9f5f1ced23a28e61f121",
+        "north_star_sha256": "6e4832f3354d9f1322886b125e81a7b4f75ed62b618bd0540b9fb19c078f1b78",
+        "at": "2026-10-02T11:30:00Z",
+        "confirmation_state": "proposed",
+        "reason": "기여 제안이며 연결·인과 확인이 아닙니다."
+      },
+      {
+        "id": "link-1",
+        "session_record_id": "goal-0",
+        "north_star_id": "team-usage",
+        "status": "confirmed",
+        "rationale": "합성 기여 연결; 인과 증명 아님",
+        "evidence": "합성 검토 메모",
+        "confirmed_by": "Alice",
+        "goal_sha256": "e385b9ca97c986f022079b85dd83570b5ba9a64d6acf9f5f1ced23a28e61f121",
+        "north_star_sha256": "c263d53e351b414a2c5bf39e112664474ee3ab4c009eafc9267874c0f3d7903a",
+        "at": "2026-10-02T11:30:00Z",
+        "confirmation_state": "confirmed",
+        "reason": "현재 정의에 대한 기여 연결 확인 선언입니다. 인과·기여율 증명이 아닙니다."
+      }
+    ],
+    "capture": [
+      {
+        "id": "capture-alice",
+        "project_id": "11111111-1111-4111-8111-111111111111",
+        "actor_id": "Alice",
+        "environment_id": "laptop",
+        "source": "codex",
+        "last_event_id": "81b28c3f-19cb-5ddd-a894-46645483683d",
+        "last_recorded_at": "2026-10-02T11:59:30Z",
+        "errors": 0,
+        "last_failure_at": null,
+        "status": "observed",
+        "at": "2026-10-02T11:59:30Z",
+        "freshness": "recent",
+        "reason": "최근 로컬 기록 관측입니다. 모든 실제 훅 호출의 커버리지 증명은 아닙니다."
+      }
+    ]
+  }
 }

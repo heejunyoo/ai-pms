@@ -82,7 +82,11 @@
       "specs/ai-pms-work-management/plan.json"
     ],
     "stale_source_paths": [
-      "specs/ai-pms-dashboard/dashboard.html"
+      "specs/ai-pms-dashboard/portfolio.py",
+      "specs/ai-pms-dashboard/dashboard.html",
+      "docs/json-contracts.md",
+      "kit/activity/README.md",
+      "kit/activity/json-contracts.md"
     ],
     "reason": "Only fresh source hashes reconciled after path/whitespace sanitization. Historical hashes preserved; not another independent review or browser verification."
   }

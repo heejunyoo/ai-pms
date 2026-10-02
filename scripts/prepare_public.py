@@ -5,9 +5,10 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+from package_live_kit import PMS_FILES
 ROOT=Path(__file__).resolve().parents[1]
-EXCLUDED={'__pycache__','.git','.vercel','staging','public-proof'}
-PRIVATE_NAMES={'runtime-inventory.json','local-verification-log.jsonl','preparation-evidence.json','preparation-result.json','preparation-review.md'}
+EXCLUDED={'__pycache__','.git','.vercel','.local','runtime','outbox','inbox','staging','public-proof'}
+PRIVATE_NAMES={'runtime-inventory.json','local-verification-log.jsonl','preparation-evidence.json','preparation-result.json','preparation-review.md','capture-health.json','state.json','live-state.json','sender-state.json','registry.json','sender.json','demo.json'}
 EXT={'.py','.md','.json','.jsonl','.html','.css','.toml','.sh','.txt'}
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--out',required=True);args=parser.parse_args();out=Path(args.out).resolve()
@@ -22,11 +23,14 @@ def main():
         body=f.read_text();body=body.replace(str(Path.home()),'$HOME')
         target=out/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(body);copied.append(rel.as_posix())
     home=Path.home()
-    for folder,names in {'activity':['logger.py','connectivity.py','management.py','work.py','management_recorder.py','test_management_recorder.py','catalog-v3.template.json','catalog-work.template.json','json-contracts.md','test_logger.py','test_workflow.py','viewer.html','README.md','example-project.jsonl'],'build':['current_content.py','build_current.py','check_current.py','check_site.py','BUILD.md']}.items():
+    for folder,names in {'activity':['logger.py','connectivity.py','management.py','work.py','management_recorder.py','test_management_recorder.py','catalog-v3.template.json','catalog-work.template.json','operations.template.json','json-contracts.md','test_logger.py','test_workflow.py','viewer.html','README.md','example-project.jsonl'],'build':['current_content.py','build_current.py','check_current.py','check_site.py','BUILD.md']}.items():
         for name in names:
             source=home/'.claude/harness'/folder/name
             assert source.is_file(),source
             target=out/'kit'/folder/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(source.read_bytes());copied.append(target.relative_to(out).as_posix())
+    for name in [*PMS_FILES,'README.md']:
+        source=home/'.claude/harness/activity/pms'/name
+        target=out/'kit/pms'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(source.read_bytes());copied.append(target.relative_to(out).as_posix())
     for name in ('implementation.zip','reference-ko.zip','reference-en.zip'):
         source=home/'.claude/harness/site/public'/name
         target=out/'kit/downloads'/name;target.parent.mkdir(parents=True,exist_ok=True)
@@ -39,7 +43,7 @@ def main():
 
 This repository is a clean public snapshot of AI PMS research, implementation, tests, synthetic samples, ELI20 report, and changed canonical Harness Kit sources. It contains no original home Git history, credentials, account configuration, private audit backups, real user hook logs, or runtime identity inventory. Personal home paths in historical documentation are replaced with $HOME. Consequently historical hash receipts describe the original local artifacts and must not be treated as fresh public verification. Portable tests and the latest IA release proof describe current checks. Older dashboard/management/connectivity/transport receipts retain their recorded scope; stale hashes are preserved rather than presented as fresh browser verification.
 
-Kit/build contains the canonical source used in the existing Harness Kit home installation; that full generator needs the separately configured Harness Kit environment. Kit/activity is portable and independently testable. Public Kit downloads contain explicit, reviewed implementation sources. The sample app is a static synthetic dashboard, not a hosted receiver or an authenticated operations service. Automatic collection from users' PCs remains deferred.
+Kit/build contains the canonical source used in the existing Harness Kit home installation; that full generator needs the separately configured Harness Kit environment. Kit/activity is portable and independently testable. Public Kit downloads contain explicit, reviewed implementation sources. The sample app is a static synthetic dashboard, not a hosted receiver or an authenticated operations service. The opt-in self-hosted Live PMS service, incremental sender, capture health and session-goal recorder are executable in kit/pms and specs/ai-pms-live. Real provider hook trust, remote two-user delivery and latest browser rendering remain unverified; no private telemetry is sent to the public sample.
 ''')
     for relative in [Path('specs/ai-pms-management/release-proof.json'),Path('specs/ai-pms-work-management/release-proof.json'),Path('specs/ai-pms-work-management/code-review.json'),Path('specs/ai-pms-toss-ia/release-proof.json'),Path('specs/ai-pms-toss-ia/code-review.json')]:
         target=out/relative

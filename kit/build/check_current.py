@@ -121,8 +121,23 @@ def validate(public):
                     assert result.returncode==0,(prefix,args,result.stdout,result.stderr)
         check_intent_example('handoff/')
         check_intent_example('claude-handoff/')
-        activity = {'activity/'+name for name in ('logger.py','connectivity.py','management.py','work.py','management_recorder.py','test_management_recorder.py','catalog-v3.template.json','catalog-work.template.json','json-contracts.md','test_logger.py','viewer.html','README.md','example-project.jsonl')}
+        activity = {'activity/'+name for name in ('logger.py','connectivity.py','management.py','work.py','management_recorder.py','test_management_recorder.py','catalog-v3.template.json','catalog-work.template.json','operations.template.json','json-contracts.md','test_logger.py','viewer.html','README.md','example-project.jsonl')}
         assert {name for name in z.namelist() if name.startswith('activity/')} == activity, 'Activity export must use the exact public allowlist'
+        pms_files = ['specs/ai-pms-live/live_service.py', 'specs/ai-pms-live/live_sender.py', 'specs/ai-pms-live/session_goal.py', 'specs/ai-pms-live/demo_setup.py', 'specs/ai-pms-live/README.md', 'specs/ai-pms-live/sample/catalog.json', 'specs/ai-pms-live/sample/operations.json', 'specs/ai-pms-live/sample/central.json', 'specs/ai-pms-dashboard/portfolio.py', 'specs/ai-pms-dashboard/management.py', 'specs/ai-pms-dashboard/work.py', 'specs/ai-pms-dashboard/operations.py', 'specs/ai-pms-dashboard/dashboard.html', 'specs/ai-pms-central/central.py', 'specs/ai-pms-central/connectivity.py', 'specs/ai-pms-transport/common.py', 'README.md']
+        assert {name for name in z.namelist() if name.startswith('pms/')} == {'pms/'+name for name in pms_files}, 'PMS export must use the exact credential-free runtime allowlist'
+        with tempfile.TemporaryDirectory() as temporary:
+            pilot_root=Path(temporary).resolve()/'pms'
+            for name in pms_files:
+                payload=z.read('pms/'+name)
+                assert payload==(Path.home()/'.claude/harness/activity/pms'/name).read_bytes(),name
+                target=pilot_root/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(payload)
+            for name in ('live_service.py','live_sender.py','session_goal.py','demo_setup.py'):
+                result=subprocess.run([sys.executable,str(pilot_root/'specs/ai-pms-live'/name),'--help'],cwd=pilot_root,text=True,capture_output=True,timeout=30)
+                assert result.returncode==0,(name,result.stderr)
+            result=subprocess.run([sys.executable,str(pilot_root/'specs/ai-pms-live/demo_setup.py'),'--directory',str(pilot_root/'private-pilot')],cwd=pilot_root,text=True,capture_output=True,timeout=30)
+            assert result.returncode==0 and '7 writer environments' in result.stdout,result.stderr
+            assert (pilot_root/'private-pilot/manager.credential').stat().st_mode & 0o777==0o600
+        assert json.loads(z.read('activity/operations.template.json'))==dict(version=1,sessions=[],north_stars=[],contributions=[],capture=[])
         sample_bytes = z.read('activity/example-project.jsonl')
         assert b'/Users/' not in sample_bytes and b'BEGIN PRIVATE KEY' not in sample_bytes
         sample_path = Path.home()/'.claude/harness/activity/logger.py'

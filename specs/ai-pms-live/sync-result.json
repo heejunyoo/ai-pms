@@ -1,0 +1,46 @@
+{
+  "task_id": "sync",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-live/live_service.py",
+      "action": "created",
+      "summary": "Incremental authenticated durable service/sender with executable regressions; finalized by root after agent usage limit."
+    },
+    {
+      "path": "specs/ai-pms-live/live_sender.py",
+      "action": "created",
+      "summary": "Incremental authenticated durable service/sender with executable regressions; finalized by root after agent usage limit."
+    },
+    {
+      "path": "specs/ai-pms-live/test_live.py",
+      "action": "created",
+      "summary": "Incremental authenticated durable service/sender with executable regressions; finalized by root after agent usage limit."
+    },
+    {
+      "path": "specs/ai-pms-live/sync-result.json",
+      "action": "created",
+      "summary": "Incremental authenticated durable service/sender with executable regressions; finalized by root after agent usage limit."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-live/test_live.py",
+    "exit_code": 0,
+    "output_tail": "Ran 38 tests in 23.028s; OK. Real local HTTP only; actual provider/remote delivery unverified."
+  },
+  "done_when_check": [
+    {
+      "condition": "공유 계약과 소유 파일 경계를 지킨다",
+      "met": true,
+      "evidence": "Exact record/changes/ACK contracts and packet files retained; parent adds empty authenticated-login shell and bounded history with explicit integration notes."
+    },
+    {
+      "condition": "실행 검사와 반례로 실제 동작/미확인 경계를 구별한다",
+      "met": true,
+      "evidence": "38 actual HTTP regressions passed, plus7writer full pilot, persisted proof/history, missing/corrupt/rotated health, scoped collision, isolated conflicts, baseline admission and failure preservation."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.88,
+  "notes_for_orchestrator": "This is a parent-authored completion receipt after live_operations hit its usage limit; not a fabricated child return or fresh independent/Astra approval. Initial independent blockers corrected and exercised by root. Current code requires new independent review and browser/390px/real remote two-user acceptance before claiming externally validated operations readiness."
+}

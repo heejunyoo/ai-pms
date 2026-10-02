@@ -38,7 +38,15 @@
   "publication_transform": {
     "source_receipt_sha256": "976d83bb3d45253ddc3a968c2b423a5947d0517919749f8cf11b0befe469f53b",
     "changed_paths": [],
-    "stale_source_paths": [],
+    "stale_source_paths": [
+      "specs/ai-pms-dashboard/dashboard.html",
+      "scripts/prepare_public.py",
+      "scripts/verify_public.py",
+      "apps/dashboard/public/index.html",
+      "apps/dashboard/public/empty.html",
+      "apps/dashboard/vercel.json",
+      "apps/dashboard/public/snapshot.json"
+    ],
     "reason": "Only fresh source hashes reconciled after path/whitespace sanitization. Historical hashes preserved; not another independent review or browser verification."
   }
 }

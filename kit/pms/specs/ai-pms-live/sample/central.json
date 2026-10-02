@@ -1,0 +1,467 @@
+{
+  "version": 1,
+  "sources": {
+    "[\"Alice\", \"laptop\", \"11111111-1111-4111-8111-111111111111\"]": {
+      "actor_id": "Alice",
+      "environment_id": "laptop",
+      "project_id": "11111111-1111-4111-8111-111111111111",
+      "label": "Alice 합성 예시",
+      "evidence_mode": "synthetic",
+      "events": {
+        "81b28c3f-19cb-5ddd-a894-46645483683d": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "81b28c3f-19cb-5ddd-a894-46645483683d",
+            "observed_at": "2026-10-02T11:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "SessionStart",
+            "kind": "session.start",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "same-native-session",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-02T11:00:00Z",
+          "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "line": 1
+        },
+        "92870c69-3043-5d03-a26a-b65feb2ea95a": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "92870c69-3043-5d03-a26a-b65feb2ea95a",
+            "observed_at": "2026-10-02T11:05:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "Stop",
+            "kind": "turn.stopped",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "same-native-session",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-02T11:05:00Z",
+          "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "line": 2
+        }
+      }
+    },
+    "[\"Bob\", \"laptop\", \"11111111-1111-4111-8111-111111111111\"]": {
+      "actor_id": "Bob",
+      "environment_id": "laptop",
+      "project_id": "11111111-1111-4111-8111-111111111111",
+      "label": "Bob 합성 예시",
+      "evidence_mode": "synthetic",
+      "events": {
+        "5bc976b1-6471-5a8c-a476-b73c7f7fa453": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "5bc976b1-6471-5a8c-a476-b73c7f7fa453",
+            "observed_at": "2026-10-02T11:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "SessionStart",
+            "kind": "session.start",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "session-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-02T11:00:00Z",
+          "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "line": 1
+        },
+        "8a5834d1-8871-5f52-8c46-0c4057c5bbff": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "8a5834d1-8871-5f52-8c46-0c4057c5bbff",
+            "observed_at": "2026-10-02T11:05:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "Stop",
+            "kind": "turn.stopped",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "session-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-02T11:05:00Z",
+          "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "line": 2
+        },
+        "65db4b0c-0709-52bf-b098-32ebdcf7cc88": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "65db4b0c-0709-52bf-b098-32ebdcf7cc88",
+            "observed_at": "2026-10-02T11:10:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "SessionEnd",
+            "kind": "session.end",
+            "authority": "observed",
+            "project_id": "11111111-1111-4111-8111-111111111111",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "session-1",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-02T11:10:00Z",
+          "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "line": 3
+        }
+      }
+    },
+    "[\"Carol\", \"desktop\", \"22222222-2222-4222-8222-222222222222\"]": {
+      "actor_id": "Carol",
+      "environment_id": "desktop",
+      "project_id": "22222222-2222-4222-8222-222222222222",
+      "label": "Carol 합성 예시",
+      "evidence_mode": "synthetic",
+      "events": {
+        "fe4fd3c5-710e-53bb-8c3d-088a67d2ee65": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "fe4fd3c5-710e-53bb-8c3d-088a67d2ee65",
+            "observed_at": "2026-10-02T11:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "SessionStart",
+            "kind": "session.start",
+            "authority": "observed",
+            "project_id": "22222222-2222-4222-8222-222222222222",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "session-2",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-02T11:00:00Z",
+          "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "line": 1
+        },
+        "7f028f0c-49a6-5076-920c-4a13e8bd9fe1": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "7f028f0c-49a6-5076-920c-4a13e8bd9fe1",
+            "observed_at": "2026-10-02T11:05:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "Stop",
+            "kind": "turn.stopped",
+            "authority": "observed",
+            "project_id": "22222222-2222-4222-8222-222222222222",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "session-2",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-02T11:05:00Z",
+          "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "line": 2
+        }
+      }
+    },
+    "[\"Dana\", \"laptop\", \"33333333-3333-4333-8333-333333333333\"]": {
+      "actor_id": "Dana",
+      "environment_id": "laptop",
+      "project_id": "33333333-3333-4333-8333-333333333333",
+      "label": "Dana 합성 예시",
+      "evidence_mode": "synthetic",
+      "events": {
+        "0185f622-7b87-5f8d-a96f-aa5f86d1ed98": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "0185f622-7b87-5f8d-a96f-aa5f86d1ed98",
+            "observed_at": "2026-10-02T11:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "SessionStart",
+            "kind": "session.start",
+            "authority": "observed",
+            "project_id": "33333333-3333-4333-8333-333333333333",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "session-3",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-02T11:00:00Z",
+          "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "line": 1
+        },
+        "02e109e2-30a5-5bf4-9430-98f5de8656c8": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "02e109e2-30a5-5bf4-9430-98f5de8656c8",
+            "observed_at": "2026-10-02T11:05:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "Stop",
+            "kind": "turn.stopped",
+            "authority": "observed",
+            "project_id": "33333333-3333-4333-8333-333333333333",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "session-3",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-02T11:05:00Z",
+          "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "line": 2
+        }
+      }
+    },
+    "[\"Alice\", \"alice-personal\", \"88888888-8888-4888-8888-888888888888\"]": {
+      "actor_id": "Alice",
+      "environment_id": "alice-personal",
+      "project_id": "88888888-8888-4888-8888-888888888888",
+      "label": "Alice 합성 예시",
+      "evidence_mode": "synthetic",
+      "events": {
+        "f07e50c3-54f2-50c7-8f11-0820bca8676f": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "f07e50c3-54f2-50c7-8f11-0820bca8676f",
+            "observed_at": "2026-10-02T11:00:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "SessionStart",
+            "kind": "session.start",
+            "authority": "observed",
+            "project_id": "88888888-8888-4888-8888-888888888888",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "same-native-session",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-02T11:00:00Z",
+          "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "line": 1
+        },
+        "d3be375c-c98d-5f61-8c42-0ba469998ec9": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "d3be375c-c98d-5f61-8c42-0ba469998ec9",
+            "observed_at": "2026-10-02T11:05:00Z",
+            "occurred_at": null,
+            "source": "codex",
+            "native_event": "Stop",
+            "kind": "turn.stopped",
+            "authority": "observed",
+            "project_id": "88888888-8888-4888-8888-888888888888",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "same-native-session",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-02T11:05:00Z",
+          "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "line": 2
+        }
+      }
+    },
+    "[\"Bob\", \"bob-work\", \"77777777-7777-4777-8777-777777777777\"]": {
+      "actor_id": "Bob",
+      "environment_id": "bob-work",
+      "project_id": "77777777-7777-4777-8777-777777777777",
+      "label": "Bob 합성 예시",
+      "evidence_mode": "synthetic",
+      "events": {
+        "edb3c353-a791-54cb-b03d-0b360dd2888a": {
+          "event": {
+            "schema_version": 1,
+            "adapter_version": "1",
+            "event_id": "edb3c353-a791-54cb-b03d-0b360dd2888a",
+            "observed_at": "2026-10-02T11:40:00Z",
+            "occurred_at": null,
+            "source": "claude",
+            "native_event": "SessionStart",
+            "kind": "session.start",
+            "authority": "observed",
+            "project_id": "77777777-7777-4777-8777-777777777777",
+            "tool_name": null,
+            "links": {
+              "phase_id": null,
+              "baseline_version": null,
+              "task_id": null,
+              "decision_id": null,
+              "artifact_id": null,
+              "artifact_version": null,
+              "check_id": null
+            },
+            "data": {},
+            "missing_fields": [],
+            "session_id": "unlinked-goal",
+            "agent_id": null,
+            "parent_agent_id": null,
+            "turn_id": null,
+            "tool_call_id": null
+          },
+          "received_at": "2026-10-02T11:40:00Z",
+          "file_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "line": 1
+        }
+      }
+    }
+  }
+}
