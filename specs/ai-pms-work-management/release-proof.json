@@ -2,7 +2,7 @@
   "status": "published_browser_followup_pending",
   "automatic_collection_deferred": true,
   "actual_multi_user_delivery_verified": false,
-  "github_public": false,
+  "github_public": true,
   "dashboard_production": true,
   "kit_production": true,
   "dashboard_deployment": "dpl_CQqsF2z9ZpGDFtiEs1ak1Phb4ksM",
@@ -34,8 +34,9 @@
     "apps/dashboard/public/snapshot.json": "d6320c769b0db7f7da4d06a7249cdada76a4009a19da000928132b27f5584a8b",
     "apps/dashboard/public/report.html": "b9df4db38f556747b793d1272974a15b2915537beaadaaa687d4f82058b1259a"
   },
+  "published_implementation_commit": "021edb8",
   "publication_transform": {
-    "source_receipt_sha256": "6e812fda5a06f2437e61f44e795cddc13692ba685a5048026ba6c78a13689102",
+    "source_receipt_sha256": "8f5e67326563e203009c2588e15fa0e31fd290fbd49c928b296a48f06b88b746",
     "changed_paths": [],
     "reason": "Personal home paths replaced with $HOME; publication hash reconciliation, not another independent review."
   }
