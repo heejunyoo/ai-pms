@@ -2,11 +2,13 @@
 
 **문서 업데이트: 2026-10-02 · 사람·세션·북극성·증분 중앙 운영**
 
-사람을 선택하면 프로젝트의 WBS와 타임라인을 먼저 봅니다. 왼쪽의 **Phase → 원자 작업** 계층과 담당자·상태가 오른쪽 일정 막대와 나란히 표시됩니다. Phase 진행과 최종 완료 마일스톤을 구별하며, 단계나 작업을 선택하면 아래에서 완료 조건·막힘·검증 근거를 확인합니다. 공동 프로젝트의 전체 계획은 유지하고 선택한 사람의 작업을 강조합니다.
+첫 화면에서는 사람과 참여 프로젝트의 목표·상태·공동 참여자를 고릅니다. 프로젝트 계획 페이지는 **한 프로젝트의 WBS와 Gantt**만 표시합니다. 공동 프로젝트의 같은 목표 아래 Alice/Bob 등 참여자별 책임 작업을 구분합니다. 막힘·작업·Phase를 선택하면 별도 주소의 상세 페이지로 이동합니다.
 
-공개 샘플의 Gantt 날짜는 `specs/ai-pms-wbs-timeline/sample-schedule.json`에 명시적으로 작성한 가상 계획입니다. 훅 관측 날짜나 실제 납기가 아닙니다. 해당 프로젝트·계획 버전·revision에만 연결하며, 일정이 없는 실제 입력은 날짜를 추정하지 않는 Phase 기준 WBS로 표시합니다. 완료 판정은 기존 검사·인수 근거를 사용합니다. 세션·MCP·원문은 상세 근거입니다.
+작업 상세는 **지금 할 일 → 담당자 → 막힌 이유 → 완료 조건** 순서로 읽습니다. 원문 로그·검사 명령·내부 ID는 접힌 근거에 둡니다. 브라우저 뒤로/계획으로 돌아가기로 같은 계획표에 복귀합니다. 공개 샘플은 열람용이며 결정 기록이나 테스트를 대신 실행했다고 표시하지 않습니다.
 
-[화면 설계와 검증](specs/ai-pms-wbs-timeline/spec.md) · [예시 일정](specs/ai-pms-wbs-timeline/sample-schedule.json)
+공개 Gantt 날짜는 `specs/ai-pms-wbs-timeline/sample-schedule.json`에 명시적으로 작성한 가상 계획입니다. 실제 훅 관측 날짜나 납기가 아닙니다. 일정 없는 입력은 Phase 기준으로 표시합니다. 완료 판정은 기존 검사·인수 근거를 유지합니다.
+
+[최신 상세 IA 설계](specs/ai-pms-action-detail/spec.md) · [WBS/타임라인 설계](specs/ai-pms-wbs-timeline/spec.md) · [예시 일정](specs/ai-pms-wbs-timeline/sample-schedule.json)
 
 [실행 가능한 Live Kit](specs/ai-pms-live/README.md) · [세션·북극성 JSON 템플릿](templates/operations.template.json) · [채워진 합성 예시](specs/ai-pms-live/sample/operations.json) · [최신 공개/검증 범위](specs/ai-pms-live/release-proof.json)
 

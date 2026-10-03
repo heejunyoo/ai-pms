@@ -1,0 +1,43 @@
+{
+  "observed_at": "2026-10-03T00:20:08.804828+00:00",
+  "observer": "parent",
+  "tool": "agent-browser isolated headless Chromium",
+  "local_url": "http://127.0.0.1:21942/",
+  "viewports": [
+    [
+      1440,
+      1000
+    ],
+    [
+      390,
+      844
+    ]
+  ],
+  "observations": [
+    "Root compact project cards contain zero charts. Five projects displayed once; shared project names Alice and Bob.",
+    "Project route shows ONE WBS and explicitly two collaborators sharing one goal/plan, with actual task counts and assignment.",
+    "Blocked action route displays four primary groups: next action, owner/request, cause, exit criteria. Bob consults Alice about duplicate-request policy; nothing claims that decision or follow-up test already happened.",
+    "Native plan/task navigation, browser Back/Forward, direct route reload and visible plan return passed.",
+    "390px task, plan and list screenshots inspected; document overflow false. 1440px list/plan screenshots inspected, overflow false.",
+    "Actual browser direct synthetic applyChanges delta preserved two nested disclosures and focused nested summary. This does not prove private HTTP polling delivery.",
+    "Production 1440 native Bob click returns exactly two projects. Shared plan retains all seven tasks. Task native click and Back/Forward preserve route.",
+    "Production 390 task reload retains action-3 and four groups. Mobile keyboard Bob focus+Enter filters to two projects. Mobile offscreen pointer targeting was unreliable in automation, so keyboard path was separately verified.",
+    "Public Korean Kit at390 has no document overflow, separate-page explanation and dashboard link."
+  ],
+  "dashboard_sha256": "6c545d20a2763f0f0a969da4ffceefcab5dd3b60bd13241b9f300a6810422494",
+  "screenshots_sha256": {
+    "list-1440.png": "3357e7ccecdb87422672b625a073120c52277e81c0fe4ff0b21a594eb0d6b895",
+    "list-390.png": "5447008877934f9a529e19d0f2ffd9319399c1346495dbce6afa0f8aecbd699e",
+    "plan-390.png": "62cce02d3a5b0c291a867f76fb4bc6e35f70cf39d5ead6828eb7bed0a85f105b",
+    "plan-1440.png": "dfc46d9f23e5cb002df94296b12aeab4c1e99cd88c92011444d3cb2cda9755cf",
+    "blocked-390.png": "62c14b3f66d488763b388821a02617db88c0f7f24b4c315d87cda589a99cd47f",
+    "production-plan-1440.png": "2a2c254c57d49e48e06b3687a168c62f3deae2573c8d2662002026dabf5dc7c9",
+    "production-blocked-390.png": "942d02f59cead819cf8b643bbe39fd34e64ceb56e64c9b818260a82c858e8cb3"
+  },
+  "actual_browser_render_verified": true,
+  "actual_390px_render_verified": true,
+  "production_verified": true,
+  "actual_multi_user_delivery_verified": false,
+  "product_complete": false,
+  "public_url": "https://ai-pms-dashboard.vercel.app/"
+}

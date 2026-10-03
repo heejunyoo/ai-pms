@@ -1,0 +1,137 @@
+{
+  "goal": "Make blocker detail actionable, collaboration explicit and workspace bounded",
+  "author": "root-action-detail-author",
+  "spec_ref": "spec.md",
+  "intent_guard": {
+    "source_ref": "source.md",
+    "requirements": [
+      {
+        "id": "action",
+        "quote": "막힘을 클릭해서 봤는데, 뭐 어쩌라는거야?",
+        "outcome": "Task-specific next action, owner, why blocked, exit criteria and progressive evidence"
+      },
+      {
+        "id": "collaboration",
+        "quote": "두명이 한 프로젝트를 바라보는것을 명확하게 알수가 없잖아.",
+        "outcome": "Explicit shared goal/WBS and actual people responsibility division"
+      },
+      {
+        "id": "bounded",
+        "quote": "차라리 새로운 페이지로 이동하게 해서 보여주던가.",
+        "outcome": "List → one project WBS → separate addressable minimal action page with Back/Forward and plan return"
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-action-detail/check_action_detail.py",
+      "expect_exit_code": 0
+    }
+  },
+  "open_decisions": [],
+  "phases": [
+    {
+      "id": "flow",
+      "name": "그래프 UI",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-action-detail/check_action_detail.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "action-detail-ui",
+      "requirement_ids": [
+        "action",
+        "collaboration",
+        "bounded"
+      ],
+      "kind": "implement",
+      "phase": "flow",
+      "depends_on": [],
+      "objective": "Make blocker detail actionable, collaboration explicit and workspace bounded",
+      "done_when": [
+        "Actionable task/Phase/final detail with honest missing data and collaboration",
+        "Minimal list → one project plan → separate actionable task route with accessibility/live preservation and regressions"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-action-detail/check_action_detail.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/dashboard.html",
+          "symbol": "renderCards/renderOperations/renderWork/applyChanges",
+          "what": "Three minimal addressable page states: people/project list, shared project WBS, human-action detail"
+        },
+        {
+          "path": "specs/ai-pms-phase-flow/check_flow.py",
+          "symbol": "main assertions",
+          "what": "Replace obsolete inline/multi-chart expectations with separate addressable detail page while retaining state/safety coverage"
+        },
+        {
+          "path": "specs/ai-pms-wbs-timeline/check_timeline.py",
+          "symbol": "main assertions",
+          "what": "Adapt same state/date/collapse/scope/live checks to separate addressable detail page"
+        },
+        {
+          "path": "specs/ai-pms-toss-ia/check_ia.py",
+          "symbol": "main assertions",
+          "what": "Adapt exact task navigation/page expectations without dropping IA/scope/focus/security coverage"
+        },
+        {
+          "path": "specs/ai-pms-live/check_ui_live.py",
+          "symbol": "main DOM assertions",
+          "what": "Adapt changed addressable detail page routing only; preserve state/delta/auth and regressions"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-action-detail/check_action_detail.py",
+        "specs/ai-pms-action-detail/ui-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-toss-ia/check_ia.py",
+        "why": "Reuse safe native DOM helper and existing work/live validators"
+      },
+      "already_tried": [
+        {
+          "what": "Previous WBS/Gantt release",
+          "result": "Actual visual and native tests passed but user rejected generic unreadable detail, unclear two-person shared project and vertically stacked full-chart pages."
+        }
+      ],
+      "context": {
+        "spec_ref": "specs/ai-pms-action-detail/spec.md",
+        "facts": [
+          "Source dashboard strict validators and safe text helpers remain unchanged.",
+          "p.work.phases is calculated from declared phase order and current verification. No Phase dependency contract exists.",
+          "Source ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research; no graphify-out exists."
+        ],
+        "excluded": "Other files, public deployment, canonical Kit and backend/API/DB/global settings; parent owns these."
+      },
+      "constraints": {
+        "must": [
+          "Preserve old tests and strict import validation",
+          "Safe text DOM/native keyboard buttons",
+          "Actual status and final gate with unknown/legacy states"
+        ],
+        "must_not": [
+          "Edit own review receipt",
+          "New dependency or backend contract",
+          "Public/deployment/global setting changes"
+        ]
+      },
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 40
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      }
+    }
+  ]
+}

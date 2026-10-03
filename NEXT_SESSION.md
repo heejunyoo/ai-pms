@@ -1,3 +1,13 @@
+## 최신 완료 — 별도 페이지 IA와 사람이 행동할 수 있는 상세
+
+사람/프로젝트 최소 목록 → 하나의 공동 프로젝트 WBS → 하나의 작업/단계/최종 완료 상세를 별도 hash 주소로 구현했습니다. 목록은 차트를 쌓지 않으며 작업 상세는 지금 할 일·담당/요청·막힘 이유·완료 조건 네 항목을 먼저 보여줍니다. Alice/Bob 공동 예시는 실제 선언된 책임/위임 기준이며 Bob의 중복 정책 합의 작업을 명시했습니다. 검증/문서는 접힌 근거로 유지하고 nested 펼침·summary 포커스는 증분 갱신에도 유지합니다.
+
+최신 정본/영수증: specs/ai-pms-action-detail/{source.md,spec.md,plan.json,code-review.json,browser-observation.json,release-proof.json,public-bytes.json}. Astra 최종 pass, 공개 portable suite 및 추가 nested regression pass. 실제1440/390 화면, native history/reload/계획복귀, 공동 계획/사람scope, 브라우저 direct synthetic delta 근거/focus 확인. Dashboard/Kit 공개 배포 READY 및44파일 바이트 일치 확인. README/ELI20/Kit 한영 및 ZIP 갱신 완료.
+
+공개 https://ai-pms-dashboard.vercel.app/#project=alice-recall&task=action-3 은 합성 읽기 전용 샘플입니다. 실제 provider hook 신뢰와 두 사용자 원격 private 전달은 계속 false이며 전체 제품 완료가 아닙니다. 모바일 가로 사람목록의 자동화 offscreen pointer 타겟은 불안정했고 실제 keyboard focus/Enter 경로로 Bob2프로젝트 확인했습니다. 새 작업에서 실제 중앙 운영 인수는 기존 Live README 경계대로 별도 검증합니다.
+
+아래 WBS/inline 기록은 이전 이력이며 최신 별도 페이지 인수를 대체하지 않습니다.
+
 ## 최신 진행 — WBS/timeline 시각 재구현
 
 사용자는 기존 Phase 화살표 카드를 시각적으로 부족하다고 거부했습니다. `specs/ai-pms-wbs-timeline/` 정본을 따릅니다. TeamGantt 계층형 작업표 + Linear milestone 구성을 참고해 WBS 행/담당/상태와 오른쪽 Gantt를 정렬하고 task/Phase 하단 상세를 제공합니다. 공개 날짜는 명시적 가상 schedule fixture이며 exact synthetic project/plan/revision 연결; 실제 일정 없는 입력은 Phase축입니다. 원래 목표와 완료 계산을 유지합니다.

@@ -76,7 +76,7 @@ class Element {
  addEventListener(){}
  focus(){focused=this;}
  scrollIntoView(){scrolled=this;}
- click(){if(this.onclick)this.onclick();}
+ click(){if(this.onclick)this.onclick();if(this.tagName==='a'&&this.href){location.hash=this.href;renderDetail();}}
  closest(tag){let n=this;while(n){if(n.tagName===tag)return n;n=n.parentElement;}return null;}
  querySelectorAll(selector){const key=selector.slice(1,-1);return all(this).filter(n=>Object.hasOwn(n.attributes,key)||(key==='data-task-id'&&Object.hasOwn(n.dataset,'taskId')));}
  get isConnected(){return all(body).includes(this);}
@@ -103,19 +103,19 @@ assert($('peopleScope').textContent.includes('Bob'));
 const bob=shared.work.tasks.find(t=>t.owner==='Bob');assert(bob);const scopedRows=all($('interventionList')).filter(n=>n.className==='row intervention');const expectedCount=model.projects.filter(p=>p.owners.includes('Bob')||p.work?.tasks.some(t=>t.owner==='Bob')).reduce((n,p)=>n+(p.work?p.work.interventions.filter(i=>i.owner==='Bob'||i.task_id===null).length:1),0);assert.equal(scopedRows.length,expectedCount);const bobRow=scopedRows.find(r=>r.textContent.includes(bob.title)&&r.textContent.includes('프로젝트: '+shared.name));assert(bobRow);all(bobRow).find(n=>n.tagName==='button').click();assert.equal(focused.dataset.taskId,bob.id);
 const opener=new Element('button');$('interventionList').append(opener);
 openWork(shared,opener,bob.id);
-assert.equal(focused.dataset.taskId,bob.id);assert.equal(scrolled,focused);assert.equal(focused.tabIndex,-1);
-assert.equal($('detailPanel').querySelectorAll('[data-task-id]').length,shared.work.tasks.filter(t=>t.owner==='Bob').length);
-assert(focused.textContent.includes('완료 조건:'));
+assert.equal(focused.dataset.taskId,bob.id);assert.equal(route().kind,'task');assert.equal(focused.tabIndex,-1);
+assert.equal($('detailPanel').dataset.taskId,bob.id);assert.equal(route().t.id,bob.id);
+assert(focused.textContent.includes('완료로 바꾸려면'));
 const evidence=focused.children.find(n=>n.tagName==='details');assert(evidence&&!evidence.open);assert(evidence.textContent.includes('선행 작업:'));assert(evidence.textContent.includes('작업 ID:'));
 renderDetail();assert.equal(focused.dataset.taskId,bob.id); // delayed hashchange must retain exact focus
 $('ownerFilter').value='';renderCards();$('interventionList').append(opener);
 const other=shared.work.tasks.find(t=>t.id!==bob.id);openWork(shared,opener,other.id);assert.equal(focused.dataset.taskId,other.id);
-$('moreEvidence').open=false;$('tab-work').click();
+navigate(shared,{view:'evidence'});$('moreEvidence').open=false;$('tab-work').click();
 $('tab-work').onkeydown({key:'End',preventDefault(){}});assert.equal(focused.id,'tab-documents'); // skip collapsed evidence tabs
 $('moreEvidence').open=true;$('tab-work').onkeydown({key:'End',preventDefault(){}});assert.equal(focused.id,'tab-connections');
 assert.equal($('tab-connections').getAttribute('aria-selected'),'true');$('moreEvidence').open=false;$('moreEvidence').ontoggle();assert.equal(activeTab,'work');assert.equal(focused.id,'tab-work');assert.equal($('detailPanel').getAttribute('aria-labelledby'),'tab-work');
 $('moreEvidence').open=false;activeTab='tests';renderTab(shared);assert.equal($('moreEvidence').open,true);
-$('closeDetail').click();assert.equal(focused,opener);assert.equal($('portfolio').hidden,false);
+$('closeDetail').click();assert.equal(route().kind,'plan');$('closeDetail').click();assert.equal(focused,opener);assert.equal($('portfolio').hidden,false);
 console.log('IA DOM contract PASS: precise task focus/scroll, owner scope, full filtered intervention disclosure, preserved tools, visible keyboard tabs and focus return (simulation; no layout/browser claim)');
 '''
     with tempfile.TemporaryDirectory() as td:

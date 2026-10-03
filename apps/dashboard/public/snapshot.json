@@ -5,7 +5,7 @@
   "projects": [
     {
       "id": "alice-recall",
-      "name": "고객 요청 지식 검색과 출처 표시 · 합성 예시",
+      "name": "고객 지식 검색",
       "goal": "고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다",
       "owners": [
         "Alice",
@@ -1058,7 +1058,7 @@
             },
             {
               "id": "action-3",
-              "title": "담당자와 중복 처리 정책 결정",
+              "title": "중복 요청 처리 정책 합의",
               "phase_id": "build",
               "owner": "Bob",
               "required": true,
@@ -1067,7 +1067,8 @@
                 "req-core"
               ],
               "done_when": [
-                "중복 요청의 우선 처리 정책을 담당자와 결정한다"
+                "Alice와 중복 요청 처리 정책을 합의하고 결정 내용을 문서에 기록한다",
+                "Bob이 합의한 정책을 반영한 중복 요청 검사를 실행해 통과 결과를 남긴다"
               ],
               "criterion_ids": [
                 "action-3-check"
@@ -1179,16 +1180,16 @@
               "task_id": "action-3",
               "at": "2026-09-29T03:00:00Z",
               "state": "blocked",
-              "summary": "합성 담당자 진행 선언",
-              "next_action": "중복 요청의 우선 처리 정책을 담당자와 결정하세요."
+              "summary": "같은 고객이 같은 질문을 다시 보낼 때 기존 요청을 재사용할지 새 요청으로 처리할지 정책이 정해지지 않아 Bob의 구현이 멈췄습니다.",
+              "next_action": "Bob이 Alice에게 기존 요청 재사용과 새 요청 처리 중 적용할 정책을 확인하고, 합의 내용을 작업 문서에 기록하세요."
             },
             {
               "id": "update-action-5",
               "task_id": "action-5",
               "at": "2026-09-29T03:00:00Z",
               "state": "in_progress",
-              "summary": "합성 담당자 진행 선언",
-              "next_action": "자료 연결 구현을 마치고 현재 작업 검사를 실행하세요."
+              "summary": "Alice가 검색 결과와 답변의 출처 표시를 연결하는 구현을 진행하고 있습니다.",
+              "next_action": "출처가 있는 답변과 출처가 없는 답변을 각각 확인한 뒤 작업 검사를 실행하고 결과를 기록하세요."
             }
           ],
           "reviews": []
@@ -1255,7 +1256,7 @@
           },
           {
             "id": "action-3",
-            "title": "담당자와 중복 처리 정책 결정",
+            "title": "중복 요청 처리 정책 합의",
             "phase_id": "build",
             "owner": "Bob",
             "required": true,
@@ -1264,7 +1265,8 @@
               "req-core"
             ],
             "done_when": [
-              "중복 요청의 우선 처리 정책을 담당자와 결정한다"
+              "Alice와 중복 요청 처리 정책을 합의하고 결정 내용을 문서에 기록한다",
+              "Bob이 합의한 정책을 반영한 중복 요청 검사를 실행해 통과 결과를 남긴다"
             ],
             "criterion_ids": [
               "action-3-check"
@@ -1280,8 +1282,8 @@
               "task_id": "action-3",
               "at": "2026-09-29T03:00:00Z",
               "state": "blocked",
-              "summary": "합성 담당자 진행 선언",
-              "next_action": "중복 요청의 우선 처리 정책을 담당자와 결정하세요."
+              "summary": "같은 고객이 같은 질문을 다시 보낼 때 기존 요청을 재사용할지 새 요청으로 처리할지 정책이 정해지지 않아 Bob의 구현이 멈췄습니다.",
+              "next_action": "Bob이 Alice에게 기존 요청 재사용과 새 요청 처리 중 적용할 정책을 확인하고, 합의 내용을 작업 문서에 기록하세요."
             },
             "latest_review": null,
             "waiting_on": []
@@ -1342,8 +1344,8 @@
               "task_id": "action-5",
               "at": "2026-09-29T03:00:00Z",
               "state": "in_progress",
-              "summary": "합성 담당자 진행 선언",
-              "next_action": "자료 연결 구현을 마치고 현재 작업 검사를 실행하세요."
+              "summary": "Alice가 검색 결과와 답변의 출처 표시를 연결하는 구현을 진행하고 있습니다.",
+              "next_action": "출처가 있는 답변과 출처가 없는 답변을 각각 확인한 뒤 작업 검사를 실행하고 결과를 기록하세요."
             },
             "latest_review": null,
             "waiting_on": []
@@ -1457,7 +1459,7 @@
             "phase_id": "build",
             "owner": "Bob",
             "summary": "의존 작업 또는 명시적 막힘을 해결해야 합니다.",
-            "next_action": "중복 요청의 우선 처리 정책을 담당자와 결정하세요."
+            "next_action": "Bob이 Alice에게 기존 요청 재사용과 새 요청 처리 중 적용할 정책을 확인하고, 합의 내용을 작업 문서에 기록하세요."
           },
           {
             "id": "missing_owner-action-6",
@@ -3846,8 +3848,8 @@
         "last_activity_at": "2026-10-02T11:05:00Z",
         "started_at": "2026-10-02T11:00:00Z",
         "ended_at": null,
-        "completion": "accepted",
-        "reason": "현재 목표 정의에 대한 인수 선언과 연결 작업 검증을 확인했습니다.",
+        "completion": "verified",
+        "reason": "연결 작업의 현재 완료 근거를 확인했습니다. 목표 적절성은 사람 판단입니다. 이전·변경·미래 목표 인수 선언은 무효입니다.",
         "event_ids": [
           "81b28c3f-19cb-5ddd-a894-46645483683d",
           "92870c69-3043-5d03-a26a-b65feb2ea95a"

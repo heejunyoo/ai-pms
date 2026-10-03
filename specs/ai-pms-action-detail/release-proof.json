@@ -1,0 +1,42 @@
+{
+  "released_at": "2026-10-03T00:23:01.266393+00:00",
+  "dashboard_url": "https://ai-pms-dashboard.vercel.app",
+  "blocked_task_url": "https://ai-pms-dashboard.vercel.app/#project=alice-recall&task=action-3",
+  "kit_url": "https://harness-kit.vercel.app/ai-pms.html",
+  "deployments": {
+    "dashboard": "dpl_Cmq9F16TbTtnNWEoAf1saTqAUBqi",
+    "kit": "dpl_HprkugqQgwyPknJqBeszdNMrNcX4"
+  },
+  "checks": {
+    "public_suite": "python3 scripts/verify_public.py exit0; final nested regression check_action_detail.py rerun exit0",
+    "kit": "36 pages and bundles check_site.py pass",
+    "bytes": "44 files exact match; env404",
+    "independent_review": "Astra final pass",
+    "browser": "1440/390 screenshots inspected; native routes, reload/history, shared project, human action, disclosure and focus checked"
+  },
+  "sha256": {
+    "specs/ai-pms-dashboard/dashboard.html": "6c545d20a2763f0f0a969da4ffceefcab5dd3b60bd13241b9f300a6810422494",
+    "specs/ai-pms-action-detail/check_action_detail.py": "5f0cc5c659f2eba4020da47b70205ed46e619bf72ea78ef5b85a21a7f0d4633a",
+    "specs/ai-pms-action-detail/code-review.json": "f060c6e148457a098af3cc0c6b42346bd6a31036a6aafc62d4748bf5b7f40dc4",
+    "specs/ai-pms-action-detail/browser-observation.json": "3ad1407f86e8805f12ca1fb29f06fa6c79b680b7afcafb4decb9bf6128d01067",
+    "specs/ai-pms-action-detail/public-bytes.json": "b23577434768637301c05b48286bd509be65bb944e42a3d6d762bc22d5421eff",
+    "specs/ai-pms-live/sample/catalog.json": "2030603b97964607acfa9fdae5e1f57f4d6f73e87a51ff90d2ac5f8c61988a8d",
+    "apps/dashboard/public/index.html": "5d72d68e28a48b1a8019b4b43728c7294c16f95e69a5668f800cc198029022a2",
+    "apps/dashboard/public/empty.html": "9e25cbbca6dcdeb820e78195739d0d756fe1a5a4a69b87e3796edce0b1deb615",
+    "apps/dashboard/public/report.html": "17dc367ef7e4b0a7b93d0fef09de984909dece295b7e9e52ea6dfc0cbb5c9419"
+  },
+  "separate_page_ui_release_verified": true,
+  "actual_browser_render_verified": true,
+  "actual_390px_render_verified": true,
+  "actual_multi_user_delivery_verified": false,
+  "product_complete": false,
+  "scope": "Read-only synthetic public dashboard. Three native hash-addressed pages. No data/API contract or hosted receiver changes. Date bars remain an authored fictional schedule. Real provider hooks and remote two-user delivery remain unverified.",
+  "publication_transform": {
+    "source_receipt_sha256": "9f34d4fe2462e4f30dcd105338a8aed37fcdb0e3647afd944b6f0f5202e1367e",
+    "changed_paths": [
+      "specs/ai-pms-action-detail/code-review.json"
+    ],
+    "stale_source_paths": [],
+    "reason": "Only fresh source hashes reconciled after path/whitespace sanitization. Historical hashes preserved; not another independent review or browser verification."
+  }
+}
