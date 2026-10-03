@@ -1,0 +1,45 @@
+{
+  "released_at": "2026-10-03T00:52:44.949959+00:00",
+  "kit_url": "https://harness-kit.vercel.app",
+  "acceptance_url": "https://harness-kit.vercel.app/maintenance.html#product-acceptance",
+  "deployment_id": "dpl_AYUHhyydnnu6J98inHUAEqywDKPk",
+  "changes": [
+    "Codex and Claude autonomous procedures distinguish technical/product/user acceptance, outcome rejection and failed-path evidence.",
+    "Handoff packages link source/user question/data/result/verification and parent integration responsibility.",
+    "Improvement-loop uses the shared approach-change rule and distinguishes iteration budget.",
+    "Bilingual Kit loop, Handoff and product-acceptance maintenance guide plus all implementation/reference ZIPs updated.",
+    "Project acceptance mapping and explicit unverified_paths added. Current/previous continuation headings separated."
+  ],
+  "checks": {
+    "harness_audit": "exit0",
+    "harness_verify": "exit0 including handoff selftest",
+    "kit": "36 pages/bundles and five ZIP source byte comparisons pass",
+    "independent_review": "Astra implementation pass; source/hash scope explicit",
+    "public_narrow": "action-detail DOM, five ZIP exports, edited Python syntax and diff checks exit0",
+    "production_bytes": "44 files exact match, env404",
+    "browser": "1440 Korean and 390 English loop; all five actual browser JS controls per language update pressed/active states; native loop clicks; 390 ko/en product-acceptance, both language switches, no overflow, no reported app errors; screenshots visually inspected"
+  },
+  "source_sha256": {
+    "kit/codex/docs/autonomous_coding.md": "2b3680b81b5c7b71c0ac9ccb7a08682be8ef97a1899c47190fa582a9d39b4a97",
+    "kit/claude/docs/autonomous_coding.md": "6cf2ca2df87d645efbaa628c15134877fb5f582b3e3eb37f56ffc258a5ba6ddb",
+    "kit/handoff/SKILL.md": "f3c9e11847becb1e54073358625568d6bc9cb1c6f6c111dc14c159eaba7e7f0f",
+    "kit/claude-handoff/SKILL.md": "2f99efdd1a9b61b79cc8d61b3112dc9697f0a3b674c6d7689686d29e0d189e6d",
+    "kit/codex/skills/codex-improvement-loop/SKILL.md": "967946a27aea089d7fd69b6b0dcaf28edee4b3419437ce483a2b19b1553bda7e",
+    "kit/build/current_content.py": "0b2c417dc71cac335dcae2bc0496ac163518fd042473635929b4dc7d82984fed",
+    "kit/build/check_current.py": "559d4812c71783646cdfff805cc676fc69a540e0bcd141ae9eb695dd97ccb9c7"
+  },
+  "screenshots_sha256": {
+    "guide-en-390.png": "96a4c6c73098ef9c7f17a906d8d6197bc2b1186e133284c0e111b007d38e1e28",
+    "acceptance-en-390.png": "bea686857dca78a6a12eb313b6eda2dfca32b79434bd712565661fbeba5b1d67",
+    "guide-ko-1440.png": "943c48f2b3de30ac6764f67f605358ac9939d5f8db6d3c9953d288a67af91aee",
+    "loop-condition-en-390.png": "6027bfa883addf63dfea6a6554fb02ae5634e5ca64f980e1efe165cc92d622e7",
+    "acceptance-ko-390.png": "dd417eb95243aed01b27b6e6642f993cfc6e31d88b80d9905c8ffce1f3f2e6f9"
+  },
+  "harness_kit_document_release_verified": true,
+  "actual_browser_render_verified": true,
+  "actual_390px_render_verified": true,
+  "prevention_effect_verified": false,
+  "actual_provider_hook_delivery_verified": false,
+  "actual_multi_user_delivery_verified": false,
+  "scope": "Existing operating docs/skill guidance and public Kit source/export only. No hook/config/auth/API/runtime changes. No claimed new product UI or remote delivery proof. Prior assessment and review receipts retain their historical hashes; no semantic acceptance guaranteed by static text/packaging checks."
+}

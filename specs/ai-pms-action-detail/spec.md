@@ -13,3 +13,18 @@ Parent owns sample catalog fixture, scripts/build app, Kit docs/runtime packagin
 Acceptance python3 specs/ai-pms-action-detail/check_action_detail.py + prior check_flow/check_timeline checks, parent ACTUAL1440/390 browser: click blocked task => next action, namedowner, reason, exitconditions immediately visible; shared two-person goal recognized; native page navigation, no accumulating background detail; Back/visible plan return restores chart/focus; zero charts on root list, exactly one chart on plan page, no chart accumulation on task page; live/reset retains valid project/selection; missing data not fabricated; text safety. Unit DOM mocks not render proof.
 
 Latest instruction removes all modal drawer requirements. Child may also adapt obsolete UI routing expectations in specs/ai-pms-toss-ia/check_ia.py and specs/ai-pms-live/check_ui_live.py, retaining strict validator/state/security/delta tests. Identify precise changed assertions; no skip/deletion. Parent actual browser checks real address, reload, Back/Forward and plan return.
+
+
+## Product acceptance mapping — 2026-10-03 harness follow-through
+
+This table supplements the existing functional acceptance. It does not claim new browser execution or real user acceptance.
+
+| Source requirement | User question | Required data/source | Result and action | Verification and boundary |
+|---|---|---|---|---|
+| 다수의 사람 각각을 필터 | Who participates in which goals? | project ID, owners, task.owner | Select Bob in list | Two projects; shared project listed once. 1440 pointer and 390 keyboard observed; 390 offscreen pointer unverified. |
+| 두명이 한 프로젝트를 바라보는것 | Are Alice and Bob sharing one goal and how is responsibility divided? | Same project ID/WBS, task.owner, assignment.assignee | Open shared plan | One goal, named people, seven tasks, person scope vs whole project completion. |
+| 전체계획/어디까지 완료/남은 phase | What is finished and what remains before project completion? | Current phase/task/gate states and explicit sample schedule | Read one WBS, open phase/final | All three phases and final gate remain visible; fictional dates are labelled; no date inference. |
+| 막힘을 클릭해서 봤는데, 뭐 어쩌라는거야? | Who needs to do what to remove the blocker? | Latest declared update, owner, done_when, current evidence | Open action-3 | Bob consults Alice on duplicate-request policy, records decision, then runs follow-up check; no claim already executed. |
+| 새로운 페이지/최소한의 정보 | Can I make one decision and return to the plan? | Encoded valid project/task route | List → plan → task; reload/history/return | Separate route and four primary groups, closed evidence, native Back/Forward; mock DOM does not prove rendering. |
+
+Missing fields, stale checks or absent provider delivery remain unknown/unverified. Parent/reviewer comprehension checks are self-evaluation, not actual user acceptance. After a goal rejection, record the failed question/path and changed cause hypothesis here before repeating the same approach. A changed user requirement is distinguished from a failed implementation of the original requirement.

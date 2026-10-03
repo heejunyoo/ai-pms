@@ -28,6 +28,17 @@ def main():
             source=home/'.claude/harness'/folder/name
             assert source.is_file(),source
             target=out/'kit'/folder/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(source.read_bytes());copied.append(target.relative_to(out).as_posix())
+    # Explicit public procedure sources also shipped in the implementation ZIP.
+    for target, source in {
+        'kit/codex/docs/autonomous_coding.md': '.codex/docs/autonomous_coding.md',
+        'kit/claude/docs/autonomous_coding.md': '.claude/docs/autonomous_coding.md',
+        'kit/handoff/SKILL.md': '.agents/skills/handoff/SKILL.md',
+        'kit/claude-handoff/SKILL.md': '.claude/skills/handoff/SKILL.md',
+        'kit/codex/skills/codex-improvement-loop/SKILL.md': '.codex/skills/codex-improvement-loop/SKILL.md',
+    }.items():
+        body=(home/source).read_bytes()
+        assert b'/Users/' not in body, target
+        path=out/target;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(body);copied.append(target)
     for name in [*PMS_FILES,'README.md']:
         source=home/'.claude/harness/activity/pms'/name
         target=out/'kit/pms'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(source.read_bytes());copied.append(target.relative_to(out).as_posix())

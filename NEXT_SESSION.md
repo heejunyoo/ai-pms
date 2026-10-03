@@ -1,4 +1,10 @@
-## 최신 완료 — 별도 페이지 IA와 사람이 행동할 수 있는 상세
+## 현재 상태 — 하네스 회고 개선안과 Kit 공개 갱신 완료
+
+정본: reports/harness-retrospective/assessment.md 및 astra-review.md. 사용자 승인으로 Codex/Claude 자율 절차, Handoff의 제품 인수/부모 책임, loop 스킬의 공통 재시도 포인터, Kit ko/en 설명을 반영했습니다. 원래 목적→사용자 질문→데이터/출처→결과/행동→검증 방법을 기존 action-detail spec에 연결했고 미검증 pointer 경로를 영수증에 명시했습니다. 문서/인수 기준 보강이며 기존 UI/로그 API/훅 런타임/자격은 변경하지 않습니다.
+
+검증/공개 결과는 reports/harness-retrospective/implementation-release.json을 확인합니다. 로컬 하네스/Kit36페이지와5ZIP문서 검사, Astra 독립 검토, 공개44파일 대조 및 실제 한영1440/390 화면/언어 전환을 확인했습니다. Kit 배포 dpl_AYUHhyydnnu6J98inHUAEqywDKPk READY. 이번 변경은 문서/검증 경계이며 새 전역 의미 차단 훅이나 상시 패널을 추가하지 않았습니다. 이 문서의 아래 모든 섹션은 이전 이력입니다. 실사용자 원격 전달은 계속 미검증이고 개선 규칙의 재발 방지 효과는 다음 실제 작업에서 확인해야 합니다.
+
+## 이전 완료 — 별도 페이지 IA와 사람이 행동할 수 있는 상세
 
 사람/프로젝트 최소 목록 → 하나의 공동 프로젝트 WBS → 하나의 작업/단계/최종 완료 상세를 별도 hash 주소로 구현했습니다. 목록은 차트를 쌓지 않으며 작업 상세는 지금 할 일·담당/요청·막힘 이유·완료 조건 네 항목을 먼저 보여줍니다. Alice/Bob 공동 예시는 실제 선언된 책임/위임 기준이며 Bob의 중복 정책 합의 작업을 명시했습니다. 검증/문서는 접힌 근거로 유지하고 nested 펼침·summary 포커스는 증분 갱신에도 유지합니다.
 
@@ -8,7 +14,7 @@
 
 아래 WBS/inline 기록은 이전 이력이며 최신 별도 페이지 인수를 대체하지 않습니다.
 
-## 최신 진행 — WBS/timeline 시각 재구현
+## 이전 진행 — WBS/timeline 시각 재구현
 
 사용자는 기존 Phase 화살표 카드를 시각적으로 부족하다고 거부했습니다. `specs/ai-pms-wbs-timeline/` 정본을 따릅니다. TeamGantt 계층형 작업표 + Linear milestone 구성을 참고해 WBS 행/담당/상태와 오른쪽 Gantt를 정렬하고 task/Phase 하단 상세를 제공합니다. 공개 날짜는 명시적 가상 schedule fixture이며 exact synthetic project/plan/revision 연결; 실제 일정 없는 입력은 Phase축입니다. 원래 목표와 완료 계산을 유지합니다.
 
@@ -16,7 +22,7 @@
 
 아래 Phase flow 배포는 이전 이력이며 이번 디자인 인수 증거가 아닙니다.
 
-## 최신 화면 개편 — WBS/Phase flow
+## 이전 화면 개편 — WBS/Phase flow
 
 사용자가 초기 WBS/Gantt 의도가 구현에서 누락되었다고 지적했습니다. UI 수정은 `specs/ai-pms-phase-flow/{source.md,spec.md,plan.json}` 정본과 별도 독립 검토에 따라 반영했습니다. 사람별 프로젝트 목표→모든 Phase→최종 완료 확인 그래프가 primary이며 클릭 하단 상세가 작업/완료 조건/검사 근거를 제공합니다. 이전 나열식 IA를 현재 목적 달성 증거로 사용하지 않습니다. 실제 일정 데이터 없이 Gantt 날짜/기간을 추정하지 않습니다.
 
@@ -24,7 +30,7 @@
 
 이전 실행/배포 기록은 아래와 같습니다. 최신 flow 인수 및 release-proof를 확인하세요.
 
-## 최신 구현 — 사람·세션·북극성·Live 중앙 운영
+## 이전 구현 — 사람·세션·북극성·Live 중앙 운영
 
 최신 정본은 `specs/ai-pms-live/README.md`와 spec/plan입니다. 사람 → 세션 → 목표/종료/현재 검증·인수 → Phase/작업/테스트·문서, 회사·팀 지표와 제안/확인 기여를 구현했습니다. 기술 완료와 업무 성과를 분리합니다. 캡처 health, private writer/manager 인증, entity별 durable ACK, 원문 기록 이력, cursor 증분 투영,2초 sender/화면 polling을 구현했습니다. Kit ZIP에는 실행 가능한 pms runtime과 operations JSON 템플릿/전체 필드 설명이 포함됩니다.
 
@@ -36,7 +42,7 @@ Astra는 원래 목적/간극/초기 spec을 검토했습니다. 후속 acceptan
 
 아래는 이전 상태 기록입니다.
 
-## 최신 상태 — 2026-10-02 사람·세션·실시간 중앙 관리 재점검
+## 이전 상태 — 2026-10-02 사람·세션·실시간 중앙 관리 재점검
 
 최신 사용자 요청은 사람 → 세션 → 세션 목표/인수 → 회사·팀 북극성, 실제 훅 생성·로컬 실시간 확인·중앙 증분 전달·화면 갱신입니다. 이전 자동 PC 수집 유보는 최신 요청의 제외 근거로 사용하지 않습니다. `PRODUCT-INTENT.md` 마지막 정정과 `docs/person-session-live-gap.md`를 먼저 읽으세요.
 
@@ -58,7 +64,7 @@ Astra 독립 코드 검토에서 현재 세션은 ID/사람/환경/이벤트 수
 
 아래는 이전 이력입니다.
 
-## 최신 상태 — 2026-10-02 작업 관리 개편
+## 이전 상태 — 2026-10-02 작업 관리 개편
 
 사람 필터 → 공동/개인 목표 → Phase → 담당 원자 작업 → 완료 조건/검사/승인/막힘/다음 행동을 구현했습니다. Kit Handoff import와 update/review 명령, 작업 JSON 템플릿과 문서를 함께 추가했습니다. 새 코드 위치는 `specs/ai-pms-work-management/`입니다. Astra 최종 검토는 no_blockers입니다. `python3 scripts/verify_public.py` 및 실제 로컬 subprocess 검증이 통과했습니다.
 
@@ -92,7 +98,7 @@ Atlas-inspired four improvements are implemented as optional management.traceabi
 
 # 다음 세션 — 중앙 AI PMS 구현
 
-## 최신 완료 — 2026-10-01 자동 수집 제외 중앙 프로젝트 대시보드
+## 이전 완료 — 2026-10-01 자동 수집 제외 중앙 프로젝트 대시보드
 
 사용자는 “자동수집 부분은 이후 고민해도 될 문제… 나머지를 구현하고, 대시보드까지 완성하자.”라고 범위를 지정했습니다. 아래 이전 순서의 자동 수집/승인 B 작업을 다음 필수 과제로 되살리지 않습니다.
 
@@ -113,7 +119,7 @@ Atlas-inspired four improvements are implemented as optional management.traceabi
 
 **다음 순서:** 이 목적에 맞게 프로젝트 연속성, 문서·계획·검증 수집, 현황/상세 화면을 설계하고 ELI20 보고서를 개정합니다. 관리 개입 목록만으로 목적을 좁히지 않습니다. 기존 로컬 전송 인수는 유효한 기반이지만 위 제품 의미의 구현 증거는 아닙니다. 아래 승인 B 실환경 전달은 그 이후의 운영 단계이며 자동 실행하지 않습니다. 새 API 계약 등은 구체 설계 이후 승인 경계를 적용합니다.
 
-## 최신 완료 — 2026-10-01 승인 A 로컬 자동 전달 인수
+## 이전 완료 — 2026-10-01 승인 A 로컬 자동 전달 인수
 
 - `specs/ai-pms-transport/approval.json`에 사용자 승인 A 원문과 범위가 있습니다. 아래 준비 단계의 API 미승인 표기는 이전 상태입니다. A는 로컬 sender/receiver/API·합성 loopback·중앙 전달 상태 화면을 포함하며 외부 전송/배포·전역 훅/trust·실제 자격은 제외합니다.
 - 세부 구현은 수신·집계(T1), 송신·재시도(T2), 중앙 전달 화면(T3)로 원자화해 handoff로 이관했습니다. 부모는 T1 Phase 검사 후 T2/T3를 병렬 발행했고 각 반환 계약·검사를 직접 확인했습니다. 역할·이관 조건은 transport `DELEGATION.md`에 있습니다.

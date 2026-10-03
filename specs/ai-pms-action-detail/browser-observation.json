@@ -39,5 +39,10 @@
   "production_verified": true,
   "actual_multi_user_delivery_verified": false,
   "product_complete": false,
-  "public_url": "https://ai-pms-dashboard.vercel.app/"
+  "public_url": "https://ai-pms-dashboard.vercel.app/",
+  "unverified_paths": [
+    "390px offscreen Bob pointer/touch filtering: automation unreliable; keyboard pass does not verify this path",
+    "Native provider hook trust/invocation and remote two-user private delivery"
+  ],
+  "annotation": "2026-10-03: Explicit boundaries added after retrospective; original observation time and screenshot hashes preserved, no new browser execution."
 }

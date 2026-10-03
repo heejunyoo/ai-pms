@@ -4,7 +4,7 @@
   "findings": [],
   "sha256": {
     "specs/ai-pms-action-detail/source.md": "e0fcdd7101dca73e1ddbe7fcf9cc46e07b23bce4fca4f162a75e24c6596536a3",
-    "specs/ai-pms-action-detail/spec.md": "da54f73c2684b9cb49eececbe2299f8d239e1fde044c675156a4b65ed6b43b08",
+    "specs/ai-pms-action-detail/spec.md": "5c620f4ae42f8f284415839daebd845cd95cb289e61699762deb77f1c5082bd0",
     "specs/ai-pms-dashboard/dashboard.html": "6c545d20a2763f0f0a969da4ffceefcab5dd3b60bd13241b9f300a6810422494",
     "specs/ai-pms-action-detail/check_action_detail.py": "5f0cc5c659f2eba4020da47b70205ed46e619bf72ea78ef5b85a21a7f0d4633a",
     "specs/ai-pms-live/sample/catalog.json": "2030603b97964607acfa9fdae5e1f57f4d6f73e87a51ff90d2ac5f8c61988a8d"
@@ -40,10 +40,10 @@
   "test_refresh": "Latest persisted nested-disclosure/focus regression read and check_action_detail.py rerun successfully; all other reviewed file hashes unchanged.",
   "publication_transform": {
     "source_receipt_sha256": "b84f0662140b8152fb28acc0ff3f2fd4ebe0c3897ed63c5941ae56cd8cfad364",
-    "changed_paths": [
+    "changed_paths": [],
+    "stale_source_paths": [
       "specs/ai-pms-action-detail/spec.md"
     ],
-    "stale_source_paths": [],
     "reason": "Only fresh source hashes reconciled after path/whitespace sanitization. Historical hashes preserved; not another independent review or browser verification."
   }
 }

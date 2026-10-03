@@ -184,6 +184,25 @@ def validate(public):
             skill=z.read(name).decode()
             assert 'ELI20' in skill and 'ELI15' not in skill and 'ELI10' not in skill,(name,'stale ELI depth')
         assert not any('ponytail' in n.lower() or 'graphify' in n.lower() for n in z.namelist()),'Optional tools bundled without setup contract'
+    # Narrow release invariants: current procedures and bilingual retry guidance,
+    # not proof of semantic product acceptance or native hook execution.
+    procedures = {
+        'codex/docs/autonomous_coding.md': '.codex/docs/autonomous_coding.md',
+        'claude/docs/autonomous_coding.md': '.claude/docs/autonomous_coding.md',
+        'handoff/SKILL.md': '.agents/skills/handoff/SKILL.md',
+        'claude-handoff/SKILL.md': '.claude/skills/handoff/SKILL.md',
+        'codex/skills/codex-improvement-loop/SKILL.md': '.codex/skills/codex-improvement-loop/SKILL.md',
+    }
+    with zipfile.ZipFile(public/'implementation.zip') as bundle:
+        for target, source in procedures.items():
+            assert bundle.read(target) == (Path.home()/source).read_bytes(), (target, 'stale procedure export')
+        for target in ('codex/docs/autonomous_coding.md', 'claude/docs/autonomous_coding.md'):
+            body = bundle.read(target).decode()
+            assert all(token in body for token in ('기능 검사·제품 인수·사용자 수락', '두 번 실패', '원래 경로는 미검증')), target
+    for suffix, token, stale in (('', '두 번 실패', '기본 세 번 이내'), ('-en', 'After two failures', 'at most three retries')):
+        assert token in (public/('guide'+suffix+'.html')).read_text()
+        assert stale not in (public/('guide'+suffix+'.html')).read_text()
+        assert 'id="product-acceptance"' in (public/('maintenance'+suffix+'.html')).read_text()
     # Assertions reflect current behavior, including removal of the previous forced-low policy.
     handoff=(public/'handoff-en.html').read_text()
     assert 'Inherit model and reasoning settings by default' in handoff

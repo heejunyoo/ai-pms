@@ -1,6 +1,6 @@
 """Bilingual setup guides and retained ELI explanations."""
 import json
-RELEASE = '2026-10-02'
+RELEASE = '2026-10-03'
 
 PAGES = {'index': {'ko': ('이 운영 환경을\n다른 곳에서도.',
                   'Codex·Claude의 기본 하네스를 옮기고 적용 여부를 확인합니다. Ponytail·Graphify는 별도로 설치하고 검증합니다.',
@@ -282,7 +282,7 @@ PAGES = {'index': {'ko': ('이 운영 환경을\n다른 곳에서도.',
                       [('출처와 요구사항', '사용자 요청의 권위 있는 원문과 관련 명세를 지정하고, 각 요구사항은 원문에 실제로 있는 문장을 정확히 인용해 결과와 연결합니다. 키워드가 겹치는 인용만으로 의미가 맞다고 판단하지 않습니다.'),
                        ('독립 검토와 최신성', '작성자가 아닌 검토자가 원문과 명세를 직접 읽고 요구사항 전체, 범위 이탈, 목적 정렬을 확인합니다. 검토 영수증에는 두 문서의 SHA-256과 검토 범위를 남깁니다. 출처·명세가 바뀌면 검토는 오래된 것이므로 다시 검토하고 내보냅니다.'),
                        ('태스크 매핑', '각 구현·조사 태스크는 하나 이상의 요구사항 ID에 연결하고, 전체 태스크가 모든 요구사항을 다룹니다. 독립성은 파일 소유권과 의존성으로 별도 표현합니다.'),
-                       ('목적 기준 수락', '원래 요청의 성공 조건을 실제 사용자 흐름에서 확인하는 acceptance 명령과 기대 종료 코드를 둡니다. 코드 검사 통과나 해시 일치만으로 의미 정렬, 독립성, 사용자 수락을 증명했다고 말하지 않습니다.')]),
+                       ('목적 기준 수락', '원래 요청의 성공 조건을 실제 사용자 흐름에서 확인하는 acceptance 명령과 기대 종료 코드를 둡니다. 기존 spec에서 요구 원문 → 사용자가 답할 질문 → 필요한 데이터·출처 → 결과물과 행동 → 확인 방법을 연결합니다. 코드 검사 통과나 해시 일치만으로 의미 정렬, 독립성, 사용자 수락을 증명했다고 말하지 않습니다.')]),
                      ('dispatch',
                       '겹치지 않는 책임으로 배치',
                       [('의존성', '같은 파일을 동시에 수정하지 않도록 소유권을 정하고 depends_on으로 선행조건을 표현합니다.'),
@@ -291,7 +291,7 @@ PAGES = {'index': {'ko': ('이 운영 환경을\n다른 곳에서도.',
                         '않습니다.')]),
                      ('integrate',
                       '상위 작업자가 통합 확인',
-                      [('반환 증거', '실제로 실행한 명령·결과·변경 파일·미충족 기준을 받습니다. 하위 에이전트의 완료 주장만으로 닫지 않습니다.'),
+                      [('반환 증거', '실제로 실행한 명령·결과·변경 파일·미충족 기준을 받습니다. 하위 에이전트의 완료 주장만으로 닫지 않습니다. 상위는 검사 PASS를 범위 밖의 제품 인수로 승격하지 않고, 사용자가 실패를 지적한 경로를 직접 확인합니다.'),
                        ('Phase 종료', '합격 기준을 다시 확인하고 변경 간 충돌을 검토합니다. 배포·DB처럼 되돌리기 어려운 실행은 현재 승인 범위 안에서 처리합니다.')])]),
              'en': ('Delegate the work.\nTransfer the evidence.',
                     'Parallelize when tasks are independent and verification boundaries are clear.',
@@ -317,7 +317,7 @@ PAGES = {'index': {'ko': ('이 운영 환경을\n다른 곳에서도.',
                         'across the plan. Express file ownership and dependencies separately.'),
                        ('Acceptance against the original purpose',
                         'Define a command and expected exit code that check the original request through its user-facing '
-                        'flow. Passing code checks or matching hashes alone does not prove semantic alignment, reviewer '
+                        'flow. In the existing spec, connect the source request to the question a user must answer, required data and sources, the result and action, and the verification method. Passing code checks or matching hashes alone does not prove semantic alignment, reviewer '
                         'independence, or user acceptance.')]),
                      ('dispatch',
                       'Assign distinct responsibilities',
@@ -332,7 +332,7 @@ PAGES = {'index': {'ko': ('이 운영 환경을\n다른 곳에서도.',
                       'The parent verifies integration',
                       [('Returned evidence',
                         'Require commands actually run, results, changed files, and unmet criteria. A subordinate '
-                        'completion claim is not sufficient.'),
+                        'completion claim is not sufficient. The parent does not promote a check PASS to product acceptance outside its scope, and directly checks the path the user reported as failing.'),
                        ('Closing a phase',
                         'Check acceptance criteria and conflicts between changes. Handle consequential operations such '
                         'as deployment and database changes within the current authorization.')])])},
@@ -462,6 +462,16 @@ PAGES = {'index': {'ko': ('이 운영 환경을\n다른 곳에서도.',
                             'Back up existing files, compare the new bundle, and apply changes. Manage personal '
                             'memories and project permissions in the target environment.')])])}}
 
+# Product acceptance supplements existing checks; it is not a semantic hook gate.
+PAGES['maintenance']['ko'][2].append(('product-acceptance', '검사와 제품 인수', [
+ ('목적에서 확인 방법까지', '기능 검사·제품 인수·사용자 수락을 구분합니다. 기존 spec에 요구 원문 → 사용자가 답할 질문 → 필요한 데이터·출처 → 결과물과 행동 → 확인 방법을 연결합니다. UI는 실제 화면과 상호작용으로 확인합니다.'),
+ ('실패한 경로를 확인', '포인터 실패 뒤 키보드가 통과해도 포인터는 미검증입니다. 합성 검사·실제 로컬 전달·원격 전달·배포 파일 대조는 각각의 범위를 유지합니다. 증거의 대상 버전을 기록하고 영향을 받는 변경 뒤 재검증합니다.'),
+ ('거절 뒤 접근 전환', '명백한 목적 불일치는 즉시 수정합니다. 같은 접근이 두 번 실패하면 세 번째 시도 전에 거절된 결과·원인가설·바꾸는 가정·인수 조건을 기존 명세에 기록합니다. 다른 진행 가능한 작업은 계속합니다. 공통 절차는 다운로드의 codex/docs/autonomous_coding.md 또는 claude/docs/autonomous_coding.md에서 확인하세요.')]))
+PAGES['maintenance']['en'][2].append(('product-acceptance', 'Checks and product acceptance', [
+ ('From purpose to verification', 'Separate technical checks, product acceptance and user acceptance. In the existing spec, connect the source request to the question a user must answer, required data and sources, the result and action, and the verification method. Check UI changes through actual rendering and interaction.'),
+ ('Verify the failed path', 'A keyboard pass after a pointer failure leaves the pointer path unverified. Preserve the distinct scope of synthetic checks, actual local delivery, remote delivery and deployed file comparisons. Record the target version and recheck after relevant changes.'),
+ ('Change the approach after rejection', 'Correct clear goal mismatches immediately. After two failures with the same approach, record the rejected result, cause hypothesis, changed assumption and acceptance condition before a third attempt. Continue other work that can still progress. The shared procedure is in codex/docs/autonomous_coding.md or claude/docs/autonomous_coding.md in the download.')]))
+
 # These reference snippets add logger commands; they never replace safety gates.
 for tool in ('codex', 'claude'):
     events = ['SessionStart', 'UserPromptSubmit', 'PreToolUse', 'PostToolUse', 'Stop', 'SessionEnd']
@@ -511,7 +521,7 @@ SCENES = {'ko': [('rules',
          '루프',
          '근거 있는 재시도',
          '기준선 → 변경 → 검증 → 판단',
-         '새로운 실패 근거가 있고 해결 가능한 수정이 있을 때 반복합니다. 같은 접근의 반복은 기본 세 번 이내입니다.',
+         '사용자의 목적상 거절도 실패입니다. 명백한 목적 불일치는 즉시 수정하고, 같은 접근이 두 번 실패하면 세 번째 시도 전에 가정을 확인하거나 접근을 바꿉니다. 다른 진행 가능한 작업은 계속합니다.',
          '문서나 자동화 개수를 성숙도 점수로 세지 않습니다. 무한 반복과 너무 이른 포기를 모두 피합니다.'),
         ('graph',
          '그래프',
@@ -542,8 +552,7 @@ SCENES = {'ko': [('rules',
          'Loop',
          'Evidence-led retries',
          'Baseline → change → verify → decide',
-         'Repeat when a failure provides new evidence and an actionable fix. Default to at most three retries of the '
-         'same approach.',
+         'Treat a rejection of the intended outcome as failure. Correct clear goal mismatches immediately. After two failures with the same approach, check assumptions or change the approach before a third attempt. Continue other work that can still progress.',
          'Do not score maturity by document or automation counts. Avoid both endless repetition and premature '
          'abandonment.'),
         ('graph',
