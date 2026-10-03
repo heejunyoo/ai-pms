@@ -35,6 +35,8 @@ def main():
     report=re.sub(r'href="../../specs/ai-pms-dashboard/evidence/dashboard.html"','href="/"',report)
     report=re.sub(r'href="../../([^"#]+)"',lambda m:'href="https://github.com/heejunyoo/ai-pms/blob/main/'+m[1]+'"',report)
     pages['report.html']=report
+    overview=ROOT/'reports/harness-pms-eli20/index.html'
+    if overview.exists():pages['overview.html']=overview.read_text()
     headers=[]
     for name,body in pages.items():
         (out/name).write_text(body)

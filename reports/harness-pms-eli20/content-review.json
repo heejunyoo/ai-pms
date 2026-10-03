@@ -1,0 +1,76 @@
+{
+  "reviewed_at": "2026-10-03T11:49:01.471402+00:00",
+  "reviewer": "independent child agent astra_eli20_scope_review",
+  "scope": "Content and source-faithfulness review; no page edits, no live browser or remote deployment checks",
+  "artifact": "index.html",
+  "sha256": "bf27b476bfb15cbf186059505797a5be932d6948be480bd393963083f83a959a",
+  "verdict": "pass",
+  "blocking_findings": [],
+  "requirements": {
+    "kit_scope": "pass",
+    "pms_original_purpose_and_architecture": "pass",
+    "current_implementation_and_validation": "pass",
+    "future_direction": "pass",
+    "representative_end_to_end_case": "pass",
+    "public_claim_boundaries": "pass"
+  },
+  "evidence_levels": {
+    "public_static": "Clearly synthetic static public dashboard and Kit documents, not private receiver",
+    "local_synthetic": "Executable self-hosted runtime, local HTTP and seven synthetic writers are distinguished from real remote operation",
+    "unverified_remote": "Native app hook/trust and actual remote two-user end-to-end delivery explicitly remain unverified"
+  },
+  "findings": [
+    {
+      "id": "R1",
+      "severity": "minor",
+      "location": "Kit/flow/proof terminology",
+      "issue": "Phase, acceptance, trust, AST, manifest, origin, cursor, receipt, SLA and runtime are not all explained at first encounter. Later explanations cover some terms.",
+      "recommendation": "Add compact plain-Korean glossary in a details element for remaining implementation terms.",
+      "status": "resolved"
+    },
+    {
+      "id": "R2",
+      "severity": "minor",
+      "location": "proof transmission layer row",
+      "issue": "Identity and allowed-project checking appears in the sender row and may imply sender-only enforcement.",
+      "recommendation": "Explicitly state that the central service checks writer credentials and allowed projects.",
+      "status": "resolved"
+    },
+    {
+      "id": "R3",
+      "severity": "minor",
+      "location": "next milestone 4",
+      "issue": "Post-deployment metrics, degradation and incidents are a sensible extension but not an established implementation commitment in the reviewed canonical sources.",
+      "recommendation": "Label this milestone as an extension proposal rather than an agreed roadmap.",
+      "status": "resolved"
+    }
+  ],
+  "source_files": [
+    "PRODUCT-INTENT.md",
+    "NEXT_SESSION.md",
+    "README.md",
+    "specs/ai-pms-live/README.md",
+    "docs/json-contracts.md",
+    "reports/harness-retrospective/implementation-release.json",
+    "$HOME/.claude/harness/build/current_content.py"
+  ],
+  "notes": [
+    "Graphify is optional AST evidence, not an automatic required step. Four-tool external setup guidance does not imply four-tool PMS native hook support.",
+    "Current static desktop/mobile verification is distinguished from unverified private native-hook remote delivery.",
+    "All six chapters and five flow steps were inspected in source; visual rendering and interaction execution remain parent QA responsibility.",
+    "Final source re-read confirms all three recommendations and parent-known followups are addressed. No remaining content blocker.",
+    "Final mobile IA source check: topic-specific hero compaction and compact two-column flow nodes; showTopic sets body.dataset.chapter. Content verdict remains pass. Parent reports zero static warnings and 390px no overflow with active step 3. This reviewer did not rerun browser QA.",
+    "Final navigation fix source-reviewed: all chapter querySelectorAll selectors are narrowed to button[data-chapter], excluding body.dataset.chapter from topic indexing. Content verdict remains pass; browser execution remains parent responsibility."
+  ],
+  "previous_review_sha256": "7c3113f4769c257847335c75819725ac73fdc02eb2fa1ce21c0584871dc6bbc0",
+  "parent_known_followups_resolved": [
+    "Add two-second sender/browser polling cadence",
+    "Add limitation: undeclared requirements cannot be automatically guaranteed",
+    "Add declared-manifest coverage and runner trust limitation"
+  ],
+  "parent_reported_validation": {
+    "static_eli_check": "ERROR 0 / WARN 0",
+    "chromium": "1440/390, all six topics and five flow steps changed, overflow false",
+    "independently_reexecuted_by_this_reviewer": false
+  }
+}

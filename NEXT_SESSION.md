@@ -1,4 +1,10 @@
-## 현재 상태 — 하네스 회고 개선안과 Kit 공개 갱신 완료
+## 현재 상태 — Harness Kit와 AI PMS ELI20 전체 설명 공개
+
+공개 페이지: https://ai-pms-dashboard.vercel.app/overview.html. 정본은 reports/harness-pms-eli20/index.html. Kit 범위→PMS 목적/구성→Alice/Bob 공동 작업 흐름→현재 구현/검증→다음 운영 인수를 한 주제씩 설명합니다. 도해와 설명은 단계 선택에 따라 함께 바뀝니다. LinkedIn용 현재 범위 소개 문장도 포함했습니다. Kit ko/en AI PMS 페이지에 실제 링크를 추가했습니다.
+
+Astra 내용 검토 pass, ELI20 정적0오류/0경고, Kit36페이지 검사, 공개45파일 byte 대조 및 최종 공개390px의6주제/5단계·선택 표시·도해/텍스트 상태 변화를 확인했습니다. 주제 표시의 body selector 포함 문제와 Kit markdown 링크 문제는 수정 후 재배포/확인했습니다. 최신 content-review.json, release-proof.json 및 public-bytes.json이 근거입니다. 실제 provider 훅 신뢰와 원격 두 사용자 운영 인수는 계속 false입니다. LinkedIn 게시 자체는 하지 않았습니다. 아래는 이전 작업 이력입니다.
+
+## 이전 완료 — 하네스 회고 개선안과 Kit 공개 갱신 완료
 
 정본: reports/harness-retrospective/assessment.md 및 astra-review.md. 사용자 승인으로 Codex/Claude 자율 절차, Handoff의 제품 인수/부모 책임, loop 스킬의 공통 재시도 포인터, Kit ko/en 설명을 반영했습니다. 원래 목적→사용자 질문→데이터/출처→결과/행동→검증 방법을 기존 action-detail spec에 연결했고 미검증 pointer 경로를 영수증에 명시했습니다. 문서/인수 기준 보강이며 기존 UI/로그 API/훅 런타임/자격은 변경하지 않습니다.
 

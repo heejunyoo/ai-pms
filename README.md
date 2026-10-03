@@ -1,6 +1,8 @@
 # AI PMS
 
-**문서 업데이트: 2026-10-02 · 사람·세션·북극성·증분 중앙 운영**
+**문서 업데이트: 2026-10-03 · Kit와 PMS 전체 설명 공개**
+
+[Harness Kit와 AI PMS ELI20 전체 설명](https://ai-pms-dashboard.vercel.app/overview.html) — Kit 범위, PMS 목적·구성, 공동 작업 흐름, 구현/검증과 다음 방향을 한 주제씩 읽을 수 있습니다. [정본 및 검증](reports/harness-pms-eli20/README.md).
 
 첫 화면에서는 사람과 참여 프로젝트의 목표·상태·공동 참여자를 고릅니다. 프로젝트 계획 페이지는 **한 프로젝트의 WBS와 Gantt**만 표시합니다. 공동 프로젝트의 같은 목표 아래 Alice/Bob 등 참여자별 책임 작업을 구분합니다. 막힘·작업·Phase를 선택하면 별도 주소의 상세 페이지로 이동합니다.
 

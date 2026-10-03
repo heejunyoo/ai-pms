@@ -20,7 +20,7 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--out',type=Path,default=Path('specs/ai-pms-management/public-bytes.json'));args=parser.parse_args()
     manifest=json.loads((KIT/'manifest.json').read_text());pairs=[('https://harness-kit.vercel.app/'+name,KIT/name) for name in list(manifest['routes'])+['manifest.json','implementation.zip','reference-ko.zip','reference-en.zip']]
     public=ROOT/'apps/dashboard/public'
-    pairs += [('https://ai-pms-dashboard.vercel.app/'+('' if name=='index.html' else name),public/name) for name in ['index.html','empty.html','report.html','snapshot.json']]
+    pairs += [('https://ai-pms-dashboard.vercel.app/'+('' if name=='index.html' else name),public/name) for name in ['index.html','empty.html','report.html','snapshot.json'] + (['overview.html'] if (public/'overview.html').exists() else [])]
     with ThreadPoolExecutor(max_workers=8) as pool:results=list(pool.map(fetch,pairs))
     for result in results:
         if result['url'].endswith(('.html','vercel.app/')):assert result['security_headers']['Content-Security-Policy'],result['url']
