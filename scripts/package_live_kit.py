@@ -2,7 +2,7 @@
 """Copy explicitly allowlisted, credential-free PMS runtime into canonical Kit."""
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-PMS_FILES=['docs/project-architecture.md', 'docs/rensei-experience.md', 'docs/human-view-and-analysis.md', 'scripts/prepare_goal_analysis.py', 'specs/ai-pms-live/live_service.py', 'specs/ai-pms-live/live_sender.py', 'specs/ai-pms-live/session_goal.py', 'specs/ai-pms-live/demo_setup.py', 'specs/ai-pms-live/README.md', 'specs/ai-pms-live/sample/catalog.json', 'specs/ai-pms-live/sample/operations.json', 'specs/ai-pms-live/sample/central.json', 'specs/ai-pms-dashboard/portfolio.py', 'specs/ai-pms-dashboard/management.py', 'specs/ai-pms-dashboard/work.py', 'specs/ai-pms-dashboard/operations.py', 'specs/ai-pms-dashboard/dashboard.html', 'specs/ai-pms-central/central.py', 'specs/ai-pms-central/connectivity.py', 'specs/ai-pms-transport/common.py']
+PMS_FILES=['docs/visual-management.md', 'docs/project-architecture.md', 'docs/rensei-experience.md', 'docs/human-view-and-analysis.md', 'scripts/prepare_goal_analysis.py', 'specs/ai-pms-live/live_service.py', 'specs/ai-pms-live/live_sender.py', 'specs/ai-pms-live/session_goal.py', 'specs/ai-pms-live/demo_setup.py', 'specs/ai-pms-live/README.md', 'specs/ai-pms-live/sample/catalog.json', 'specs/ai-pms-live/sample/operations.json', 'specs/ai-pms-live/sample/central.json', 'specs/ai-pms-dashboard/portfolio.py', 'specs/ai-pms-dashboard/management.py', 'specs/ai-pms-dashboard/work.py', 'specs/ai-pms-dashboard/operations.py', 'specs/ai-pms-dashboard/dashboard.html', 'specs/ai-pms-central/central.py', 'specs/ai-pms-central/connectivity.py', 'specs/ai-pms-transport/common.py']
 def main():
     destination=Path.home()/'.claude/harness/activity/pms'
     for name in PMS_FILES:

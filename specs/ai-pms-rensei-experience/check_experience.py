@@ -55,10 +55,10 @@ const action=taskLinks(blockRow).find(n=>new URLSearchParams(n.href.slice(1)).ge
 action.click();assert.equal(route().kind,'task');assert.equal(route().t.id,blocked.id);
 assert($('detailPanel').textContent.includes(intervention.next_action));assert.equal(focused.dataset.taskId,blocked.id);
 navigate(p,{phase:blocked.phase_id});
-assert.equal($('detailPanel').children.filter(n=>n.tagName==='h3').length,3);
+for(const title of ['이 단계의 목표','달성 상태','참고한 API · MCP'])assert($('detailPanel').children.filter(n=>n.tagName==='h3').some(n=>n.textContent===title));
 const summary=all($('detailPanel')).find(n=>n.className==='human-next-decision');assert(summary);
 assert(summary.textContent.includes(intervention.next_action));assert(links(summary).some(n=>n.href.includes('view=attention')));
-assert.equal(taskLinks($('detailPanel')).length,0,'Phase detail must not accumulate raw task lists');
+for(const t of p.work.tasks.filter(t=>t.phase_id===blocked.phase_id))assert(taskLinks($('detailPanel')).some(n=>new URLSearchParams(n.href.slice(1)).get('task')===t.id),'Phase detail must retain every action path');
 assert.equal(humanReferences(p,blocked.phase_id).length,0,'Project API refs cannot imply phase usage');
 // Ready and in-progress tasks are ordinary progress, not urgent requests.
 $('ownerFilter').value='';

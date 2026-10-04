@@ -35,15 +35,16 @@ $('peopleList').children.find(b=>b.dataset.person==='Bob').click();
 assert.equal($('projectList').children.length,2);
 assert($('projectList').textContent.includes('Alice · Bob'));
 navigate(p);assert.equal(route().kind,'plan');
-assert.equal(all($('detailPanel')).filter(n=>n.dataset.humanPhase).length,p.work.phases.length);
-assert.equal(all($('detailPanel')).filter(n=>n.className?.startsWith('wbs-chart')).length,0);
+assert.equal(all($('detailPanel')).filter(n=>n.className==='human-phase-node').length,p.work.phases.length);
+assert(all($('detailPanel')).some(n=>n.className?.split(' ').includes('human-wbs')));
+assert.deepEqual(all($('detailPanel')).filter(n=>n.className?.split(' ').includes('human-wbs-task')).map(n=>n.dataset.taskId).sort(),p.work.tasks.map(t=>t.id).sort());
 assert(!$('detailPanel').textContent.includes('python3 synthetic-test.py'));
-all($('detailPanel')).find(n=>n.dataset.humanPhase===p.work.phases[1].id).click();
+all($('detailPanel')).find(n=>n.className==='human-phase-node'&&n.dataset.humanPhase===p.work.phases[1].id).click();
 assert.equal(route().kind,'phase');
-assert.deepEqual($('detailPanel').children.filter(n=>n.tagName==='h3').map(n=>n.textContent),['이 단계의 목표','달성 상태','참고한 API · MCP']);
+for(const title of ['이 단계의 목표','달성 상태','참고한 API · MCP'])assert($('detailPanel').children.filter(n=>n.tagName==='h3').some(n=>n.textContent===title));
 assert($('detailPanel').textContent.includes('이 단계에 연결된 참조 기록 없음'));
 assert.equal(humanReferences(p,p.work.phases[1].id).length,0); // project connections do not imply phase usage
-assert.equal(all($('detailPanel')).filter(n=>n.tagName==='a'&&n.href.includes('&task=')).length,0);
+for(const t of p.work.tasks.filter(t=>t.phase_id===p.work.phases[1].id))assert(all($('detailPanel')).some(n=>n.tagName==='a'&&new URLSearchParams(n.href.slice(1)).get('task')===t.id));
 assert.equal(JSON.stringify(model),before); // filtering and projection cannot promote completion
 $('closeDetail').click();assert.equal(route().kind,'plan');
 navigate(p,{view:'evidence'});$('tab-work').click();assert($('detailPanel').textContent.includes('WBS · 상세 작업 계획'));
@@ -51,7 +52,7 @@ assert(all($('detailPanel')).some(n=>n.className?.startsWith('wbs-chart')));
 applyChanges({cursor:1,reset:false,project_updates:[],operations:null,generated_at:model.generated_at});
 assert.equal(route().kind,'evidence');assert.equal($('ownerFilter').value,'Bob');
 const box=new Element('div');renderPhaseFlow(box,{...p,work:null,phases:[]});assert(box.textContent.includes('0 / 0'));
-console.log('Human projection PASS: person scope, shared goal, all phases, three-field detail, reference non-inference, unchanged model, separate WBS evidence and live route preservation. Browser QA separate.');
+console.log('Human projection PASS: person scope, shared goal, all phases and tasks, goal/status/reference detail with action path, reference non-inference, unchanged model, preserved WBS evidence and live route. Browser QA separate.');
 '''
     with tempfile.TemporaryDirectory() as td:
         output = Path(td) / 'human-dom.js'

@@ -1,0 +1,68 @@
+{
+  "date": "2026-10-04",
+  "status": "implemented_pending_rendered_acceptance",
+  "ui_packet": "ui-result.json",
+  "qa_packet": "qa-result.json",
+  "docs_packet": "docs-result.json",
+  "docs_integration_by": "parent fallback after agent thread limit",
+  "review": "../../reports/visual-redesign/final-source-review.md",
+  "astra_review": "../../reports/visual-redesign/astra-input.md",
+  "astra_final_review_complete": false,
+  "astra_final_review_boundary": "Usage limit after actual interim source review",
+  "desktop_browser_verified": false,
+  "browser_blocker": "Computer Use service restarted and REPL reset, Chrome/IAB unavailable; reconnect Chrome or explicit Playwright requested",
+  "mobile_in_scope": false,
+  "private_preview": {
+    "projects": 4,
+    "tasks": 49,
+    "source_excerpts": 15,
+    "publicly_uploaded": false,
+    "invented_hook_events": 0,
+    "invented_runner_passes": 0
+  },
+  "kit": {
+    "pages": 36,
+    "explicit_pms_runtime_files": 21,
+    "build_exit": 0,
+    "check_site_exit": 0
+  },
+  "public_suite": {
+    "command": "python3 scripts/verify_public.py",
+    "exit_code": 0,
+    "scope": "sanitized isolated public checkout; synthetic local HTTP and DOM assertions",
+    "log_sha256": "2b0ab6398b535555481e18ba22272ac8b4254d9d2d8e0f78d555c370423a6c68",
+    "initial_failures": [
+      "new closed technical disclosure keyboard fixture; corrected preserving assertions",
+      "sandbox socket PermissionError; rerun with explicit escalation succeeded"
+    ]
+  },
+  "remote_real_two_user_delivery_verified": false,
+  "provider_hook_trust_verified": false,
+  "actual_model_analysis_verified": false,
+  "sha256": {
+    "specs/ai-pms-dashboard/human-view.js": "a9dd01579afe6552ba1c53ca24b2a44a1ce4cd0be97152a7f13e018651846a80",
+    "specs/ai-pms-dashboard/human-view.css": "bcfdfb7361344ac7604143598acecb58c514cdd3bc206c8de8215178e2f98574",
+    "specs/ai-pms-dashboard/dashboard.html": "db3ab473f4ba3f35a0d71b1a483d3d07219e796369534abc90f8ebfd5163b454",
+    "specs/ai-pms-visual-management/check_visual.py": "0da9756e986e7863432bad094ee678ac4b6bcd120d9565d2dd03a97a1b38029e",
+    "docs/visual-management.md": "6e1648138598909a00429a109c9b261d350ca0fdf0fc593c56b59038c8827bd7",
+    "reports/harness-pms-eli20/index.html": "a6a3f83b734397a7c6b68ca146e4cd43d2c95865c2f6f3126965b3f1f81eb962",
+    "specs/ai-pms-toss-ia/check_ia.py": "f6066f836c68c7d4fda819551ed30d7046c2c2b3951975966d76b9a3fd5d88f5"
+  },
+  "handoff_result_validation": "ui/docs/expanded QA results accepted; QA packet re-emitted once for full-suite integration regression",
+  "graph": {
+    "mode": "local-code-only-ast",
+    "nodes": 2016,
+    "edges": 3402,
+    "unresolved_references": 0,
+    "endpoints_valid": true,
+    "graph_sha256": "61798dab32b57429b5fc5a9050ee9ed548680a12a604cadc0bfd61004e382a0e",
+    "node_groups": {
+      "apps": 7,
+      "scripts": 22,
+      "specs": 1923
+    },
+    "semantic_model_calls": false,
+    "runtime_integration_proven": false,
+    "generated_copies_included": true
+  }
+}

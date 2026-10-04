@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-04",
+  "status": "waiting_for_browser_connection_or_explicit_alternative",
+  "actual_render_verified": false,
+  "mobile_in_scope": false,
+  "attempts": [
+    {
+      "action": "documented Chrome binding",
+      "result": "Browser is not available"
+    },
+    {
+      "action": "documented in-app browser creation",
+      "result": "Browser is not available"
+    },
+    {
+      "action": "restart Computer Use service only; preserve Chrome and user tabs",
+      "result": "service restarted but native pipe startup still failed"
+    },
+    {
+      "action": "reset cua_repl and rediscover",
+      "result": "no apps/browsers; native pipe startup failed"
+    }
+  ],
+  "official_recovery_source": "https://learn.chatgpt.com/docs/chrome-extension",
+  "requested_next_step": "Reconnect Chrome in Computer Use/@Chrome or explicitly request Playwright browser verification",
+  "boundary": "Browser screenshots, actual desktop history/reload and readability have not been observed. Simulated DOM is separate."
+}

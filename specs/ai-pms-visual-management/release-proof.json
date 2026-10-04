@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-04",
+  "status": "deployed_pending_desktop_acceptance",
+  "dashboard": {
+    "url": "https://ai-pms-dashboard.vercel.app",
+    "deployment": "dpl_D4b3Pw7zbWJH7Rp21ysRb411XR1e",
+    "state": "READY"
+  },
+  "kit": {
+    "url": "https://harness-kit.vercel.app/ai-pms.html",
+    "deployment": "dpl_BnuTKuw6dBqBiCkHrMvSZpTLaKu5",
+    "state": "READY"
+  },
+  "public_bytes": "public-bytes.json",
+  "public_suite_exit_code": 0,
+  "git_push_verified": false,
+  "desktop_browser_verified": false,
+  "browser_recovery": "browser-recovery.json",
+  "mobile_in_scope": false,
+  "astra_interim_review_received": true,
+  "astra_final_review_complete": false,
+  "private_real_project_data_published": false,
+  "provider_hook_trust_verified": false,
+  "remote_real_two_user_delivery_verified": false,
+  "actual_model_analysis_verified": false
+}

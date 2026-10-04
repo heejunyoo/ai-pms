@@ -110,7 +110,12 @@ const evidence=focused.children.find(n=>n.tagName==='details');assert(evidence&&
 renderDetail();assert.equal(focused.dataset.taskId,bob.id); // delayed hashchange must retain exact focus
 $('ownerFilter').value='';renderCards();$('interventionList').append(opener);
 const other=shared.work.tasks.find(t=>t.id!==bob.id);openWork(shared,opener,other.id);assert.equal(focused.dataset.taskId,other.id);
-navigate(shared,{view:'evidence'});$('moreEvidence').open=false;$('tab-work').click();
+navigate(shared,{view:'evidence'});
+// Original tab keyboard checks model the user's explicit technical disclosure.
+// A collapsed native details excludes its descendant controls from keyboard use.
+assert.equal($('human-technical-evidence').open,false);
+$('human-technical-evidence').open=true;
+$('moreEvidence').open=false;$('tab-work').click();
 $('tab-work').onkeydown({key:'End',preventDefault(){}});assert.equal(focused.id,'tab-documents'); // skip collapsed evidence tabs
 $('moreEvidence').open=true;$('tab-work').onkeydown({key:'End',preventDefault(){}});assert.equal(focused.id,'tab-connections');
 assert.equal($('tab-connections').getAttribute('aria-selected'),'true');$('moreEvidence').open=false;$('moreEvidence').ontoggle();assert.equal(activeTab,'work');assert.equal(focused.id,'tab-work');assert.equal($('detailPanel').getAttribute('aria-labelledby'),'tab-work');

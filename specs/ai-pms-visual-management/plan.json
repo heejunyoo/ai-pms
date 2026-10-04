@@ -1,0 +1,311 @@
+{
+  "goal": "사람이 전체 공동 계획과 원자 작업의 진척 및 필요한 판단을 직관적인 WBS에서 읽고 중복 없는 세션 이력으로 연결한다",
+  "author": "root-visual-management",
+  "spec_ref": "spec.md",
+  "intent_guard": {
+    "source_ref": "source.md",
+    "requirements": [
+      {
+        "id": "visual",
+        "quote": "흐름 뿐 아니라, 시각화 표현도 더 직관적 이어야해.",
+        "outcome": "Primary hierarchical WBS with readable status/owner/gate and whole shared plan"
+      },
+      {
+        "id": "meeting",
+        "quote": "Astra 통한 전문가 미팅",
+        "outcome": "Astra and UX AI meeting with source-backed decisions and honest visual acceptance boundary"
+      },
+      {
+        "id": "handoff",
+        "quote": "handoff 로 액션 수행하고 보고 할것.",
+        "outcome": "Atomic reviewed UI/QA/docs packets implemented and integrated with review evidence"
+      },
+      {
+        "id": "sessions",
+        "quote": "몇번의 세션이 있었는지 분류는 혹시 필요할지?",
+        "outcome": "One scoped session history with goal and lifecycle distinct from acceptance"
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-visual-management/check_visual.py",
+      "expect_exit_code": 0
+    }
+  },
+  "open_decisions": [],
+  "phases": [
+    {
+      "id": "visual",
+      "name": "직관적 계획판과 사람 중심 근거",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-visual-management/check_visual.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "kind": "implement",
+      "phase": "visual",
+      "depends_on": [],
+      "already_tried": [
+        {
+          "what": "Previous visual experience baseline and expert meeting source findings",
+          "result": "check_experience.py exit0; WBS hidden in evidence, phase task path removed, duplicate raw+goal sessions not caught"
+        }
+      ],
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      },
+      "task_id": "visual-ui",
+      "requirement_ids": [
+        "visual",
+        "sessions",
+        "handoff"
+      ],
+      "objective": "기본 WBS·공동 책임·Phase 작업 통로·질문별 근거·단일 세션 이력 구현",
+      "done_when": [
+        "Primary WBS preserves all phases/shared owners/tasks and conservative completion/date semantics",
+        "Phase actions and question-led evidence/one scoped session projection preserve model and identity",
+        "Native scope/focus/change/reset and truthful documentary/missing evidence are preserved"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-rensei-experience/check_experience.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/human-view.js",
+          "symbol": "human projection/route/phase/evidence/session",
+          "what": "Primary WBS, scoped shared tasks, question-led evidence and single session history"
+        },
+        {
+          "path": "specs/ai-pms-dashboard/human-view.css",
+          "symbol": "WBS/list/session/visual hierarchy",
+          "what": "Desktop visual hierarchy, sparse color with text/shape, readable status/owner, no anonymous bars"
+        },
+        {
+          "path": "specs/ai-pms-dashboard/dashboard.html",
+          "symbol": "BEGIN HUMAN VIEW blocks only",
+          "what": "Embed exact projection files"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-visual-management/ui-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/human-view.js",
+        "why": "Native safe projection, person URL and unchanged conservative model"
+      },
+      "context": {
+        "spec_ref": "specs/ai-pms-visual-management/spec.md",
+        "facts": [
+          "ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "Parent owns integrations and browser/public release. Browser currently unavailable; mobile excluded.",
+          "Read expert decisions in reports/visual-redesign/; private documentary preview outside repo."
+        ],
+        "files": [
+          "PRODUCT-INTENT.md",
+          "specs/ai-pms-visual-management/spec.md"
+        ],
+        "excluded": "Other task files/backend/contract/external API/global hooks/trust/private state/deployment"
+      },
+      "constraints": {
+        "must": [
+          "Primary WBS preserves all phases/shared owners/tasks and conservative completion/date semantics",
+          "Phase actions and question-led evidence/one scoped session projection preserve model and identity",
+          "Native scope/focus/change/reset and truthful documentary/missing evidence are preserved",
+          "Preserve multi-user central purpose; source/DOM checks do not prove actual aesthetic quality"
+        ],
+        "must_not": [
+          "Change model/API/DB/permissions or expose private inputs",
+          "Delete/skip/weaken meaningful tests",
+          "Invent completion/dates/authority/AI results or rendered visual acceptance",
+          "Commit/push/deploy or edit other packet files"
+        ]
+      }
+    },
+    {
+      "kind": "implement",
+      "phase": "visual",
+      "depends_on": [],
+      "already_tried": [
+        {
+          "what": "Previous visual experience baseline and expert meeting source findings",
+          "result": "check_experience.py exit0; WBS hidden in evidence, phase task path removed, duplicate raw+goal sessions not caught"
+        }
+      ],
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      },
+      "task_id": "visual-qa",
+      "requirement_ids": [
+        "visual",
+        "sessions",
+        "handoff"
+      ],
+      "objective": "새로운 사람 중심 시각화와 세션 의미 회귀 검증",
+      "done_when": [
+        "New regressions verify whole WBS/tasks/owner/date/unknown and contextual evidence without 9 raw default tabs",
+        "Single history preserves mixed identities/goal-vs-ended/legacy/unknown/multiple tasks and immutable model",
+        "Existing meaningful checks retained and baseline failures and real browser boundary documented"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-visual-management/check_visual.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-human-projection/check_human_view.py",
+          "symbol": "projection assertions",
+          "what": "Update changed UI projection expectations while preserving all semantic invariants"
+        },
+        {
+          "path": "specs/ai-pms-rensei-experience/check_experience.py",
+          "symbol": "experience assertions",
+          "what": "Update old-render shape assertions; keep scope/reload/session/owner/text invariants"
+        },
+        {
+          "path": "specs/ai-pms-toss-ia/check_ia.py",
+          "symbol": "technical evidence keyboard regression fixture",
+          "what": "Preserve all existing assertions after opening the newly explicit technical disclosure; authorized parent integration follow-up after actual full-suite failure"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-visual-management/qa-result.json",
+        "specs/ai-pms-visual-management/check_visual.py"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/human-view.js",
+        "why": "Native safe projection, person URL and unchanged conservative model"
+      },
+      "context": {
+        "spec_ref": "specs/ai-pms-visual-management/spec.md",
+        "facts": [
+          "ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "Parent owns integrations and browser/public release. Browser currently unavailable; mobile excluded.",
+          "Read expert decisions in reports/visual-redesign/; private documentary preview outside repo."
+        ],
+        "files": [
+          "PRODUCT-INTENT.md",
+          "specs/ai-pms-visual-management/spec.md"
+        ],
+        "excluded": "Other task files/backend/contract/external API/global hooks/trust/private state/deployment"
+      },
+      "constraints": {
+        "must": [
+          "New regressions verify whole WBS/tasks/owner/date/unknown and contextual evidence without 9 raw default tabs",
+          "Single history preserves mixed identities/goal-vs-ended/legacy/unknown/multiple tasks and immutable model",
+          "Existing meaningful checks retained and baseline failures and real browser boundary documented",
+          "Preserve multi-user central purpose; source/DOM checks do not prove actual aesthetic quality"
+        ],
+        "must_not": [
+          "Change model/API/DB/permissions or expose private inputs",
+          "Delete/skip/weaken meaningful tests",
+          "Invent completion/dates/authority/AI results or rendered visual acceptance",
+          "Commit/push/deploy or edit other packet files"
+        ]
+      }
+    },
+    {
+      "kind": "implement",
+      "phase": "visual",
+      "depends_on": [],
+      "already_tried": [
+        {
+          "what": "Previous visual experience baseline and expert meeting source findings",
+          "result": "check_experience.py exit0; WBS hidden in evidence, phase task path removed, duplicate raw+goal sessions not caught"
+        }
+      ],
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      },
+      "task_id": "visual-docs",
+      "requirement_ids": [
+        "visual",
+        "sessions",
+        "meeting",
+        "handoff"
+      ],
+      "objective": "Kit 한영·화면 역할·시각적 인수 범위 문서 갱신",
+      "done_when": [
+        "Document human questions and actual visualization scope with unknown/current/documentary distinctions",
+        "Bilingual Kit final overrides cover WBS/shared responsibility/single session meaning without false design acceptance",
+        "Docs keep central purpose, privacy and actual desktop acceptance separate from DOM/publication"
+      ],
+      "acceptance": {
+        "command": "python3 -m py_compile $HOME/.claude/harness/build/current_content.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "$HOME/.claude/harness/build/current_content.py",
+          "symbol": "final PAGES ai-pms overrides",
+          "what": "Describe primary WBS/session semantics/contextual evidence in matched Korean/English"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-visual-management/docs-result.json",
+        "docs/visual-management.md"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/human-view.js",
+        "why": "Native safe projection, person URL and unchanged conservative model"
+      },
+      "context": {
+        "spec_ref": "specs/ai-pms-visual-management/spec.md",
+        "facts": [
+          "ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "Parent owns integrations and browser/public release. Browser currently unavailable; mobile excluded.",
+          "Read expert decisions in reports/visual-redesign/; private documentary preview outside repo."
+        ],
+        "files": [
+          "PRODUCT-INTENT.md",
+          "specs/ai-pms-visual-management/spec.md"
+        ],
+        "excluded": "Other task files/backend/contract/external API/global hooks/trust/private state/deployment"
+      },
+      "constraints": {
+        "must": [
+          "Document human questions and actual visualization scope with unknown/current/documentary distinctions",
+          "Bilingual Kit final overrides cover WBS/shared responsibility/single session meaning without false design acceptance",
+          "Docs keep central purpose, privacy and actual desktop acceptance separate from DOM/publication",
+          "Preserve multi-user central purpose; source/DOM checks do not prove actual aesthetic quality"
+        ],
+        "must_not": [
+          "Change model/API/DB/permissions or expose private inputs",
+          "Delete/skip/weaken meaningful tests",
+          "Invent completion/dates/authority/AI results or rendered visual acceptance",
+          "Commit/push/deploy or edit other packet files"
+        ]
+      }
+    }
+  ]
+}

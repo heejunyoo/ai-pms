@@ -1,16 +1,16 @@
 # AI PMS
 
-**문서 업데이트: 2026-10-04 · 단계 흐름과 판단 필요 처리함**
+**문서 업데이트: 2026-10-04 · 공동 WBS와 단일 실행 이력**
 
 [Harness Kit와 AI PMS ELI20 전체 설명](https://ai-pms-dashboard.vercel.app/overview.html) — Kit 범위, PMS 목적·구성, 공동 작업 흐름, 구현/검증과 다음 방향을 한 주제씩 읽을 수 있습니다. [정본 및 검증](reports/harness-pms-eli20/README.md).
 
-기본 화면은 **사람 선택 → 프로젝트 목표 → 각 Phase의 목표·달성 상태 → 참고한 API·MCP**입니다. 한 프로젝트/단계는 별도 주소에서 읽습니다. 세부 작업·WBS·검사·문서·세션·조직 지표는 분석 근거에 보존하며 목록에 펼쳐 놓지 않습니다. 단계 달성과 최종 인수는 구분합니다. 공동 프로젝트는 같은 카드에 참여자를 표시합니다.
+기본 화면은 **사람 선택 → 프로젝트 목표 → 각 Phase의 목표·달성 상태 → 참고한 API·MCP**입니다. 한 프로젝트/단계는 별도 주소에서 읽습니다. 프로젝트 상세는 모든 Phase와 원자 작업을 계층형 WBS로 보여줍니다. 검사·문서·세션 원문은 필요한 근거에서 엽니다. 단계 달성과 최종 인수는 구분합니다. 공동 프로젝트는 같은 카드에 참여자를 표시합니다.
 
-[사람 중심 화면 개선](docs/rensei-experience.md) · [프로젝트 구조](docs/project-architecture.md). 단계 흐름은 계획 순서이며 의존성·날짜를 추측하지 않습니다. 별도 처리함에는 담당자·요청 이유·선언된 다음 행동과 출처를 표시합니다. 최신 검증 범위는 [통합 영수증](specs/ai-pms-rensei-experience/integration-proof.json)에서 확인합니다.
+[공동 WBS와 실행 이력](docs/visual-management.md) · [프로젝트 구조](docs/project-architecture.md). 일정 없는 계획은 단계축이며 의존성·날짜를 추측하지 않습니다. 별도 처리함에는 담당자·요청 이유·선언된 다음 행동과 출처를 표시합니다. 최신 검증 범위는 [통합 영수증](specs/ai-pms-visual-management/integration-proof.json)에서 확인합니다.
 
 [화면과 AI 분석의 구분](docs/human-view-and-analysis.md)에는 로그별 의미, 목표 중복 제안, 반복 막힘·검증 누락·규칙 개선의 활용을 명시했습니다. 목표 비교 입력 생성기는 준비했으며 모델 분석/경고 저장은 아직 구현하지 않았습니다.
 
-2026-10-04 변경의 공개 반영·실제 응답 일치 여부는 [공개 검증 기록](specs/ai-pms-rensei-experience/release-proof.json)에서 확인합니다. 실제 프로젝트 자료는 비공개 로컬에 유지합니다. 사용자 지시에 따라 모바일 검증은 이번 인수 범위에서 제외합니다.
+2026-10-04 변경의 공개 반영·실제 응답 일치 여부는 [공개 검증 기록](specs/ai-pms-visual-management/release-proof.json)에서 확인합니다. 실제 프로젝트 자료는 비공개 로컬에 유지합니다. 사용자 지시에 따라 모바일 검증은 이번 인수 범위에서 제외합니다.
 
 [실행 가능한 Live Kit](specs/ai-pms-live/README.md) · [세션·북극성 JSON 템플릿](templates/operations.template.json) · [채워진 합성 예시](specs/ai-pms-live/sample/operations.json) · [최신 공개/검증 범위](specs/ai-pms-live/release-proof.json)
 
@@ -58,7 +58,7 @@ python3 scripts/verify_public.py
 
 입력 모델·완료 기준은 [대시보드 안내](specs/ai-pms-dashboard/README.md), 연결 로그 계약은 [연결 명세](specs/ai-pms-connectivity/spec.md), 로컬 기록기는 [Kit 활동 기록 안내](kit/activity/README.md)를 참고하세요. [공개 경계](PUBLIC_SNAPSHOT.md)에는 제외된 개인 자료와 역사적 검증 영수증의 한계를 설명합니다.
 
-7개 합성 writer의 실제 로컬 HTTP 전달, logger CLI→중앙 갱신, 관리 변경·손상·중복·재시작 검사를 통과했습니다. 실제 Codex/Claude 앱 훅 설치·trust, 원격 실제 두 사용자 전달과 현재 브라우저/390px 렌더는 아직 미검증입니다. Cursor/Gemini native 훅 어댑터도 미지원입니다. private 중앙 서버·참여자·자격은 운영자가 정하며 실제 로그를 공개 샘플로 보내지 않습니다.
+7개 합성 writer의 실제 로컬 HTTP 전달, logger CLI→중앙 갱신, 관리 변경·손상·중복·재시작 검사를 통과했습니다. 실제 Codex/Claude 앱 훅 설치·trust, 원격 실제 두 사용자 전달과 현재 데스크톱 렌더는 별도 인수이며 모바일은 사용자 지시로 제외합니다. Cursor/Gemini native 훅 어댑터도 미지원입니다. private 중앙 서버·참여자·자격은 운영자가 정하며 실제 로그를 공개 샘플로 보내지 않습니다.
 
 ## 관리 화면 정보 구조
 

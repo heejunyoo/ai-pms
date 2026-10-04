@@ -16,4 +16,5 @@ subprocess.run([sys.executable,'specs/ai-pms-wbs-timeline/check_timeline.py'],cw
 subprocess.run([sys.executable,'specs/ai-pms-action-detail/check_action_detail.py'],cwd=ROOT,check=True)
 subprocess.run([sys.executable,'specs/ai-pms-human-projection/check_human_view.py'],cwd=ROOT,check=True)
 subprocess.run([sys.executable,'specs/ai-pms-rensei-experience/check_experience.py'],cwd=ROOT,check=True)
+subprocess.run([sys.executable,'specs/ai-pms-visual-management/check_visual.py'],cwd=ROOT,check=True)
 print('PASS: portable public source, privacy, completion, snapshot and app checks')

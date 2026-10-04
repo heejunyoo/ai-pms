@@ -1,0 +1,51 @@
+{
+  "task_id": "visual-ui",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/human-view.js",
+      "action": "modified",
+      "summary": "Primary shared hierarchical WBS; scoped responsibilities; phase task and exit-evidence paths; documentary task routes; question-led evidence; single compound-identity session history; contextual central views. Final review: three evidence groups, compact owner counts/phase links, current/blocked phase tasks expanded first with per-phase counts, native documentary task focus/disclosure restoration."
+    },
+    {
+      "path": "specs/ai-pms-dashboard/human-view.css",
+      "action": "modified",
+      "summary": "Aligned hierarchy, status glyph/text, visible full owners, named phase summaries, sparse color and native evidence disclosures."
+    },
+    {
+      "path": "specs/ai-pms-dashboard/dashboard.html",
+      "action": "modified",
+      "summary": "Exact canonical JS/CSS embedded inside HUMAN VIEW markers only."
+    },
+    {
+      "path": "specs/ai-pms-visual-management/ui-result.json",
+      "action": "created",
+      "summary": "Handoff result and truthful validation boundary."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-rensei-experience/check_experience.py",
+    "exit_code": 0,
+    "output_tail": "Session evidence PASS: operations goals, lifecycle/completion distinction, reasons, task/Phase links, unchanged model\nDocumentary DOM PASS: declared action only, ordinary progress excluded, dated source navigation, missing action preserved, current verification unconfirmed, unchanged model\nExperience semantic regressions PASS. Simulated DOM only; real desktop/mobile rendering, history/reload and remote delivery remain separate acceptance boundaries."
+  },
+  "done_when_check": [
+    {
+      "condition": "Primary WBS preserves all phases/shared owners/tasks and conservative completion/date semantics",
+      "met": true,
+      "evidence": "human-view.js:78-107; check_visual.py exit0: shared WBS/all tasks/final gate, explicitly bound synthetic schedule/fallback and unchanged model; documentary unknown/current acceptance distinction PASS."
+    },
+    {
+      "condition": "Phase actions and question-led evidence/one scoped session projection preserve model and identity",
+      "met": true,
+      "evidence": "human-view.js:122-164; check_visual.py exit0: phase links, original nine categories under native disclosure; full source+source project identity matching, ambiguous legacy retained, lifecycle/goal distinction and multiple task links PASS."
+    },
+    {
+      "condition": "Native scope/focus/change/reset and truthful documentary/missing evidence are preserved",
+      "met": true,
+      "evidence": "check_experience.py exit0: attention URL/person scope, absolute native anchors, fresh boot, delta/reset focus/scroll, documentary source/date/no inferred next action and model unchanged. check_human_view.py exit0. Browser rendering is separately unverified."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.86,
+  "notes_for_orchestrator": "Also ran python3 specs/ai-pms-human-projection/check_human_view.py and python3 specs/ai-pms-visual-management/check_visual.py: exit0. This completes the source UI packet only. Actual desktop aesthetics, native browser back/reload/interaction acceptance remain unverified because browser is unavailable; mobile excluded. No external API/model/DB/backend/contract/trust/hook/private source/deployment changes. Explicit-source legacy matching is conservative: existing legacy schema has no provider field, so unclear legacy records remain labelled separately rather than incorrectly merged. Parent final review applied: work/sessions/documents are the only three primary evidence buttons; all nine categories remain under native technical disclosure. Owner summaries use counts and contextual phase links, not all task titles. All phase headings/counts remain visible; current/blocked phases expand first and user disclosure state survives refresh/reset. Primary plan also retains a compact API/MCP reference summary with declared/observed basis and a direct native connections evidence link; no call success is inferred from source reading."
+}

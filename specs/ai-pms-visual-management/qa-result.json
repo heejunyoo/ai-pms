@@ -1,0 +1,56 @@
+{
+  "task_id": "visual-qa",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-visual-management/check_visual.py",
+      "action": "created",
+      "summary": "User-question regressions for whole shared WBS, task/owner/unknown, phase action paths, evidence disclosure, single compound-identity session history, explicit schedule binding and documentary/current separation."
+    },
+    {
+      "path": "specs/ai-pms-human-projection/check_human_view.py",
+      "action": "modified",
+      "summary": "Changed projection-shape expectations to primary WBS and restored phase task links; retained model immutability, person scope, reference non-inference, embedded bytes and live route checks."
+    },
+    {
+      "path": "specs/ai-pms-rensei-experience/check_experience.py",
+      "action": "modified",
+      "summary": "Replaced obsolete no-phase-task assertion with complete phase action paths; preserved attention, all native URL/fresh reload/focus/reset/delta/session/unknown/documentary invariants."
+    },
+    {
+      "path": "specs/ai-pms-visual-management/qa-result.json",
+      "action": "created",
+      "summary": "Bounded QA receipt including executed baseline and final acceptance boundary."
+    },
+    {
+      "path": "specs/ai-pms-toss-ia/check_ia.py",
+      "action": "modified",
+      "summary": "Parent authorized integration follow-up: assert technical disclosure closed initially, then explicitly open it before retaining all original tab keyboard regression assertions."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-visual-management/check_visual.py",
+    "exit_code": 0,
+    "output_tail": "Visual WBS PASS; Visual sessions PASS; Visual dates PASS; Documentary WBS PASS; Visual semantic regressions PASS. Simulated DOM only; desktop aesthetics/history/render acceptance is unverified; mobile excluded. No remote delivery evidence."
+  },
+  "done_when_check": [
+    {
+      "condition": "New regressions verify whole WBS/tasks/owner/date/unknown and contextual evidence without 9 raw default tabs",
+      "met": true,
+      "evidence": "check_visual.py WBS + DATES + DOCUMENTARY cases exit0: all shared tasks and unknown owners survive person scope, all phase task links, text/shape statuses, final acceptance, technical original categories disclosed, strict schedule binding and invalid/private fallback."
+    },
+    {
+      "condition": "Single history preserves mixed identities/goal-vs-ended/legacy/unknown/multiple tasks and immutable model",
+      "met": true,
+      "evidence": "check_visual.py SESSIONS exit0: 5 same-ID operations across actor/environment/provider/source project keep unique DOM IDs, fully matched raw merges once, 2 unmatched/ambiguous legacy records survive, actual sessions entry renders exactly 7 rows in one history, ended/failed separate and multiple task links retained; unchanged model."
+    },
+    {
+      "condition": "Existing meaningful checks retained and baseline failures and real browser boundary documented",
+      "met": true,
+      "evidence": "Executed old check_experience.py baseline exit0. Executed new check_visual.py against old UI before implementation exit1 at Whole WBS must be the primary project plan. Final check_visual.py, check_human_view.py and check_experience.py exit0. Only changed obsolete rendering assertions; existing meaningful semantics retained. No actual desktop/browser/render verification was available; mobile excluded by scope."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.95,
+  "notes_for_orchestrator": "Semantic implementation acceptance complete; source/DOM tests do not prove visual aesthetics, usability, actual browser history/reload, provider or remote two-user delivery. Parent owns full existing suite, public integration and desktop visual acceptance. Baseline failures other than the executed WBS failure are source-review findings, not invented test receipts. Final independent source review: reports/visual-redesign/final-source-review.md; three compact evidence choices/current-priority disclosure and document-only task native focus regressions passed. Project default API/MCP summary missing was reported, repaired and verified through a new direct native-link/resource-basis regression. No unresolved source blocker found; actual desktop visual acceptance remains unverified. Parent-authorized IA integration follow-up reproduced closed-technical-tab keyboard failure, repaired user-access precondition without deleting assertions, and check_ia.py plus its linked work UI suite passed; final-source-review.md records evidence."
+}

@@ -1,0 +1,41 @@
+{
+  "task_id": "visual-docs",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "docs/visual-management.md",
+      "action": "created",
+      "summary": "Human questions, WBS/shared/session/evidence meaning and actual desktop acceptance boundary"
+    },
+    {
+      "path": "$HOME/.claude/harness/build/current_content.py",
+      "action": "modified",
+      "summary": "Canonical matched Korean/English primary WBS and single-session history overrides"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 -m py_compile $HOME/.claude/harness/build/current_content.py",
+    "exit_code": 0,
+    "output_tail": "py_compile completed successfully"
+  },
+  "done_when_check": [
+    {
+      "condition": "Document human questions and actual visualization scope with unknown/current/documentary distinctions",
+      "met": true,
+      "evidence": "New human-focused doc and matched ko/en final overrides; all actual desktop and model/remote boundaries explicit"
+    },
+    {
+      "condition": "Bilingual Kit final overrides cover WBS/shared responsibility/single session meaning without false design acceptance",
+      "met": true,
+      "evidence": "New human-focused doc and matched ko/en final overrides; all actual desktop and model/remote boundaries explicit"
+    },
+    {
+      "condition": "Docs keep central purpose, privacy and actual desktop acceptance separate from DOM/publication",
+      "met": true,
+      "evidence": "New human-focused doc and matched ko/en final overrides; all actual desktop and model/remote boundaries explicit"
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.9,
+  "notes_for_orchestrator": "Parent implemented docs fallback after followup thread-limit rejected delegation. Actual rendering is not accepted; parent still owns runtime/ZIP/build/public integration."
+}

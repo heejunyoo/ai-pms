@@ -1,3 +1,5 @@
+> 2026-10-04 시각화 재구성으로 기본 WBS와 Phase 작업 통로를 복원했습니다. 현재 화면 계약은 [visual-management.md](visual-management.md)를 따릅니다. 아래는 이전 단계 흐름 설계 이력입니다.
+
 # 사람 중심의 Phase 흐름과 판단 필요 처리함
 
 이번 개선은 사람이 여러 사용자의 프로젝트를 읽고 다음 판단으로 이동하는 화면에 집중합니다. [제품 목적](../PRODUCT-INTENT.md)의 중앙 다중 사용자 관리 범위를 유지하면서, [Rensei 조사](../reports/rensei-research/assessment.md)의 후보 중 전체 Phase 흐름과 별도 처리함, 간결한 상세와 안정적인 탐색을 채택합니다. 20개 제안 전체를 구현하거나 Rensei 실행기를 연결하는 작업은 아닙니다.
