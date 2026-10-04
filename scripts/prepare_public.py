@@ -7,7 +7,7 @@ from pathlib import Path
 import shutil
 from package_live_kit import PMS_FILES
 ROOT=Path(__file__).resolve().parents[1]
-EXCLUDED={'__pycache__','.git','.vercel','.local','runtime','outbox','inbox','staging','public-proof'}
+EXCLUDED={'graphify-out','.graphify','__pycache__','.git','.vercel','.local','runtime','outbox','inbox','staging','public-proof'}
 PRIVATE_NAMES={'runtime-inventory.json','local-verification-log.jsonl','preparation-evidence.json','preparation-result.json','preparation-review.md','capture-health.json','state.json','live-state.json','sender-state.json','registry.json','sender.json','demo.json'}
 EXT={'.py','.md','.json','.jsonl','.html','.css','.toml','.sh','.txt'}
 def main():
@@ -18,7 +18,9 @@ def main():
     for f in ROOT.rglob('*'):
         rel=f.relative_to(ROOT)
         if not f.is_file() or set(rel.parts)&EXCLUDED or f.name in PRIVATE_NAMES:continue
-        if f.suffix not in EXT and f.name not in {'.gitignore','.vercelignore'}:continue
+        if rel.as_posix() in {'specs/ai-pms-human-projection/public-phase-390.jpg', 'specs/ai-pms-human-projection/kit-analysis-390.jpg'}:
+            target=out/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(f.read_bytes());copied.append(rel.as_posix());continue
+        if f.suffix not in EXT and f.name not in {'.gitignore','.vercelignore'} and rel.as_posix()!='specs/ai-pms-dashboard/human-view.js':continue
         # The release proof is copied on final sync after production verification.
         body=f.read_text();body=body.replace(str(Path.home()),'$HOME')
         target=out/rel;target.parent.mkdir(parents=True,exist_ok=True);target.write_text(body);copied.append(rel.as_posix())

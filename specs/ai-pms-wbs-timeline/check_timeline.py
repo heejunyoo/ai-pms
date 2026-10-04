@@ -11,11 +11,12 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'specs/ai-pms-dashboard'))
 import portfolio
+from evidence_render_tests import evidence_render_script
 
 
 def main():
     html = (ROOT / 'specs/ai-pms-dashboard/dashboard.html').read_text()
-    script = html.split('<script>')[1].split('</script>')[0]
+    script = evidence_render_script(html.split('<script>')[1].split('</script>')[0])
     ia_path = ROOT / 'specs/ai-pms-toss-ia/check_ia.py'
     spec = importlib.util.spec_from_file_location('timeline_ia', ia_path)
     ia = importlib.util.module_from_spec(spec)

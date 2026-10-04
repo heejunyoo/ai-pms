@@ -1,0 +1,105 @@
+{
+  "kind": "human-projection-publication-readiness",
+  "at": "2026-10-03T14:02:42.468188+00:00",
+  "prepared": true,
+  "committed": false,
+  "pushed": false,
+  "deployed": false,
+  "public_production_bytes_verified_for_this_change": false,
+  "checks": {
+    "public_portable_suite": "pass on isolated checkout final runtime",
+    "default_projection_and_goal_packet": "pass",
+    "kit_36_pages_bilingual_zip_runtime_allowlist": "pass",
+    "local_harness_configuration": "pass",
+    "diff_whitespace": "pass",
+    "public_snapshot_same_as_previous_commit": true,
+    "private_files_excluded": true
+  },
+  "browser": {
+    "local_private": [
+      "1920px final project plan",
+      "390px phase detail and native Back",
+      "document date and declared API references"
+    ],
+    "public_preparation": [
+      "1440px Bob filter: 2 projects; shared Alice/Bob ownership",
+      "all 3 phases; no default WBS rows",
+      "390px three-group phase detail, direct reload, no horizontal overflow"
+    ],
+    "kit": [
+      "390px analysis section: no horizontal overflow"
+    ],
+    "eli20": [
+      "390px PMS topic: four human fields, no horizontal overflow"
+    ],
+    "synthetic_screenshots": [
+      "public-phase-390.jpg",
+      "kit-analysis-390.jpg"
+    ]
+  },
+  "analysis": {
+    "goal_input_prepared": true,
+    "model_executed": false,
+    "fake_findings": false,
+    "finding_validation_and_disposition_storage_implemented": false
+  },
+  "actual_provider_hook_trust_verified": false,
+  "actual_remote_two_user_delivery_verified": false,
+  "source_sha256": {
+    "specs/ai-pms-dashboard/dashboard.html": "6c5ea436e85de6e22eef9d14516681054946df94a226b6564e122d1ed689ee11",
+    "specs/ai-pms-dashboard/human-view.js": "1ffd6739cc25162c4d87e5652c068509dace00271cecb9e3d8b6c11c0986b3c6",
+    "specs/ai-pms-dashboard/human-view.css": "61e076b28833b74684d482e20349f419dc577903dfdfae6d5f37a8d8b73976ba",
+    "scripts/prepare_goal_analysis.py": "6a2fb659fa28d0a3fe45fc9305c1689e54a9543c80ddc82a1f5047ff012289e0",
+    "scripts/build_dashboard_app.py": "0f4aa92b915c84b84f81eb3151272c002d697b52ff15e1f1995b9c36ee71fedf",
+    "scripts/prepare_public.py": "7d6063f4e197d1ef7470dff5ba4507b1831ab4b0a24c9208c8d8277301c85bdf",
+    "scripts/package_live_kit.py": "a516d9bb63e4b5fafd1b2ae2b01b8f180b9ad443d1f2986596df0affcf056034",
+    "scripts/verify_public.py": "0400112fe630e848f5c2ff54bb8da55cba04f8504f26b78443b52070564f0b66",
+    "docs/human-view-and-analysis.md": "ce2e6214f95fc06cc0405a6d1a1b7ad62e39a737db36344fb9a29081e3a99c32",
+    "docs/central-management-contract.md": "8a629675630702ab23de73591a9eed42eb1cac6ddfd327f9ec02e02621b45ea3",
+    "PRODUCT-INTENT.md": "7b388959ab45545ae6f2932beba379622fe822f92b03f0a332072ee34b86bb87",
+    "README.md": "74e78edc3b9cb3e5f036f05a164b56a831f297ce044f0bf3326f0b4ac5732b6e",
+    "NEXT_SESSION.md": "4ce4fa4453e1ef62b066d2dd07052c21f786010ec2229f963edc3fa5e60509c7",
+    "reports/ai-pms-eli20/index.html": "bfdc830419ba1e136316fa705c271b984668d6f4b74990693dc2a1bc220e8ac3",
+    "reports/harness-pms-eli20/index.html": "e6b8a5780e817570f745cbfe1e9f29911866b79de38a4501f21c63ea6784d15e",
+    "apps/dashboard/public/index.html": "8438a9556c291eae0ee83a88f747e6690a873ca0a47edfb72ff935ed93adba07",
+    "apps/dashboard/public/empty.html": "44a3b61a9bb6c2d9766eb8c3e49c5bb6145d150984ca91c9053fefc2663b02ba",
+    "apps/dashboard/public/report.html": "8cc1a4ab883fbb3d41f7eace6061a1f3e562c9ef1cdfb6cda17569ee340cc187",
+    "apps/dashboard/public/overview.html": "e6b8a5780e817570f745cbfe1e9f29911866b79de38a4501f21c63ea6784d15e",
+    "apps/dashboard/public/snapshot.json": "7c0ab5526cc0ba90f0625ed19236f0fc1a5a9fca70a4bc9bb6deef7728fbf6e8",
+    "apps/dashboard/vercel.json": "955857ca85da59c06757d7bfc6e208b235970b88c793dcc16cb1e8440ef3e5dc",
+    "specs/ai-pms-human-projection/check_human_view.py": "44d912b806a823a4360afe1e0e8a92995e1100f7d61ae4570da9ea9d6dd88fe6",
+    "specs/ai-pms-human-projection/public-phase-390.jpg": "c85e767e6717dbbba75d14d365de6a761e0d45050f5e04a598f3cb0a481a044c",
+    "specs/ai-pms-human-projection/kit-analysis-390.jpg": "51610bdcc51cc83da5b05b6722d33118f4c508f95380a832dbf90bbbaf72203b",
+    "kit/build/current_content.py": "36103c3a720f5cca3360d297d1e5c75456089cce6918b56439d4695992a70b31",
+    "kit/build/build_current.py": "47b0fa5c6dafa6217159556af9bc381790c1e228e9ed1bb7e1bbd98796f1c6c2",
+    "kit/build/check_current.py": "69062fe1e329d7abf984f79e0ca9b546201661a1dd68426be11016dc16a8de83",
+    "kit/activity/pms/specs/ai-pms-dashboard/dashboard.html": "6c5ea436e85de6e22eef9d14516681054946df94a226b6564e122d1ed689ee11",
+    "kit/activity/pms/docs/human-view-and-analysis.md": "ce2e6214f95fc06cc0405a6d1a1b7ad62e39a737db36344fb9a29081e3a99c32",
+    "kit/activity/pms/scripts/prepare_goal_analysis.py": "6a2fb659fa28d0a3fe45fc9305c1689e54a9543c80ddc82a1f5047ff012289e0",
+    "kit/downloads/implementation.zip": "a354e98cb1e2b434f14fd3f22c54c20dd058e5cea013f87eadbb59b0cc4077ee",
+    "kit/downloads/reference-ko.zip": "a2a6f3f3ac9feeb8f3ef06e06dc4264f4b488889f7c9680654b24d5b4b1bc3c5",
+    "kit/downloads/reference-en.zip": "7d6e1a278cc15cc09433dc62c61afbab062a8339961939d309360cd54e49c778"
+  },
+  "next": [
+    "review isolated public diff and publication boundary",
+    "publish existing GitHub/dashboard/Kit targets",
+    "verify fresh production bytes, CSP and user paths",
+    "implement bounded model analysis and findings validation separately"
+  ],
+  "copy_update": {
+    "title": "프로젝트",
+    "removed": [
+      "question titles",
+      "redundant header description",
+      "repeated person-scope instruction"
+    ],
+    "checks": [
+      "human projection pass",
+      "UI/JS validator pass",
+      "local served page confirmed in Chrome",
+      "Kit 36 pages pass"
+    ],
+    "full_suite_scope": "Prior full suite retained; focused checks rerun for copy-only update",
+    "deployed": false
+  }
+}

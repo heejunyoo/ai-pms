@@ -17,7 +17,7 @@
   "sha256": {
     "specs/ai-pms-dashboard/dashboard.html": "6c545d20a2763f0f0a969da4ffceefcab5dd3b60bd13241b9f300a6810422494",
     "specs/ai-pms-action-detail/check_action_detail.py": "5f0cc5c659f2eba4020da47b70205ed46e619bf72ea78ef5b85a21a7f0d4633a",
-    "specs/ai-pms-action-detail/code-review.json": "a5c70259ad292ee18cb7e40c5699b439e842fe962a2dcda630c8247f0454341e",
+    "specs/ai-pms-action-detail/code-review.json": "99ba73198fbd7e9b06496edc0ac6bae481d5dc1519230f7004a3613a599b64c7",
     "specs/ai-pms-action-detail/browser-observation.json": "3ad1407f86e8805f12ca1fb29f06fa6c79b680b7afcafb4decb9bf6128d01067",
     "specs/ai-pms-action-detail/public-bytes.json": "b23577434768637301c05b48286bd509be65bb944e42a3d6d762bc22d5421eff",
     "specs/ai-pms-live/sample/catalog.json": "2030603b97964607acfa9fdae5e1f57f4d6f73e87a51ff90d2ac5f8c61988a8d",
@@ -37,7 +37,12 @@
       "specs/ai-pms-action-detail/code-review.json"
     ],
     "stale_source_paths": [
-      "specs/ai-pms-action-detail/browser-observation.json"
+      "specs/ai-pms-dashboard/dashboard.html",
+      "specs/ai-pms-action-detail/check_action_detail.py",
+      "specs/ai-pms-action-detail/browser-observation.json",
+      "apps/dashboard/public/index.html",
+      "apps/dashboard/public/empty.html",
+      "apps/dashboard/public/report.html"
     ],
     "reason": "Only fresh source hashes reconciled after path/whitespace sanitization. Historical hashes preserved; not another independent review or browser verification."
   }

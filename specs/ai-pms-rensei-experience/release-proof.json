@@ -1,0 +1,49 @@
+{
+  "checked_at": "2026-10-04T02:39:40.674462+00:00",
+  "status": "deployment_and_public_bytes_verified_github_pending",
+  "user_scope": "Mobile acceptance excluded by 2026-10-04 user instruction; remaining publication authorized",
+  "deployments": {
+    "dashboard": {
+      "id": "dpl_3csCTxoXyn5iFjrsG3sap1RsLQqQ",
+      "state": "READY",
+      "url": "https://ai-pms-dashboard.vercel.app"
+    },
+    "kit": {
+      "id": "dpl_7PegNUhrK7EdpxLPsUZnCMDaqPtw",
+      "state": "READY",
+      "url": "https://harness-kit.vercel.app/ai-pms.html"
+    }
+  },
+  "public_bytes": {
+    "receipt": "public-bytes.json",
+    "sha256": "88f66fcccd2b5b4ce7e09de56ceb41289c9e89f90d35c2030dfbf90dcda28236",
+    "matched_files": 45,
+    "env_route_status": 404
+  },
+  "github": {
+    "repository": "https://github.com/heejunyoo/ai-pms",
+    "visibility": "PUBLIC",
+    "push_verified": false
+  },
+  "checks": {
+    "portable_public_suite_exit_code": 0,
+    "kit36_pages_exit_code": 0,
+    "astra_source_dom_verdict": "pass_with_browser_boundary",
+    "actual_desktop_render_verified": false,
+    "actual_browser_navigation_verified": false,
+    "mobile_acceptance_required": false,
+    "private_projects_uploaded": false,
+    "remote_two_real_users_verified": false,
+    "real_provider_hook_trust_verified": false,
+    "model_analysis_implemented": false
+  },
+  "review_boundary": "UI code remains identical to Astra reviewed source. Post-review changes only clarify desktop-only acceptance and publication documentation. Old integration and review receipts retain their historical source hashes.",
+  "current_source_sha256": {
+    "specs/ai-pms-dashboard/human-view.js": "cdcc9db6f59c39bc67823f3bfcca9a113d80d0dff345566b7576a38445ea34e0",
+    "specs/ai-pms-dashboard/human-view.css": "b583e0003dc3fa3ab2026bc27f69d5b642a6268d04529059ce6b1bd0bf57d3a3",
+    "specs/ai-pms-dashboard/dashboard.html": "74badbbcbe48fa3ec3cefd50432d66d8bf5c06cdebe26d9f9dac158f255f4f01",
+    "specs/ai-pms-rensei-experience/check_experience.py": "c4d341fd02e73e7b0eb42eccc012da67134714cbe26498ba836d13b6964df807",
+    "docs/rensei-experience.md": "35a4fe637d44005cf8c46cd2d15eb54f0784d892a59cf261eaeed48c877fd6ec"
+  },
+  "desktop_limit": "CUA browser/app inventory unavailable with native pipe startup failure. HTTP bytes and DOM simulation are verified; actual desktop appearance/history are not."
+}

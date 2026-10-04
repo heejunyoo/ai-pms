@@ -1,0 +1,354 @@
+{
+  "kind": "goal-comparison-input",
+  "version": 1,
+  "evidence_mode": "synthetic",
+  "snapshot_generated_at": "2026-10-02T12:00:00Z",
+  "model_analysis_executed": false,
+  "findings": [],
+  "projects": [
+    {
+      "project_id": "alice-recall",
+      "name": "고객 지식 검색",
+      "owners": [
+        "Alice",
+        "Bob"
+      ],
+      "goal": "고객 질문을 지식 검색으로 연결하고 출처가 없는 답변을 차단한다",
+      "plan_id": "implementation",
+      "plan_version": "v1",
+      "objective_declarations": [
+        {
+          "id": "objective-Alice",
+          "version": "v1",
+          "kind": "company",
+          "parent_id": null,
+          "title": "고객 요청 분류 시간 단축",
+          "success_condition": "고객 요청 분류 시간 단축 여부는 실제 업무 성과 미관측",
+          "source": "합성 Company 요청분류 개선 지시문"
+        }
+      ],
+      "phases": [
+        {
+          "phase_id": "plan",
+          "goal_label": "목표와 인수 기준 확정"
+        },
+        {
+          "phase_id": "build",
+          "goal_label": "구현과 검증"
+        },
+        {
+          "phase_id": "release",
+          "goal_label": "인수와 후속 책임"
+        }
+      ],
+      "success_criteria": [
+        {
+          "id": "action-1-check",
+          "scope": "task",
+          "target_id": "action-1",
+          "description": "합성 기술 검사 · action-1-check"
+        },
+        {
+          "id": "action-2-check",
+          "scope": "task",
+          "target_id": "action-2",
+          "description": "합성 기술 검사 · action-2-check"
+        },
+        {
+          "id": "action-3-check",
+          "scope": "task",
+          "target_id": "action-3",
+          "description": "합성 기술 검사 · action-3-check"
+        },
+        {
+          "id": "action-4-check",
+          "scope": "task",
+          "target_id": "action-4",
+          "description": "합성 기술 검사 · action-4-check"
+        },
+        {
+          "id": "action-5-check",
+          "scope": "task",
+          "target_id": "action-5",
+          "description": "합성 기술 검사 · action-5-check"
+        },
+        {
+          "id": "action-6-check",
+          "scope": "task",
+          "target_id": "action-6",
+          "description": "합성 기술 검사 · action-6-check"
+        },
+        {
+          "id": "phase-exit",
+          "scope": "phase",
+          "target_id": "plan",
+          "description": "합성 기술 검사 · phase-exit"
+        },
+        {
+          "id": "project-exit",
+          "scope": "project",
+          "target_id": "alice-recall",
+          "description": "합성 기술 검사 · project-exit"
+        },
+        {
+          "id": "phase-exit-build",
+          "scope": "phase",
+          "target_id": "build",
+          "description": "합성 기술 검사 · phase-exit"
+        },
+        {
+          "id": "phase-exit-release",
+          "scope": "phase",
+          "target_id": "release",
+          "description": "합성 기술 검사 · phase-exit"
+        }
+      ],
+      "source_refs": [
+        {
+          "actor_id": "Alice",
+          "environment_id": "laptop",
+          "project_id": "11111111-1111-4111-8111-111111111111",
+          "evidence_mode": "synthetic"
+        },
+        {
+          "actor_id": "Alice",
+          "environment_id": "desktop",
+          "project_id": "11111111-1111-4111-8111-111111111111",
+          "evidence_mode": "synthetic"
+        },
+        {
+          "actor_id": "Bob",
+          "environment_id": "bob-work",
+          "project_id": "77777777-7777-4777-8777-777777777777",
+          "evidence_mode": "synthetic"
+        }
+      ]
+    },
+    {
+      "project_id": "bob-payments",
+      "name": "결제 요청 검증 구현 · 합성 예시",
+      "owners": [
+        "Bob"
+      ],
+      "goal": "중복 결제 요청과 누락 금액을 검증한다",
+      "plan_id": "implementation",
+      "plan_version": "v1",
+      "objective_declarations": [
+        {
+          "id": "objective-Bob",
+          "version": "v1",
+          "kind": "company",
+          "parent_id": null,
+          "title": "고객 요청 분류 시간 단축",
+          "success_condition": "고객 요청 분류 시간 단축 여부는 실제 업무 성과 미관측",
+          "source": "합성 Company 결제검증 작업 지시문"
+        }
+      ],
+      "phases": [
+        {
+          "phase_id": "plan",
+          "goal_label": "구현과 검증"
+        }
+      ],
+      "success_criteria": [
+        {
+          "id": "action-1-check",
+          "scope": "task",
+          "target_id": "action-1",
+          "description": "합성 기술 검사 · action-1-check"
+        },
+        {
+          "id": "phase-exit",
+          "scope": "phase",
+          "target_id": "plan",
+          "description": "합성 기술 검사 · phase-exit"
+        },
+        {
+          "id": "project-exit",
+          "scope": "project",
+          "target_id": "bob-payments",
+          "description": "합성 기술 검사 · project-exit"
+        }
+      ],
+      "source_refs": [
+        {
+          "actor_id": "Bob",
+          "environment_id": "laptop",
+          "project_id": "11111111-1111-4111-8111-111111111111",
+          "evidence_mode": "synthetic"
+        }
+      ]
+    },
+    {
+      "project_id": "carol-dashboard",
+      "name": "개인 대시보드 · 합성 예시",
+      "owners": [
+        "Carol"
+      ],
+      "goal": "프로젝트 현황과 최신 검사 시각을 표시한다",
+      "plan_id": "implementation",
+      "plan_version": "v1",
+      "objective_declarations": [
+        {
+          "id": "objective-Carol",
+          "version": "v1",
+          "kind": "personal",
+          "parent_id": null,
+          "title": "개인 프로젝트 현황을 한 화면에서 확인",
+          "success_condition": "개인 프로젝트 현황 파악; 합성 예시이며 실제 사용 결과 미관측",
+          "source": "합성 Carol 개인 요구사항 노트"
+        }
+      ],
+      "phases": [
+        {
+          "phase_id": "plan",
+          "goal_label": "구현과 검증"
+        }
+      ],
+      "success_criteria": [
+        {
+          "id": "action-1-check",
+          "scope": "task",
+          "target_id": "action-1",
+          "description": "합성 기술 검사 · action-1-check"
+        },
+        {
+          "id": "phase-exit",
+          "scope": "phase",
+          "target_id": "plan",
+          "description": "합성 기술 검사 · phase-exit"
+        },
+        {
+          "id": "project-exit",
+          "scope": "project",
+          "target_id": "carol-dashboard",
+          "description": "합성 기술 검사 · project-exit"
+        }
+      ],
+      "source_refs": [
+        {
+          "actor_id": "Carol",
+          "environment_id": "desktop",
+          "project_id": "22222222-2222-4222-8222-222222222222",
+          "evidence_mode": "synthetic"
+        }
+      ]
+    },
+    {
+      "project_id": "dana-discovery",
+      "name": "개인 기획 · 합성 예시",
+      "owners": [
+        "Dana"
+      ],
+      "goal": "아이디어의 요구사항을 정리한다",
+      "plan_id": "implementation",
+      "plan_version": "v1",
+      "objective_declarations": [
+        {
+          "id": "objective-Dana",
+          "version": "v1",
+          "kind": "personal",
+          "parent_id": null,
+          "title": "개인 아이디어 검토",
+          "success_condition": "개인 프로젝트 현황 파악; 합성 예시이며 실제 사용 결과 미관측",
+          "source": "합성 개인 노트"
+        }
+      ],
+      "phases": [
+        {
+          "phase_id": "plan",
+          "goal_label": "구현과 검증"
+        }
+      ],
+      "success_criteria": [
+        {
+          "id": "action-1-check",
+          "scope": "task",
+          "target_id": "action-1",
+          "description": "합성 기술 검사 · action-1-check"
+        },
+        {
+          "id": "phase-exit",
+          "scope": "phase",
+          "target_id": "plan",
+          "description": "합성 기술 검사 · phase-exit"
+        },
+        {
+          "id": "project-exit",
+          "scope": "project",
+          "target_id": "dana-discovery",
+          "description": "합성 기술 검사 · project-exit"
+        }
+      ],
+      "source_refs": [
+        {
+          "actor_id": "Dana",
+          "environment_id": "laptop",
+          "project_id": "33333333-3333-4333-8333-333333333333",
+          "evidence_mode": "synthetic"
+        }
+      ]
+    },
+    {
+      "project_id": "alice-personal",
+      "name": "Alice 개인 자료 정리 · 합성 예시",
+      "owners": [
+        "Alice"
+      ],
+      "goal": "여러 자료에서 찾아낸 근거를 다시 확인할 수 있게 정리한다",
+      "plan_id": "implementation",
+      "plan_version": "v1",
+      "objective_declarations": [
+        {
+          "id": "objective-Alice",
+          "version": "v1",
+          "kind": "personal",
+          "parent_id": null,
+          "title": "여러 자료에서 찾아낸 근거를 다시 확인할 수 있게 정리한다",
+          "success_condition": "자료 정리 결과를 확인한다",
+          "source": "합성 Alice 개인 목표 노트"
+        }
+      ],
+      "phases": [
+        {
+          "phase_id": "plan",
+          "goal_label": "구현과 검증"
+        }
+      ],
+      "success_criteria": [
+        {
+          "id": "action-1-check",
+          "scope": "task",
+          "target_id": "action-1",
+          "description": "합성 기술 검사 · action-1-check"
+        },
+        {
+          "id": "phase-exit",
+          "scope": "phase",
+          "target_id": "plan",
+          "description": "합성 기술 검사 · phase-exit"
+        },
+        {
+          "id": "project-exit",
+          "scope": "project",
+          "target_id": "alice-personal",
+          "description": "합성 기술 검사 · project-exit"
+        }
+      ],
+      "source_refs": [
+        {
+          "actor_id": "Alice",
+          "environment_id": "alice-personal",
+          "project_id": "88888888-8888-4888-8888-888888888888",
+          "evidence_mode": "synthetic"
+        }
+      ]
+    }
+  ],
+  "missing_context": [
+    "target audience and intended outcome may need confirmation",
+    "scope and confirmed organizational contribution must be resolved before warning"
+  ],
+  "instruction": "Compare intended outcome, audience, success criteria and scope. Shared technology or a shared team goal alone is not duplication. Existing collaboration is not duplicate effort. Cite evidence; propose only. Never merge projects or change completion.",
+  "snapshot_sha256": "7c0ab5526cc0ba90f0625ed19236f0fc1a5a9fca70a4bc9bb6deef7728fbf6e8"
+}

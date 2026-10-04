@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-10-04T00:42:50.217993+00:00",
+  "actual_desktop_render_verified": false,
+  "actual_390px_render_verified": false,
+  "actual_browser_history_reload_verified": false,
+  "attempts": [
+    "existing selected Chrome browser reported Browser is not available",
+    "cua.getState returned apps=[] browsers=[] and native pipe startup failed",
+    "second cua.getState after user approval returned same unavailable surfaces"
+  ],
+  "source_and_dom_are_not_visual_acceptance": true,
+  "local_preview_http_content_verified": true,
+  "next_acceptance": "Restore browser connection, then inspect shared people/project/phase/attention/session evidence at desktop and390px with back/forward/reload. No prior screenshot reused."
+}

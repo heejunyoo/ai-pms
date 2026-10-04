@@ -1,0 +1,51 @@
+{
+  "task_id": "experience-ui",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/human-view.js",
+      "action": "modified",
+      "summary": "Native ordered Phase flow, scoped grouped attention routes, conservative documentary provenance, limited Phase next decision and stable focus IDs. Astra fixes: validated person scope in URL and operations session evidence path."
+    },
+    {
+      "path": "specs/ai-pms-dashboard/human-view.css",
+      "action": "modified",
+      "summary": "White management hierarchy, plan-order connectors, vertical mobile flow, 44px targets and keyboard focus."
+    },
+    {
+      "path": "specs/ai-pms-dashboard/dashboard.html",
+      "action": "modified",
+      "summary": "Exact canonical human projection CSS/JS embedded blocks only."
+    },
+    {
+      "path": "specs/ai-pms-rensei-experience/ui-result.json",
+      "action": "created",
+      "summary": "Packet result and explicit validation boundary."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-human-projection/check_human_view.py",
+    "exit_code": 0,
+    "output_tail": "Human projection PASS: person scope, shared goal, all phases, three-field detail, reference non-inference, unchanged model, separate WBS evidence and live route preservation. Browser QA separate.\nGoal packet PASS: allowlisted input, source identity, no raw commands and no fake model findings"
+  },
+  "done_when_check": [
+    {
+      "condition": "Current model values remain unchanged and three-field phase detail preserved",
+      "met": true,
+      "evidence": "check_human_view.py exit0: unchanged model and exact three h3 headings. check_experience.py exit0: unchanged completion/current and documentary models."
+    },
+    {
+      "condition": "People/shared goal/all phase/attention routing with no fabricated actions",
+      "met": true,
+      "evidence": "check_experience.py exit0: scoped attention, real blocker/task/phase route, ready exclusion, unknown/legacy/ref non-inference, duplicate grouping; documentary declared action only and dated source navigation. Fresh runtime actual initialization restores #view=attention&person=Bob; operations sessions expose goals, lifecycle/completion, reasons, task/Phase links."
+    },
+    {
+      "condition": "Desktop/mobile native semantics and focus/delta route preservation",
+      "met": true,
+      "evidence": "Native semantic flow, responsive CSS and stable IDs; check_experience.py exit0 verifies fresh-runtime URL restoration, delta/reset scope/focus/scroll and reachable operations sessions. Actual browser rendering/history acceptance was unavailable and is not claimed."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.88,
+  "notes_for_orchestrator": "Astra R1/R2/R3 repaired: person URL state including reset/all scope, existing operations session evidence in sessions tab, documentary explicit other-owner exclusion with null-owner project scope preserved. Both canonical/embedded checks exit0, including independent fresh-runtime and session evidence regressions. Actual browser layout/history QA unavailable; no layout success claim. Only packet files changed. Final Astra R2 counterexample fixed: global attention and plan list-return links derive scoped hash from route target, never compare native anchor absolute href with #."
+}

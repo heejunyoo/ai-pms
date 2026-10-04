@@ -1,4 +1,24 @@
-## 현재 상태 — Harness Kit와 AI PMS ELI20 전체 설명 공개
+## 현재 공개 — 2026-10-04 단계 흐름·판단 처리함 배포
+
+사용자 지시로 모바일 인수를 제외하고 대시보드·Kit 공개 배포를 진행했습니다. 대시보드 https://ai-pms-dashboard.vercel.app 과 Kit https://harness-kit.vercel.app/ai-pms.html 모두 READY이며 45개 공개 페이지·다운로드가 로컬 검증본과 byte 일치했습니다. 현재 GitHub 게시와 전체 검증 범위는 specs/ai-pms-rensei-experience/release-proof.json을 확인합니다. 실제 네 프로젝트는 비공개 로컬에 유지합니다.
+
+데스크톱 실제 렌더·history 인수는 브라우저 연결 불가로 미검증입니다. DOM/새 runtime/absolute href·필터·세션 목표 근거 검사는 통과했지만 실제 시각적 품질을 증명하지 않습니다. 다음 화면 인수는 연결 복구 후 데스크톱에서만 진행합니다. 모바일은 필수 인수 조건이 아닙니다. 실제 provider 훅 trust·원격 실제 두 사용자 전달·모델 분석은 별도 운영 범위로 남습니다. 아래는 이전 기록입니다.
+
+## 현재 상태 — 2026-10-04 단계 흐름과 판단 필요 처리함
+
+정본: docs/rensei-experience.md와 specs/ai-pms-rensei-experience/plan.json. Astra 목적 정렬 검토 후 UI·회귀 검사·Kit 문서의 세 원자 패킷으로 구현했습니다. 전체 Phase 흐름, 별도 사람/프로젝트 처리함, 담당·요청 이유·다음 행동·문서 날짜와 출처를 반영했습니다. 현재 판정/완료 기준은 보존합니다. Graphify 코드 구조는 로컬에만 저장하며 공개하지 않습니다.
+
+검증과 남은 경계는 integration-proof.json을 확인하세요. 이번 브라우저는 연결 불가(브라우저 목록 없음)이므로 실제 desktop/390px 시각적 인수는 미완료입니다. 이전 화면 검증을 이번 변경의 증거로 재사용하지 않습니다. 공개 checkout/Kit/실제 네 프로젝트 로컬 화면을 갱신하며 push·배포는 하지 않습니다. 다음 인수는 브라우저 연결을 복구해 전체 흐름·처리함·history/reload·모바일을 실제 확인하는 것입니다.
+
+아래는 이전 상태입니다.
+
+## 현재 상태 — 2026-10-03 최소 현황 화면과 분석 근거 분리 · 배포 준비
+
+정본은 docs/human-view-and-analysis.md와 specs/ai-pms-human-projection/README.md입니다. 사람→프로젝트→Phase의 별도 주소, 목표·단계 목표·API/MCP·달성 상태만 기본 표시합니다. 상세 WBS/검사/세션/문서는 별도 근거로 보존하며 모델·완료 계산·원본 로그 계약은 변경하지 않았습니다. 실제 네 프로젝트는 비공개 로컬 대시보드에서 확인합니다.
+
+목표 비교 입력 생성기와 분석별 의미/권장 행동 명세를 준비했습니다. 실제 모델 분석·결과 검증·수락/기각 저장은 미구현이며 가짜 AI 경고를 넣지 않았습니다. Kit 한영 설명, implementation ZIP, ELI20 보고서·전체 설명, 공개 분리 checkout의 Vercel 빌드본을 갱신했습니다. 이번 작업은 사용자 요청대로 준비까지이며 GitHub push/commit과 Vercel 배포는 하지 않았습니다. 최신 readiness.json에서 실제 검사와 남은 경계를 확인하세요. 기존 아래 공개/완료 기록은 모두 이전 릴리스입니다.
+
+## 이전 공개 — Harness Kit와 AI PMS ELI20 전체 설명 공개
 
 공개 페이지: https://ai-pms-dashboard.vercel.app/overview.html. 정본은 reports/harness-pms-eli20/index.html. Kit 범위→PMS 목적/구성→Alice/Bob 공동 작업 흐름→현재 구현/검증→다음 운영 인수를 한 주제씩 설명합니다. 도해와 설명은 단계 선택에 따라 함께 바뀝니다. LinkedIn용 현재 범위 소개 문장도 포함했습니다. Kit ko/en AI PMS 페이지에 실제 링크를 추가했습니다.
 

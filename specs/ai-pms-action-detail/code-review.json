@@ -42,7 +42,9 @@
     "source_receipt_sha256": "b84f0662140b8152fb28acc0ff3f2fd4ebe0c3897ed63c5941ae56cd8cfad364",
     "changed_paths": [],
     "stale_source_paths": [
-      "specs/ai-pms-action-detail/spec.md"
+      "specs/ai-pms-action-detail/spec.md",
+      "specs/ai-pms-dashboard/dashboard.html",
+      "specs/ai-pms-action-detail/check_action_detail.py"
     ],
     "reason": "Only fresh source hashes reconciled after path/whitespace sanitization. Historical hashes preserved; not another independent review or browser verification."
   }

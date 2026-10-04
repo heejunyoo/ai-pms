@@ -1,0 +1,46 @@
+{
+  "task_id": "experience-docs",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "$HOME/.claude/harness/build/current_content.py",
+      "action": "modified",
+      "summary": "Final bilingual AI PMS phase-flow, attention-queue and experience-boundary guidance; minimum detail, provenance and read-only action boundaries."
+    },
+    {
+      "path": "docs/rensei-experience.md",
+      "action": "created",
+      "summary": "Adoption boundaries, canonical source responsibilities, project-only Graphify honesty and parent acceptance."
+    },
+    {
+      "path": "specs/ai-pms-rensei-experience/docs-result.json",
+      "action": "created",
+      "summary": "Handoff result with three done_when checks and static acceptance."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 -m py_compile $HOME/.claude/harness/build/current_content.py",
+    "exit_code": 0,
+    "output_tail": "py_compile exit0. Supplemental inline validation passed bilingual section/item parity, duplicate-ID absence, English localization and document links."
+  },
+  "done_when_check": [
+    {
+      "condition": "Korean/English explain minimal human screen and separate current read-only attention queue",
+      "met": true,
+      "evidence": "current_content.py final phase-flow/attention-queue overrides explain person→shared project→whole flow→three-field phase detail and scoped separate read-only queue. KO/EN section and item counts matched."
+    },
+    {
+      "condition": "No assertion all20 suggestions/AI/remote execution implemented",
+      "met": true,
+      "evidence": "experience-boundary explicitly excludes all20 proposals, execution control and AI analysis; docs/rensei-experience.md separates current UI adoption, preserved model decisions and remote/provider acceptance."
+    },
+    {
+      "condition": "Docs architecture points to source roles and parent generated project-only graph with honesty boundary",
+      "met": true,
+      "evidence": "docs/rensei-experience.md links project-architecture.md, checked canonical source files and parent refresh_project_graph.py; AST/source links explicitly do not prove runtime integration, coverage or remote delivery."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.95,
+  "notes_for_orchestrator": "Only packet-owned files edited. No build/runtime synchronization, source-model changes, external writes or deployment performed. Parent owns integration, project-only graph generation/endpoint validation, actual desktop390px navigation/delta/documentary acceptance and final Astra review. Documentary source/dates and current runner unverified boundary remain explicit."
+}

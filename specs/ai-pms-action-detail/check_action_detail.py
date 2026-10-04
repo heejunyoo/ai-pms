@@ -11,6 +11,7 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'specs/ai-pms-dashboard'))
 import portfolio
+from evidence_render_tests import evidence_render_script
 
 
 def main():
@@ -28,9 +29,9 @@ def main():
 model=validateModel(FIXTURE);renderPortfolio();renderDetail();
 const p=model.projects[0],task=p.work.tasks.find(t=>t.id==='action-3'),charts=()=>all($('detailPanel')).filter(n=>n.className?.startsWith('wbs-chart'));
 assert.equal(route().kind,'list');assert.equal($('portfolio').hidden,false);assert.equal(all($('projectList')).filter(n=>n.className?.startsWith('wbs-chart')).length,0);
-const card=$('projectList').children.find(c=>c.dataset.flowProject===p.id);assert(card.textContent.includes('공동 프로젝트 · 2명'));assert(card.textContent.includes('Alice · Bob'));assert.equal(card.children.filter(n=>n.tagName==='a').length,1);assert(!card.children.some(n=>n.tagName==='details'));
-card.children.find(n=>n.tagName==='a').click();assert.equal(route().kind,'plan');assert.equal(charts().length,1);assert($('detailPanel').textContent.includes('하나의 목표와 계획'));assert($('detailPanel').textContent.includes('목표 위임 담당'));assert($('detailPanel').textContent.includes('Bob'));assert.equal($('portfolio').hidden,true);
-const state=p.status,phaseStates=p.work.phases.map(ph=>ph.state);$('ownerFilter').value='Bob';renderDetail();assert($('detailPanel').textContent.includes('Bob 담당 범위 강조'));assert.equal(charts().length,1);assert.equal(p.status,state);assert.deepEqual(p.work.phases.map(ph=>ph.state),phaseStates);
+const card=$('projectList').children.find(c=>c.dataset.flowProject===p.id);assert(card.textContent.includes('공동 프로젝트 · 2명'));assert(card.textContent.includes('Alice · Bob'));assert.equal(card.children.filter(n=>n.tagName==='a'&&n.dataset.project===p.id).length,1);assert(!card.children.some(n=>n.tagName==='details'));
+card.children.find(n=>n.tagName==='a'&&n.dataset.project===p.id).click();assert.equal(route().kind,'plan');assert.equal(charts().length,1);assert($('detailPanel').textContent.includes('하나의 목표와 계획'));assert($('detailPanel').textContent.includes('목표 위임 담당'));assert($('detailPanel').textContent.includes('Bob'));assert.equal($('portfolio').hidden,true);
+const state=p.status,phaseStates=p.work.phases.map(ph=>ph.state);$('ownerFilter').value='Bob';navigate(p);assert($('detailPanel').textContent.includes('Bob 담당 범위 강조'));assert.equal(charts().length,1);assert.equal(p.status,state);assert.deepEqual(p.work.phases.map(ph=>ph.state),phaseStates);
 const b=$('detailPanel').querySelectorAll('[data-wbs-task]').find(b=>b.dataset.wbsTask===task.id);b.click();assert.equal(route().kind,'task');assert.equal(route().t.id,task.id);assert(location.hash.includes('&task='+task.id));assert.equal(charts().length,0);assert.equal($('portfolio').hidden,true);assert.equal(focused,$('detailPanel'));
 const groups=$('detailPanel').children.filter(n=>n.className==='action-group');assert.equal(groups.length,4);assert(groups[0].textContent.includes(task.latest_update.next_action));assert(groups[1].textContent.includes('Bob'));assert(groups[2].textContent.includes(task.latest_update.summary));for(const done of task.done_when)assert(groups[3].textContent.includes(done));const evidence=$('detailPanel').children.find(n=>n.tagName==='details');assert(evidence&&!evidence.open);assert(evidence.textContent.includes('작업 ID:'));assert.equal($('tab-work').parentElement.hidden,true);
 evidence.open=true;const nested=all(evidence).filter(n=>n.tagName==='details'&&n!==evidence)[0];nested.open=true;nested.children[0].focus();const nestedFocus=nested.children[0].id;renderDetail();assert($(nested.id).open);assert.equal(focused.id,nestedFocus);evidence.children[0].focus();renderDetail();assert.equal(route().kind,'task');assert($('detailPanel').children.find(n=>n.tagName==='details').open);assert.equal(focused.id,evidence.id+'-summary');assert.equal($('detailPanel').children.filter(n=>n.className==='action-group').length,4); // reload rendering reconstructs one page
@@ -45,8 +46,8 @@ const stale={...task,review_required:true,completed:false,state:'review_pending'
 const unsafe={...task,title:'<img src=x onerror=alert(1)>',latest_update:{...task.latest_update,next_action:'<script>alert(1)</script>'}};model.projects[0].work.tasks[model.projects[0].work.tasks.findIndex(t=>t.id===task.id)]=unsafe;location.hash=routeHash(p,{task:task.id});renderDetail();assert($('detailName').textContent.includes('<img'));assert($('detailPanel').textContent.includes('<script>'));assert(!all($('detail')).some(n=>n.tagName==='img'||n.tagName==='script'));
 console.log('Action detail PASS: list/plan/task addresses, strict invalid routes, one shared plan, actual owners/action/blocker/exit facts, missing states, closed evidence, scope/focus/live/reset and text safety. Browser reload/history/layout require parent QA.');
 '''
-    script = html.split('<script>')[1].split('</script>')[0]
-    assert '.innerHTML' not in script and "window.addEventListener('hashchange',renderDetail)" in script
+    script = evidence_render_script(html.split('<script>')[1].split('</script>')[0])
+    assert '.innerHTML' not in script and "window.addEventListener('hashchange',()=>renderDetail())" in script
     assert 'flow-inspector\');inspector' not in script
     with tempfile.TemporaryDirectory() as td:
         output = Path(td) / 'action-dom.js'

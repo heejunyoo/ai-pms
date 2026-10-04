@@ -1,16 +1,16 @@
 # AI PMS
 
-**문서 업데이트: 2026-10-03 · Kit와 PMS 전체 설명 공개**
+**문서 업데이트: 2026-10-04 · 단계 흐름과 판단 필요 처리함**
 
 [Harness Kit와 AI PMS ELI20 전체 설명](https://ai-pms-dashboard.vercel.app/overview.html) — Kit 범위, PMS 목적·구성, 공동 작업 흐름, 구현/검증과 다음 방향을 한 주제씩 읽을 수 있습니다. [정본 및 검증](reports/harness-pms-eli20/README.md).
 
-첫 화면에서는 사람과 참여 프로젝트의 목표·상태·공동 참여자를 고릅니다. 프로젝트 계획 페이지는 **한 프로젝트의 WBS와 Gantt**만 표시합니다. 공동 프로젝트의 같은 목표 아래 Alice/Bob 등 참여자별 책임 작업을 구분합니다. 막힘·작업·Phase를 선택하면 별도 주소의 상세 페이지로 이동합니다.
+기본 화면은 **사람 선택 → 프로젝트 목표 → 각 Phase의 목표·달성 상태 → 참고한 API·MCP**입니다. 한 프로젝트/단계는 별도 주소에서 읽습니다. 세부 작업·WBS·검사·문서·세션·조직 지표는 분석 근거에 보존하며 목록에 펼쳐 놓지 않습니다. 단계 달성과 최종 인수는 구분합니다. 공동 프로젝트는 같은 카드에 참여자를 표시합니다.
 
-작업 상세는 **지금 할 일 → 담당자 → 막힌 이유 → 완료 조건** 순서로 읽습니다. 원문 로그·검사 명령·내부 ID는 접힌 근거에 둡니다. 브라우저 뒤로/계획으로 돌아가기로 같은 계획표에 복귀합니다. 공개 샘플은 열람용이며 결정 기록이나 테스트를 대신 실행했다고 표시하지 않습니다.
+[사람 중심 화면 개선](docs/rensei-experience.md) · [프로젝트 구조](docs/project-architecture.md). 단계 흐름은 계획 순서이며 의존성·날짜를 추측하지 않습니다. 별도 처리함에는 담당자·요청 이유·선언된 다음 행동과 출처를 표시합니다. 최신 검증 범위는 [통합 영수증](specs/ai-pms-rensei-experience/integration-proof.json)에서 확인합니다.
 
-공개 Gantt 날짜는 `specs/ai-pms-wbs-timeline/sample-schedule.json`에 명시적으로 작성한 가상 계획입니다. 실제 훅 관측 날짜나 납기가 아닙니다. 일정 없는 입력은 Phase 기준으로 표시합니다. 완료 판정은 기존 검사·인수 근거를 유지합니다.
+[화면과 AI 분석의 구분](docs/human-view-and-analysis.md)에는 로그별 의미, 목표 중복 제안, 반복 막힘·검증 누락·규칙 개선의 활용을 명시했습니다. 목표 비교 입력 생성기는 준비했으며 모델 분석/경고 저장은 아직 구현하지 않았습니다.
 
-[최신 상세 IA 설계](specs/ai-pms-action-detail/spec.md) · [WBS/타임라인 설계](specs/ai-pms-wbs-timeline/spec.md) · [예시 일정](specs/ai-pms-wbs-timeline/sample-schedule.json)
+2026-10-04 변경의 공개 반영·실제 응답 일치 여부는 [공개 검증 기록](specs/ai-pms-rensei-experience/release-proof.json)에서 확인합니다. 실제 프로젝트 자료는 비공개 로컬에 유지합니다. 사용자 지시에 따라 모바일 검증은 이번 인수 범위에서 제외합니다.
 
 [실행 가능한 Live Kit](specs/ai-pms-live/README.md) · [세션·북극성 JSON 템플릿](templates/operations.template.json) · [채워진 합성 예시](specs/ai-pms-live/sample/operations.json) · [최신 공개/검증 범위](specs/ai-pms-live/release-proof.json)
 

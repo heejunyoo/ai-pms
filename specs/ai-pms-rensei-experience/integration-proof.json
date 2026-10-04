@@ -1,0 +1,87 @@
+{
+  "checked_at": "2026-10-04T00:43:41.162976+00:00",
+  "status": "implementation_integrated_visual_acceptance_pending",
+  "scope": "Minimal people/project/phase flow and separate read-only attention; existing WBS and session evidence retained",
+  "checks": [
+    {
+      "command": "python3 scripts/verify_public.py",
+      "cwd": "isolated public checkout",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 specs/ai-pms-rensei-experience/check_experience.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 check_site.py",
+      "scope": "canonical Kit 36 pages and language/ZIP/runtime parity",
+      "exit_code": 0
+    },
+    {
+      "command": "handoff plan/result validators",
+      "scope": "three packets; parent authorized exact legacy-link selector compatibility edit",
+      "exit_code": 0
+    },
+    {
+      "command": "git diff --check",
+      "cwd": "isolated public checkout",
+      "exit_code": 0
+    }
+  ],
+  "astra": {
+    "verdict": "pass_with_browser_boundary",
+    "receipt": "final-review.json",
+    "sha256": "a8627ec6ea614ef6837c689c6e5e5158419a869eda780d93d42d10f71fee2a2b"
+  },
+  "graph": {
+    "mode": "local-code-only-ast",
+    "nodes": 2005,
+    "edges": 3380,
+    "endpoints_valid": true,
+    "graph_sha256": "13f4b06cde610903c6ab41570c5dd2ee32bfcefcbdeb95e3728d355be6a6268e",
+    "runtime_integration_proven": false,
+    "public_exported": false
+  },
+  "integration": {
+    "synthetic_app_built": true,
+    "private_documentary_preview_rebuilt": true,
+    "private_projects": 4,
+    "private_tasks": 49,
+    "private_source_excerpts": 15,
+    "kit_ko_en_pages_and_zip_rebuilt": true,
+    "public_checkout_prepared": true,
+    "prepared_core_assets_byte_match": true
+  },
+  "sha256": {
+    "specs/ai-pms-dashboard/human-view.js": "cdcc9db6f59c39bc67823f3bfcca9a113d80d0dff345566b7576a38445ea34e0",
+    "specs/ai-pms-dashboard/human-view.css": "b583e0003dc3fa3ab2026bc27f69d5b642a6268d04529059ce6b1bd0bf57d3a3",
+    "specs/ai-pms-dashboard/dashboard.html": "74badbbcbe48fa3ec3cefd50432d66d8bf5c06cdebe26d9f9dac158f255f4f01",
+    "specs/ai-pms-rensei-experience/check_experience.py": "c4d341fd02e73e7b0eb42eccc012da67134714cbe26498ba836d13b6964df807",
+    "specs/ai-pms-action-detail/check_action_detail.py": "d86f9a5bcc243b552df02c5dc4043b9cfc77951f9663dd57212a06322c438919",
+    "apps/dashboard/public/index.html": "7e82f78beb97418020207fba9d9f1015e44dc85b75ca9886e222ee4318b50bbb",
+    "apps/dashboard/public/empty.html": "ff2948646c0f1e80cf2773f5b4223b1e7096ebabb8975debb4ccd0d401d3fac1",
+    "docs/rensei-experience.md": "90694a927904702347ba85a634c2dede56956b70ec3a591ad72f96e414932862",
+    "docs/project-architecture.md": "c566458322bcd263e38748538894d103a6b586e1620d2c53df08d79215761018",
+    "scripts/refresh_project_graph.py": "1cb0eed5f66a69af355de8ab2c96afd9f3dd4280da6a5220938f8f2cb45c392c",
+    "scripts/prepare_public.py": "3356ff322014d70f6dbd04962edebc4d7dc418738f1a05bd42a6a17f9df896e6",
+    "scripts/package_live_kit.py": "17436a4e264ade548d1a2502870a474a2be37b0f491b3b18ffda7a9c25323c86",
+    "scripts/verify_public.py": "5dbedb038aaace5aaf19f3ed88e054279fbd6bb86077a136642a98015cf0d50b"
+  },
+  "acceptance_boundaries": {
+    "actual_desktop_render_verified": false,
+    "actual_390px_render_verified": false,
+    "actual_browser_history_reload_verified": false,
+    "browser_reason": "No enabled browser surfaces; native pipe startup failure; see browser-boundary.json",
+    "real_provider_hook_trust_verified": false,
+    "remote_actual_two_user_delivery_verified": false,
+    "actual_ai_analysis_verified": false,
+    "github_commit_push_performed": false,
+    "vercel_deployment_performed": false
+  },
+  "next_acceptance": "Desktop visual acceptance remains unverified because browser surfaces are unavailable. Mobile acceptance is excluded by user. Publication evidence is in release-proof.json; original integration receipt predates that release.",
+  "acceptance_scope_update": {
+    "source": "2026-10-04 user instruction",
+    "quote": "휴대폰에서 접속은 거의 없을거야. 그 부분은 무시하고 진행해. 남아있는 작업 마무리 해",
+    "mobile_acceptance_required": false
+  }
+}

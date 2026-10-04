@@ -1,0 +1,68 @@
+{
+  "reviewer": "astra-rensei-independent",
+  "verdict": "blocked",
+  "review_kind": "final_source_and_simulated_dom",
+  "source_sha256": "1b14c5efb686327dbbb90fb20953ff458b618d706644c53b65673b1a6d51a2c6",
+  "spec_sha256": "f8b49dda8ecdbf83e278477f4c3e7d9b4a64b8089afe81a379dd7c3f396506de",
+  "files_sha256": {
+    "specs/ai-pms-dashboard/human-view.js": "4a3845da65b52791bce72c537bfc80a14bb5f9dc5b410acbd8e34b15006059d5",
+    "specs/ai-pms-dashboard/human-view.css": "5d1ba874474b6606ddc0c54d17a878dca06fe7309f9b13a46c51283787f21f12",
+    "specs/ai-pms-dashboard/dashboard.html": "cdc4a3379a59515071cad57fc521e77b1e6d3a75afec309427e1d1b27d661c51",
+    "specs/ai-pms-rensei-experience/check_experience.py": "019dc167e564cffdd098e6ac1be2df539e94af92641308368b7af40b54c857f9",
+    "docs/rensei-experience.md": "c303c76b85ef205650f555ad343c2434adb2e6fdf5e919ed2a0501eeddf6ad98"
+  },
+  "checks_run": [
+    {
+      "command": "python3 specs/ai-pms-rensei-experience/check_experience.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 specs/ai-pms-human-projection/check_human_view.py",
+      "exit_code": 0
+    }
+  ],
+  "findings": [
+    {
+      "id": "R1",
+      "severity": "high",
+      "file": "specs/ai-pms-dashboard/human-view.css:2; dashboard.html:157-160,247",
+      "issue": "Claimed A6 session-goal/task/phase evidence preservation has no visible user path. #sessionArea is permanently display:none!important, navigation to the operations view is hidden, and the evidence sessions tab only shows legacy p.sessions IDs/event counts rather than model.operations session goals, lifecycle/completion and task links.",
+      "required_fix": "Expose existing operations session evidence within the separate evidence sessions tab or another existing evidence route; preserve person/project scoping and distinguish lifecycle from goal completion. Verify session goal -> linked task -> phase/evidence path. Keep the basic minimal IA unchanged."
+    },
+    {
+      "id": "R2",
+      "severity": "medium",
+      "file": "specs/ai-pms-dashboard/human-view.js:37; dashboard.html:230-233,251-254",
+      "issue": "Selected person is held only in ownerFilter DOM state. Queue URLs encode project/view but no person, and no persisted filter restoration exists. Bob-scoped attention therefore becomes all-person attention after a reload/new tab, violating the explicit reload filter-preservation requirement.",
+      "required_fix": "Persist and restore the selected person safely, or encode the scope in navigation state/URL with validation. Add a fresh-runtime reload test rather than only applyChanges on the same DOM."
+    },
+    {
+      "id": "R3",
+      "severity": "medium",
+      "file": "specs/ai-pms-dashboard/human-view.js:26",
+      "issue": "Documentary rows skip the explicit-owner filter because it is guarded by !d. If a document task supplies owner Alice, a Bob-scoped queue will still present 담당 Alice as a requested action. Missing owners may remain project scoped, but explicit other-owner requests must respect person scope.",
+      "required_fix": "Apply the explicit-owner filter to both current and documentary requests; add a documentary shared-project Alice/Bob counterexample."
+    }
+  ],
+  "aligned_points": [
+    "Multi-user/shared project goals remain primary and all phases remain visible under person scope.",
+    "Plan-order text avoids fabricated dependency/date/ETA; conservative current model values unchanged in executed regression cases.",
+    "Separate read-only attention displays declared action and basis; documentary blockers show date/source and current runner acceptance unconfirmed.",
+    "Basic Phase detail retains the three requested fields plus a bounded next-decision summary.",
+    "Native links, ordered list and responsive CSS are present; source evidence is insufficient to judge actual rendered visual quality."
+  ],
+  "acceptance_boundaries": {
+    "actual_desktop_render_verified": false,
+    "actual_390px_render_verified": false,
+    "actual_browser_history_reload_verified": false,
+    "remote_two_user_delivery_verified": false,
+    "provider_hook_trust_verified": false,
+    "actual_ai_analysis_verified": false,
+    "deployment_performed": false
+  },
+  "limitations": [
+    "Parent reports Browser not available and empty CUA browser/app surfaces with native pipe failure; reviewer has no current screenshots and did not perform browser visual acceptance.",
+    "Graph cleanup and Kit allowlist/runtime/package synchronization still in progress with parent; not certified in this receipt.",
+    "Source and simulated DOM checks passing do not constitute finished visual-design or full-product acceptance."
+  ]
+}

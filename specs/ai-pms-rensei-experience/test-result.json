@@ -1,0 +1,46 @@
+{
+  "task_id": "experience-tests",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-rensei-experience/check_experience.py",
+      "action": "created",
+      "summary": "Independent semantic current/documentary DOM regressions with synthetic fixtures and unchanged-model assertions"
+    },
+    {
+      "path": "specs/ai-pms-rensei-experience/test-result.json",
+      "action": "created",
+      "summary": "Scoped test acceptance and explicit simulation/browser boundary"
+    },
+    {
+      "path": "specs/ai-pms-action-detail/check_action_detail.py",
+      "action": "modified",
+      "summary": "Parent-authorized precise project plan link selector and URL-backed Bob navigation; all action/focus/safety assertions retained"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-rensei-experience/check_experience.py",
+    "exit_code": 0,
+    "output_tail": "Current DOM PASS: scoped attention, real blocker/task/phase route, ready exclusion, unknown/legacy/ref non-inference, grouping, unchanged completion, delta/reset filter/focus/scroll\nFresh runtime PASS: actual initialization restores Bob attention URL scope with unchanged model\nSession evidence PASS: operations goals, lifecycle/completion distinction, reasons, task/Phase links, unchanged model\nDocumentary DOM PASS: declared action only, ordinary progress excluded, dated source navigation, missing action preserved, current verification unconfirmed, unchanged model\nExperience semantic regressions PASS. Simulated DOM only; real desktop/mobile rendering, history/reload and remote delivery remain separate acceptance boundaries.\nNative anchor PASS: absolute href global attention return preserves person scope\nFresh list runtime PASS: generated return hash restores Bob on reload/new tab and project return"
+  },
+  "done_when_check": [
+    {
+      "condition": "Meaningful DOM cases cover scoped queue, real blocker action, ready exclusion, missing/legacy/ref non-inference and unchanged model",
+      "met": true,
+      "evidence": "check_experience.py current DOM assertions exercise public synthetic shared Alice/Bob project, Bob blocker action-3, task routing, limited Phase summary, ready/in_progress exclusion, project gate scope, missing/legacy/unknown reference rendering, duplicate grouping and full model equality; documentary cases preserve source/date and unverified current checks. Acceptance exit 0. Astra followup adds explicit documentary Alice owner exclusion under Bob while unowned remains visible, operations sessions goal/lifecycle/completion/reason/task/Phase links, ended+failed distinction and unchanged minimal default plan/model. All pass."
+    },
+    {
+      "condition": "Test live change/reset preserves route/filter/focus where supported by harness",
+      "met": true,
+      "evidence": "Actual applyChanges invoked with delta cursor 1 and reset cursor 2; hash, attention route, Bob filter, connected native-link focus ID and captured scroll restored. Project data equals validated fixture after reset. Acceptance exit 0. Fresh Node runtime sets the actually emitted #view=attention&person=Bob before application JS initialization, loads pms-data through real bootstrap and proves Bob scope/model identity without prior DOM or variables. Absolute HTMLAnchorElement.href resolution uses standard URL in separate harness runtimes. Bob global attention native close yields actual #person=Bob, survives fresh list initialization, and project→list preserves Bob under absolute href."
+    },
+    {
+      "condition": "Baseline assumptions and real browser boundary stated",
+      "met": true,
+      "evidence": "Prior check_human_view.py baseline passed. Saved pre-feature dashboard global #view=attention returned invalid, expected attention regression failed exit 1. New acceptance on synchronized canonical embedded JS/CSS passed exit 0. Module docstring and output explicitly limit proof to DOM simulation; actual desktop/mobile/history/reload acceptance belongs to parent. Saved pre-fix baselines independently fail reload scope (empty versus Bob), sessions goal missing, and Alice documentary leakage under Bob, each exit 1. Final source acceptance exit 0. Saved pre-fix absolute-anchor global return and project return independently fail person query null versus Bob (exit 1), current regression passes."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.96,
+  "notes_for_orchestrator": "Parent explicitly authorized check_action_detail.py selector repair: count/click sole dataset.project plan link instead of every anchor. URL-backed scope requires navigate(p) after choosing Bob; original scope/action/blocker/exit/focus/safety assertions retained, acceptance exit 0. New fresh JS initialization proves person hash bootstrap in simulation; real browser back/forward/reload/layout and remote delivery remain parent boundaries."
+}

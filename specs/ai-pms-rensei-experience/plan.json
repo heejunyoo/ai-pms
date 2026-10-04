@@ -1,0 +1,298 @@
+{
+  "goal": "다수 사용자의 목표와 전체 단계 진척 및 판단이 필요한 작업을 최소 화면으로 명확하게 읽고 탐색한다",
+  "author": "root-rensei-experience",
+  "spec_ref": "spec.md",
+  "intent_guard": {
+    "source_ref": "source.md",
+    "requirements": [
+      {
+        "id": "design",
+        "quote": "사람 입장에서 바라봤을때 의미가 있는 깔끔한 디자인",
+        "outcome": "Meaningful minimal people/project/phase and actionable attention UX"
+      },
+      {
+        "id": "astra",
+        "quote": "Astra 통해서 검증하고",
+        "outcome": "Independent Astra intent and final code/visual review"
+      },
+      {
+        "id": "handoff",
+        "quote": "Handoff 통해 원자화 하고",
+        "outcome": "Reviewed atomic packets with scoped implementation and integrated acceptance"
+      },
+      {
+        "id": "graph",
+        "quote": "그래피파이 통해 프로젝트 정리도 진행해.",
+        "outcome": "Project-only AST graph and source grounded architecture guide"
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-rensei-experience/check_experience.py",
+      "expect_exit_code": 0
+    }
+  },
+  "open_decisions": [],
+  "phases": [
+    {
+      "id": "experience",
+      "name": "사람 중심 단계 흐름과 관리 판단",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-rensei-experience/check_experience.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "kind": "implement",
+      "phase": "experience",
+      "depends_on": [],
+      "already_tried": [
+        {
+          "what": "Current human projection baseline",
+          "result": "check_human_view.py exit0; disconnected grid and three-field phase detail lack an actionable queue"
+        }
+      ],
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      },
+      "task_id": "experience-ui",
+      "requirement_ids": [
+        "design",
+        "handoff"
+      ],
+      "objective": "Implement a clear phase flow and separate actionable attention queue",
+      "done_when": [
+        "Current model values remain unchanged and three-field phase detail preserved",
+        "People/shared goal/all phase/attention routing with no fabricated actions",
+        "Desktop/mobile native semantics and focus/delta route preservation"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-human-projection/check_human_view.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/human-view.js",
+          "symbol": "humanPhase/renderPhaseFlow/renderDetail/route wrapper",
+          "what": "Build minimal flow and separate attention route from existing interventions with accessible stable state"
+        },
+        {
+          "path": "specs/ai-pms-dashboard/human-view.css",
+          "symbol": "human flow/attention responsive rules",
+          "what": "Polish human-readable hierarchy, spacing, connectors, mobile and focus"
+        },
+        {
+          "path": "specs/ai-pms-dashboard/dashboard.html",
+          "symbol": "BEGIN HUMAN VIEW CSS/JS blocks only",
+          "what": "Embed exact source projection files"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-rensei-experience/ui-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/human-view.js",
+        "why": "Safe DOM projection and separate routes preserve conservative models"
+      },
+      "context": {
+        "spec_ref": "specs/ai-pms-rensei-experience/spec.md",
+        "facts": [
+          "ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "Shared project Alice/Bob; documentary private preview outside repo. Parent syncs artifacts/Kit runtime/build/public checkout.",
+          "Source tests use a simulated DOM; actual browser acceptance belongs to parent."
+        ],
+        "files": [
+          "PRODUCT-INTENT.md",
+          "specs/ai-pms-rensei-experience/spec.md"
+        ],
+        "excluded": "Other task files, backend/model contract/DB/external APIs/global settings/deployment/private logs"
+      },
+      "constraints": {
+        "must": [
+          "Current model values remain unchanged and three-field phase detail preserved",
+          "People/shared goal/all phase/attention routing with no fabricated actions",
+          "Desktop/mobile native semantics and focus/delta route preservation",
+          "Documentary queue items show dated document basis/source and never become current runner evidence; repeated same-phase same-reason requests grouped"
+        ],
+        "must_not": [
+          "Edit review receipts or unrelated files",
+          "Delete/skip/weaken existing tests",
+          "Invent model results, completion, dates, authority or remote success",
+          "Commit/push/deploy or expose private inputs"
+        ]
+      }
+    },
+    {
+      "kind": "implement",
+      "phase": "experience",
+      "depends_on": [],
+      "already_tried": [
+        {
+          "what": "Current human projection baseline",
+          "result": "check_human_view.py exit0; disconnected grid and three-field phase detail lack an actionable queue"
+        }
+      ],
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      },
+      "task_id": "experience-tests",
+      "requirement_ids": [
+        "design",
+        "astra",
+        "handoff"
+      ],
+      "objective": "Verify person scope, actionable routing and unchanged completion with regression cases",
+      "done_when": [
+        "Meaningful DOM cases cover scoped queue, real blocker action, ready exclusion, missing/legacy/ref non-inference and unchanged model",
+        "Test live change/reset preserves route/filter/focus where supported by harness",
+        "Baseline assumptions and real browser boundary stated"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-rensei-experience/check_experience.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-action-detail/check_action_detail.py",
+          "symbol": "project card plan-link selector and scoped navigation",
+          "what": "Parent-authorized compatibility correction for new queue links and person URL; preserve all action/blocker/safety assertions, no test removal/skip"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-rensei-experience/check_experience.py",
+        "specs/ai-pms-rensei-experience/test-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/human-view.js",
+        "why": "Safe DOM projection and separate routes preserve conservative models"
+      },
+      "context": {
+        "spec_ref": "specs/ai-pms-rensei-experience/spec.md",
+        "facts": [
+          "ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "Shared project Alice/Bob; documentary private preview outside repo. Parent syncs artifacts/Kit runtime/build/public checkout.",
+          "Source tests use a simulated DOM; actual browser acceptance belongs to parent."
+        ],
+        "files": [
+          "PRODUCT-INTENT.md",
+          "specs/ai-pms-rensei-experience/spec.md"
+        ],
+        "excluded": "Other task files, backend/model contract/DB/external APIs/global settings/deployment/private logs"
+      },
+      "constraints": {
+        "must": [
+          "Meaningful DOM cases cover scoped queue, real blocker action, ready exclusion, missing/legacy/ref non-inference and unchanged model",
+          "Test live change/reset preserves route/filter/focus where supported by harness",
+          "Baseline assumptions and real browser boundary stated",
+          "Regression tests distinguish documentary progress/requests from current verification and retain source navigation"
+        ],
+        "must_not": [
+          "Edit review receipts or unrelated files",
+          "Delete/skip/weaken existing tests",
+          "Invent model results, completion, dates, authority or remote success",
+          "Commit/push/deploy or expose private inputs"
+        ]
+      }
+    },
+    {
+      "kind": "implement",
+      "phase": "experience",
+      "depends_on": [],
+      "already_tried": [
+        {
+          "what": "Current human projection baseline",
+          "result": "check_human_view.py exit0; disconnected grid and three-field phase detail lack an actionable queue"
+        }
+      ],
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      },
+      "task_id": "experience-docs",
+      "requirement_ids": [
+        "design",
+        "graph",
+        "handoff"
+      ],
+      "objective": "Update the bilingual Kit and document adoption boundaries and architecture responsibilities",
+      "done_when": [
+        "Korean/English explain minimal human screen and separate current read-only attention queue",
+        "No assertion all20 suggestions/AI/remote execution implemented",
+        "Docs architecture points to source roles and parent generated project-only graph with honesty boundary"
+      ],
+      "acceptance": {
+        "command": "python3 -m py_compile $HOME/.claude/harness/build/current_content.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "$HOME/.claude/harness/build/current_content.py",
+          "symbol": "PAGES ai-pms final overrides",
+          "what": "Document phase flow/separate attention/current state with bilingual parity"
+        }
+      ],
+      "files_to_create": [
+        "docs/rensei-experience.md",
+        "specs/ai-pms-rensei-experience/docs-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/human-view.js",
+        "why": "Safe DOM projection and separate routes preserve conservative models"
+      },
+      "context": {
+        "spec_ref": "specs/ai-pms-rensei-experience/spec.md",
+        "facts": [
+          "ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "Shared project Alice/Bob; documentary private preview outside repo. Parent syncs artifacts/Kit runtime/build/public checkout.",
+          "Source tests use a simulated DOM; actual browser acceptance belongs to parent."
+        ],
+        "files": [
+          "PRODUCT-INTENT.md",
+          "specs/ai-pms-rensei-experience/spec.md"
+        ],
+        "excluded": "Other task files, backend/model contract/DB/external APIs/global settings/deployment/private logs"
+      },
+      "constraints": {
+        "must": [
+          "Korean/English explain minimal human screen and separate current read-only attention queue",
+          "No assertion all20 suggestions/AI/remote execution implemented",
+          "Docs architecture points to source roles and parent generated project-only graph with honesty boundary"
+        ],
+        "must_not": [
+          "Edit review receipts or unrelated files",
+          "Delete/skip/weaken existing tests",
+          "Invent model results, completion, dates, authority or remote success",
+          "Commit/push/deploy or expose private inputs"
+        ]
+      }
+    }
+  ]
+}
