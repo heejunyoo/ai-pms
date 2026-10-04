@@ -2,7 +2,7 @@
 
 전체 공동 Phase/원자 작업 WBS, 담당 요약, 현재·막힌 단계 우선 펼침, Phase 작업/검사 연결, 기본 API·MCP 요약, 3개 근거 그룹과 단일 실행 이력을 구현했습니다. 정본은 docs/visual-management.md와 specs/ai-pms-visual-management/입니다. 실제 네 프로젝트는 비공개 로컬이며 공개 자료는 합성 샘플입니다.
 
-독립 소스 검토와 회귀 검사는 실제 데스크톱 인수를 대체하지 않습니다. 브라우저 연결은 현재 불가이며 대체 Chromium/Playwright 허용 질문은 대기 중입니다. Astra는 중간 소스 의견을 제공했으나 사용량 한도로 최종 검토를 완료하지 못했습니다. UI·QA handoff를 완료하고 문서 패킷은 에이전트 thread 제한으로 부모가 통합했습니다. Dashboard/Kit를 배포했고 45개 공개 페이지·ZIP이 검증본과 byte 일치합니다. 전체 portable 검사도 통과했습니다. 공개 GitHub 상태는 같은 폴더 release-proof.json을 확인합니다. 브라우저 복구 시도는 browser-recovery.json에 기록했습니다. 모바일은 이번 인수에서 제외합니다.
+독립 소스 검토와 회귀 검사는 실제 데스크톱 인수를 대체하지 않습니다. 브라우저 연결은 현재 불가이며 대체 Chromium/Playwright 허용 질문은 대기 중입니다. Astra는 중간 소스 의견을 제공했으나 사용량 한도로 최종 검토를 완료하지 못했습니다. UI·QA handoff를 완료하고 문서 패킷은 에이전트 thread 제한으로 부모가 통합했습니다. Dashboard/Kit를 배포했고 45개 공개 페이지·ZIP이 검증본과 byte 일치합니다. 전체 portable 검사도 통과했습니다. GitHub에 구현 f2ad139를 게시하고 원격 main SHA 일치를 확인했습니다. 공개 기록은 같은 폴더 release-proof.json을 확인합니다. 브라우저 복구 시도는 browser-recovery.json에 기록했습니다. 모바일은 이번 인수에서 제외합니다.
 
 아래는 이전 릴리스 이력입니다.
 

@@ -13,7 +13,7 @@
   },
   "public_bytes": "public-bytes.json",
   "public_suite_exit_code": 0,
-  "git_push_verified": false,
+  "git_push_verified": true,
   "desktop_browser_verified": false,
   "browser_recovery": "browser-recovery.json",
   "mobile_in_scope": false,
@@ -22,5 +22,8 @@
   "private_real_project_data_published": false,
   "provider_hook_trust_verified": false,
   "remote_real_two_user_delivery_verified": false,
-  "actual_model_analysis_verified": false
+  "actual_model_analysis_verified": false,
+  "implementation_commit": "f2ad139b8ed6f7f3a98bfb208a5850e6469e6130",
+  "github_main_sha_verified": "f2ad139b8ed6f7f3a98bfb208a5850e6469e6130",
+  "production_bytes_equal": 45
 }
