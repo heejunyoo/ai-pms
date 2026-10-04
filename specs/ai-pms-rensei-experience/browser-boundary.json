@@ -10,5 +10,7 @@
   ],
   "source_and_dom_are_not_visual_acceptance": true,
   "local_preview_http_content_verified": true,
-  "next_acceptance": "Restore browser connection, then inspect shared people/project/phase/attention/session evidence at desktop and390px with back/forward/reload. No prior screenshot reused."
+  "next_acceptance": "Desktop-only visual/navigation acceptance when browser connection is restored. Publication and HTTP byte verification are complete in release-proof.json.",
+  "mobile_acceptance_required": false,
+  "scope_update": "2026-10-04 user excludes mobile acceptance"
 }

@@ -1,6 +1,6 @@
 ## 현재 공개 — 2026-10-04 단계 흐름·판단 처리함 배포
 
-사용자 지시로 모바일 인수를 제외하고 대시보드·Kit 공개 배포를 진행했습니다. 대시보드 https://ai-pms-dashboard.vercel.app 과 Kit https://harness-kit.vercel.app/ai-pms.html 모두 READY이며 45개 공개 페이지·다운로드가 로컬 검증본과 byte 일치했습니다. 현재 GitHub 게시와 전체 검증 범위는 specs/ai-pms-rensei-experience/release-proof.json을 확인합니다. 실제 네 프로젝트는 비공개 로컬에 유지합니다.
+사용자 지시로 모바일 인수를 제외하고 대시보드·Kit 공개 배포를 진행했습니다. 대시보드 https://ai-pms-dashboard.vercel.app 과 Kit https://harness-kit.vercel.app/ai-pms.html 모두 READY이며 45개 공개 페이지·다운로드가 로컬 검증본과 byte 일치했습니다. GitHub main에 구현 커밋 f08324b를 게시하고 원격 SHA 일치를 확인했습니다. 전체 검증 범위는 specs/ai-pms-rensei-experience/release-proof.json을 확인합니다. 실제 네 프로젝트는 비공개 로컬에 유지합니다.
 
 데스크톱 실제 렌더·history 인수는 브라우저 연결 불가로 미검증입니다. DOM/새 runtime/absolute href·필터·세션 목표 근거 검사는 통과했지만 실제 시각적 품질을 증명하지 않습니다. 다음 화면 인수는 연결 복구 후 데스크톱에서만 진행합니다. 모바일은 필수 인수 조건이 아닙니다. 실제 provider 훅 trust·원격 실제 두 사용자 전달·모델 분석은 별도 운영 범위로 남습니다. 아래는 이전 기록입니다.
 

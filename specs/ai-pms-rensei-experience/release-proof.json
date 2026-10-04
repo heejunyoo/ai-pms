@@ -1,6 +1,6 @@
 {
   "checked_at": "2026-10-04T02:39:40.674462+00:00",
-  "status": "deployment_and_public_bytes_verified_github_pending",
+  "status": "published_verified_desktop_visual_unverified",
   "user_scope": "Mobile acceptance excluded by 2026-10-04 user instruction; remaining publication authorized",
   "deployments": {
     "dashboard": {
@@ -23,7 +23,11 @@
   "github": {
     "repository": "https://github.com/heejunyoo/ai-pms",
     "visibility": "PUBLIC",
-    "push_verified": false
+    "push_verified": true,
+    "implementation_commit": "f08324b3da52f8a68bd7bb792dd0543a2b513aa7",
+    "remote_main_verified_by": "gh api repos/heejunyoo/ai-pms/commits/main",
+    "checked_at": "2026-10-04T02:40:56.421144+00:00",
+    "receipt_note": "This verification records the implementation commit; a following documentation-only commit publishes this receipt."
   },
   "checks": {
     "portable_public_suite_exit_code": 0,
