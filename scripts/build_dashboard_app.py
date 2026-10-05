@@ -72,6 +72,7 @@ def main():
     headers=[]
     for name,body in pages.items():
         body=body.replace('<head>', '<head><link rel="icon" href="data:,">', 1)
+        if '<head>' not in body:body=body.replace('<meta ', '<link rel="icon" href="data:,"><meta ', 1)
         (out/name).write_text(body)
         hashes=["'sha256-"+__import__('base64').b64encode(hashlib.sha256(s.encode()).digest()).decode()+"'" for s in re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>',body,re.S)]
         csp="default-src 'none'; script-src "+' '.join(hashes)+"; style-src 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'"
