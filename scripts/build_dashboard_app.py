@@ -22,17 +22,17 @@ def public_adoption():
             store['sources'][portfolio.central.source_key(ref)]=dict(ref,label='가상 도입 예시 · 활동 미관측',evidence_mode='synthetic',events={})
     model=portfolio.build_model(store,fixture['catalog'],now='2026-10-05T00:00:00Z')
     assert model['evidence_mode']=='synthetic'
-    assert all(not p['runs'] and not p['sessions'] and p['status']!='complete' for p in model['projects'])
+    assert all(not p['runs'] and all(s['event_count']==0 for s in p['sessions']) and p['status']!='complete' for p in model['projects'])
     body=embedded(portfolio.render_html(model),'documentary-data',fixture['documentary'])
     body=embedded(body,'human-annotations',fixture['annotations'])
     # Reuse the private document-first UI while labelling public fictional provenance.
     body=body.replace('실제 프로젝트 · 기존 문서 기준','가상 프로젝트 · 문서 기반 도입 예시')
-    notice='<aside class="notice" id="sampleBoundary">'+html.escape(fixture['boundary'])+' <a href="recorded-example.html">합성 실행 기록 예시 보기 →</a> · <a href="adoption-snapshot.json" download>수집 모델 JSON · 문서 작업 제외</a> · <a href="sample-documentary.json" download>전체 가상 문서 입력 JSON</a><p>수집 모델은 현재 관측 상태만 담습니다. 문서 작업과 출처는 전체 가상 문서 입력에 있으며, 이 입력은 빌더용 자료입니다. 스냅샷 가져오기만으로 문서 작업 화면이 재현되지는 않습니다.</p></aside>'
+    notice='<details class="notice" id="sampleBoundary"><summary>가상 프로젝트 예시 · 샘플 출처와 다운로드</summary><p>'+html.escape(fixture['boundary'])+'</p><a href="recorded-example.html">합성 실행 기록 예시 보기 →</a> · <a href="adoption-snapshot.json" download>관측 모델 JSON · 문서상 진척 주석 제외</a> · <a href="sample-documentary.json" download>전체 가상 문서 입력 JSON</a><p>관측 모델에는 선언된 계획·문서와 관측 상태가 들어갑니다. 문서상 진척 주석은 전체 가상 문서 입력에 있으며, 이 입력은 빌더용 자료입니다. 스냅샷 가져오기만으로 문서 작업 화면이 재현되지는 않습니다.</p></details>'
     body=body.replace('<main>','<main>'+notice,1)
     pages={'index.html':body}
     for sid,source in fixture['documentary']['sources'].items():
         assert re.fullmatch(r'[-a-zA-Z0-9_]+',sid)
-        pages['source-'+sid+'.html']='<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>가상 문서 발췌</title><main><h1>'+html.escape(source['path'])+'</h1><p>'+html.escape(fixture['boundary'])+'</p><pre>'+html.escape(source['excerpt'])+'</pre><a href="index.html#project='+source['project']+'">프로젝트로 돌아가기</a></main></html>'
+        pages['source-'+sid+'.html']='<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>가상 문서 발췌</title><style>body{max-width:920px;margin:32px auto;padding:0 20px;font:16px/1.8 system-ui}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f6f8;padding:24px}a{display:inline-block;padding:12px}</style><main><h1>'+html.escape(source['path'])+'</h1><p>'+html.escape(fixture['boundary'])+'</p><pre>'+html.escape(source['excerpt'])+'</pre><a href="index.html#project='+source['project']+'">프로젝트로 돌아가기</a></main></html>'
     return pages,model
 
 def main():

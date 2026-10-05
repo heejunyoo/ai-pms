@@ -1,0 +1,18 @@
+{
+  "reviewer": "independent-public-sample-parity-intent-reviewer",
+  "verdict": "aligned",
+  "source_sha256": "a023fbf11709b30cb019456b8f80718f92ab95485125e68f4da99b406310ee7f",
+  "spec_sha256": "82feba2faf3a6607f5da88bf40074e63437d044464bfc2cbbaa0ef4535a7b019",
+  "requirements_covered": [
+    "parity"
+  ],
+  "unapproved_changes": [],
+  "evidence": "Independent review of source.md/spec.md/plan.json. source.md contains the exact user feedback that public sample differs substantially from local adoption. spec.md diagnoses content-structure mismatch despite shared canonical UI: repeated v2 shallow plans with missing documents/management/references fail to show local v3 information paths. The correction preserves three public fictional project IDs/routes while authoring different concrete scope/phase goals/responsibilities/reasons/next actions/conditions, richer multi-stage task structures and a ten-stage scrolling example; cardinality is supporting coverage, not proof of semantic parity. Existing v3 objectives/requirements/plans/artifact/work/updates contract, documentary date/version/excerpt sources and phase-declared API/MCP links reproduce management information structure without changing API/data/completion contracts. Observed calls, runs, observed execution sessions, actual checks, AI success and artificial date axes are forbidden; document completion stays distinct from current verification. Shared human-view, private payloads, Kit and recorded failed/stale/review counterexamples remain intact. Parent changes are limited to compact notice/source-page reading layout and previously approved corrective public publishing. The sole packet edits fictional fixture and check_sample, preserving old safety/invariant assertions while adding actual document/management/reference checks. spec.md requires parent actual Chrome comparison of plan/results/history/references, long-map alignment/scroll/source/Back/reload and expressly rejects byte matches alone as semantic parity proof. PRODUCT-INTENT central multi-person independent/shared goals and conservative evidence boundaries are retained. This aligned receipt approves source/spec/plan intent alignment only; substantive fictional content, executed regressions and actual public/local browser observations must establish implementation acceptance. The reviewer did not inspect or copy actual private project bodies. Clarification independently verified against canonical portfolio.py: document contract requires session_id/actor_id/environment_id; build_model lines236-241 registers the exact document tuple as a legacy session with event_count0 without an observed event. The revised spec correctly allows only these declared document-linked zero-event identities, prohibits manual model/session deletion and still forbids observed execution or operations goal-session fabrication. Replacing the old blanket no-sessions assertion with exact tuple linkage plus zero event counts is a contract-correct refinement, not weakening the no-native-observation/no-current-completion/provider/run safety boundary. The new tests must preserve zero observed events, no runs/current completion and recorded-example counterexamples.",
+  "publication_transform": {
+    "original_hashes": {
+      "source_sha256": "a023fbf11709b30cb019456b8f80718f92ab95485125e68f4da99b406310ee7f",
+      "spec_sha256": "82feba2faf3a6607f5da88bf40074e63437d044464bfc2cbbaa0ef4535a7b019"
+    },
+    "reason": "Fresh reviewed source/spec hashes reconciled after home-path substitution only; not another independent review."
+  }
+}

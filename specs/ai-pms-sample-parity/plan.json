@@ -1,0 +1,114 @@
+{
+  "author": "root-sample-parity",
+  "spec_ref": "spec.md",
+  "goal": "Match public sample information structure to local adopted-project views without private data",
+  "open_decisions": [],
+  "intent_guard": {
+    "source_ref": "source.md",
+    "requirements": [
+      {
+        "id": "parity",
+        "quote": "PMS 샘플 구성 업데이트 된거 맞아..? 로컬하고 차이가 좀 심한데?",
+        "outcome": "Public fictional sample demonstrates the same information structure and paths as actual local adoption"
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-adoption-release/check_sample.py",
+      "expect_exit_code": 0
+    }
+  },
+  "phases": [
+    {
+      "id": "sample-parity",
+      "name": "공개 정보구성 일치",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-adoption-release/check_sample.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "kind": "implement",
+      "phase": "sample-parity",
+      "depends_on": [],
+      "already_tried": [
+        {
+          "what": "Actual Chrome local Paper vs public support + source inspection",
+          "result": "Public v2 catalog empty docs/no management/references, repeated3phases4tasks; local v3 has4/7 and10phase work plans"
+        }
+      ],
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      },
+      "task_id": "sample-parity",
+      "requirement_ids": [
+        "parity"
+      ],
+      "objective": "Match public sample information structure to local adopted-project views without private data",
+      "done_when": [
+        "Full fictional document-first planning, document/management/reference paths match local adoption structure",
+        "Existing privacy/completion/recorded counterexamples preserved and check_sample passes"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-adoption-release/check_sample.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-adoption-release/sample-documentary.json",
+          "symbol": "fixture / main acceptance",
+          "what": "Match public sample information structure to local adopted-project views without private data"
+        },
+        {
+          "path": "specs/ai-pms-adoption-release/check_sample.py",
+          "symbol": "fixture / main acceptance",
+          "what": "Match public sample information structure to local adopted-project views without private data"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-sample-parity/sample-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/human-view.js",
+        "why": "Native safe projection, person URL and unchanged conservative model"
+      },
+      "context": {
+        "spec_ref": "specs/ai-pms-sample-parity/spec.md",
+        "facts": [
+          "Root source $HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "Parent owns scripts/build_dashboard_app.py notice/source layout, source export/browser/deployment. Do not edit builder.",
+          "Keep fixture root version and public file routes; model becomes v3 using existing contract"
+        ],
+        "files": [
+          "specs/ai-pms-sample-parity/source.md",
+          "specs/ai-pms-sample-parity/spec.md",
+          "PRODUCT-INTENT.md"
+        ],
+        "excluded": "Actual hooks/settings/trust/credentials/private inputs, DB/API changes, parent-owned exporters, deployment/push"
+      },
+      "constraints": {
+        "must": [
+          "Follow spec parity criteria",
+          "Preserve all existing privacy and counterexample checks"
+        ],
+        "must_not": [
+          "Change API/DB/completion contracts or private files",
+          "Delete/skip/weaken tests; retain runtime pilot coverage in adoption gate",
+          "Mutate global actual hooks/trust/accounts or add deps/network backend",
+          "Commit/push/deploy or edit other packet files"
+        ]
+      }
+    }
+  ]
+}

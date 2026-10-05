@@ -1,0 +1,16 @@
+{
+  "private_inputs_before": {
+    "catalog.json": "2c148be3006b0090a57e2499eee8ae5324b509830cb20f5d7b85152f4804caf6",
+    "snapshot.json": "1f6e40804b8e4f571b1f75b48eceaa859b9db73d8b909b25fd685ecf5c982666",
+    "documentary.json": "15909fbe9b09c711fedda872e7c134845d04414c0154844662949e428c2d4fe3",
+    "human-annotations.json": "aef40645037016e49ed612b932859a525753e573485cc6255199e4534fc3d945"
+  },
+  "purpose": "Verify sample corrections never modify or export actual private inputs.",
+  "private_inputs_after": {
+    "catalog.json": "2c148be3006b0090a57e2499eee8ae5324b509830cb20f5d7b85152f4804caf6",
+    "snapshot.json": "1f6e40804b8e4f571b1f75b48eceaa859b9db73d8b909b25fd685ecf5c982666",
+    "documentary.json": "15909fbe9b09c711fedda872e7c134845d04414c0154844662949e428c2d4fe3",
+    "human-annotations.json": "aef40645037016e49ed612b932859a525753e573485cc6255199e4534fc3d945"
+  },
+  "unchanged": true
+}

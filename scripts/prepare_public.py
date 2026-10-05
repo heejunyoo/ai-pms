@@ -69,8 +69,8 @@ Kit/build contains the canonical source used in the existing Harness Kit home in
         receipt['publication_transform']={'source_receipt_sha256':hashlib.sha256((ROOT/relative).read_bytes()).hexdigest(),'changed_paths':changed,'stale_source_paths':stale,'reason':'Only fresh source hashes reconciled after path/whitespace sanitization. Historical hashes preserved; not another independent review or browser verification.'}
         target.write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
     # Reconcile only fresh intent receipt hashes after public path substitution.
-    relative=Path('specs/ai-pms-adoption-release/intent-review.json')
-    if (ROOT/relative).exists():
+    for relative in [Path('specs/ai-pms-adoption-release/intent-review.json'),Path('specs/ai-pms-sample-parity/intent-review.json')]:
+        if not (ROOT/relative).exists():continue
         receipt=json.loads((ROOT/relative).read_text())
         original={}
         for key,name in [('source_sha256','source.md'),('spec_sha256','spec.md')]:

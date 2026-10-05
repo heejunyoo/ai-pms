@@ -22,6 +22,8 @@ Harness Kit의 PMS 범위는 훅 수집 안내와 `activity/` 파일입니다. G
 
 **문서 업데이트: 2026-10-05 · 구성요소와 연결 도표**
 
+공개 샘플의 정보 구성도 보완했습니다. 이전에는 공통 화면만 같고 세 프로젝트가 같은 3단계·4작업을 반복했습니다. 지금은 고객 문의 4단계·7작업, 자료 접수 10단계·23작업, 보고서 4단계·7작업에 문서 버전·날짜·관리 근거·단계별 API/MCP 설계 참고를 연결합니다. 실제 로컬 프로젝트와 같은 v3 계약과 화면을 사용하지만 내용은 새로 작성한 가상 자료입니다. 문서상 진척을 현재 실행 검증이나 최종 인수로 표시하지 않습니다. [샘플 비교 검증](specs/ai-pms-sample-parity/integration-proof.json).
+
 전체 계획의 구성요소 도표 정렬·디자인을 보완했습니다. [최신 디자인 검증](specs/ai-pms-component-map/design-proof.json): 실제 Chrome1440×1000의 Paper/Knowledge 정렬·목표 표시·키보드 이동과 회귀 검사 통과. 이번 공개 릴리스에 반영했습니다. [다운로드·배포 검증](specs/ai-pms-adoption-release/release-proof.json).
 
 2026-10-04 로컬 리팩터링은 [프로젝트 화면 안내](docs/readable-project.md)와 [검증 기록](specs/ai-pms-readable-project/integration-proof.json)에 있습니다. 확인 결과는 확인한 내용·결과·다음 행동을 먼저 표시하고 원본 기록을 펼쳐 봅니다. 전체 회귀 검사와 Chrome 데스크톱 확인을 통과했으며 이번 공개 릴리스에 반영했습니다.

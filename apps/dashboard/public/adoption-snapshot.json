@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "generated_at": "2026-10-05T00:00:00Z",
   "evidence_mode": "synthetic",
   "projects": [
@@ -11,32 +11,180 @@
         "Alice",
         "Bob"
       ],
-      "current_revision": "v1",
+      "current_revision": "v2",
       "current_phase": "build",
-      "status": "unknown",
-      "status_reason": "프로젝트 범위 완료 기준이 없습니다. 목표/문서는 catalog.projects[0]의 명시적 입력입니다.",
+      "status": "in_progress",
+      "status_reason": "현재 revision의 프로젝트 범위 검사 기록이 부족하거나 불명입니다. 필수 작업·단계·전체 검사·승인·막힘 해결 조건을 모두 확인해야 합니다. 목표/문서는 catalog.projects[0]의 명시적 입력입니다.",
       "phases": [
         {
           "id": "plan",
-          "name": "목표와 계획 정리",
+          "name": "문의 분류 범위",
+          "status": "unknown"
+        },
+        {
+          "id": "design",
+          "name": "처리 흐름 설계",
           "status": "unknown"
         },
         {
           "id": "build",
-          "name": "구현과 확인",
+          "name": "분류 화면 구현",
           "status": "unknown"
         },
         {
           "id": "accept",
-          "name": "현재 검증과 인수",
+          "name": "운영 확인과 인수",
           "status": "unknown"
         }
       ],
-      "documents": [],
+      "documents": [
+        {
+          "id": "plan-record",
+          "title": "고객 문의 정리 · 문의 분류 범위 문서",
+          "kind": "plan",
+          "version": "v1",
+          "phase_id": "plan",
+          "at": "2026-10-02T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Alice",
+          "environment_id": "fictional-workspace",
+          "summary": "문의 유형과 담당 배정의 책임을 문서로 정한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 초기 범위 v1\n목표: 반복 문의를 분류하고 담당자에게 근거와 함께 전달한다\n초기 결정: 대상 업무와 기본 담당 범위를 정리했습니다.\n미정: 예외 처리의 담당자 판단과 현재 실행 검증.\n후속: v2 계획에서 구체적인 막힘과 다음 행동을 추가합니다.\n현재 실행 검사·앱 훅·최종 인수: 미확인",
+          "source_ref": "catalog.projects[0].documents[0]"
+        },
+        {
+          "id": "plan-record",
+          "title": "고객 문의 정리 · 문의 분류 범위 문서",
+          "kind": "plan",
+          "version": "v2",
+          "phase_id": "plan",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Alice",
+          "environment_id": "fictional-workspace",
+          "summary": "문의 유형과 담당 배정의 책임을 문서로 정한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 문의 분류 범위\n목표: 문의 유형과 담당 배정의 책임을 문서로 정한다\n대상 문의와 제외 범위 합의 · 가상 문서에 대상 문의와 제외 범위 합의를 정리했다고 기록했습니다.\n완료 조건: 고객 안내와 계약 문의를 구분하고 개인정보 변경 요청은 제외한다\n문의 유형과 담당 매핑 · 가상 문서에 문의 유형과 담당 매핑를 정리했다고 기록했습니다.\n완료 조건: 결제·배송·계약 문의마다 기본 담당자가 지정되어 있다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[0].documents[1]"
+        },
+        {
+          "id": "design-record",
+          "title": "고객 문의 정리 · 처리 흐름 설계 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "design",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Alice",
+          "environment_id": "fictional-workspace",
+          "summary": "근거가 없는 문의와 반복 문의를 구분한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 처리 흐름 설계\n목표: 근거가 없는 문의와 반복 문의를 구분한다\n답변 근거 표시 설계 · 가상 문서에 답변 근거 표시 설계를 예정 작업으로 기록했습니다.\n완료 조건: 근거 문서가 없으면 답변 추천을 보류하고 이유를 표시한다\n반복 문의의 재배정 기준 결정 · 반복 문의의 재접수 간격을 합의하지 못해 담당자 자동 재배정 기준이 정해지지 않았습니다.\n완료 조건: 같은 문의의 재접수 때 기존 담당 유지와 변경 조건이 명확하다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[0].documents[2]"
+        },
+        {
+          "id": "build-record",
+          "title": "고객 문의 정리 · 분류 화면 구현 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "build",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Alice",
+          "environment_id": "fictional-workspace",
+          "summary": "담당자에게 문의 내용과 출처를 전달하는 화면을 만든다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 분류 화면 구현\n목표: 담당자에게 문의 내용과 출처를 전달하는 화면을 만든다\n문의 분류와 전달 화면 구현 · 가상 문서에 문의 분류와 전달 화면 구현 진행 중이라고 기록했습니다. 현재 실행은 미확인입니다.\n완료 조건: 문의 유형·담당·근거 문서를 함께 확인하고 전달할 수 있다\n유형 미확인 문의의 대기함 구현 · 가상 문서에 유형 미확인 문의의 대기함 구현를 예정 작업으로 기록했습니다.\n완료 조건: 모르는 유형은 자동 전달하지 않고 확인 대기함에 남는다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[0].documents[3]"
+        },
+        {
+          "id": "accept-record",
+          "title": "고객 문의 정리 · 운영 확인과 인수 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "accept",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Alice",
+          "environment_id": "fictional-workspace",
+          "summary": "누락·오분류·재배정 상황을 현재 환경에서 확인한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 운영 확인과 인수\n목표: 누락·오분류·재배정 상황을 현재 환경에서 확인한다\n분류 오류·재배정 검사와 인수 · 가상 문서에 분류 오류·재배정 검사와 인수의 확인 근거가 아직 없습니다.\n완료 조건: 현재 버전에서 오분류·중복·근거 누락을 검사하고 업무 담당자가 인수한다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[0].documents[4]"
+        }
+      ],
       "criteria": [],
       "runs": [],
-      "sessions": [],
-      "timeline": [],
+      "sessions": [
+        {
+          "id": "document-declaration",
+          "actor_id": "Alice",
+          "environment_id": "fictional-workspace",
+          "event_count": 0
+        }
+      ],
+      "timeline": [
+        {
+          "at": "2026-10-02T09:00:00Z",
+          "kind": "document",
+          "title": "고객 문의 정리 · 문의 분류 범위 문서 · v1",
+          "detail": "문의 유형과 담당 배정의 책임을 문서로 정한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[0].documents[0]"
+        },
+        {
+          "at": "2026-10-02T09:00:00Z",
+          "kind": "management",
+          "title": "objectives · objective",
+          "detail": "fictional/sample-support/scope.md",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.objectives[0]"
+        },
+        {
+          "at": "2026-10-02T09:00:00Z",
+          "kind": "management",
+          "title": "plans · adoption-plan",
+          "detail": "대상 업무와 기본 담당 범위를 확정하기 위한 초기 계획입니다. 구체적인 예외 처리와 인수 조건은 후속 합의가 필요합니다.",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.plans[0]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "고객 문의 정리 · 문의 분류 범위 문서 · v2",
+          "detail": "문의 유형과 담당 배정의 책임을 문서로 정한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[0].documents[1]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "고객 문의 정리 · 처리 흐름 설계 문서 · v2",
+          "detail": "근거가 없는 문의와 반복 문의를 구분한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[0].documents[2]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "고객 문의 정리 · 분류 화면 구현 문서 · v2",
+          "detail": "담당자에게 문의 내용과 출처를 전달하는 화면을 만든다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[0].documents[3]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "고객 문의 정리 · 운영 확인과 인수 문서 · v2",
+          "detail": "누락·오분류·재배정 상황을 현재 환경에서 확인한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[0].documents[4]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "management",
+          "title": "plans · adoption-plan",
+          "detail": "초기 범위 합의 뒤 확인된 반복 문의의 재접수 간격을 합의하지 못해 담당자 자동 재배정 기준이 정해지지 않았습니다. 이에 따라 구체적인 예외 처리와 확인·인수 작업을 추가했습니다.",
+          "session_id": null,
+          "source_ref": "catalog.projects[0].management.plans[1]"
+        }
+      ],
       "sources": [
         {
           "actor_id": "Alice",
@@ -54,8 +202,778 @@
         }
       ],
       "alerts": [],
-      "last_updated": null,
-      "connections": []
+      "last_updated": "2026-10-04T09:00:00Z",
+      "connections": [
+        {
+          "server": "fictional-api",
+          "tool": "reference-0",
+          "status": "configured",
+          "duration_ms": null,
+          "operation": "read",
+          "resources": [
+            {
+              "id": "reference-0",
+              "kind": "document",
+              "label": "문의 접수 API",
+              "evidence": "declared"
+            }
+          ],
+          "artifact_refs": [
+            {
+              "id": "build-record",
+              "version": "v2"
+            }
+          ],
+          "id": "configured-0",
+          "actor_id": "Alice",
+          "environment_id": "fictional-workspace",
+          "session_id": null,
+          "agent_id": null,
+          "tool_call_id": null,
+          "at": null,
+          "authority": "declared",
+          "source_ref": "catalog.projects[0].connections[0]"
+        },
+        {
+          "server": "fictional-mcp",
+          "tool": "reference-1",
+          "status": "configured",
+          "duration_ms": null,
+          "operation": "read",
+          "resources": [
+            {
+              "id": "reference-1",
+              "kind": "document",
+              "label": "문서 검색 MCP",
+              "evidence": "declared"
+            }
+          ],
+          "artifact_refs": [
+            {
+              "id": "design-record",
+              "version": "v2"
+            }
+          ],
+          "id": "configured-1",
+          "actor_id": "Alice",
+          "environment_id": "fictional-workspace",
+          "session_id": null,
+          "agent_id": null,
+          "tool_call_id": null,
+          "at": null,
+          "authority": "declared",
+          "source_ref": "catalog.projects[0].connections[1]"
+        }
+      ],
+      "management": {
+        "objectives": [
+          {
+            "id": "objective",
+            "version": "v2",
+            "kind": "company",
+            "parent_id": null,
+            "title": "반복 문의를 분류하고 담당자에게 근거와 함께 전달한다",
+            "success_condition": "현재 버전에서 오분류·중복·근거 누락을 검사하고 업무 담당자가 인수한다 · 실제 업무 성과는 미관측",
+            "source": "fictional/sample-support/scope.md",
+            "at": "2026-10-02T09:00:00Z"
+          }
+        ],
+        "assignment": {
+          "objective_id": "objective",
+          "objective_version": "v2",
+          "kind": "outcome",
+          "issuer": "ExampleTeam",
+          "assignee": "Alice",
+          "at": "2026-10-02T09:00:00Z",
+          "acceptance": "반복 문의를 분류하고 담당자에게 근거와 함께 전달한다"
+        },
+        "requirements": [
+          {
+            "id": "req-core",
+            "text": "반복 문의를 분류하고 담당자에게 근거와 함께 전달한다",
+            "source": "fictional/sample-support/scope.md"
+          }
+        ],
+        "plans": [
+          {
+            "id": "adoption-plan",
+            "version": "v1",
+            "at": "2026-10-02T09:00:00Z",
+            "summary": "반복 문의를 분류하고 담당자에게 근거와 함께 전달한다",
+            "reason": "대상 업무와 기본 담당 범위를 확정하기 위한 초기 계획입니다. 구체적인 예외 처리와 인수 조건은 후속 합의가 필요합니다.",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "handoff_ref": "fictional/sample-support/plan-v1.json"
+          },
+          {
+            "id": "adoption-plan",
+            "version": "v2",
+            "at": "2026-10-04T09:00:00Z",
+            "summary": "반복 문의를 분류하고 담당자에게 근거와 함께 전달한다",
+            "reason": "초기 범위 합의 뒤 확인된 반복 문의의 재접수 간격을 합의하지 못해 담당자 자동 재배정 기준이 정해지지 않았습니다. 이에 따라 구체적인 예외 처리와 확인·인수 작업을 추가했습니다.",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "handoff_ref": "fictional/sample-support/plan-v2.json"
+          }
+        ],
+        "test_plans": [],
+        "artifact": {
+          "revision": "v2",
+          "files": [
+            {
+              "path": "fictional/sample-support/scope.md",
+              "sha256": "75ab4e7db3950f427640fe32d7d2a135d05d82321f72b85f3952b8173c8fffae"
+            },
+            {
+              "path": "fictional/sample-support/taxonomy.md",
+              "sha256": "71154d5ff93b57860e36971d68ed0c58fb4762301d79963485460c742680631e"
+            },
+            {
+              "path": "fictional/sample-support/evidence.md",
+              "sha256": "b1b883db105e2b997621406a6674b32e3fd971a6a7694766fdc4e537462e739d"
+            },
+            {
+              "path": "fictional/sample-support/decision.md",
+              "sha256": "535bc54d1b2660d87657d778913102fa8d5f616eea656d636bcc77c3e6e812c3"
+            },
+            {
+              "path": "fictional/sample-support/implement.md",
+              "sha256": "f7aa1b9076a26f27929ebdce9b81479a7c551dea35c4f261cb6ccbb47f12dfc0"
+            },
+            {
+              "path": "fictional/sample-support/fallback.md",
+              "sha256": "70af74f2951420291fb20edf57aed0110b59ce8a5e5f9991f517002bbe0dafe9"
+            },
+            {
+              "path": "fictional/sample-support/verify.md",
+              "sha256": "72288f4f9e48f5bd6aa0e118dffbd3b7dc3aed9886b742cb4b4311b962b04653"
+            }
+          ],
+          "sha256": "ea805dfe6287891cd4e777387dee0b6b55f8defece721bf504d35aab837f6a04"
+        },
+        "attempts": [],
+        "blockers": [],
+        "improvements": [],
+        "harness": [],
+        "graphs": [],
+        "work": {
+          "plan_id": "adoption-plan",
+          "plan_version": "v2",
+          "at": "2026-10-04T09:00:00Z",
+          "tasks": [
+            {
+              "id": "scope",
+              "title": "대상 문의와 제외 범위 합의",
+              "phase_id": "plan",
+              "owner": "Alice",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "고객 안내와 계약 문의를 구분하고 개인정보 변경 요청은 제외한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "plan-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "taxonomy",
+              "title": "문의 유형과 담당 매핑",
+              "phase_id": "plan",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "결제·배송·계약 문의마다 기본 담당자가 지정되어 있다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "plan-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "evidence",
+              "title": "답변 근거 표시 설계",
+              "phase_id": "design",
+              "owner": "Alice",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "근거 문서가 없으면 답변 추천을 보류하고 이유를 표시한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "design-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "decision",
+              "title": "반복 문의의 재배정 기준 결정",
+              "phase_id": "design",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "같은 문의의 재접수 때 기존 담당 유지와 변경 조건이 명확하다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "design-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "implement",
+              "title": "문의 분류와 전달 화면 구현",
+              "phase_id": "build",
+              "owner": "Alice",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "문의 유형·담당·근거 문서를 함께 확인하고 전달할 수 있다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "build-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "fallback",
+              "title": "유형 미확인 문의의 대기함 구현",
+              "phase_id": "build",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "모르는 유형은 자동 전달하지 않고 확인 대기함에 남는다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "build-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "verify",
+              "title": "분류 오류·재배정 검사와 인수",
+              "phase_id": "accept",
+              "owner": null,
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "현재 버전에서 오분류·중복·근거 누락을 검사하고 업무 담당자가 인수한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "accept-record"
+              ],
+              "review_required": true
+            }
+          ],
+          "phase_gates": [
+            {
+              "phase_id": "plan",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "design",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "build",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "accept",
+              "criterion_ids": []
+            }
+          ],
+          "updates": [
+            {
+              "id": "update-scope",
+              "task_id": "scope",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 대상 문의와 제외 범위 합의를 정리했다고 기록했습니다.",
+              "next_action": "고객 안내와 계약 문의를 구분하고 개인정보 변경 요청은 제외한다 · Alice가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-taxonomy",
+              "task_id": "taxonomy",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 문의 유형과 담당 매핑를 정리했다고 기록했습니다.",
+              "next_action": "결제·배송·계약 문의마다 기본 담당자가 지정되어 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-evidence",
+              "task_id": "evidence",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 답변 근거 표시 설계를 예정 작업으로 기록했습니다.",
+              "next_action": "근거 문서가 없으면 답변 추천을 보류하고 이유를 표시한다 · Alice가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-decision",
+              "task_id": "decision",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "blocked",
+              "summary": "반복 문의의 재접수 간격을 합의하지 못해 담당자 자동 재배정 기준이 정해지지 않았습니다.",
+              "next_action": "Bob이 재접수 24시간 이내 담당 유지 여부를 결정하고 Alice가 설계 문서에 반영합니다."
+            },
+            {
+              "id": "update-implement",
+              "task_id": "implement",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "in_progress",
+              "summary": "가상 문서에 문의 분류와 전달 화면 구현 진행 중이라고 기록했습니다. 현재 실행은 미확인입니다.",
+              "next_action": "문의 유형·담당·근거 문서를 함께 확인하고 전달할 수 있다 · Alice가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-fallback",
+              "task_id": "fallback",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 유형 미확인 문의의 대기함 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "모르는 유형은 자동 전달하지 않고 확인 대기함에 남는다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-verify",
+              "task_id": "verify",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 분류 오류·재배정 검사와 인수의 확인 근거가 아직 없습니다.",
+              "next_action": "현재 버전에서 오분류·중복·근거 누락을 검사하고 업무 담당자가 인수한다 · 지정할 담당자가 현재 문서와 결과를 확인합니다."
+            }
+          ],
+          "reviews": []
+        }
+      },
+      "work": {
+        "plan_id": "adoption-plan",
+        "plan_version": "v2",
+        "at": "2026-10-04T09:00:00Z",
+        "tasks": [
+          {
+            "id": "scope",
+            "title": "대상 문의와 제외 범위 합의",
+            "phase_id": "plan",
+            "owner": "Alice",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "고객 안내와 계약 문의를 구분하고 개인정보 변경 요청은 제외한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "plan-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-scope",
+              "task_id": "scope",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 대상 문의와 제외 범위 합의를 정리했다고 기록했습니다.",
+              "next_action": "고객 안내와 계약 문의를 구분하고 개인정보 변경 요청은 제외한다 · Alice가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "taxonomy",
+            "title": "문의 유형과 담당 매핑",
+            "phase_id": "plan",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "결제·배송·계약 문의마다 기본 담당자가 지정되어 있다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "plan-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-taxonomy",
+              "task_id": "taxonomy",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 문의 유형과 담당 매핑를 정리했다고 기록했습니다.",
+              "next_action": "결제·배송·계약 문의마다 기본 담당자가 지정되어 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "evidence",
+            "title": "답변 근거 표시 설계",
+            "phase_id": "design",
+            "owner": "Alice",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "근거 문서가 없으면 답변 추천을 보류하고 이유를 표시한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "design-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-evidence",
+              "task_id": "evidence",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 답변 근거 표시 설계를 예정 작업으로 기록했습니다.",
+              "next_action": "근거 문서가 없으면 답변 추천을 보류하고 이유를 표시한다 · Alice가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "decision",
+            "title": "반복 문의의 재배정 기준 결정",
+            "phase_id": "design",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "같은 문의의 재접수 때 기존 담당 유지와 변경 조건이 명확하다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "design-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-decision",
+              "task_id": "decision",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "blocked",
+              "summary": "반복 문의의 재접수 간격을 합의하지 못해 담당자 자동 재배정 기준이 정해지지 않았습니다.",
+              "next_action": "Bob이 재접수 24시간 이내 담당 유지 여부를 결정하고 Alice가 설계 문서에 반영합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "implement",
+            "title": "문의 분류와 전달 화면 구현",
+            "phase_id": "build",
+            "owner": "Alice",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "문의 유형·담당·근거 문서를 함께 확인하고 전달할 수 있다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "build-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-implement",
+              "task_id": "implement",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "in_progress",
+              "summary": "가상 문서에 문의 분류와 전달 화면 구현 진행 중이라고 기록했습니다. 현재 실행은 미확인입니다.",
+              "next_action": "문의 유형·담당·근거 문서를 함께 확인하고 전달할 수 있다 · Alice가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "fallback",
+            "title": "유형 미확인 문의의 대기함 구현",
+            "phase_id": "build",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "모르는 유형은 자동 전달하지 않고 확인 대기함에 남는다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "build-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-fallback",
+              "task_id": "fallback",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 유형 미확인 문의의 대기함 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "모르는 유형은 자동 전달하지 않고 확인 대기함에 남는다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "verify",
+            "title": "분류 오류·재배정 검사와 인수",
+            "phase_id": "accept",
+            "owner": null,
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "현재 버전에서 오분류·중복·근거 누락을 검사하고 업무 담당자가 인수한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "accept-record"
+            ],
+            "review_required": true,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-verify",
+              "task_id": "verify",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 분류 오류·재배정 검사와 인수의 확인 근거가 아직 없습니다.",
+              "next_action": "현재 버전에서 오분류·중복·근거 누락을 검사하고 업무 담당자가 인수한다 · 지정할 담당자가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          }
+        ],
+        "phases": [
+          {
+            "id": "plan",
+            "name": "문의 분류 범위",
+            "state": "unknown",
+            "required": 2,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "design",
+            "name": "처리 흐름 설계",
+            "state": "unknown",
+            "required": 2,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "build",
+            "name": "분류 화면 구현",
+            "state": "unknown",
+            "required": 2,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "accept",
+            "name": "운영 확인과 인수",
+            "state": "unknown",
+            "required": 1,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          }
+        ],
+        "summary": {
+          "total": 7,
+          "required": 7,
+          "completed": 0,
+          "technical_complete": 0,
+          "blocked": 0,
+          "failed": 0,
+          "review_pending": 0,
+          "ready": 0,
+          "unknown": 7,
+          "revalidation": 0
+        },
+        "interventions": [
+          {
+            "id": "missing_acceptance-scope",
+            "kind": "missing_acceptance",
+            "task_id": "scope",
+            "phase_id": "plan",
+            "owner": "Alice",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-taxonomy",
+            "kind": "missing_acceptance",
+            "task_id": "taxonomy",
+            "phase_id": "plan",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-evidence",
+            "kind": "missing_acceptance",
+            "task_id": "evidence",
+            "phase_id": "design",
+            "owner": "Alice",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-decision",
+            "kind": "missing_acceptance",
+            "task_id": "decision",
+            "phase_id": "design",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-implement",
+            "kind": "missing_acceptance",
+            "task_id": "implement",
+            "phase_id": "build",
+            "owner": "Alice",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-fallback",
+            "kind": "missing_acceptance",
+            "task_id": "fallback",
+            "phase_id": "build",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_owner-verify",
+            "kind": "missing_owner",
+            "task_id": "verify",
+            "phase_id": "accept",
+            "owner": null,
+            "summary": "작업 담당자가 없습니다.",
+            "next_action": "작업을 책임질 사람을 지정하세요."
+          },
+          {
+            "id": "missing_acceptance-verify",
+            "kind": "missing_acceptance",
+            "task_id": "verify",
+            "phase_id": "accept",
+            "owner": null,
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "phase_gate-plan",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "plan",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-design",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "design",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-build",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "build",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-accept",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "accept",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          }
+        ]
+      }
     },
     {
       "id": "sample-intake",
@@ -64,32 +982,342 @@
       "owners": [
         "Bob"
       ],
-      "current_revision": "v1",
+      "current_revision": "v2",
       "current_phase": "build",
-      "status": "unknown",
-      "status_reason": "프로젝트 범위 완료 기준이 없습니다. 목표/문서는 catalog.projects[1]의 명시적 입력입니다.",
+      "status": "in_progress",
+      "status_reason": "현재 revision의 프로젝트 범위 검사 기록이 부족하거나 불명입니다. 필수 작업·단계·전체 검사·승인·막힘 해결 조건을 모두 확인해야 합니다. 목표/문서는 catalog.projects[1]의 명시적 입력입니다.",
       "phases": [
         {
           "id": "plan",
-          "name": "목표와 계획 정리",
+          "name": "접수 목적과 대상",
+          "status": "unknown"
+        },
+        {
+          "id": "inventory",
+          "name": "입력 자료 목록",
+          "status": "unknown"
+        },
+        {
+          "id": "policy",
+          "name": "보관과 권한 정책",
+          "status": "unknown"
+        },
+        {
+          "id": "design",
+          "name": "접수 흐름 설계",
           "status": "unknown"
         },
         {
           "id": "build",
-          "name": "구현과 확인",
+          "name": "접수 화면 구현",
+          "status": "unknown"
+        },
+        {
+          "id": "validation",
+          "name": "누락 검증 구현",
+          "status": "unknown"
+        },
+        {
+          "id": "routing",
+          "name": "담당 배정과 알림",
+          "status": "unknown"
+        },
+        {
+          "id": "review",
+          "name": "검토와 보완 요청",
+          "status": "unknown"
+        },
+        {
+          "id": "migration",
+          "name": "기존 자료 연결",
           "status": "unknown"
         },
         {
           "id": "accept",
-          "name": "현재 검증과 인수",
+          "name": "전체 흐름 검사와 인수",
           "status": "unknown"
         }
       ],
-      "documents": [],
+      "documents": [
+        {
+          "id": "plan-record",
+          "title": "팀 자료 접수 · 접수 목적과 대상 문서",
+          "kind": "plan",
+          "version": "v1",
+          "phase_id": "plan",
+          "at": "2026-10-02T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "summary": "팀 디자인·기획 자료를 받는 목적과 허용 범위를 정한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 초기 범위 v1\n목표: 팀원이 자료를 제출하고 누락된 필수 항목을 확인할 수 있게 한다\n초기 결정: 대상 업무와 기본 담당 범위를 정리했습니다.\n미정: 예외 처리의 담당자 판단과 현재 실행 검증.\n후속: v2 계획에서 구체적인 막힘과 다음 행동을 추가합니다.\n현재 실행 검사·앱 훅·최종 인수: 미확인",
+          "source_ref": "catalog.projects[1].documents[0]"
+        },
+        {
+          "id": "plan-record",
+          "title": "팀 자료 접수 · 접수 목적과 대상 문서",
+          "kind": "plan",
+          "version": "v2",
+          "phase_id": "plan",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "summary": "팀 디자인·기획 자료를 받는 목적과 허용 범위를 정한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 접수 목적과 대상\n목표: 팀 디자인·기획 자료를 받는 목적과 허용 범위를 정한다\n접수 대상 팀과 자료 범위 정리 · 가상 문서에 접수 대상 팀과 자료 범위 정리를 정리했다고 기록했습니다.\n완료 조건: 디자인·기획팀 제출 자료와 대상 팀이 명시되어 있다\n접수 책임자와 문의 창구 지정 · 가상 문서에 접수 책임자와 문의 창구 지정를 정리했다고 기록했습니다.\n완료 조건: 제출자가 보완 문의를 전달할 팀 책임자를 알 수 있다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[1].documents[1]"
+        },
+        {
+          "id": "inventory-record",
+          "title": "팀 자료 접수 · 입력 자료 목록 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "inventory",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "summary": "자료 유형별 필수 항목과 예시를 정리한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 입력 자료 목록\n목표: 자료 유형별 필수 항목과 예시를 정리한다\n자료 유형별 필수 항목 정리 · 가상 문서에 자료 유형별 필수 항목 정리를 예정 작업으로 기록했습니다.\n완료 조건: 요청 목적·담당 팀·원본 출처가 유형별 필수 항목으로 정리되어 있다\n유효 자료와 반려 사례 작성 · 가상 문서에 유효 자료와 반려 사례 작성를 예정 작업으로 기록했습니다.\n완료 조건: 정상 제출과 누락 제출의 가상 예시를 비교할 수 있다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[1].documents[2]"
+        },
+        {
+          "id": "policy-record",
+          "title": "팀 자료 접수 · 보관과 권한 정책 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "policy",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "summary": "열람 권한과 삭제 책임을 합의한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 보관과 권한 정책\n목표: 열람 권한과 삭제 책임을 합의한다\n고객 자료 보관 기간과 삭제 책임 합의 · 고객 자료와 내부 초안을 같은 보관 기간으로 취급할지 팀의 정책 결정이 남아 있습니다.\n완료 조건: 자료별 보관 기간과 삭제 승인자를 문서로 확정한다\n팀별 열람 범위 설계 · 가상 문서에 팀별 열람 범위 설계를 예정 작업으로 기록했습니다.\n완료 조건: 제출 팀과 검토 팀의 열람 범위가 구분된다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[1].documents[3]"
+        },
+        {
+          "id": "design-record",
+          "title": "팀 자료 접수 · 접수 흐름 설계 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "design",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "summary": "제출·누락·반려·재제출 경로를 연결한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 접수 흐름 설계\n목표: 제출·누락·반려·재제출 경로를 연결한다\n제출 양식과 오류 안내 설계 · 가상 문서에 제출 양식과 오류 안내 설계를 예정 작업으로 기록했습니다.\n완료 조건: 필수 항목 오류를 입력 위치와 함께 설명한다\n반려와 재제출 흐름 설계 · 가상 문서에 반려와 재제출 흐름 설계를 예정 작업으로 기록했습니다.\n완료 조건: 이전 제출 버전과 보완 내용을 함께 확인할 수 있다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[1].documents[4]"
+        },
+        {
+          "id": "build-record",
+          "title": "팀 자료 접수 · 접수 화면 구현 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "build",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "summary": "팀원이 제출 항목과 처리 상태를 알 수 있게 한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 접수 화면 구현\n목표: 팀원이 제출 항목과 처리 상태를 알 수 있게 한다\n자료 접수 양식 구현 · 가상 문서에 자료 접수 양식 구현 진행 중이라고 기록했습니다. 현재 실행은 미확인입니다.\n완료 조건: 제출자가 항목을 입력하고 제출 전 요약을 확인할 수 있다\n자료 위치와 출처 입력 구현 · 가상 문서에 자료 위치와 출처 입력 구현를 예정 작업으로 기록했습니다.\n완료 조건: 본문 복사 없이 자료 위치·제목·버전을 등록할 수 있다\n임시 저장과 이어쓰기 구현 · 가상 문서에 임시 저장과 이어쓰기 구현를 예정 작업으로 기록했습니다.\n완료 조건: 제출하지 않은 자료는 초안으로 표시한다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[1].documents[5]"
+        },
+        {
+          "id": "validation-record",
+          "title": "팀 자료 접수 · 누락 검증 구현 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "validation",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "summary": "필수 항목 누락과 형식 오류를 구분한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 누락 검증 구현\n목표: 필수 항목 누락과 형식 오류를 구분한다\n필수 항목 누락 안내 구현 · 가상 문서에 필수 항목 누락 안내 구현를 예정 작업으로 기록했습니다.\n완료 조건: 누락 항목의 이름과 보완 방법을 표시한다\n날짜와 파일 형식 확인 구현 · 가상 문서에 날짜와 파일 형식 확인 구현를 예정 작업으로 기록했습니다.\n완료 조건: 허용하지 않는 형식을 이유와 함께 설명한다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[1].documents[6]"
+        },
+        {
+          "id": "routing-record",
+          "title": "팀 자료 접수 · 담당 배정과 알림 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "routing",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "summary": "자료별 확인 담당자를 지정하고 중복 알림을 줄인다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 담당 배정과 알림\n목표: 자료별 확인 담당자를 지정하고 중복 알림을 줄인다\n자료 유형별 담당 배정 구현 · 가상 문서에 자료 유형별 담당 배정 구현를 예정 작업으로 기록했습니다.\n완료 조건: 유형별 기본 담당자를 적용하고 수동 변경 이유를 기록한다\n중복 제출 알림 제한 구현 · 가상 문서에 중복 제출 알림 제한 구현를 예정 작업으로 기록했습니다.\n완료 조건: 동일 출처와 버전은 재접수로 표시하고 알림 정책을 적용한다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[1].documents[7]"
+        },
+        {
+          "id": "review-record",
+          "title": "팀 자료 접수 · 검토와 보완 요청 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "review",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "summary": "검토 사유와 재제출 조건을 기록한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 검토와 보완 요청\n목표: 검토 사유와 재제출 조건을 기록한다\n검토 사유와 보완 요청 화면 구현 · 가상 문서에 검토 사유와 보완 요청 화면 구현를 예정 작업으로 기록했습니다.\n완료 조건: 검토자가 보완 항목별 사유와 담당을 남길 수 있다\n제출자의 보완 응답 연결 · 가상 문서에 제출자의 보완 응답 연결를 예정 작업으로 기록했습니다.\n완료 조건: 보완된 자료 버전과 원래 요청을 연결할 수 있다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[1].documents[8]"
+        },
+        {
+          "id": "migration-record",
+          "title": "팀 자료 접수 · 기존 자료 연결 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "migration",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "summary": "기존 자료의 출처와 보관 위치를 연결한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 기존 자료 연결\n목표: 기존 자료의 출처와 보관 위치를 연결한다\n기존 자료 목록과 출처 매핑 · 가상 문서에 기존 자료 목록과 출처 매핑를 예정 작업으로 기록했습니다.\n완료 조건: 기존 자료마다 등록할 출처와 담당자를 식별한다\n기존 자료의 버전 충돌 처리 · 가상 문서에 기존 자료의 버전 충돌 처리를 예정 작업으로 기록했습니다.\n완료 조건: 같은 제목의 다른 버전을 덮어쓰지 않고 구분한다\n보관 만료 자료의 처리 계획 · 가상 문서에 보관 만료 자료의 처리 계획를 예정 작업으로 기록했습니다.\n완료 조건: 만료 자료에 대한 삭제 검토 대상과 책임자를 알 수 있다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[1].documents[9]"
+        },
+        {
+          "id": "accept-record",
+          "title": "팀 자료 접수 · 전체 흐름 검사와 인수 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "accept",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "summary": "접수부터 삭제까지 책임과 예외 경로를 확인한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 전체 흐름 검사와 인수\n목표: 접수부터 삭제까지 책임과 예외 경로를 확인한다\n접수·보완·권한 전체 흐름 검사 · 가상 문서에 접수·보완·권한 전체 흐름 검사의 확인 근거가 아직 없습니다.\n완료 조건: 현재 버전에서 신규 접수·반려·재제출·열람 제한을 검사한다\n보관 만료 삭제 흐름 확인 · 가상 문서에 보관 만료 삭제 흐름 확인를 예정 작업으로 기록했습니다.\n완료 조건: 삭제 승인·출처 보존·열람 차단을 현재 환경에서 확인한다\n팀 운영 인수와 후속 담당 확정 · 가상 문서에 팀 운영 인수와 후속 담당 확정를 예정 작업으로 기록했습니다.\n완료 조건: 업무 담당자가 사용 흐름을 확인하고 문의·보완·삭제 책임을 인수한다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[1].documents[10]"
+        }
+      ],
       "criteria": [],
       "runs": [],
-      "sessions": [],
-      "timeline": [],
+      "sessions": [
+        {
+          "id": "document-declaration",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "event_count": 0
+        }
+      ],
+      "timeline": [
+        {
+          "at": "2026-10-02T09:00:00Z",
+          "kind": "document",
+          "title": "팀 자료 접수 · 접수 목적과 대상 문서 · v1",
+          "detail": "팀 디자인·기획 자료를 받는 목적과 허용 범위를 정한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[1].documents[0]"
+        },
+        {
+          "at": "2026-10-02T09:00:00Z",
+          "kind": "management",
+          "title": "objectives · objective",
+          "detail": "fictional/sample-intake/scope.md",
+          "session_id": null,
+          "source_ref": "catalog.projects[1].management.objectives[0]"
+        },
+        {
+          "at": "2026-10-02T09:00:00Z",
+          "kind": "management",
+          "title": "plans · adoption-plan",
+          "detail": "대상 업무와 기본 담당 범위를 확정하기 위한 초기 계획입니다. 구체적인 예외 처리와 인수 조건은 후속 합의가 필요합니다.",
+          "session_id": null,
+          "source_ref": "catalog.projects[1].management.plans[0]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "팀 자료 접수 · 전체 흐름 검사와 인수 문서 · v2",
+          "detail": "접수부터 삭제까지 책임과 예외 경로를 확인한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[1].documents[10]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "팀 자료 접수 · 접수 목적과 대상 문서 · v2",
+          "detail": "팀 디자인·기획 자료를 받는 목적과 허용 범위를 정한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[1].documents[1]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "팀 자료 접수 · 입력 자료 목록 문서 · v2",
+          "detail": "자료 유형별 필수 항목과 예시를 정리한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[1].documents[2]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "팀 자료 접수 · 보관과 권한 정책 문서 · v2",
+          "detail": "열람 권한과 삭제 책임을 합의한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[1].documents[3]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "팀 자료 접수 · 접수 흐름 설계 문서 · v2",
+          "detail": "제출·누락·반려·재제출 경로를 연결한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[1].documents[4]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "팀 자료 접수 · 접수 화면 구현 문서 · v2",
+          "detail": "팀원이 제출 항목과 처리 상태를 알 수 있게 한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[1].documents[5]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "팀 자료 접수 · 누락 검증 구현 문서 · v2",
+          "detail": "필수 항목 누락과 형식 오류를 구분한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[1].documents[6]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "팀 자료 접수 · 담당 배정과 알림 문서 · v2",
+          "detail": "자료별 확인 담당자를 지정하고 중복 알림을 줄인다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[1].documents[7]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "팀 자료 접수 · 검토와 보완 요청 문서 · v2",
+          "detail": "검토 사유와 재제출 조건을 기록한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[1].documents[8]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "팀 자료 접수 · 기존 자료 연결 문서 · v2",
+          "detail": "기존 자료의 출처와 보관 위치를 연결한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[1].documents[9]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "management",
+          "title": "plans · adoption-plan",
+          "detail": "초기 범위 합의 뒤 확인된 고객 자료와 내부 초안을 같은 보관 기간으로 취급할지 팀의 정책 결정이 남아 있습니다. 이에 따라 구체적인 예외 처리와 확인·인수 작업을 추가했습니다.",
+          "session_id": null,
+          "source_ref": "catalog.projects[1].management.plans[1]"
+        }
+      ],
       "sources": [
         {
           "actor_id": "Bob",
@@ -100,8 +1328,2108 @@
         }
       ],
       "alerts": [],
-      "last_updated": null,
-      "connections": []
+      "last_updated": "2026-10-04T09:00:00Z",
+      "connections": [
+        {
+          "server": "fictional-api",
+          "tool": "reference-0",
+          "status": "configured",
+          "duration_ms": null,
+          "operation": "read",
+          "resources": [
+            {
+              "id": "reference-0",
+              "kind": "document",
+              "label": "자료 저장소 API",
+              "evidence": "declared"
+            }
+          ],
+          "artifact_refs": [
+            {
+              "id": "build-record",
+              "version": "v2"
+            }
+          ],
+          "id": "configured-0",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "session_id": null,
+          "agent_id": null,
+          "tool_call_id": null,
+          "at": null,
+          "authority": "declared",
+          "source_ref": "catalog.projects[1].connections[0]"
+        },
+        {
+          "server": "fictional-mcp",
+          "tool": "reference-1",
+          "status": "configured",
+          "duration_ms": null,
+          "operation": "read",
+          "resources": [
+            {
+              "id": "reference-1",
+              "kind": "document",
+              "label": "문서 목록 MCP",
+              "evidence": "declared"
+            }
+          ],
+          "artifact_refs": [
+            {
+              "id": "inventory-record",
+              "version": "v2"
+            }
+          ],
+          "id": "configured-1",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "session_id": null,
+          "agent_id": null,
+          "tool_call_id": null,
+          "at": null,
+          "authority": "declared",
+          "source_ref": "catalog.projects[1].connections[1]"
+        },
+        {
+          "server": "fictional-api",
+          "tool": "reference-2",
+          "status": "configured",
+          "duration_ms": null,
+          "operation": "read",
+          "resources": [
+            {
+              "id": "reference-2",
+              "kind": "document",
+              "label": "알림 API",
+              "evidence": "declared"
+            }
+          ],
+          "artifact_refs": [
+            {
+              "id": "routing-record",
+              "version": "v2"
+            }
+          ],
+          "id": "configured-2",
+          "actor_id": "Bob",
+          "environment_id": "fictional-workspace",
+          "session_id": null,
+          "agent_id": null,
+          "tool_call_id": null,
+          "at": null,
+          "authority": "declared",
+          "source_ref": "catalog.projects[1].connections[2]"
+        }
+      ],
+      "management": {
+        "objectives": [
+          {
+            "id": "objective",
+            "version": "v2",
+            "kind": "company",
+            "parent_id": null,
+            "title": "팀원이 자료를 제출하고 누락된 필수 항목을 확인할 수 있게 한다",
+            "success_condition": "업무 담당자가 사용 흐름을 확인하고 문의·보완·삭제 책임을 인수한다 · 실제 업무 성과는 미관측",
+            "source": "fictional/sample-intake/scope.md",
+            "at": "2026-10-02T09:00:00Z"
+          }
+        ],
+        "assignment": {
+          "objective_id": "objective",
+          "objective_version": "v2",
+          "kind": "outcome",
+          "issuer": "ExampleTeam",
+          "assignee": "Bob",
+          "at": "2026-10-02T09:00:00Z",
+          "acceptance": "팀원이 자료를 제출하고 누락된 필수 항목을 확인할 수 있게 한다"
+        },
+        "requirements": [
+          {
+            "id": "req-core",
+            "text": "팀원이 자료를 제출하고 누락된 필수 항목을 확인할 수 있게 한다",
+            "source": "fictional/sample-intake/scope.md"
+          }
+        ],
+        "plans": [
+          {
+            "id": "adoption-plan",
+            "version": "v1",
+            "at": "2026-10-02T09:00:00Z",
+            "summary": "팀원이 자료를 제출하고 누락된 필수 항목을 확인할 수 있게 한다",
+            "reason": "대상 업무와 기본 담당 범위를 확정하기 위한 초기 계획입니다. 구체적인 예외 처리와 인수 조건은 후속 합의가 필요합니다.",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "handoff_ref": "fictional/sample-intake/plan-v1.json"
+          },
+          {
+            "id": "adoption-plan",
+            "version": "v2",
+            "at": "2026-10-04T09:00:00Z",
+            "summary": "팀원이 자료를 제출하고 누락된 필수 항목을 확인할 수 있게 한다",
+            "reason": "초기 범위 합의 뒤 확인된 고객 자료와 내부 초안을 같은 보관 기간으로 취급할지 팀의 정책 결정이 남아 있습니다. 이에 따라 구체적인 예외 처리와 확인·인수 작업을 추가했습니다.",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "handoff_ref": "fictional/sample-intake/plan-v2.json"
+          }
+        ],
+        "test_plans": [],
+        "artifact": {
+          "revision": "v2",
+          "files": [
+            {
+              "path": "fictional/sample-intake/scope.md",
+              "sha256": "c4ed98e690a3f02fb76924e550142f8bcb925e1b1f45cbcc4c1e8cba4305c992"
+            },
+            {
+              "path": "fictional/sample-intake/intake-owner.md",
+              "sha256": "4799c8770a20647ed65a7a5ba85a35c6e5286e1623ed2b6cd3c0d02886882d1a"
+            },
+            {
+              "path": "fictional/sample-intake/fields.md",
+              "sha256": "f4e00b7e28401ec453dc5b93b151784341a69c7aaafd2bb0ad2ae1ad119f96e3"
+            },
+            {
+              "path": "fictional/sample-intake/examples.md",
+              "sha256": "cb8859405c9899f98c2b4ffcb98c35456474ec0806205f631206f1fa8f2da790"
+            },
+            {
+              "path": "fictional/sample-intake/decision.md",
+              "sha256": "a8d25b2e9eff8af85e5efa058444446493c645659332e0fde2021dd2da7cfa42"
+            },
+            {
+              "path": "fictional/sample-intake/access.md",
+              "sha256": "47e2d5f09a56f3d88ec5dac6008cbcd027c7ef38e5d878fe567d0b403e4423e6"
+            },
+            {
+              "path": "fictional/sample-intake/form-design.md",
+              "sha256": "1fee2f6ddc1f084cdae5b9e8e91adaba0afa4966fcd5cf866400703bc747ef11"
+            },
+            {
+              "path": "fictional/sample-intake/resubmit-design.md",
+              "sha256": "2da6ca1cfcb179351695a325349adbc8a9d8eff4439fb46da64b5d514628fbb9"
+            },
+            {
+              "path": "fictional/sample-intake/implement.md",
+              "sha256": "11fb6c28adf5a3d0fd46193c56f700504f1bec938075ca48450092edd565b5b8"
+            },
+            {
+              "path": "fictional/sample-intake/upload.md",
+              "sha256": "dcb0d7978682d8370ae072080a1eda6241b18cc53c8604bd1f3a820d58966644"
+            },
+            {
+              "path": "fictional/sample-intake/draft.md",
+              "sha256": "c1c5dc683c92ec7674c27633941c63042b5f40bdd52cbe25cf54d453b26a59c2"
+            },
+            {
+              "path": "fictional/sample-intake/required-check.md",
+              "sha256": "ed21c430283cb1136f854776238545e376fcb8689251d06070bb40b48959528e"
+            },
+            {
+              "path": "fictional/sample-intake/format-check.md",
+              "sha256": "e6667189c39365c89f2f5a23f0d542065dbb58306bc818f48a3bb723d5b86150"
+            },
+            {
+              "path": "fictional/sample-intake/route.md",
+              "sha256": "608695dde444a9a253c542fa7f243d20826c6ac13e1993766569d91bca545c2f"
+            },
+            {
+              "path": "fictional/sample-intake/dedupe.md",
+              "sha256": "b4ad4e51f9ad2825b1aacfc1c08a1dec714e5ce8f464e5608df82cee272d03df"
+            },
+            {
+              "path": "fictional/sample-intake/review-screen.md",
+              "sha256": "8cdec441ba257ec21a3de08b4b6576ce5efa0148389ce31b6e102f8399a33887"
+            },
+            {
+              "path": "fictional/sample-intake/review-response.md",
+              "sha256": "a212710c488db745f51fc1ce3665f036242cddaedfacc8fd5fae1eb647ace4d5"
+            },
+            {
+              "path": "fictional/sample-intake/legacy-map.md",
+              "sha256": "e814616c14300403642e67370b9287d586555d8b4730dfb93a3a7d1048bc9dc5"
+            },
+            {
+              "path": "fictional/sample-intake/legacy-conflict.md",
+              "sha256": "04aad463b5f30bacedb8a08eeb7b4905978251c492c798eb94831991630a2ab2"
+            },
+            {
+              "path": "fictional/sample-intake/retention.md",
+              "sha256": "6e99e9594a6f014c0ece7f9611a3eb07249ddbe1c1e5213820c4acff5227ed2d"
+            },
+            {
+              "path": "fictional/sample-intake/verify.md",
+              "sha256": "c97481c262b1d30aa4f482170315d6fc074e4ab9ee4ef4079568d3ebfc242abc"
+            },
+            {
+              "path": "fictional/sample-intake/deletion-test.md",
+              "sha256": "c7a0880f452b4a096068423cb797df74358979611538478a6f13716778ef920b"
+            },
+            {
+              "path": "fictional/sample-intake/handover.md",
+              "sha256": "d2723940bd2921de06ba35b130c4c94bb42cc08eed6dd6560421a665305f7cf3"
+            }
+          ],
+          "sha256": "763eaf278db0e74d589a7bd0303f8b67823e5fe2b4c0a12b11b91a5790523a06"
+        },
+        "attempts": [],
+        "blockers": [],
+        "improvements": [],
+        "harness": [],
+        "graphs": [],
+        "work": {
+          "plan_id": "adoption-plan",
+          "plan_version": "v2",
+          "at": "2026-10-04T09:00:00Z",
+          "tasks": [
+            {
+              "id": "scope",
+              "title": "접수 대상 팀과 자료 범위 정리",
+              "phase_id": "plan",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "디자인·기획팀 제출 자료와 대상 팀이 명시되어 있다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "plan-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "intake-owner",
+              "title": "접수 책임자와 문의 창구 지정",
+              "phase_id": "plan",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "제출자가 보완 문의를 전달할 팀 책임자를 알 수 있다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "plan-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "fields",
+              "title": "자료 유형별 필수 항목 정리",
+              "phase_id": "inventory",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "요청 목적·담당 팀·원본 출처가 유형별 필수 항목으로 정리되어 있다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "inventory-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "examples",
+              "title": "유효 자료와 반려 사례 작성",
+              "phase_id": "inventory",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "정상 제출과 누락 제출의 가상 예시를 비교할 수 있다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "inventory-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "decision",
+              "title": "고객 자료 보관 기간과 삭제 책임 합의",
+              "phase_id": "policy",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "자료별 보관 기간과 삭제 승인자를 문서로 확정한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "policy-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "access",
+              "title": "팀별 열람 범위 설계",
+              "phase_id": "policy",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "제출 팀과 검토 팀의 열람 범위가 구분된다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "policy-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "form-design",
+              "title": "제출 양식과 오류 안내 설계",
+              "phase_id": "design",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "필수 항목 오류를 입력 위치와 함께 설명한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "design-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "resubmit-design",
+              "title": "반려와 재제출 흐름 설계",
+              "phase_id": "design",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "이전 제출 버전과 보완 내용을 함께 확인할 수 있다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "design-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "implement",
+              "title": "자료 접수 양식 구현",
+              "phase_id": "build",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "제출자가 항목을 입력하고 제출 전 요약을 확인할 수 있다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "build-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "upload",
+              "title": "자료 위치와 출처 입력 구현",
+              "phase_id": "build",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "본문 복사 없이 자료 위치·제목·버전을 등록할 수 있다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "build-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "draft",
+              "title": "임시 저장과 이어쓰기 구현",
+              "phase_id": "build",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "제출하지 않은 자료는 초안으로 표시한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "build-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "required-check",
+              "title": "필수 항목 누락 안내 구현",
+              "phase_id": "validation",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "누락 항목의 이름과 보완 방법을 표시한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "validation-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "format-check",
+              "title": "날짜와 파일 형식 확인 구현",
+              "phase_id": "validation",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "허용하지 않는 형식을 이유와 함께 설명한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "validation-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "route",
+              "title": "자료 유형별 담당 배정 구현",
+              "phase_id": "routing",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "유형별 기본 담당자를 적용하고 수동 변경 이유를 기록한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "routing-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "dedupe",
+              "title": "중복 제출 알림 제한 구현",
+              "phase_id": "routing",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "동일 출처와 버전은 재접수로 표시하고 알림 정책을 적용한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "routing-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "review-screen",
+              "title": "검토 사유와 보완 요청 화면 구현",
+              "phase_id": "review",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "검토자가 보완 항목별 사유와 담당을 남길 수 있다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "review-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "review-response",
+              "title": "제출자의 보완 응답 연결",
+              "phase_id": "review",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "보완된 자료 버전과 원래 요청을 연결할 수 있다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "review-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "legacy-map",
+              "title": "기존 자료 목록과 출처 매핑",
+              "phase_id": "migration",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "기존 자료마다 등록할 출처와 담당자를 식별한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "migration-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "legacy-conflict",
+              "title": "기존 자료의 버전 충돌 처리",
+              "phase_id": "migration",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "같은 제목의 다른 버전을 덮어쓰지 않고 구분한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "migration-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "retention",
+              "title": "보관 만료 자료의 처리 계획",
+              "phase_id": "migration",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "만료 자료에 대한 삭제 검토 대상과 책임자를 알 수 있다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "migration-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "verify",
+              "title": "접수·보완·권한 전체 흐름 검사",
+              "phase_id": "accept",
+              "owner": null,
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "현재 버전에서 신규 접수·반려·재제출·열람 제한을 검사한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "accept-record"
+              ],
+              "review_required": true
+            },
+            {
+              "id": "deletion-test",
+              "title": "보관 만료 삭제 흐름 확인",
+              "phase_id": "accept",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "삭제 승인·출처 보존·열람 차단을 현재 환경에서 확인한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "accept-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "handover",
+              "title": "팀 운영 인수와 후속 담당 확정",
+              "phase_id": "accept",
+              "owner": "Bob",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "업무 담당자가 사용 흐름을 확인하고 문의·보완·삭제 책임을 인수한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "accept-record"
+              ],
+              "review_required": false
+            }
+          ],
+          "phase_gates": [
+            {
+              "phase_id": "plan",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "inventory",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "policy",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "design",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "build",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "validation",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "routing",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "review",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "migration",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "accept",
+              "criterion_ids": []
+            }
+          ],
+          "updates": [
+            {
+              "id": "update-scope",
+              "task_id": "scope",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 접수 대상 팀과 자료 범위 정리를 정리했다고 기록했습니다.",
+              "next_action": "디자인·기획팀 제출 자료와 대상 팀이 명시되어 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-intake-owner",
+              "task_id": "intake-owner",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 접수 책임자와 문의 창구 지정를 정리했다고 기록했습니다.",
+              "next_action": "제출자가 보완 문의를 전달할 팀 책임자를 알 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-fields",
+              "task_id": "fields",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 자료 유형별 필수 항목 정리를 예정 작업으로 기록했습니다.",
+              "next_action": "요청 목적·담당 팀·원본 출처가 유형별 필수 항목으로 정리되어 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-examples",
+              "task_id": "examples",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 유효 자료와 반려 사례 작성를 예정 작업으로 기록했습니다.",
+              "next_action": "정상 제출과 누락 제출의 가상 예시를 비교할 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-decision",
+              "task_id": "decision",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "blocked",
+              "summary": "고객 자료와 내부 초안을 같은 보관 기간으로 취급할지 팀의 정책 결정이 남아 있습니다.",
+              "next_action": "Bob이 고객 자료와 초안의 보관 기간을 각각 확정하고 삭제 승인자를 지정합니다."
+            },
+            {
+              "id": "update-access",
+              "task_id": "access",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 팀별 열람 범위 설계를 예정 작업으로 기록했습니다.",
+              "next_action": "제출 팀과 검토 팀의 열람 범위가 구분된다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-form-design",
+              "task_id": "form-design",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 제출 양식과 오류 안내 설계를 예정 작업으로 기록했습니다.",
+              "next_action": "필수 항목 오류를 입력 위치와 함께 설명한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-resubmit-design",
+              "task_id": "resubmit-design",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 반려와 재제출 흐름 설계를 예정 작업으로 기록했습니다.",
+              "next_action": "이전 제출 버전과 보완 내용을 함께 확인할 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-implement",
+              "task_id": "implement",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "in_progress",
+              "summary": "가상 문서에 자료 접수 양식 구현 진행 중이라고 기록했습니다. 현재 실행은 미확인입니다.",
+              "next_action": "제출자가 항목을 입력하고 제출 전 요약을 확인할 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-upload",
+              "task_id": "upload",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 자료 위치와 출처 입력 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "본문 복사 없이 자료 위치·제목·버전을 등록할 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-draft",
+              "task_id": "draft",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 임시 저장과 이어쓰기 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "제출하지 않은 자료는 초안으로 표시한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-required-check",
+              "task_id": "required-check",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 필수 항목 누락 안내 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "누락 항목의 이름과 보완 방법을 표시한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-format-check",
+              "task_id": "format-check",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 날짜와 파일 형식 확인 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "허용하지 않는 형식을 이유와 함께 설명한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-route",
+              "task_id": "route",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 자료 유형별 담당 배정 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "유형별 기본 담당자를 적용하고 수동 변경 이유를 기록한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-dedupe",
+              "task_id": "dedupe",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 중복 제출 알림 제한 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "동일 출처와 버전은 재접수로 표시하고 알림 정책을 적용한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-review-screen",
+              "task_id": "review-screen",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 검토 사유와 보완 요청 화면 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "검토자가 보완 항목별 사유와 담당을 남길 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-review-response",
+              "task_id": "review-response",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 제출자의 보완 응답 연결를 예정 작업으로 기록했습니다.",
+              "next_action": "보완된 자료 버전과 원래 요청을 연결할 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-legacy-map",
+              "task_id": "legacy-map",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 기존 자료 목록과 출처 매핑를 예정 작업으로 기록했습니다.",
+              "next_action": "기존 자료마다 등록할 출처와 담당자를 식별한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-legacy-conflict",
+              "task_id": "legacy-conflict",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 기존 자료의 버전 충돌 처리를 예정 작업으로 기록했습니다.",
+              "next_action": "같은 제목의 다른 버전을 덮어쓰지 않고 구분한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-retention",
+              "task_id": "retention",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 보관 만료 자료의 처리 계획를 예정 작업으로 기록했습니다.",
+              "next_action": "만료 자료에 대한 삭제 검토 대상과 책임자를 알 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-verify",
+              "task_id": "verify",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 접수·보완·권한 전체 흐름 검사의 확인 근거가 아직 없습니다.",
+              "next_action": "현재 버전에서 신규 접수·반려·재제출·열람 제한을 검사한다 · 지정할 담당자가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-deletion-test",
+              "task_id": "deletion-test",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 보관 만료 삭제 흐름 확인를 예정 작업으로 기록했습니다.",
+              "next_action": "삭제 승인·출처 보존·열람 차단을 현재 환경에서 확인한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-handover",
+              "task_id": "handover",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 팀 운영 인수와 후속 담당 확정를 예정 작업으로 기록했습니다.",
+              "next_action": "업무 담당자가 사용 흐름을 확인하고 문의·보완·삭제 책임을 인수한다 · Bob가 현재 문서와 결과를 확인합니다."
+            }
+          ],
+          "reviews": []
+        }
+      },
+      "work": {
+        "plan_id": "adoption-plan",
+        "plan_version": "v2",
+        "at": "2026-10-04T09:00:00Z",
+        "tasks": [
+          {
+            "id": "scope",
+            "title": "접수 대상 팀과 자료 범위 정리",
+            "phase_id": "plan",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "디자인·기획팀 제출 자료와 대상 팀이 명시되어 있다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "plan-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-scope",
+              "task_id": "scope",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 접수 대상 팀과 자료 범위 정리를 정리했다고 기록했습니다.",
+              "next_action": "디자인·기획팀 제출 자료와 대상 팀이 명시되어 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "intake-owner",
+            "title": "접수 책임자와 문의 창구 지정",
+            "phase_id": "plan",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "제출자가 보완 문의를 전달할 팀 책임자를 알 수 있다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "plan-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-intake-owner",
+              "task_id": "intake-owner",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 접수 책임자와 문의 창구 지정를 정리했다고 기록했습니다.",
+              "next_action": "제출자가 보완 문의를 전달할 팀 책임자를 알 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "fields",
+            "title": "자료 유형별 필수 항목 정리",
+            "phase_id": "inventory",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "요청 목적·담당 팀·원본 출처가 유형별 필수 항목으로 정리되어 있다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "inventory-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-fields",
+              "task_id": "fields",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 자료 유형별 필수 항목 정리를 예정 작업으로 기록했습니다.",
+              "next_action": "요청 목적·담당 팀·원본 출처가 유형별 필수 항목으로 정리되어 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "examples",
+            "title": "유효 자료와 반려 사례 작성",
+            "phase_id": "inventory",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "정상 제출과 누락 제출의 가상 예시를 비교할 수 있다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "inventory-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-examples",
+              "task_id": "examples",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 유효 자료와 반려 사례 작성를 예정 작업으로 기록했습니다.",
+              "next_action": "정상 제출과 누락 제출의 가상 예시를 비교할 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "decision",
+            "title": "고객 자료 보관 기간과 삭제 책임 합의",
+            "phase_id": "policy",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "자료별 보관 기간과 삭제 승인자를 문서로 확정한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "policy-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-decision",
+              "task_id": "decision",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "blocked",
+              "summary": "고객 자료와 내부 초안을 같은 보관 기간으로 취급할지 팀의 정책 결정이 남아 있습니다.",
+              "next_action": "Bob이 고객 자료와 초안의 보관 기간을 각각 확정하고 삭제 승인자를 지정합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "access",
+            "title": "팀별 열람 범위 설계",
+            "phase_id": "policy",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "제출 팀과 검토 팀의 열람 범위가 구분된다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "policy-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-access",
+              "task_id": "access",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 팀별 열람 범위 설계를 예정 작업으로 기록했습니다.",
+              "next_action": "제출 팀과 검토 팀의 열람 범위가 구분된다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "form-design",
+            "title": "제출 양식과 오류 안내 설계",
+            "phase_id": "design",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "필수 항목 오류를 입력 위치와 함께 설명한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "design-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-form-design",
+              "task_id": "form-design",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 제출 양식과 오류 안내 설계를 예정 작업으로 기록했습니다.",
+              "next_action": "필수 항목 오류를 입력 위치와 함께 설명한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "resubmit-design",
+            "title": "반려와 재제출 흐름 설계",
+            "phase_id": "design",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "이전 제출 버전과 보완 내용을 함께 확인할 수 있다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "design-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-resubmit-design",
+              "task_id": "resubmit-design",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 반려와 재제출 흐름 설계를 예정 작업으로 기록했습니다.",
+              "next_action": "이전 제출 버전과 보완 내용을 함께 확인할 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "implement",
+            "title": "자료 접수 양식 구현",
+            "phase_id": "build",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "제출자가 항목을 입력하고 제출 전 요약을 확인할 수 있다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "build-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-implement",
+              "task_id": "implement",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "in_progress",
+              "summary": "가상 문서에 자료 접수 양식 구현 진행 중이라고 기록했습니다. 현재 실행은 미확인입니다.",
+              "next_action": "제출자가 항목을 입력하고 제출 전 요약을 확인할 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "upload",
+            "title": "자료 위치와 출처 입력 구현",
+            "phase_id": "build",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "본문 복사 없이 자료 위치·제목·버전을 등록할 수 있다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "build-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-upload",
+              "task_id": "upload",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 자료 위치와 출처 입력 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "본문 복사 없이 자료 위치·제목·버전을 등록할 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "draft",
+            "title": "임시 저장과 이어쓰기 구현",
+            "phase_id": "build",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "제출하지 않은 자료는 초안으로 표시한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "build-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-draft",
+              "task_id": "draft",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 임시 저장과 이어쓰기 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "제출하지 않은 자료는 초안으로 표시한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "required-check",
+            "title": "필수 항목 누락 안내 구현",
+            "phase_id": "validation",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "누락 항목의 이름과 보완 방법을 표시한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "validation-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-required-check",
+              "task_id": "required-check",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 필수 항목 누락 안내 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "누락 항목의 이름과 보완 방법을 표시한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "format-check",
+            "title": "날짜와 파일 형식 확인 구현",
+            "phase_id": "validation",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "허용하지 않는 형식을 이유와 함께 설명한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "validation-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-format-check",
+              "task_id": "format-check",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 날짜와 파일 형식 확인 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "허용하지 않는 형식을 이유와 함께 설명한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "route",
+            "title": "자료 유형별 담당 배정 구현",
+            "phase_id": "routing",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "유형별 기본 담당자를 적용하고 수동 변경 이유를 기록한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "routing-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-route",
+              "task_id": "route",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 자료 유형별 담당 배정 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "유형별 기본 담당자를 적용하고 수동 변경 이유를 기록한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "dedupe",
+            "title": "중복 제출 알림 제한 구현",
+            "phase_id": "routing",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "동일 출처와 버전은 재접수로 표시하고 알림 정책을 적용한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "routing-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-dedupe",
+              "task_id": "dedupe",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 중복 제출 알림 제한 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "동일 출처와 버전은 재접수로 표시하고 알림 정책을 적용한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "review-screen",
+            "title": "검토 사유와 보완 요청 화면 구현",
+            "phase_id": "review",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "검토자가 보완 항목별 사유와 담당을 남길 수 있다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "review-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-review-screen",
+              "task_id": "review-screen",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 검토 사유와 보완 요청 화면 구현를 예정 작업으로 기록했습니다.",
+              "next_action": "검토자가 보완 항목별 사유와 담당을 남길 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "review-response",
+            "title": "제출자의 보완 응답 연결",
+            "phase_id": "review",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "보완된 자료 버전과 원래 요청을 연결할 수 있다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "review-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-review-response",
+              "task_id": "review-response",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 제출자의 보완 응답 연결를 예정 작업으로 기록했습니다.",
+              "next_action": "보완된 자료 버전과 원래 요청을 연결할 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "legacy-map",
+            "title": "기존 자료 목록과 출처 매핑",
+            "phase_id": "migration",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "기존 자료마다 등록할 출처와 담당자를 식별한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "migration-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-legacy-map",
+              "task_id": "legacy-map",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 기존 자료 목록과 출처 매핑를 예정 작업으로 기록했습니다.",
+              "next_action": "기존 자료마다 등록할 출처와 담당자를 식별한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "legacy-conflict",
+            "title": "기존 자료의 버전 충돌 처리",
+            "phase_id": "migration",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "같은 제목의 다른 버전을 덮어쓰지 않고 구분한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "migration-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-legacy-conflict",
+              "task_id": "legacy-conflict",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 기존 자료의 버전 충돌 처리를 예정 작업으로 기록했습니다.",
+              "next_action": "같은 제목의 다른 버전을 덮어쓰지 않고 구분한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "retention",
+            "title": "보관 만료 자료의 처리 계획",
+            "phase_id": "migration",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "만료 자료에 대한 삭제 검토 대상과 책임자를 알 수 있다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "migration-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-retention",
+              "task_id": "retention",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 보관 만료 자료의 처리 계획를 예정 작업으로 기록했습니다.",
+              "next_action": "만료 자료에 대한 삭제 검토 대상과 책임자를 알 수 있다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "verify",
+            "title": "접수·보완·권한 전체 흐름 검사",
+            "phase_id": "accept",
+            "owner": null,
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "현재 버전에서 신규 접수·반려·재제출·열람 제한을 검사한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "accept-record"
+            ],
+            "review_required": true,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-verify",
+              "task_id": "verify",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 접수·보완·권한 전체 흐름 검사의 확인 근거가 아직 없습니다.",
+              "next_action": "현재 버전에서 신규 접수·반려·재제출·열람 제한을 검사한다 · 지정할 담당자가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "deletion-test",
+            "title": "보관 만료 삭제 흐름 확인",
+            "phase_id": "accept",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "삭제 승인·출처 보존·열람 차단을 현재 환경에서 확인한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "accept-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-deletion-test",
+              "task_id": "deletion-test",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 보관 만료 삭제 흐름 확인를 예정 작업으로 기록했습니다.",
+              "next_action": "삭제 승인·출처 보존·열람 차단을 현재 환경에서 확인한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "handover",
+            "title": "팀 운영 인수와 후속 담당 확정",
+            "phase_id": "accept",
+            "owner": "Bob",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "업무 담당자가 사용 흐름을 확인하고 문의·보완·삭제 책임을 인수한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "accept-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-handover",
+              "task_id": "handover",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 팀 운영 인수와 후속 담당 확정를 예정 작업으로 기록했습니다.",
+              "next_action": "업무 담당자가 사용 흐름을 확인하고 문의·보완·삭제 책임을 인수한다 · Bob가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          }
+        ],
+        "phases": [
+          {
+            "id": "plan",
+            "name": "접수 목적과 대상",
+            "state": "unknown",
+            "required": 2,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "inventory",
+            "name": "입력 자료 목록",
+            "state": "unknown",
+            "required": 2,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "policy",
+            "name": "보관과 권한 정책",
+            "state": "unknown",
+            "required": 2,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "design",
+            "name": "접수 흐름 설계",
+            "state": "unknown",
+            "required": 2,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "build",
+            "name": "접수 화면 구현",
+            "state": "unknown",
+            "required": 3,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "validation",
+            "name": "누락 검증 구현",
+            "state": "unknown",
+            "required": 2,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "routing",
+            "name": "담당 배정과 알림",
+            "state": "unknown",
+            "required": 2,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "review",
+            "name": "검토와 보완 요청",
+            "state": "unknown",
+            "required": 2,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "migration",
+            "name": "기존 자료 연결",
+            "state": "unknown",
+            "required": 3,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "accept",
+            "name": "전체 흐름 검사와 인수",
+            "state": "unknown",
+            "required": 3,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          }
+        ],
+        "summary": {
+          "total": 23,
+          "required": 23,
+          "completed": 0,
+          "technical_complete": 0,
+          "blocked": 0,
+          "failed": 0,
+          "review_pending": 0,
+          "ready": 0,
+          "unknown": 23,
+          "revalidation": 0
+        },
+        "interventions": [
+          {
+            "id": "missing_acceptance-scope",
+            "kind": "missing_acceptance",
+            "task_id": "scope",
+            "phase_id": "plan",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-intake-owner",
+            "kind": "missing_acceptance",
+            "task_id": "intake-owner",
+            "phase_id": "plan",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-fields",
+            "kind": "missing_acceptance",
+            "task_id": "fields",
+            "phase_id": "inventory",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-examples",
+            "kind": "missing_acceptance",
+            "task_id": "examples",
+            "phase_id": "inventory",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-decision",
+            "kind": "missing_acceptance",
+            "task_id": "decision",
+            "phase_id": "policy",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-access",
+            "kind": "missing_acceptance",
+            "task_id": "access",
+            "phase_id": "policy",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-form-design",
+            "kind": "missing_acceptance",
+            "task_id": "form-design",
+            "phase_id": "design",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-resubmit-design",
+            "kind": "missing_acceptance",
+            "task_id": "resubmit-design",
+            "phase_id": "design",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-implement",
+            "kind": "missing_acceptance",
+            "task_id": "implement",
+            "phase_id": "build",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-upload",
+            "kind": "missing_acceptance",
+            "task_id": "upload",
+            "phase_id": "build",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-draft",
+            "kind": "missing_acceptance",
+            "task_id": "draft",
+            "phase_id": "build",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-required-check",
+            "kind": "missing_acceptance",
+            "task_id": "required-check",
+            "phase_id": "validation",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-format-check",
+            "kind": "missing_acceptance",
+            "task_id": "format-check",
+            "phase_id": "validation",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-route",
+            "kind": "missing_acceptance",
+            "task_id": "route",
+            "phase_id": "routing",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-dedupe",
+            "kind": "missing_acceptance",
+            "task_id": "dedupe",
+            "phase_id": "routing",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-review-screen",
+            "kind": "missing_acceptance",
+            "task_id": "review-screen",
+            "phase_id": "review",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-review-response",
+            "kind": "missing_acceptance",
+            "task_id": "review-response",
+            "phase_id": "review",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-legacy-map",
+            "kind": "missing_acceptance",
+            "task_id": "legacy-map",
+            "phase_id": "migration",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-legacy-conflict",
+            "kind": "missing_acceptance",
+            "task_id": "legacy-conflict",
+            "phase_id": "migration",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-retention",
+            "kind": "missing_acceptance",
+            "task_id": "retention",
+            "phase_id": "migration",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_owner-verify",
+            "kind": "missing_owner",
+            "task_id": "verify",
+            "phase_id": "accept",
+            "owner": null,
+            "summary": "작업 담당자가 없습니다.",
+            "next_action": "작업을 책임질 사람을 지정하세요."
+          },
+          {
+            "id": "missing_acceptance-verify",
+            "kind": "missing_acceptance",
+            "task_id": "verify",
+            "phase_id": "accept",
+            "owner": null,
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-deletion-test",
+            "kind": "missing_acceptance",
+            "task_id": "deletion-test",
+            "phase_id": "accept",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-handover",
+            "kind": "missing_acceptance",
+            "task_id": "handover",
+            "phase_id": "accept",
+            "owner": "Bob",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "phase_gate-plan",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "plan",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-inventory",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "inventory",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-policy",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "policy",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-design",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "design",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-build",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "build",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-validation",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "validation",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-routing",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "routing",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-review",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "review",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-migration",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "migration",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-accept",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "accept",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          }
+        ]
+      }
     },
     {
       "id": "sample-report",
@@ -110,32 +3438,180 @@
       "owners": [
         "Carol"
       ],
-      "current_revision": "v1",
+      "current_revision": "v2",
       "current_phase": "build",
-      "status": "unknown",
-      "status_reason": "프로젝트 범위 완료 기준이 없습니다. 목표/문서는 catalog.projects[2]의 명시적 입력입니다.",
+      "status": "in_progress",
+      "status_reason": "현재 revision의 프로젝트 범위 검사 기록이 부족하거나 불명입니다. 필수 작업·단계·전체 검사·승인·막힘 해결 조건을 모두 확인해야 합니다. 목표/문서는 catalog.projects[2]의 명시적 입력입니다.",
       "phases": [
         {
           "id": "plan",
-          "name": "목표와 계획 정리",
+          "name": "보고 목적과 지표",
+          "status": "unknown"
+        },
+        {
+          "id": "design",
+          "name": "근거 연결 설계",
           "status": "unknown"
         },
         {
           "id": "build",
-          "name": "구현과 확인",
+          "name": "보고 화면 구현",
           "status": "unknown"
         },
         {
           "id": "accept",
-          "name": "현재 검증과 인수",
+          "name": "검토와 운영 인수",
           "status": "unknown"
         }
       ],
-      "documents": [],
+      "documents": [
+        {
+          "id": "plan-record",
+          "title": "주간 업무 보고 · 보고 목적과 지표 문서",
+          "kind": "plan",
+          "version": "v1",
+          "phase_id": "plan",
+          "at": "2026-10-02T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Carol",
+          "environment_id": "fictional-workspace",
+          "summary": "누가 어떤 판단을 내릴 보고인지 정한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 초기 범위 v1\n목표: 진척과 막힌 이유를 문서 근거와 연결해 다음 판단을 돕는다\n초기 결정: 대상 업무와 기본 담당 범위를 정리했습니다.\n미정: 예외 처리의 담당자 판단과 현재 실행 검증.\n후속: v2 계획에서 구체적인 막힘과 다음 행동을 추가합니다.\n현재 실행 검사·앱 훅·최종 인수: 미확인",
+          "source_ref": "catalog.projects[2].documents[0]"
+        },
+        {
+          "id": "plan-record",
+          "title": "주간 업무 보고 · 보고 목적과 지표 문서",
+          "kind": "plan",
+          "version": "v2",
+          "phase_id": "plan",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Carol",
+          "environment_id": "fictional-workspace",
+          "summary": "누가 어떤 판단을 내릴 보고인지 정한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 보고 목적과 지표\n목표: 누가 어떤 판단을 내릴 보고인지 정한다\n보고 독자와 판단 질문 정리 · 가상 문서에 보고 독자와 판단 질문 정리를 정리했다고 기록했습니다.\n완료 조건: 팀장에게 필요한 범위 변경·지원·다음 주 판단 질문이 정리되어 있다\n진척과 미확인 표시 기준 합의 · 가상 문서에 진척과 미확인 표시 기준 합의를 정리했다고 기록했습니다.\n완료 조건: 작업 개수를 성과나 현재 실행 성공으로 바꾸지 않는다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[2].documents[1]"
+        },
+        {
+          "id": "design-record",
+          "title": "주간 업무 보고 · 근거 연결 설계 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "design",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Carol",
+          "environment_id": "fictional-workspace",
+          "summary": "진척·막힘·결정에 연결할 문서 기준을 정한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 근거 연결 설계\n목표: 진척·막힘·결정에 연결할 문서 기준을 정한다\n문서 버전과 과업 출처 연결 설계 · 가상 문서에 문서 버전과 과업 출처 연결 설계를 예정 작업으로 기록했습니다.\n완료 조건: 문서상 진척에 작성일·버전·원문 출처가 연결된다\n보류 사유의 공개 범위 결정 · 팀별 보류 사유에 개인 상황이 섞여 있어 공유 가능한 보고 범위가 확정되지 않았습니다.\n완료 조건: 개인 사유 대신 업무 장애와 지원 요청만 보고한다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[2].documents[2]"
+        },
+        {
+          "id": "build-record",
+          "title": "주간 업무 보고 · 보고 화면 구현 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "build",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Carol",
+          "environment_id": "fictional-workspace",
+          "summary": "과장 없이 문서상 진척과 미확인을 구분한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 보고 화면 구현\n목표: 과장 없이 문서상 진척과 미확인을 구분한다\n주간 보고와 근거 펼침 구현 · 가상 문서에 주간 보고와 근거 펼침 구현 진행 중이라고 기록했습니다. 현재 실행은 미확인입니다.\n완료 조건: 목표·막힘·다음 행동과 출처를 한 흐름으로 확인할 수 있다\n근거 없는 항목의 미확인 표시 · 가상 문서에 근거 없는 항목의 미확인 표시를 예정 작업으로 기록했습니다.\n완료 조건: 미기록 항목을 완료나 실패로 추정하지 않는다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[2].documents[3]"
+        },
+        {
+          "id": "accept-record",
+          "title": "주간 업무 보고 · 검토와 운영 인수 문서",
+          "kind": "design",
+          "version": "v2",
+          "phase_id": "accept",
+          "at": "2026-10-04T09:00:00Z",
+          "session_id": "document-declaration",
+          "actor_id": "Carol",
+          "environment_id": "fictional-workspace",
+          "summary": "보고 담당자가 근거와 다음 행동을 확인한다 · 가상 문서 선언, 현재 실행 미확인",
+          "content": "가상 단계 문서 · 검토와 운영 인수\n목표: 보고 담당자가 근거와 다음 행동을 확인한다\n보고 검토와 다음 담당 인수 · 가상 문서에 보고 검토와 다음 담당 인수의 확인 근거가 아직 없습니다.\n완료 조건: 현재 화면에서 근거·미확인·지원 요청을 확인하고 보고 담당자가 인수한다\n현재 실행 검사·앱 훅·최종인수: 미확인",
+          "source_ref": "catalog.projects[2].documents[4]"
+        }
+      ],
       "criteria": [],
       "runs": [],
-      "sessions": [],
-      "timeline": [],
+      "sessions": [
+        {
+          "id": "document-declaration",
+          "actor_id": "Carol",
+          "environment_id": "fictional-workspace",
+          "event_count": 0
+        }
+      ],
+      "timeline": [
+        {
+          "at": "2026-10-02T09:00:00Z",
+          "kind": "document",
+          "title": "주간 업무 보고 · 보고 목적과 지표 문서 · v1",
+          "detail": "누가 어떤 판단을 내릴 보고인지 정한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[2].documents[0]"
+        },
+        {
+          "at": "2026-10-02T09:00:00Z",
+          "kind": "management",
+          "title": "objectives · objective",
+          "detail": "fictional/sample-report/scope.md",
+          "session_id": null,
+          "source_ref": "catalog.projects[2].management.objectives[0]"
+        },
+        {
+          "at": "2026-10-02T09:00:00Z",
+          "kind": "management",
+          "title": "plans · adoption-plan",
+          "detail": "대상 업무와 기본 담당 범위를 확정하기 위한 초기 계획입니다. 구체적인 예외 처리와 인수 조건은 후속 합의가 필요합니다.",
+          "session_id": null,
+          "source_ref": "catalog.projects[2].management.plans[0]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "주간 업무 보고 · 보고 목적과 지표 문서 · v2",
+          "detail": "누가 어떤 판단을 내릴 보고인지 정한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[2].documents[1]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "주간 업무 보고 · 근거 연결 설계 문서 · v2",
+          "detail": "진척·막힘·결정에 연결할 문서 기준을 정한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[2].documents[2]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "주간 업무 보고 · 보고 화면 구현 문서 · v2",
+          "detail": "과장 없이 문서상 진척과 미확인을 구분한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[2].documents[3]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "document",
+          "title": "주간 업무 보고 · 검토와 운영 인수 문서 · v2",
+          "detail": "보고 담당자가 근거와 다음 행동을 확인한다 · 가상 문서 선언, 현재 실행 미확인",
+          "session_id": "document-declaration",
+          "source_ref": "catalog.projects[2].documents[4]"
+        },
+        {
+          "at": "2026-10-04T09:00:00Z",
+          "kind": "management",
+          "title": "plans · adoption-plan",
+          "detail": "초기 범위 합의 뒤 확인된 팀별 보류 사유에 개인 상황이 섞여 있어 공유 가능한 보고 범위가 확정되지 않았습니다. 이에 따라 구체적인 예외 처리와 확인·인수 작업을 추가했습니다.",
+          "session_id": null,
+          "source_ref": "catalog.projects[2].management.plans[1]"
+        }
+      ],
       "sources": [
         {
           "actor_id": "Carol",
@@ -146,8 +3622,778 @@
         }
       ],
       "alerts": [],
-      "last_updated": null,
-      "connections": []
+      "last_updated": "2026-10-04T09:00:00Z",
+      "connections": [
+        {
+          "server": "fictional-mcp",
+          "tool": "reference-0",
+          "status": "configured",
+          "duration_ms": null,
+          "operation": "read",
+          "resources": [
+            {
+              "id": "reference-0",
+              "kind": "document",
+              "label": "주간 문서 조회 MCP",
+              "evidence": "declared"
+            }
+          ],
+          "artifact_refs": [
+            {
+              "id": "design-record",
+              "version": "v2"
+            }
+          ],
+          "id": "configured-0",
+          "actor_id": "Carol",
+          "environment_id": "fictional-workspace",
+          "session_id": null,
+          "agent_id": null,
+          "tool_call_id": null,
+          "at": null,
+          "authority": "declared",
+          "source_ref": "catalog.projects[2].connections[0]"
+        },
+        {
+          "server": "fictional-api",
+          "tool": "reference-1",
+          "status": "configured",
+          "duration_ms": null,
+          "operation": "read",
+          "resources": [
+            {
+              "id": "reference-1",
+              "kind": "document",
+              "label": "보고 내보내기 API",
+              "evidence": "declared"
+            }
+          ],
+          "artifact_refs": [
+            {
+              "id": "build-record",
+              "version": "v2"
+            }
+          ],
+          "id": "configured-1",
+          "actor_id": "Carol",
+          "environment_id": "fictional-workspace",
+          "session_id": null,
+          "agent_id": null,
+          "tool_call_id": null,
+          "at": null,
+          "authority": "declared",
+          "source_ref": "catalog.projects[2].connections[1]"
+        }
+      ],
+      "management": {
+        "objectives": [
+          {
+            "id": "objective",
+            "version": "v2",
+            "kind": "company",
+            "parent_id": null,
+            "title": "진척과 막힌 이유를 문서 근거와 연결해 다음 판단을 돕는다",
+            "success_condition": "현재 화면에서 근거·미확인·지원 요청을 확인하고 보고 담당자가 인수한다 · 실제 업무 성과는 미관측",
+            "source": "fictional/sample-report/scope.md",
+            "at": "2026-10-02T09:00:00Z"
+          }
+        ],
+        "assignment": {
+          "objective_id": "objective",
+          "objective_version": "v2",
+          "kind": "outcome",
+          "issuer": "ExampleTeam",
+          "assignee": "Carol",
+          "at": "2026-10-02T09:00:00Z",
+          "acceptance": "진척과 막힌 이유를 문서 근거와 연결해 다음 판단을 돕는다"
+        },
+        "requirements": [
+          {
+            "id": "req-core",
+            "text": "진척과 막힌 이유를 문서 근거와 연결해 다음 판단을 돕는다",
+            "source": "fictional/sample-report/scope.md"
+          }
+        ],
+        "plans": [
+          {
+            "id": "adoption-plan",
+            "version": "v1",
+            "at": "2026-10-02T09:00:00Z",
+            "summary": "진척과 막힌 이유를 문서 근거와 연결해 다음 판단을 돕는다",
+            "reason": "대상 업무와 기본 담당 범위를 확정하기 위한 초기 계획입니다. 구체적인 예외 처리와 인수 조건은 후속 합의가 필요합니다.",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "handoff_ref": "fictional/sample-report/plan-v1.json"
+          },
+          {
+            "id": "adoption-plan",
+            "version": "v2",
+            "at": "2026-10-04T09:00:00Z",
+            "summary": "진척과 막힌 이유를 문서 근거와 연결해 다음 판단을 돕는다",
+            "reason": "초기 범위 합의 뒤 확인된 팀별 보류 사유에 개인 상황이 섞여 있어 공유 가능한 보고 범위가 확정되지 않았습니다. 이에 따라 구체적인 예외 처리와 확인·인수 작업을 추가했습니다.",
+            "requirement_ids": [
+              "req-core"
+            ],
+            "handoff_ref": "fictional/sample-report/plan-v2.json"
+          }
+        ],
+        "test_plans": [],
+        "artifact": {
+          "revision": "v2",
+          "files": [
+            {
+              "path": "fictional/sample-report/scope.md",
+              "sha256": "b62a5e81421c4b9a007a9d41c76ab0ecf1b9d0e7a5e80a143823510c1985edf2"
+            },
+            {
+              "path": "fictional/sample-report/metrics.md",
+              "sha256": "d52740177698757de6204972774e18c431b5f29ac83e40af14290f59e0a7eb3b"
+            },
+            {
+              "path": "fictional/sample-report/sources.md",
+              "sha256": "960ae63a3dc07a537e4d3cbb3aee07ebd3c976d650a578b161fa3af8eee968db"
+            },
+            {
+              "path": "fictional/sample-report/decision.md",
+              "sha256": "556ffb63b808a837fa53d757ca19c0fc1b361138802b63c952a1b93341f61b1f"
+            },
+            {
+              "path": "fictional/sample-report/implement.md",
+              "sha256": "ba9e01227698c2592dba94f7c6e589474da0a82446eb78824c30a2cc3e2b5772"
+            },
+            {
+              "path": "fictional/sample-report/unknown.md",
+              "sha256": "d37efdc5cfb75ee1807d9fd772701dad4f0ef53ea6a63fd1eaa4ed0d2edf49bb"
+            },
+            {
+              "path": "fictional/sample-report/verify.md",
+              "sha256": "d8c276cc09d2e80b756898efcc1c67f775cbac8fbbe3f80816ee26e7e5364fdb"
+            }
+          ],
+          "sha256": "cdb683101826cdc5b366308f15ee402d98121b0513892dae1bd19ff97d5127de"
+        },
+        "attempts": [],
+        "blockers": [],
+        "improvements": [],
+        "harness": [],
+        "graphs": [],
+        "work": {
+          "plan_id": "adoption-plan",
+          "plan_version": "v2",
+          "at": "2026-10-04T09:00:00Z",
+          "tasks": [
+            {
+              "id": "scope",
+              "title": "보고 독자와 판단 질문 정리",
+              "phase_id": "plan",
+              "owner": "Carol",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "팀장에게 필요한 범위 변경·지원·다음 주 판단 질문이 정리되어 있다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "plan-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "metrics",
+              "title": "진척과 미확인 표시 기준 합의",
+              "phase_id": "plan",
+              "owner": "Carol",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "작업 개수를 성과나 현재 실행 성공으로 바꾸지 않는다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "plan-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "sources",
+              "title": "문서 버전과 과업 출처 연결 설계",
+              "phase_id": "design",
+              "owner": "Carol",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "문서상 진척에 작성일·버전·원문 출처가 연결된다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "design-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "decision",
+              "title": "보류 사유의 공개 범위 결정",
+              "phase_id": "design",
+              "owner": "Carol",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "개인 사유 대신 업무 장애와 지원 요청만 보고한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "design-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "implement",
+              "title": "주간 보고와 근거 펼침 구현",
+              "phase_id": "build",
+              "owner": "Carol",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "목표·막힘·다음 행동과 출처를 한 흐름으로 확인할 수 있다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "build-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "unknown",
+              "title": "근거 없는 항목의 미확인 표시",
+              "phase_id": "build",
+              "owner": "Carol",
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "미기록 항목을 완료나 실패로 추정하지 않는다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "build-record"
+              ],
+              "review_required": false
+            },
+            {
+              "id": "verify",
+              "title": "보고 검토와 다음 담당 인수",
+              "phase_id": "accept",
+              "owner": null,
+              "required": true,
+              "depends_on": [],
+              "requirement_ids": [
+                "req-core"
+              ],
+              "done_when": [
+                "현재 화면에서 근거·미확인·지원 요청을 확인하고 보고 담당자가 인수한다"
+              ],
+              "criterion_ids": [],
+              "document_ids": [
+                "accept-record"
+              ],
+              "review_required": true
+            }
+          ],
+          "phase_gates": [
+            {
+              "phase_id": "plan",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "design",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "build",
+              "criterion_ids": []
+            },
+            {
+              "phase_id": "accept",
+              "criterion_ids": []
+            }
+          ],
+          "updates": [
+            {
+              "id": "update-scope",
+              "task_id": "scope",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 보고 독자와 판단 질문 정리를 정리했다고 기록했습니다.",
+              "next_action": "팀장에게 필요한 범위 변경·지원·다음 주 판단 질문이 정리되어 있다 · Carol가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-metrics",
+              "task_id": "metrics",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 진척과 미확인 표시 기준 합의를 정리했다고 기록했습니다.",
+              "next_action": "작업 개수를 성과나 현재 실행 성공으로 바꾸지 않는다 · Carol가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-sources",
+              "task_id": "sources",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 문서 버전과 과업 출처 연결 설계를 예정 작업으로 기록했습니다.",
+              "next_action": "문서상 진척에 작성일·버전·원문 출처가 연결된다 · Carol가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-decision",
+              "task_id": "decision",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "blocked",
+              "summary": "팀별 보류 사유에 개인 상황이 섞여 있어 공유 가능한 보고 범위가 확정되지 않았습니다.",
+              "next_action": "Carol이 업무 영향과 지원 요청만 남기는 보고 기준을 확정합니다."
+            },
+            {
+              "id": "update-implement",
+              "task_id": "implement",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "in_progress",
+              "summary": "가상 문서에 주간 보고와 근거 펼침 구현 진행 중이라고 기록했습니다. 현재 실행은 미확인입니다.",
+              "next_action": "목표·막힘·다음 행동과 출처를 한 흐름으로 확인할 수 있다 · Carol가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-unknown",
+              "task_id": "unknown",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 근거 없는 항목의 미확인 표시를 예정 작업으로 기록했습니다.",
+              "next_action": "미기록 항목을 완료나 실패로 추정하지 않는다 · Carol가 현재 문서와 결과를 확인합니다."
+            },
+            {
+              "id": "update-verify",
+              "task_id": "verify",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 보고 검토와 다음 담당 인수의 확인 근거가 아직 없습니다.",
+              "next_action": "현재 화면에서 근거·미확인·지원 요청을 확인하고 보고 담당자가 인수한다 · 지정할 담당자가 현재 문서와 결과를 확인합니다."
+            }
+          ],
+          "reviews": []
+        }
+      },
+      "work": {
+        "plan_id": "adoption-plan",
+        "plan_version": "v2",
+        "at": "2026-10-04T09:00:00Z",
+        "tasks": [
+          {
+            "id": "scope",
+            "title": "보고 독자와 판단 질문 정리",
+            "phase_id": "plan",
+            "owner": "Carol",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "팀장에게 필요한 범위 변경·지원·다음 주 판단 질문이 정리되어 있다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "plan-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-scope",
+              "task_id": "scope",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 보고 독자와 판단 질문 정리를 정리했다고 기록했습니다.",
+              "next_action": "팀장에게 필요한 범위 변경·지원·다음 주 판단 질문이 정리되어 있다 · Carol가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "metrics",
+            "title": "진척과 미확인 표시 기준 합의",
+            "phase_id": "plan",
+            "owner": "Carol",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "작업 개수를 성과나 현재 실행 성공으로 바꾸지 않는다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "plan-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-metrics",
+              "task_id": "metrics",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 진척과 미확인 표시 기준 합의를 정리했다고 기록했습니다.",
+              "next_action": "작업 개수를 성과나 현재 실행 성공으로 바꾸지 않는다 · Carol가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "sources",
+            "title": "문서 버전과 과업 출처 연결 설계",
+            "phase_id": "design",
+            "owner": "Carol",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "문서상 진척에 작성일·버전·원문 출처가 연결된다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "design-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-sources",
+              "task_id": "sources",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 문서 버전과 과업 출처 연결 설계를 예정 작업으로 기록했습니다.",
+              "next_action": "문서상 진척에 작성일·버전·원문 출처가 연결된다 · Carol가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "decision",
+            "title": "보류 사유의 공개 범위 결정",
+            "phase_id": "design",
+            "owner": "Carol",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "개인 사유 대신 업무 장애와 지원 요청만 보고한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "design-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-decision",
+              "task_id": "decision",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "blocked",
+              "summary": "팀별 보류 사유에 개인 상황이 섞여 있어 공유 가능한 보고 범위가 확정되지 않았습니다.",
+              "next_action": "Carol이 업무 영향과 지원 요청만 남기는 보고 기준을 확정합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "implement",
+            "title": "주간 보고와 근거 펼침 구현",
+            "phase_id": "build",
+            "owner": "Carol",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "목표·막힘·다음 행동과 출처를 한 흐름으로 확인할 수 있다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "build-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-implement",
+              "task_id": "implement",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "in_progress",
+              "summary": "가상 문서에 주간 보고와 근거 펼침 구현 진행 중이라고 기록했습니다. 현재 실행은 미확인입니다.",
+              "next_action": "목표·막힘·다음 행동과 출처를 한 흐름으로 확인할 수 있다 · Carol가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "unknown",
+            "title": "근거 없는 항목의 미확인 표시",
+            "phase_id": "build",
+            "owner": "Carol",
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "미기록 항목을 완료나 실패로 추정하지 않는다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "build-record"
+            ],
+            "review_required": false,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-unknown",
+              "task_id": "unknown",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 근거 없는 항목의 미확인 표시를 예정 작업으로 기록했습니다.",
+              "next_action": "미기록 항목을 완료나 실패로 추정하지 않는다 · Carol가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          },
+          {
+            "id": "verify",
+            "title": "보고 검토와 다음 담당 인수",
+            "phase_id": "accept",
+            "owner": null,
+            "required": true,
+            "depends_on": [],
+            "requirement_ids": [
+              "req-core"
+            ],
+            "done_when": [
+              "현재 화면에서 근거·미확인·지원 요청을 확인하고 보고 담당자가 인수한다"
+            ],
+            "criterion_ids": [],
+            "document_ids": [
+              "accept-record"
+            ],
+            "review_required": true,
+            "state": "unknown",
+            "reason": "담당자·완료 기준 또는 현재 계획 관측이 부족합니다.",
+            "technical_complete": false,
+            "completed": false,
+            "latest_update": {
+              "id": "update-verify",
+              "task_id": "verify",
+              "at": "2026-10-04T09:00:00Z",
+              "state": "not_started",
+              "summary": "가상 문서에 보고 검토와 다음 담당 인수의 확인 근거가 아직 없습니다.",
+              "next_action": "현재 화면에서 근거·미확인·지원 요청을 확인하고 보고 담당자가 인수한다 · 지정할 담당자가 현재 문서와 결과를 확인합니다."
+            },
+            "latest_review": null,
+            "waiting_on": []
+          }
+        ],
+        "phases": [
+          {
+            "id": "plan",
+            "name": "보고 목적과 지표",
+            "state": "unknown",
+            "required": 2,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "design",
+            "name": "근거 연결 설계",
+            "state": "unknown",
+            "required": 2,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "build",
+            "name": "보고 화면 구현",
+            "state": "unknown",
+            "required": 2,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          },
+          {
+            "id": "accept",
+            "name": "검토와 운영 인수",
+            "state": "unknown",
+            "required": 1,
+            "completed": 0,
+            "technical_complete": 0,
+            "gate_state": "unknown"
+          }
+        ],
+        "summary": {
+          "total": 7,
+          "required": 7,
+          "completed": 0,
+          "technical_complete": 0,
+          "blocked": 0,
+          "failed": 0,
+          "review_pending": 0,
+          "ready": 0,
+          "unknown": 7,
+          "revalidation": 0
+        },
+        "interventions": [
+          {
+            "id": "missing_acceptance-scope",
+            "kind": "missing_acceptance",
+            "task_id": "scope",
+            "phase_id": "plan",
+            "owner": "Carol",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-metrics",
+            "kind": "missing_acceptance",
+            "task_id": "metrics",
+            "phase_id": "plan",
+            "owner": "Carol",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-sources",
+            "kind": "missing_acceptance",
+            "task_id": "sources",
+            "phase_id": "design",
+            "owner": "Carol",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-decision",
+            "kind": "missing_acceptance",
+            "task_id": "decision",
+            "phase_id": "design",
+            "owner": "Carol",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-implement",
+            "kind": "missing_acceptance",
+            "task_id": "implement",
+            "phase_id": "build",
+            "owner": "Carol",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_acceptance-unknown",
+            "kind": "missing_acceptance",
+            "task_id": "unknown",
+            "phase_id": "build",
+            "owner": "Carol",
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "missing_owner-verify",
+            "kind": "missing_owner",
+            "task_id": "verify",
+            "phase_id": "accept",
+            "owner": null,
+            "summary": "작업 담당자가 없습니다.",
+            "next_action": "작업을 책임질 사람을 지정하세요."
+          },
+          {
+            "id": "missing_acceptance-verify",
+            "kind": "missing_acceptance",
+            "task_id": "verify",
+            "phase_id": "accept",
+            "owner": null,
+            "summary": "작업 완료 검사가 없습니다.",
+            "next_action": "done_when을 확인하고 작업 범위 검사와 test plan을 등록하세요."
+          },
+          {
+            "id": "phase_gate-plan",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "plan",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-design",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "design",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-build",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "build",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          },
+          {
+            "id": "phase_gate-accept",
+            "kind": "phase_gate",
+            "task_id": null,
+            "phase_id": "accept",
+            "owner": null,
+            "summary": "Phase 완료 근거가 부족합니다.",
+            "next_action": "필수 작업과 Phase exit 검사를 등록하고 현재 산출물로 실행하세요."
+          }
+        ]
+      }
     }
   ]
 }

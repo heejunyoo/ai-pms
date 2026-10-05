@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-05",
+  "issue": "Shared UI shipped but public fixture lacked local information structure: repeated v2 3-phase/4-task plans and empty documents/management/references.",
+  "correction": {
+    "contract": "canonical v3 build_model and same human-view.js/rendered styles as private adoption",
+    "projects": {
+      "support": {
+        "phases": 4,
+        "tasks": 7,
+        "documents": 5,
+        "references": 2
+      },
+      "intake": {
+        "phases": 10,
+        "tasks": 23,
+        "documents": 11,
+        "references": 3
+      },
+      "report": {
+        "phases": 4,
+        "tasks": 7,
+        "documents": 5,
+        "references": 2
+      }
+    },
+    "content": "Newly authored fictional distinct goals, blockers, owners, actions, done conditions, management objectives/requirements/plans/artifact/work/updates, versioned documents and declared phase API/MCP references",
+    "notice": "Collapsed provenance/download details; project contents visible first",
+    "source": "Readable 920px document source pages with wrapped excerpts"
+  },
+  "browser": {
+    "engine": "Actual Google Chrome via standalone Playwright",
+    "viewport": [
+      1440,
+      1000
+    ],
+    "local_comparison": [
+      "private Paper vs public support: 4-phase plans and all four tabs",
+      "private Knowledge vs public intake: 10-phase plans"
+    ],
+    "public_intake_alignment": [
+      {
+        "row": "heading",
+        "columns": 10,
+        "y_spread": 0
+      },
+      {
+        "row": "tasks",
+        "columns": 10,
+        "y_spread": 0
+      },
+      {
+        "row": "references",
+        "columns": 10,
+        "y_spread": 0
+      }
+    ],
+    "paths": [
+      "intake all ten phases visible through horizontal scrolling; last phase screenshot checked, goal remains above diagram",
+      "support decision task -> closed document evidence -> declared fictional decision source -> reload -> browser back to same task",
+      "intake documents selector latest v2 and initial v1",
+      "plan/evidence/sessions/documents tab actions"
+    ],
+    "console_errors": [],
+    "screenshots": "Private comparison screenshots remain local. Public-only map and document screenshots inspected locally."
+  },
+  "independent_review": {
+    "reviewer": "readable_qa",
+    "result": "No count padding or fabricated observations; unique task conditions and blockers confirmed. Target terminology and v1/v2 change reasons corrected before export."
+  },
+  "validation": {
+    "command": "python3 scripts/verify_public.py",
+    "root": "fresh isolated exported snapshot",
+    "exit_code": 0
+  },
+  "boundary": {
+    "private_inputs_unchanged": true,
+    "private_data_published": false,
+    "observed_runs": 0,
+    "current_acceptance": "unknown",
+    "native_hooks_or_remote_delivery_verified": false,
+    "mobile": "excluded per existing desktop scope"
+  }
+}

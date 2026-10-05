@@ -1,0 +1,41 @@
+{
+  "task_id": "sample-parity",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-adoption-release/sample-documentary.json",
+      "action": "modified",
+      "summary": "Replace repeated shallow v2 placeholders with newly authored fictional v3 support 4/7, intake 10/23, report 4/7 plans; management/work/updates/objectives/artifact, dated/versioned documents, distinct blockers/actions/conditions, declared phase-scoped API/MCP references."
+    },
+    {
+      "path": "specs/ai-pms-adoption-release/check_sample.py",
+      "action": "modified",
+      "summary": "Retain existing boundary/recorded/completion guards and add canonical Python+JS v3 validation, exact pipeline identity, document-only zero-event session identities, cardinality and semantic path/reference/version/management coverage."
+    },
+    {
+      "path": "specs/ai-pms-sample-parity/sample-result.json",
+      "action": "created",
+      "summary": "Validated sample parity implementation receipt and browser integration boundary."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-adoption-release/check_sample.py",
+    "exit_code": 0,
+    "output_tail": "Built fictional document-first adoption, separate recorded synthetic example, empty state, reports and CSP headers\nPublic adoption DOM PASS: exact v3 validator, 4/7 + 10/23 + 4/7 plans/component maps, management/document/version/reference paths, zero observed sessions/current completion, person URL, immutable model\nSample acceptance PASS: fictional document-first default; separate recorded model and counterexamples preserved; zero app/provider/current verification claims. Simulated DOM only; parent browser/release verification remains separate."
+  },
+  "done_when_check": [
+    {
+      "condition": "Full fictional document-first planning, document/management/reference paths match local adoption structure",
+      "met": true,
+      "evidence": "check_sample exit0 exercises exact canonical v3 build_model and emitted JS validateModel; support 4 phases/7 tasks/5 documents/2 declared references, intake 10/23/11/3, report 4/7/5/2. Same work/objective/requirement/assignment/plan v1,v2/artifact/updates contracts; per-project distinct blockers and task-level actions/conditions; all routes and document selection/management/phase-reference paths exercised in synthetic DOM. Independent review follow-up: intake plan goal and phase document target aligned to team design/planning materials; management plan v1 initial rationale and v2 revision rationale now differ, checked by acceptance."
+    },
+    {
+      "condition": "Existing privacy/completion/recorded counterexamples preserved and check_sample passes",
+      "met": true,
+      "evidence": "Newly authored public fictional content only, no private inputs read/copied. Original runs/current-completion/native/provider/recorded guards remain. Session guard accurately distinguishes document registration identities (zero event_count, explicit document session_id) from observed execution; no operations sessions/attempts/reviews/observed references. check_map and check_readable full pre-existing regression chain exit0."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.95,
+  "notes_for_orchestrator": "Earlier fixture shared human UI but lacked information parity: repeated v2 3-stage/4-task placeholders with empty documents/management/references. Corrected via substantive fictional v3 data without altering canonical completion/model. Builder and actual Chrome/export/publishing remain parent-owned; browser checks must compare plan/results/history/documents, long 10-phase/23-task map scroll/alignment, source links, back/reload. /#project=sample-support&task=decision preserved; intake decision is retention/delete ownership blocker, report decision is privacy-safe reporting scope. Source pages now 37 task excerpts, projects 4/7,10/23,4/7. Snapshot has real contract-defined declaration planning/docs, documentary progress remains separate annotation. Parent download wording updated to 관측 모델 JSON · 문서상 진척 주석 제외 and checker synchronized. Independent review follow-up aligned intake plan target and differentiated v1/v2 reasons; check_sample rerun exit0. Browser-ready output rebuilt."
+}
