@@ -65,12 +65,13 @@ def main():
 const assert=require('node:assert/strict');
 let focused=null,scrolled=null;
 class Element {
- constructor(tag){this.tagName=tag;this.children=[];this.attributes={};this.dataset={};this.value='';this.open=false;this.hidden=false;this.parentElement=null;this.classList={add(){},remove(){}};this._text='';}
+ constructor(tag){this.tagName=tag;this.children=[];this.attributes={};this.dataset={};this.value='';this.open=false;this.hidden=false;this.parentElement=null;this.classList={add:(...names)=>{this.className=[...new Set([...String(this.className||"").split(" ").filter(Boolean),...names])].join(" " );},remove:(...names)=>{this.className=String(this.className||"").split(" ").filter(c=>!names.includes(c)).join(" " );},contains:name=>String(this.className||"").split(" ").includes(name)};this._text='';}
  set textContent(t){this._text=String(t);this.children=[];}
  get textContent(){return this._text+this.children.map(c=>c.textContent).join(' ');}
  setAttribute(k,v){this.attributes[k]=String(v);if(k==='id')this.id=v;if(k==='hidden')this.hidden=true;if(k==='open')this.open=true;if(k.startsWith('data-'))this.dataset[k.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=v;}
  getAttribute(k){return this.attributes[k];}
  append(...nodes){for(const n of nodes){n.parentElement=this;this.children.push(n);}}
+ insertBefore(n,reference){const index=this.children.indexOf(reference);if(index<0)throw new Error('Reference node is not a child');if(n.parentElement)n.parentElement.children=n.parentElement.children.filter(c=>c!==n);n.parentElement=this;this.children.splice(index,0,n);return n;}
  replaceChildren(...nodes){for(const c of this.children)c.parentElement=null;this.children=[];this._text='';this.append(...nodes);}
  add(n){this.append(n);}
  addEventListener(){}
@@ -118,7 +119,7 @@ $('human-technical-evidence').open=true;
 $('moreEvidence').open=false;$('tab-work').click();
 $('tab-work').onkeydown({key:'End',preventDefault(){}});assert.equal(focused.id,'tab-documents'); // skip collapsed evidence tabs
 $('moreEvidence').open=true;$('tab-work').onkeydown({key:'End',preventDefault(){}});assert.equal(focused.id,'tab-connections');
-assert.equal($('tab-connections').getAttribute('aria-selected'),'true');$('moreEvidence').open=false;$('moreEvidence').ontoggle();assert.equal(activeTab,'work');assert.equal(focused.id,'tab-work');assert.equal($('detailPanel').getAttribute('aria-labelledby'),'tab-work');
+assert.equal($('tab-connections').getAttribute('aria-selected'),'true');$('moreEvidence').open=false;$('moreEvidence').ontoggle();assert.equal(activeTab,'work');assert.equal(focused.id,'tab-work');assert.equal($('detailPanel').getAttribute('aria-labelledby'),'human-question-work');assert($('human-question-work'));
 $('moreEvidence').open=false;activeTab='tests';renderTab(shared);assert.equal($('moreEvidence').open,true);
 $('closeDetail').click();assert.equal(route().kind,'plan');$('closeDetail').click();assert.equal(focused,opener);assert.equal($('portfolio').hidden,false);
 console.log('IA DOM contract PASS: precise task focus/scroll, owner scope, full filtered intervention disclosure, preserved tools, visible keyboard tabs and focus return (simulation; no layout/browser claim)');

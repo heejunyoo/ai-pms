@@ -1,0 +1,63 @@
+{
+  "beforePaper": {
+    "headers": {
+      "count": 4,
+      "topSpread": 0,
+      "heightSpread": 19.1875
+    },
+    "tasks": {
+      "count": 4,
+      "topSpread": 19.1875,
+      "heightSpread": 110
+    },
+    "refs": {
+      "count": 4,
+      "topSpread": 110,
+      "heightSpread": 85.09375
+    }
+  },
+  "afterPaper": {
+    "phaseCount": 4,
+    "headingHeightSpread": 0,
+    "taskStartSpread": 0,
+    "referenceStartSpread": 0,
+    "taskMaxHeight": 254,
+    "goalVisibleWithinScrollWidth": true,
+    "statusBottomSpread": 0
+  },
+  "afterKnowledge": {
+    "phaseCount": 10,
+    "headingHeightSpread": 0,
+    "taskStartSpread": 0,
+    "referenceStartSpread": 0,
+    "taskMaxHeight": 360,
+    "goalVisibleWithinScrollWidth": true
+  },
+  "navigation": [
+    {
+      "url": "http://127.0.0.1:21944/#project=knowledge&phase=operations",
+      "title": "AI PMS · 프로젝트 포트폴리오",
+      "errors": []
+    },
+    {
+      "url": "http://127.0.0.1:21944/#project=knowledge",
+      "title": "AI PMS · 프로젝트 포트폴리오",
+      "errors": []
+    },
+    {
+      "url": "http://127.0.0.1:21944/#project=paper",
+      "title": "AI PMS · 프로젝트 포트폴리오",
+      "errors": []
+    },
+    {
+      "url": "http://127.0.0.1:21944/#project=paper",
+      "title": "AI PMS · 프로젝트 포트폴리오",
+      "errors": []
+    },
+    {
+      "url": "http://127.0.0.1:21944/#project=paper",
+      "title": "AI PMS · 프로젝트 포트폴리오",
+      "errors": []
+    }
+  ]
+}

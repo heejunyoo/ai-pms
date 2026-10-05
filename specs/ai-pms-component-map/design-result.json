@@ -1,0 +1,51 @@
+{
+  "task_id": "component-map-design",
+  "status": "partial",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/human-view.js",
+      "action": "modified",
+      "summary": "Minimal humanComponentMap markup: append goal/trunk before scroll, keep all stage columns in scroll tree; task lists tabindex=0 and descriptive vertical-scroll label. Existing task/reference/phase nodes and native links preserved."
+    },
+    {
+      "path": "specs/ai-pms-dashboard/human-view.css",
+      "action": "modified",
+      "summary": "Map-only CSS: 260px equal columns and 3 shared subgrid rows align phase headings, task starts and reference starts. Task cards 110px minimum and 2-line minimum titles expand for long text. Readable heading/task/reference hierarchy and subtle reference panel. Phase heading flex column places status badges at the shared bottom via margin-top:auto. Goal/trunk stay centered outside horizontal scroller; task lists cap at 360px with vertical overflow and keyboard focus outline."
+    },
+    {
+      "path": "specs/ai-pms-dashboard/dashboard.html",
+      "action": "modified",
+      "summary": "Exact HUMAN VIEW CSS/JS embeds only; no other dashboard HTML/data blocks changed."
+    },
+    {
+      "path": "specs/ai-pms-component-map/design-result.json",
+      "action": "created",
+      "summary": "Narrow CSS design correction scope and local regression evidence; browser measurement remains parent-owned."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-component-map/check_map.py; python3 specs/ai-pms-readable-project/check_readable.py",
+    "exit_code": 0,
+    "output_tail": "Component map acceptance PASS: synthetic DOM and structure only.\nReadable project acceptance PASS: synthetic semantic regressions only; parent desktop Chrome acceptance separate."
+  },
+  "done_when_check": [
+    {
+      "condition": "Diagram headings, task starts and references align in the actual desktop rendering",
+      "met": false,
+      "evidence": "Shared grid rows/subgrid implemented with continuous containment branch and individual phase stems intact. Parent must confirm browser screenshot/measurements; child did not automate browser or claim rendered pass."
+    },
+    {
+      "condition": "Only map CSS, minimal map layout markup and exact embedded blocks changed; all nodes, native links and semantics preserved",
+      "met": true,
+      "evidence": "Goal/trunk placement and task-list tabindex/aria label are the only humanComponentMap JS changes. No task/reference data or route selection changed. check_map immutable model, complete task/reference identity and scoped navigation plus full check_readable passed after correction."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.88,
+  "notes_for_orchestrator": "Observed Knowledge wide-map goal clipping and excessive shared task-row height authorized a minimal markup correction beyond earlier CSS-only boundary. Goal/trunk moved outside scroller; every task remains in bounded keyboard-scrollable list. Latest check_map and complete check_readable pass after markup correction. Parent actual Knowledge/Paper screenshots, alignment and task scrolling acceptance remain pending. No model/data/API/dependencies/network/deployment changes. Prior reviewed receipt remains untouched.",
+  "artifact_sha256": {
+    "specs/ai-pms-dashboard/human-view.js": "230af2276e609d6f04db4ed422763cc15aa725b4c7ed4a2c9d62f3bbdefe881a",
+    "specs/ai-pms-dashboard/human-view.css": "085b8b72b6416fa3db2ff6ac7e78b2b8eef299b94dc244a55fb2182df4bfc8b2",
+    "specs/ai-pms-dashboard/dashboard.html": "1cd16aee5c71aeda738809505e5b04b92852325e0b6f84c1b542842255b8aea1"
+  }
+}

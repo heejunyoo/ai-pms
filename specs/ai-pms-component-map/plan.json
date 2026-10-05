@@ -1,0 +1,119 @@
+{
+  "author": "root-component-map",
+  "spec_ref": "spec.md",
+  "goal": "Only add existing declared project component and connection diagram",
+  "open_decisions": [],
+  "intent_guard": {
+    "source_ref": "source.md",
+    "requirements": [
+      {
+        "id": "map",
+        "quote": "단계가 나뉘어졌고, 내용도 정리가 되었으면, 구성요소와 연결을 시각화 도표로 만들수 있잖아. 그것만 추가하면 될것 같아.",
+        "outcome": "One visual component and relation map on existing whole project plan"
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-component-map/check_map.py",
+      "expect_exit_code": 0
+    }
+  },
+  "phases": [
+    {
+      "id": "map",
+      "name": "추가 도표",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-component-map/check_map.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "kind": "implement",
+      "phase": "map",
+      "depends_on": [],
+      "already_tried": [
+        {
+          "what": "Graph query and canonical source inspection",
+          "result": "Phase/task/reference/document linkage available; no component dependency data; current check_readable is baseline"
+        }
+      ],
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 25
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      },
+      "task_id": "component-map",
+      "requirement_ids": [
+        "map"
+      ],
+      "objective": "Add declared phase/task/reference component map to existing project plan",
+      "done_when": [
+        "Declared components and connections are visually readable and actionable",
+        "Existing model, scope, completion and raw evidence preserved"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-component-map/check_map.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/human-view.js",
+          "symbol": "renderDetail plan projection / new humanComponentMap",
+          "what": "Add only diagram and declared links"
+        },
+        {
+          "path": "specs/ai-pms-dashboard/human-view.css",
+          "symbol": "component map CSS",
+          "what": "Readable desktop nodes and labeled relationships"
+        },
+        {
+          "path": "specs/ai-pms-dashboard/dashboard.html",
+          "symbol": "HUMAN VIEW blocks",
+          "what": "Exact canonical embeds"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-component-map/check_map.py",
+        "specs/ai-pms-component-map/ui-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/human-view.js",
+        "why": "Native safe projection, person URL and unchanged conservative model"
+      },
+      "context": {
+        "spec_ref": "specs/ai-pms-component-map/spec.md",
+        "facts": [
+          "ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "Only add diagram. Parent handles Chrome and local builds. No public deployment."
+        ],
+        "files": [
+          "specs/ai-pms-component-map/source.md",
+          "specs/ai-pms-component-map/spec.md",
+          "PRODUCT-INTENT.md"
+        ],
+        "excluded": "API, DB, model, global tools, private source inputs, deploy"
+      },
+      "constraints": {
+        "must": [
+          "Declared components and connections are visually readable and actionable",
+          "Existing model, scope, completion and raw evidence preserved"
+        ],
+        "must_not": [
+          "Change model/API/DB/permissions or expose private inputs",
+          "Delete/skip/weaken meaningful tests",
+          "Invent completion/dates/authority/AI results or rendered visual acceptance",
+          "Commit/push/deploy or edit other packet files"
+        ]
+      }
+    }
+  ]
+}

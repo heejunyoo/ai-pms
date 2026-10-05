@@ -1,0 +1,216 @@
+{
+  "author": "root-readable-project",
+  "spec_ref": "spec.md",
+  "open_decisions": [],
+  "goal": "프로젝트 전체 화면을 사람이 목표, 진행, 확인 결과와 다음 행동으로 읽는 구조로 리팩터링",
+  "intent_guard": {
+    "source_ref": "source.md",
+    "requirements": [
+      {
+        "id": "readable",
+        "quote": "분석근거 부분은, 여전히 사람이 보고 이해할수 없는 영역이야.",
+        "outcome": "Evidence explains question, result, missing verification and next action before hidden raw records"
+      },
+      {
+        "id": "whole-project",
+        "quote": "프로젝트 전체 화면의 리펙토링 내가 이야기 하지 않았어?",
+        "outcome": "Consistent portfolio, project plan, phase/task and results navigation with actual desktop acceptance"
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 specs/ai-pms-readable-project/check_readable.py",
+      "expect_exit_code": 0
+    }
+  },
+  "phases": [
+    {
+      "id": "readable",
+      "name": "전체 프로젝트 리팩터링",
+      "exit_check": {
+        "command": "python3 specs/ai-pms-readable-project/check_readable.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "kind": "implement",
+      "phase": "readable",
+      "depends_on": [],
+      "already_tried": [
+        {
+          "what": "Actual Chrome inspection of current public screen",
+          "result": "Default evidence has no active human question and shows raw checker/runner/signature records; whole layout lacks question/result/action hierarchy"
+        }
+      ],
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      },
+      "task_id": "readable-ui",
+      "requirement_ids": [
+        "readable",
+        "whole-project"
+      ],
+      "objective": "Whole portfolio/project/phase/task/results refactor with understandable evidence projections",
+      "done_when": [
+        "Whole screen hierarchy and question/result/action projections implemented",
+        "Model, source identity, shared tasks, routes, safe text and conservative completion preserved"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-action-detail/check_action_detail.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-dashboard/human-view.js",
+          "symbol": "human projection/route/phase/evidence/session",
+          "what": "Primary WBS, scoped shared tasks, question-led evidence and single session history"
+        },
+        {
+          "path": "specs/ai-pms-dashboard/human-view.css",
+          "symbol": "WBS/list/session/visual hierarchy",
+          "what": "Desktop visual hierarchy, sparse color with text/shape, readable status/owner, no anonymous bars"
+        },
+        {
+          "path": "specs/ai-pms-dashboard/dashboard.html",
+          "symbol": "BEGIN HUMAN VIEW blocks only",
+          "what": "Embed exact projection files"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-readable-project/ui-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/human-view.js",
+        "why": "Native safe projection, person URL and unchanged conservative model"
+      },
+      "context": {
+        "spec_ref": "specs/ai-pms-readable-project/spec.md",
+        "facts": [
+          "ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "Chrome is connected; parent performs actual desktop acceptance. Mobile excluded. No deployment."
+        ],
+        "files": [
+          "PRODUCT-INTENT.md",
+          "specs/ai-pms-readable-project/source.md",
+          "specs/ai-pms-readable-project/spec.md"
+        ],
+        "excluded": "Backend/model/API/DB/global hooks/trust/credentials/deployment/private source input"
+      },
+      "constraints": {
+        "must": [
+          "Whole screen hierarchy and question/result/action projections implemented",
+          "Model, source identity, shared tasks, routes, safe text and conservative completion preserved"
+        ],
+        "must_not": [
+          "Change model/API/DB/permissions or expose private inputs",
+          "Delete/skip/weaken meaningful tests",
+          "Invent completion/dates/authority/AI results or rendered visual acceptance",
+          "Commit/push/deploy or edit other packet files"
+        ]
+      }
+    },
+    {
+      "kind": "implement",
+      "phase": "readable",
+      "depends_on": [],
+      "already_tried": [
+        {
+          "what": "Actual Chrome inspection of current public screen",
+          "result": "Default evidence has no active human question and shows raw checker/runner/signature records; whole layout lacks question/result/action hierarchy"
+        }
+      ],
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      },
+      "task_id": "readable-qa",
+      "requirement_ids": [
+        "readable",
+        "whole-project"
+      ],
+      "objective": "Meaningful readable result/unknown/stale/documentary/identity regressions and retained semantic suite",
+      "done_when": [
+        "New regressions cover human result explanations plus unchanged conservative semantics",
+        "Model, source identity, shared tasks, routes, safe text and conservative completion preserved"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-readable-project/check_readable.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "specs/ai-pms-human-projection/check_human_view.py",
+          "symbol": "projection assertions",
+          "what": "Update changed UI projection expectations while preserving all semantic invariants"
+        },
+        {
+          "path": "specs/ai-pms-rensei-experience/check_experience.py",
+          "symbol": "experience assertions",
+          "what": "Update old-render shape assertions; keep scope/reload/session/owner/text invariants"
+        },
+        {
+          "path": "specs/ai-pms-toss-ia/check_ia.py",
+          "symbol": "technical evidence keyboard regression fixture",
+          "what": "Preserve all existing assertions after opening the newly explicit technical disclosure; authorized parent integration follow-up after actual full-suite failure"
+        },
+        {
+          "path": "specs/ai-pms-visual-management/check_visual.py",
+          "symbol": "projection assertions",
+          "what": "Adapt structural label expectations only; retain all safety and scope assertions"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-readable-project/qa-result.json",
+        "specs/ai-pms-readable-project/check_readable.py"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/human-view.js",
+        "why": "Native safe projection, person URL and unchanged conservative model"
+      },
+      "context": {
+        "spec_ref": "specs/ai-pms-readable-project/spec.md",
+        "facts": [
+          "ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "Chrome is connected; parent performs actual desktop acceptance. Mobile excluded. No deployment."
+        ],
+        "files": [
+          "PRODUCT-INTENT.md",
+          "specs/ai-pms-readable-project/source.md",
+          "specs/ai-pms-readable-project/spec.md"
+        ],
+        "excluded": "Backend/model/API/DB/global hooks/trust/credentials/deployment/private source input"
+      },
+      "constraints": {
+        "must": [
+          "New regressions cover human result explanations plus unchanged conservative semantics",
+          "Model, source identity, shared tasks, routes, safe text and conservative completion preserved"
+        ],
+        "must_not": [
+          "Change model/API/DB/permissions or expose private inputs",
+          "Delete/skip/weaken meaningful tests",
+          "Invent completion/dates/authority/AI results or rendered visual acceptance",
+          "Commit/push/deploy or edit other packet files"
+        ]
+      }
+    }
+  ]
+}

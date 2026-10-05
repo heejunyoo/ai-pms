@@ -1,0 +1,21 @@
+{
+  "reviewer": "independent-adoption-release-intent-reviewer",
+  "verdict": "aligned",
+  "source_sha256": "d265bcad0e54384bf2a0773731d2dbe9995dc4f9bd50ab9e4ca05b8724b8c9eb",
+  "spec_sha256": "2c4b2f295c10f24fb599bcb704686cb1e9fa7d147cf9f4d1a9ce1351560bc534",
+  "requirements_covered": [
+    "adoption",
+    "sample",
+    "kit",
+    "release"
+  ],
+  "unapproved_changes": [],
+  "evidence": "Independent review of source.md, spec.md, plan.json and full PRODUCT-INTENT.md. The four exact user quotes authorize GitHub onboarding verification, sample realism, PMS-related Kit hook-only scope and deployment completion. spec.md introduction preserves central multi-user purpose and conservative completion while interpreting the final quote as this existing GitHub/Vercel push/deployment approval only; it excludes new DB/API/backend infrastructure and actual global settings, credentials or private source publication. adoption is covered by README/docs/adoption and a clean-download gate: download/extract, Kit hook files and safe configuration merging, logger smoke/health, source identity, document/static and authenticated central Live paths, plans/tasks, abnormal states and operational boundaries. Synthetic stdin is explicitly not real app-hook evidence. sample is covered by fictional document-first default showing the same human projection as private onboarding, current verification unconfirmed, separate clearly labelled recorded runner example, no real private copy or fabricated AI/hook success, and preserved existing adversarial fixtures. kit is covered by preserving general Harness Kit content and bilingual/offline/download identities while removing PMS central runtime from Kit implementation.zip and retaining logger/connectivity/hooks and GitHub full adoption links. Existing runtime export/pilot verification transfers to executable downloaded GitHub adoption checks rather than being deleted/skipped/weakened. release is covered by parent-owned current sanitized isolated checkout, local/full portable tests, extracted ZIP/download replay, both Kit language checks, actual approved Chrome observations, Git commit/push remote HEAD, both existing Vercel deployments and production page/download byte matches; previous receipts cannot replace current evidence. PRODUCT-INTENT central aggregation, per-person independent goals/shared tasks, session lifecycle versus goal validation and genuine remote/app evidence boundaries remain intact. The three packet boundaries separate adoption docs/gate, fictional sample builder/fixture and canonical Kit generation; root retains exporters, integration, public Git/download/browser/deployment. All four requirement IDs appear in plan intent_guard; per-task done_when and constraints explicitly retain privacy and test coverage. This receipt establishes source/spec/plan alignment only. verify_adoption exit0 alone is not release completion: sample/Kit checks, downloaded artifact execution, actual browser acceptance, remote Git HEAD and production byte verification remain parent integration obligations.",
+  "publication_transform": {
+    "original_hashes": {
+      "source_sha256": "d265bcad0e54384bf2a0773731d2dbe9995dc4f9bd50ab9e4ca05b8724b8c9eb",
+      "spec_sha256": "2c4b2f295c10f24fb599bcb704686cb1e9fa7d147cf9f4d1a9ce1351560bc534"
+    },
+    "reason": "Fresh reviewed source/spec hashes reconciled after home-path substitution only; not another independent review."
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "recorded_at": "2026-10-04T12:48:43.165241+00:00",
+  "scope": "Local whole-project readability refactor; no deployment",
+  "source_hashes": {
+    "specs/ai-pms-readable-project/source.md": "c3d9e34d6acd3c3ab232767e0cd2bacc38a8f2df6aeda51a640dcbc9440ae621",
+    "specs/ai-pms-readable-project/spec.md": "d2cdc752204b459579c5415e7f97edf55e4e2540288a12a3db72660c649c2df5",
+    "specs/ai-pms-readable-project/plan.json": "48772eede95502b2c331e3006db6a2fb353bd53b3d5ce9afcb0735f813feb18b",
+    "specs/ai-pms-dashboard/human-view.js": "e4745292a197afa3814098035f6270fcea7ce98bfaa64aab0e96a59031258431",
+    "specs/ai-pms-dashboard/human-view.css": "3666962281c845d4ba52d4c7fbe53a6a461cfa37f3d7fec966e22bf38da12d5f",
+    "specs/ai-pms-dashboard/dashboard.html": "001a01c5eb5200e98ab38f43d3bc8841fe4ee5601626af9fae4aec7a9b65b62e",
+    "specs/ai-pms-readable-project/check_readable.py": "a825764f53f1309701fca847d7baf6a1701a33457cebe765b60cd90b9fd0fc35",
+    "scripts/verify_public.py": "fb18613c56809b231853ccb9706d943a9f6d392e9b92491665b3100324a4ea91",
+    "apps/dashboard/public/index.html": "d0728276e422e0d2d130254ad9d3bb5dfad2c706c3a499af70303181d3137b7b"
+  },
+  "command_checks": [
+    {
+      "command": "python3 specs/ai-pms-readable-project/check_readable.py",
+      "exit_code": 0,
+      "kind": "Synthetic semantics and retained regression checks"
+    },
+    {
+      "command": "python3 scripts/prepare_public.py --out /private/tmp/ai-pms-readable-checkout",
+      "exit_code": 0,
+      "files": 449
+    },
+    {
+      "command": "python3 scripts/verify_public.py",
+      "cwd": "/private/tmp/ai-pms-readable-checkout",
+      "exit_code": 0,
+      "result": "PASS: portable public source, privacy, completion, snapshot and app checks"
+    }
+  ],
+  "desktop_chrome": {
+    "verified": true,
+    "browser": "Chrome via CUA",
+    "synthetic_url": "http://127.0.0.1:21942/#project=alice-recall&view=evidence&person=Bob",
+    "private_url": "http://127.0.0.1:21944/#project=paper&view=evidence",
+    "viewport_width": 1920,
+    "document_width": 1920,
+    "observations": [
+      "One visible project navigation; meaningful default result selection",
+      "Task cards consolidate criteria, result and next action; raw records closed",
+      "Completed task has no fabricated remaining action",
+      "Required tasks and shared owners retained in WBS; blocker and next task link resolve",
+      "Session and document navigation displays contextual summaries with raw records closed",
+      "Bob-scoped result to action-3 and native Back preserve person scope",
+      "Current refresh preserves primary task states including ready, blocked, active and unknown",
+      "Private Paper full-pdf direct route and reload preserve blocker, next action and completion conditions",
+      "Private Paper documentary completion remains current verification unconfirmed; partial PDF remains open"
+    ],
+    "screenshot": "desktop-results.png",
+    "screenshot_sha256": "409514f54d78abd76603fe4a3d9b67d4e1714381c97cb0be80cac5d2b6f83471"
+  },
+  "independent_review": {
+    "receipt": "final-code-review.json",
+    "verdict_for_reviewed_source": "pass",
+    "latest_source_rereview_complete": false,
+    "remaining_delta": "One task-result expression preserves humanStatus(t.state) even when current check evidence is uncertain; mirrored in dashboard.html",
+    "parent_verified_delta": true,
+    "reverse_delta_restores_reviewed_js_hash": true,
+    "reason_latest_rereview_incomplete": "Reviewer usage limit; do not replace original review hashes"
+  },
+  "private_data": {
+    "payload_preservation_checked": true,
+    "method": "Before/after application/json block hashes compared during canonical HUMAN VIEW replacement; no private builder rerun",
+    "public_export_contains_private_sources": false
+  },
+  "boundaries": {
+    "mobile": "excluded by prior user instruction",
+    "deployed": false,
+    "pushed": false,
+    "user_acceptance": false,
+    "actual_multi_user_delivery_verified": false,
+    "actual_app_hook_verified": false,
+    "new_provider_or_model_analysis_verified": false
+  },
+  "known_limitations": [
+    "Session/doc navigation shares existing evidence hash; reload defaults to confirmation results. No API contract changed."
+  ]
+}

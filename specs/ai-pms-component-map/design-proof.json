@@ -1,0 +1,71 @@
+{
+  "recorded_at": "2026-10-05T01:28:01.973288+00:00",
+  "request": "훨씬 나아졌고, 지금 도표 align 및 디자인 문제 해결해서 보고해.",
+  "status": "design_fix_verified_on_local_desktop",
+  "source_hashes": {
+    "specs/ai-pms-dashboard/human-view.js": "230af2276e609d6f04db4ed422763cc15aa725b4c7ed4a2c9d62f3bbdefe881a",
+    "specs/ai-pms-dashboard/human-view.css": "085b8b72b6416fa3db2ff6ac7e78b2b8eef299b94dc244a55fb2182df4bfc8b2",
+    "specs/ai-pms-dashboard/dashboard.html": "1cd16aee5c71aeda738809505e5b04b92852325e0b6f84c1b542842255b8aea1"
+  },
+  "changes": [
+    "Shared heading/task/reference rows; bottom-aligned stage status",
+    "Readable task/reference typography and spacing",
+    "Goal remains centered in visible viewport for wide maps",
+    "Every task retained in keyboard-focusable list with max360px vertical scrolling"
+  ],
+  "regressions": [
+    {
+      "command": "python3 specs/ai-pms-component-map/check_map.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 specs/ai-pms-readable-project/check_readable.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 scripts/build_dashboard_app.py",
+      "exit_code": 0
+    }
+  ],
+  "independent_review": "design-review.json",
+  "browser": {
+    "engine": "Google Chrome via previously user-approved Playwright fallback",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "verified_projects": [
+      "paper",
+      "knowledge"
+    ],
+    "measurements": "design-browser-metrics.json",
+    "screenshots": [
+      {
+        "private_path": "$HOME/.local/share/ai-pms/real-projects/qa/design-paper.png",
+        "sha256": "4e93fecda3c900f913b1ce89215cd64510480614c6afbb021d944e463e8e02f9"
+      },
+      {
+        "private_path": "$HOME/.local/share/ai-pms/real-projects/qa/design-knowledge.png",
+        "sha256": "95706e5f9265af1afc273005a17cf0bcb87621c15cdf7a837ac7030d393e41d3"
+      }
+    ],
+    "actual_observations": [
+      "All stage headings and task/reference row starts aligned; Paper statuses aligned",
+      "Continuous solid trunk/branch and distinct dashed reference edges",
+      "Knowledge 10-phase map goal visible and task rows bounded",
+      "Native keyboard Enter to Paper task and Knowledge last phase; phase click and Back; reload restores map",
+      "No page or console errors during inspected paths"
+    ],
+    "native_connector": "Unavailable; approved standalone Chrome fallback succeeded"
+  },
+  "private_payloads_unchanged": true,
+  "private_screenshots_in_public_source": false,
+  "boundaries": {
+    "deployed": false,
+    "pushed": false,
+    "mobile_excluded": true,
+    "completion_or_api_model_changed": false,
+    "actual_multi_user_delivery_verified": false,
+    "user_final_acceptance": false
+  }
+}

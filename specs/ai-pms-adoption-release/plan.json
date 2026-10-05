@@ -1,0 +1,324 @@
+{
+  "author": "root-adoption-release",
+  "spec_ref": "spec.md",
+  "goal": "Verify public hook-to-PMS adoption, align honest samples and Kit scope, then publish verified artifacts",
+  "open_decisions": [],
+  "intent_guard": {
+    "source_ref": "source.md",
+    "requirements": [
+      {
+        "id": "adoption",
+        "quote": "github 업데이트 해. github 에서, 어떻게 하면 적용할 수 있는지에 대한 도입 가이드 다 잘 명시되어 있지? 그 부분도 검증해.",
+        "outcome": "Downloaded repo supports step-by-step hooks and dashboard adoption"
+      },
+      {
+        "id": "sample",
+        "quote": "github 을 공개하면, 공개된걸 다운로드 받아서 써 보고 싶을거 아냐. vercel 에 있는 샘플도, 내 실제 프로젝트 도입한 것처럼 모습이 보여야 할것 같아. 샘플에 있는건 이상적인 모습인거야?",
+        "outcome": "Default example resembles actual document-first onboarding with explicit synthetic boundaries"
+      },
+      {
+        "id": "kit",
+        "quote": "kit 도 업데이트 하고. github 은 kit 에 있는 훅 추가 + pms 대시보드 도입까지 포함한 거고, kit 에는 훅 추가만 있는게 맞겠지?",
+        "outcome": "Kit PMS scope hooks only; GitHub contains full adoption"
+      },
+      {
+        "id": "release",
+        "quote": "심도있는 검증 다 진행하고, 승인 할테니까 전부 배포하고 완료 보고해.",
+        "outcome": "All verified changes publicly pushed/deployed and downloaded production artifacts rechecked"
+      }
+    ],
+    "review_ref": "intent-review.json",
+    "acceptance": {
+      "command": "python3 scripts/verify_adoption.py",
+      "expect_exit_code": 0
+    }
+  },
+  "phases": [
+    {
+      "id": "release-preparation",
+      "name": "공개 도입 검증 준비",
+      "exit_check": {
+        "command": "python3 scripts/verify_adoption.py",
+        "expect_exit_code": 0
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "kind": "implement",
+      "phase": "release-preparation",
+      "depends_on": [],
+      "already_tried": [
+        {
+          "what": "Canonical sources and previous current UI checks",
+          "result": "check_map/check_readable exit0. Kit currently ships PMS runtime and GitHub beginner instructions dispersed."
+        }
+      ],
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      },
+      "task_id": "adoption",
+      "requirement_ids": [
+        "adoption",
+        "sample",
+        "kit",
+        "release"
+      ],
+      "objective": "Create coherent GitHub hook-to-dashboard onboarding and runnable clean-download gate",
+      "done_when": [
+        "Create coherent GitHub hook-to-dashboard onboarding and runnable clean-download gate",
+        "Privacy, existing semantics and retained test coverage preserved"
+      ],
+      "acceptance": {
+        "command": "python3 scripts/verify_adoption.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "README.md",
+          "symbol": "current entry point",
+          "what": "Create coherent GitHub hook-to-dashboard onboarding and runnable clean-download gate"
+        },
+        {
+          "path": "docs/adoption.md",
+          "symbol": "current entry point",
+          "what": "Create coherent GitHub hook-to-dashboard onboarding and runnable clean-download gate"
+        },
+        {
+          "path": "scripts/verify_adoption.py",
+          "symbol": "current entry point",
+          "what": "Create coherent GitHub hook-to-dashboard onboarding and runnable clean-download gate"
+        },
+        {
+          "path": "specs/ai-pms-live/README.md",
+          "symbol": "current entry point",
+          "what": "Create coherent GitHub hook-to-dashboard onboarding and runnable clean-download gate"
+        }
+      ],
+      "files_to_create": [
+        "docs/adoption.md",
+        "scripts/verify_adoption.py",
+        "specs/ai-pms-adoption-release/adoption-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/human-view.js",
+        "why": "Native safe projection, person URL and unchanged conservative model"
+      },
+      "context": {
+        "spec_ref": "specs/ai-pms-adoption-release/spec.md",
+        "facts": [
+          "ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "Parent owns deployment/export/browser and may use prior explicitly approved Playwright Chrome.",
+          "Kit pms runtime test must move to repo adoption gate, never lose executable coverage."
+        ],
+        "files": [
+          "specs/ai-pms-adoption-release/source.md",
+          "specs/ai-pms-adoption-release/spec.md",
+          "PRODUCT-INTENT.md"
+        ],
+        "excluded": "Actual hooks/settings/trust/credentials/private inputs, DB/API changes, parent-owned exporters, deployment/push"
+      },
+      "constraints": {
+        "must": [
+          "Create coherent GitHub hook-to-dashboard onboarding and runnable clean-download gate",
+          "Privacy, existing semantics and retained test coverage preserved"
+        ],
+        "must_not": [
+          "Change API/DB/completion contracts or private files",
+          "Delete/skip/weaken tests; retain runtime pilot coverage in adoption gate",
+          "Mutate global actual hooks/trust/accounts or add deps/network backend",
+          "Commit/push/deploy or edit other packet files"
+        ]
+      }
+    },
+    {
+      "kind": "implement",
+      "phase": "release-preparation",
+      "depends_on": [],
+      "already_tried": [
+        {
+          "what": "Canonical sources and previous current UI checks",
+          "result": "check_map/check_readable exit0. Kit currently ships PMS runtime and GitHub beginner instructions dispersed."
+        }
+      ],
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      },
+      "task_id": "sample",
+      "requirement_ids": [
+        "adoption",
+        "sample",
+        "kit",
+        "release"
+      ],
+      "objective": "Public fictional document-first adoption sample plus explicitly separate recorded example",
+      "done_when": [
+        "Public fictional document-first adoption sample plus explicitly separate recorded example",
+        "Privacy, existing semantics and retained test coverage preserved"
+      ],
+      "acceptance": {
+        "command": "python3 specs/ai-pms-adoption-release/check_sample.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "scripts/build_dashboard_app.py",
+          "symbol": "current entry point",
+          "what": "Public fictional document-first adoption sample plus explicitly separate recorded example"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-adoption-release/sample-documentary.json",
+        "specs/ai-pms-adoption-release/check_sample.py",
+        "specs/ai-pms-adoption-release/sample-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/human-view.js",
+        "why": "Native safe projection, person URL and unchanged conservative model"
+      },
+      "context": {
+        "spec_ref": "specs/ai-pms-adoption-release/spec.md",
+        "facts": [
+          "ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "Parent owns deployment/export/browser and may use prior explicitly approved Playwright Chrome.",
+          "Kit pms runtime test must move to repo adoption gate, never lose executable coverage."
+        ],
+        "files": [
+          "specs/ai-pms-adoption-release/source.md",
+          "specs/ai-pms-adoption-release/spec.md",
+          "PRODUCT-INTENT.md"
+        ],
+        "excluded": "Actual hooks/settings/trust/credentials/private inputs, DB/API changes, parent-owned exporters, deployment/push"
+      },
+      "constraints": {
+        "must": [
+          "Public fictional document-first adoption sample plus explicitly separate recorded example",
+          "Privacy, existing semantics and retained test coverage preserved"
+        ],
+        "must_not": [
+          "Change API/DB/completion contracts or private files",
+          "Delete/skip/weaken tests; retain runtime pilot coverage in adoption gate",
+          "Mutate global actual hooks/trust/accounts or add deps/network backend",
+          "Commit/push/deploy or edit other packet files"
+        ]
+      }
+    },
+    {
+      "kind": "implement",
+      "phase": "release-preparation",
+      "depends_on": [],
+      "already_tried": [
+        {
+          "what": "Canonical sources and previous current UI checks",
+          "result": "check_map/check_readable exit0. Kit currently ships PMS runtime and GitHub beginner instructions dispersed."
+        }
+      ],
+      "tools_allowed": [
+        "exec_command",
+        "apply_patch"
+      ],
+      "budget": {
+        "max_turns": 35
+      },
+      "on_failure": {
+        "retry": 1,
+        "partial_ok": true,
+        "escalate_to": "root"
+      },
+      "task_id": "kit",
+      "requirement_ids": [
+        "adoption",
+        "sample",
+        "kit",
+        "release"
+      ],
+      "objective": "Limit PMS-related Kit export/page to hooks and link GitHub adoption while preserving whole Kit",
+      "done_when": [
+        "Limit PMS-related Kit export/page to hooks and link GitHub adoption while preserving whole Kit",
+        "Privacy, existing semantics and retained test coverage preserved"
+      ],
+      "acceptance": {
+        "command": "python3 $HOME/.claude/harness/build/build_current.py && python3 $HOME/.claude/harness/build/check_site.py",
+        "expect_exit_code": 0
+      },
+      "edit_points": [
+        {
+          "path": "$HOME/.claude/harness/build/current_content.py",
+          "symbol": "current entry point",
+          "what": "Limit PMS-related Kit export/page to hooks and link GitHub adoption while preserving whole Kit"
+        },
+        {
+          "path": "$HOME/.claude/harness/build/build_current.py",
+          "symbol": "current entry point",
+          "what": "Limit PMS-related Kit export/page to hooks and link GitHub adoption while preserving whole Kit"
+        },
+        {
+          "path": "$HOME/.claude/harness/build/check_current.py",
+          "symbol": "current entry point",
+          "what": "Limit PMS-related Kit export/page to hooks and link GitHub adoption while preserving whole Kit"
+        },
+        {
+          "path": "$HOME/.claude/harness/build/BUILD.md",
+          "symbol": "current entry point",
+          "what": "Limit PMS-related Kit export/page to hooks and link GitHub adoption while preserving whole Kit"
+        },
+        {
+          "path": "$HOME/.claude/harness/activity/README.md",
+          "symbol": "current entry point",
+          "what": "Limit PMS-related Kit export/page to hooks and link GitHub adoption while preserving whole Kit"
+        }
+      ],
+      "files_to_create": [
+        "specs/ai-pms-adoption-release/kit-result.json"
+      ],
+      "reference_impl": {
+        "path": "specs/ai-pms-dashboard/human-view.js",
+        "why": "Native safe projection, person URL and unchanged conservative model"
+      },
+      "context": {
+        "spec_ref": "specs/ai-pms-adoption-release/spec.md",
+        "facts": [
+          "ROOT=$HOME/Documents/Codex/2026-09-30/ai-pms-research",
+          "Parent owns deployment/export/browser and may use prior explicitly approved Playwright Chrome.",
+          "Kit pms runtime test must move to repo adoption gate, never lose executable coverage."
+        ],
+        "files": [
+          "specs/ai-pms-adoption-release/source.md",
+          "specs/ai-pms-adoption-release/spec.md",
+          "PRODUCT-INTENT.md"
+        ],
+        "excluded": "Actual hooks/settings/trust/credentials/private inputs, DB/API changes, parent-owned exporters, deployment/push"
+      },
+      "constraints": {
+        "must": [
+          "Limit PMS-related Kit export/page to hooks and link GitHub adoption while preserving whole Kit",
+          "Privacy, existing semantics and retained test coverage preserved"
+        ],
+        "must_not": [
+          "Change API/DB/completion contracts or private files",
+          "Delete/skip/weaken tests; retain runtime pilot coverage in adoption gate",
+          "Mutate global actual hooks/trust/accounts or add deps/network backend",
+          "Commit/push/deploy or edit other packet files"
+        ]
+      }
+    }
+  ]
+}

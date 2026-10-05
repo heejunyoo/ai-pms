@@ -1,0 +1,51 @@
+{
+  "task_id": "adoption",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "README.md",
+      "action": "modified",
+      "summary": "First-download entry point, choices, honest sample and Kit hook-only scope."
+    },
+    {
+      "path": "docs/adoption.md",
+      "action": "created",
+      "summary": "Download root, private document/project input, hook merge/health, authenticated pilot, failure states and shutdown."
+    },
+    {
+      "path": "scripts/verify_adoption.py",
+      "action": "created",
+      "summary": "Portable no-home-fallback gate retaining four runtime --help, seven-writer setup, all eight credential0600 checks, synthetic hook health, document projection, existing auth/live/durable-ACK/dedup tests."
+    },
+    {
+      "path": "specs/ai-pms-live/README.md",
+      "action": "modified",
+      "summary": "Use downloaded GitHub root and kit/activity paths; remove ZIP pms runtime entry."
+    },
+    {
+      "path": "specs/ai-pms-adoption-release/adoption-result.json",
+      "action": "created",
+      "summary": "Executed acceptance receipt and exact synthetic-fixture boundary."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 scripts/verify_adoption.py",
+    "exit_code": 0,
+    "output_tail": "PASS: clean-download links; runtime --help; 7 writers / 8 credential0600; Codex/Claude synthetic stdin + health; document-only HTML/snapshot; retained logger/live/auth/durable-ACK/dedup tests\nBoundary: disposable synthetic loopback only. Actual app hooks/trust, remote users, browser rendering and production release require separate evidence."
+  },
+  "done_when_check": [
+    {
+      "condition": "Create coherent GitHub hook-to-dashboard onboarding and runnable clean-download gate",
+      "met": true,
+      "evidence": "Guide covers all requested adoption paths and gate executed exit0 from temporary download-shaped fixture; optional --root permits parent sanitized checkout replay."
+    },
+    {
+      "condition": "Privacy, existing semantics and retained test coverage preserved",
+      "met": true,
+      "evidence": "Only packet files changed. Existing tests not edited. Runtime --help/setup credential0600 checks moved into new gate; existing logger/live/capture/demo tests executed without weakening. Synthetic input/temporary credentials only; no global hooks/trust, push/deploy, API/DB changes."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.93,
+  "notes_for_orchestrator": "Acceptance cwd was /private/var/folders/rg/r69n65q13rlbds_t77ph3mhh0000gn/T/pms-adoption-download-qcz03gjj, temporary source copy excluding runtime/cache directories plus canonical activity logger.py/connectivity.py/test_logger.py/README.md and existing public PUBLIC_SNAPSHOT.md. This is download-shaped local fixture proof, not fresh sanitized export, downloaded GitHub ZIP, browser, app native hook, remote or production proof. Source root intentionally lacks kit/activity and default gate exits1 there; run python3 scripts/verify_adoption.py --root <sanitized-public-root> before publication, then default gate in the actual extracted download. Initial child test_live failed with sandbox socket.bind PermissionError; direct approved test_live ran 38 tests OK and full gate then passed with approved verify_adoption prefix outside sandbox. Parent owns fresh export/build and all release/browser acceptance."
+}

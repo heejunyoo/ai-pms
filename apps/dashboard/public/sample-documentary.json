@@ -1,0 +1,448 @@
+{
+  "version": 1,
+  "boundary": "공개용 가상 프로젝트와 가상 문서입니다. 실제 개인 자료, 앱 훅 관측, 모델 분석, 현재 실행 검증 또는 최종 인수의 증거가 아닙니다.",
+  "catalog": {
+    "version": 2,
+    "projects": [
+      {
+        "id": "sample-support",
+        "name": "고객 문의 정리",
+        "goal": "반복 문의를 분류하고 담당자에게 근거와 함께 전달한다",
+        "current_revision": "v1",
+        "current_phase": "build",
+        "source_refs": [
+          {
+            "actor_id": "Alice",
+            "environment_id": "fictional-workspace",
+            "project_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+          },
+          {
+            "actor_id": "Bob",
+            "environment_id": "fictional-workspace",
+            "project_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+          }
+        ],
+        "phases": [
+          {
+            "id": "plan",
+            "name": "목표와 계획 정리"
+          },
+          {
+            "id": "build",
+            "name": "구현과 확인"
+          },
+          {
+            "id": "accept",
+            "name": "현재 검증과 인수"
+          }
+        ],
+        "documents": [],
+        "criteria": [],
+        "runs": [],
+        "connections": []
+      },
+      {
+        "id": "sample-intake",
+        "name": "팀 자료 접수",
+        "goal": "팀원이 자료를 제출하고 누락된 필수 항목을 확인할 수 있게 한다",
+        "current_revision": "v1",
+        "current_phase": "build",
+        "source_refs": [
+          {
+            "actor_id": "Bob",
+            "environment_id": "fictional-workspace",
+            "project_id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+          }
+        ],
+        "phases": [
+          {
+            "id": "plan",
+            "name": "목표와 계획 정리"
+          },
+          {
+            "id": "build",
+            "name": "구현과 확인"
+          },
+          {
+            "id": "accept",
+            "name": "현재 검증과 인수"
+          }
+        ],
+        "documents": [],
+        "criteria": [],
+        "runs": [],
+        "connections": []
+      },
+      {
+        "id": "sample-report",
+        "name": "주간 업무 보고",
+        "goal": "진척과 막힌 이유를 문서 근거와 연결해 다음 판단을 돕는다",
+        "current_revision": "v1",
+        "current_phase": "build",
+        "source_refs": [
+          {
+            "actor_id": "Carol",
+            "environment_id": "fictional-workspace",
+            "project_id": "cccccccc-cccc-4ccc-8ccc-cccccccccccc"
+          }
+        ],
+        "phases": [
+          {
+            "id": "plan",
+            "name": "목표와 계획 정리"
+          },
+          {
+            "id": "build",
+            "name": "구현과 확인"
+          },
+          {
+            "id": "accept",
+            "name": "현재 검증과 인수"
+          }
+        ],
+        "documents": [],
+        "criteria": [],
+        "runs": [],
+        "connections": []
+      }
+    ]
+  },
+  "documentary": {
+    "projects": {
+      "sample-support": {
+        "docdate": "2026-10-05",
+        "origin": "fictional/sample-support/plan.md",
+        "tasks": {
+          "scope": {
+            "id": "scope",
+            "title": "목표와 완료 조건 정리",
+            "phase": "plan",
+            "status": "documented",
+            "summary": "가상 문서에 목표와 인수 기준을 정리했다고 기록했습니다.",
+            "next_action": "현재 요구사항과 문서의 목표가 맞는지 담당자가 확인합니다.",
+            "done": [
+              "대상 업무, 필요한 입력과 완료 조건이 문서에 명시되어 있다."
+            ],
+            "source": "sample-support-scope",
+            "owner": "Alice"
+          },
+          "implement": {
+            "id": "implement",
+            "title": "핵심 화면과 입력 구현",
+            "phase": "build",
+            "status": "in_progress",
+            "summary": "가상 진행 메모에는 기본 화면 구현 중이라고 적혀 있습니다. 현재 코드 실행은 확인하지 않았습니다.",
+            "next_action": "정의한 입력과 예외 흐름을 구현하고 검사를 실행합니다.",
+            "done": [
+              "정상 입력과 필수 항목 누락을 구분한다."
+            ],
+            "source": "sample-support-implement",
+            "owner": "Bob"
+          },
+          "decision": {
+            "id": "decision",
+            "title": "예외 처리 기준 확인",
+            "phase": "build",
+            "status": "blocked",
+            "summary": "가상 계획에서 예외 처리의 책임자 판단을 기다리고 있습니다.",
+            "next_action": "담당자가 예외 처리 기준을 문서로 확정합니다.",
+            "done": [
+              "오류 상황에서 담당자와 다음 행동을 알 수 있다."
+            ],
+            "source": "sample-support-decision",
+            "owner": "Alice"
+          },
+          "verify": {
+            "id": "verify",
+            "title": "현재 버전 검사와 사람 인수",
+            "phase": "accept",
+            "status": "unknown",
+            "summary": "현재 버전 검사 결과와 사람 인수 기록이 없습니다.",
+            "next_action": "실제 환경에서 완료 조건을 검사하고 인수 판단을 기록합니다.",
+            "done": [
+              "현재 버전의 실행 검사와 사람 인수 근거가 모두 있다."
+            ],
+            "source": "sample-support-verify"
+          }
+        }
+      },
+      "sample-intake": {
+        "docdate": "2026-10-05",
+        "origin": "fictional/sample-intake/plan.md",
+        "tasks": {
+          "scope": {
+            "id": "scope",
+            "title": "목표와 완료 조건 정리",
+            "phase": "plan",
+            "status": "documented",
+            "summary": "가상 문서에 목표와 인수 기준을 정리했다고 기록했습니다.",
+            "next_action": "현재 요구사항과 문서의 목표가 맞는지 담당자가 확인합니다.",
+            "done": [
+              "대상 업무, 필요한 입력과 완료 조건이 문서에 명시되어 있다."
+            ],
+            "source": "sample-intake-scope",
+            "owner": "Bob"
+          },
+          "implement": {
+            "id": "implement",
+            "title": "핵심 화면과 입력 구현",
+            "phase": "build",
+            "status": "in_progress",
+            "summary": "가상 진행 메모에는 기본 화면 구현 중이라고 적혀 있습니다. 현재 코드 실행은 확인하지 않았습니다.",
+            "next_action": "정의한 입력과 예외 흐름을 구현하고 검사를 실행합니다.",
+            "done": [
+              "정상 입력과 필수 항목 누락을 구분한다."
+            ],
+            "source": "sample-intake-implement",
+            "owner": "Bob"
+          },
+          "decision": {
+            "id": "decision",
+            "title": "예외 처리 기준 확인",
+            "phase": "build",
+            "status": "blocked",
+            "summary": "가상 계획에서 예외 처리의 책임자 판단을 기다리고 있습니다.",
+            "next_action": "담당자가 예외 처리 기준을 문서로 확정합니다.",
+            "done": [
+              "오류 상황에서 담당자와 다음 행동을 알 수 있다."
+            ],
+            "source": "sample-intake-decision",
+            "owner": "Bob"
+          },
+          "verify": {
+            "id": "verify",
+            "title": "현재 버전 검사와 사람 인수",
+            "phase": "accept",
+            "status": "unknown",
+            "summary": "현재 버전 검사 결과와 사람 인수 기록이 없습니다.",
+            "next_action": "실제 환경에서 완료 조건을 검사하고 인수 판단을 기록합니다.",
+            "done": [
+              "현재 버전의 실행 검사와 사람 인수 근거가 모두 있다."
+            ],
+            "source": "sample-intake-verify"
+          }
+        }
+      },
+      "sample-report": {
+        "docdate": "2026-10-05",
+        "origin": "fictional/sample-report/plan.md",
+        "tasks": {
+          "scope": {
+            "id": "scope",
+            "title": "목표와 완료 조건 정리",
+            "phase": "plan",
+            "status": "documented",
+            "summary": "가상 문서에 목표와 인수 기준을 정리했다고 기록했습니다.",
+            "next_action": "현재 요구사항과 문서의 목표가 맞는지 담당자가 확인합니다.",
+            "done": [
+              "대상 업무, 필요한 입력과 완료 조건이 문서에 명시되어 있다."
+            ],
+            "source": "sample-report-scope",
+            "owner": "Carol"
+          },
+          "implement": {
+            "id": "implement",
+            "title": "핵심 화면과 입력 구현",
+            "phase": "build",
+            "status": "in_progress",
+            "summary": "가상 진행 메모에는 기본 화면 구현 중이라고 적혀 있습니다. 현재 코드 실행은 확인하지 않았습니다.",
+            "next_action": "정의한 입력과 예외 흐름을 구현하고 검사를 실행합니다.",
+            "done": [
+              "정상 입력과 필수 항목 누락을 구분한다."
+            ],
+            "source": "sample-report-implement",
+            "owner": "Carol"
+          },
+          "decision": {
+            "id": "decision",
+            "title": "예외 처리 기준 확인",
+            "phase": "build",
+            "status": "blocked",
+            "summary": "가상 계획에서 예외 처리의 책임자 판단을 기다리고 있습니다.",
+            "next_action": "담당자가 예외 처리 기준을 문서로 확정합니다.",
+            "done": [
+              "오류 상황에서 담당자와 다음 행동을 알 수 있다."
+            ],
+            "source": "sample-report-decision",
+            "owner": "Carol"
+          },
+          "verify": {
+            "id": "verify",
+            "title": "현재 버전 검사와 사람 인수",
+            "phase": "accept",
+            "status": "unknown",
+            "summary": "현재 버전 검사 결과와 사람 인수 기록이 없습니다.",
+            "next_action": "실제 환경에서 완료 조건을 검사하고 인수 판단을 기록합니다.",
+            "done": [
+              "현재 버전의 실행 검사와 사람 인수 근거가 모두 있다."
+            ],
+            "source": "sample-report-verify"
+          }
+        }
+      }
+    },
+    "sources": {
+      "sample-support-scope": {
+        "project": "sample-support",
+        "path": "fictional/sample-support/scope.md",
+        "lines": [
+          1,
+          8
+        ],
+        "excerpt": "가상 문서 · 고객 문의 정리\n목표: 반복 문의를 분류하고 담당자에게 근거와 함께 전달한다\n작업: 목표와 완료 조건 정리\n문서상 상태: documented\n기록: 가상 문서에 목표와 인수 기준을 정리했다고 기록했습니다.\n다음 행동: 현재 요구사항과 문서의 목표가 맞는지 담당자가 확인합니다.\n완료 조건: 대상 업무, 필요한 입력과 완료 조건이 문서에 명시되어 있다.\n현재 실행 검사·앱 훅 관측·최종 인수: 미확인"
+      },
+      "sample-support-implement": {
+        "project": "sample-support",
+        "path": "fictional/sample-support/implement.md",
+        "lines": [
+          1,
+          8
+        ],
+        "excerpt": "가상 문서 · 고객 문의 정리\n목표: 반복 문의를 분류하고 담당자에게 근거와 함께 전달한다\n작업: 핵심 화면과 입력 구현\n문서상 상태: in_progress\n기록: 가상 진행 메모에는 기본 화면 구현 중이라고 적혀 있습니다. 현재 코드 실행은 확인하지 않았습니다.\n다음 행동: 정의한 입력과 예외 흐름을 구현하고 검사를 실행합니다.\n완료 조건: 정상 입력과 필수 항목 누락을 구분한다.\n현재 실행 검사·앱 훅 관측·최종 인수: 미확인"
+      },
+      "sample-support-decision": {
+        "project": "sample-support",
+        "path": "fictional/sample-support/decision.md",
+        "lines": [
+          1,
+          8
+        ],
+        "excerpt": "가상 문서 · 고객 문의 정리\n목표: 반복 문의를 분류하고 담당자에게 근거와 함께 전달한다\n작업: 예외 처리 기준 확인\n문서상 상태: blocked\n기록: 가상 계획에서 예외 처리의 책임자 판단을 기다리고 있습니다.\n다음 행동: 담당자가 예외 처리 기준을 문서로 확정합니다.\n완료 조건: 오류 상황에서 담당자와 다음 행동을 알 수 있다.\n현재 실행 검사·앱 훅 관측·최종 인수: 미확인"
+      },
+      "sample-support-verify": {
+        "project": "sample-support",
+        "path": "fictional/sample-support/verify.md",
+        "lines": [
+          1,
+          8
+        ],
+        "excerpt": "가상 문서 · 고객 문의 정리\n목표: 반복 문의를 분류하고 담당자에게 근거와 함께 전달한다\n작업: 현재 버전 검사와 사람 인수\n문서상 상태: unknown\n기록: 현재 버전 검사 결과와 사람 인수 기록이 없습니다.\n다음 행동: 실제 환경에서 완료 조건을 검사하고 인수 판단을 기록합니다.\n완료 조건: 현재 버전의 실행 검사와 사람 인수 근거가 모두 있다.\n현재 실행 검사·앱 훅 관측·최종 인수: 미확인"
+      },
+      "sample-intake-scope": {
+        "project": "sample-intake",
+        "path": "fictional/sample-intake/scope.md",
+        "lines": [
+          1,
+          8
+        ],
+        "excerpt": "가상 문서 · 팀 자료 접수\n목표: 팀원이 자료를 제출하고 누락된 필수 항목을 확인할 수 있게 한다\n작업: 목표와 완료 조건 정리\n문서상 상태: documented\n기록: 가상 문서에 목표와 인수 기준을 정리했다고 기록했습니다.\n다음 행동: 현재 요구사항과 문서의 목표가 맞는지 담당자가 확인합니다.\n완료 조건: 대상 업무, 필요한 입력과 완료 조건이 문서에 명시되어 있다.\n현재 실행 검사·앱 훅 관측·최종 인수: 미확인"
+      },
+      "sample-intake-implement": {
+        "project": "sample-intake",
+        "path": "fictional/sample-intake/implement.md",
+        "lines": [
+          1,
+          8
+        ],
+        "excerpt": "가상 문서 · 팀 자료 접수\n목표: 팀원이 자료를 제출하고 누락된 필수 항목을 확인할 수 있게 한다\n작업: 핵심 화면과 입력 구현\n문서상 상태: in_progress\n기록: 가상 진행 메모에는 기본 화면 구현 중이라고 적혀 있습니다. 현재 코드 실행은 확인하지 않았습니다.\n다음 행동: 정의한 입력과 예외 흐름을 구현하고 검사를 실행합니다.\n완료 조건: 정상 입력과 필수 항목 누락을 구분한다.\n현재 실행 검사·앱 훅 관측·최종 인수: 미확인"
+      },
+      "sample-intake-decision": {
+        "project": "sample-intake",
+        "path": "fictional/sample-intake/decision.md",
+        "lines": [
+          1,
+          8
+        ],
+        "excerpt": "가상 문서 · 팀 자료 접수\n목표: 팀원이 자료를 제출하고 누락된 필수 항목을 확인할 수 있게 한다\n작업: 예외 처리 기준 확인\n문서상 상태: blocked\n기록: 가상 계획에서 예외 처리의 책임자 판단을 기다리고 있습니다.\n다음 행동: 담당자가 예외 처리 기준을 문서로 확정합니다.\n완료 조건: 오류 상황에서 담당자와 다음 행동을 알 수 있다.\n현재 실행 검사·앱 훅 관측·최종 인수: 미확인"
+      },
+      "sample-intake-verify": {
+        "project": "sample-intake",
+        "path": "fictional/sample-intake/verify.md",
+        "lines": [
+          1,
+          8
+        ],
+        "excerpt": "가상 문서 · 팀 자료 접수\n목표: 팀원이 자료를 제출하고 누락된 필수 항목을 확인할 수 있게 한다\n작업: 현재 버전 검사와 사람 인수\n문서상 상태: unknown\n기록: 현재 버전 검사 결과와 사람 인수 기록이 없습니다.\n다음 행동: 실제 환경에서 완료 조건을 검사하고 인수 판단을 기록합니다.\n완료 조건: 현재 버전의 실행 검사와 사람 인수 근거가 모두 있다.\n현재 실행 검사·앱 훅 관측·최종 인수: 미확인"
+      },
+      "sample-report-scope": {
+        "project": "sample-report",
+        "path": "fictional/sample-report/scope.md",
+        "lines": [
+          1,
+          8
+        ],
+        "excerpt": "가상 문서 · 주간 업무 보고\n목표: 진척과 막힌 이유를 문서 근거와 연결해 다음 판단을 돕는다\n작업: 목표와 완료 조건 정리\n문서상 상태: documented\n기록: 가상 문서에 목표와 인수 기준을 정리했다고 기록했습니다.\n다음 행동: 현재 요구사항과 문서의 목표가 맞는지 담당자가 확인합니다.\n완료 조건: 대상 업무, 필요한 입력과 완료 조건이 문서에 명시되어 있다.\n현재 실행 검사·앱 훅 관측·최종 인수: 미확인"
+      },
+      "sample-report-implement": {
+        "project": "sample-report",
+        "path": "fictional/sample-report/implement.md",
+        "lines": [
+          1,
+          8
+        ],
+        "excerpt": "가상 문서 · 주간 업무 보고\n목표: 진척과 막힌 이유를 문서 근거와 연결해 다음 판단을 돕는다\n작업: 핵심 화면과 입력 구현\n문서상 상태: in_progress\n기록: 가상 진행 메모에는 기본 화면 구현 중이라고 적혀 있습니다. 현재 코드 실행은 확인하지 않았습니다.\n다음 행동: 정의한 입력과 예외 흐름을 구현하고 검사를 실행합니다.\n완료 조건: 정상 입력과 필수 항목 누락을 구분한다.\n현재 실행 검사·앱 훅 관측·최종 인수: 미확인"
+      },
+      "sample-report-decision": {
+        "project": "sample-report",
+        "path": "fictional/sample-report/decision.md",
+        "lines": [
+          1,
+          8
+        ],
+        "excerpt": "가상 문서 · 주간 업무 보고\n목표: 진척과 막힌 이유를 문서 근거와 연결해 다음 판단을 돕는다\n작업: 예외 처리 기준 확인\n문서상 상태: blocked\n기록: 가상 계획에서 예외 처리의 책임자 판단을 기다리고 있습니다.\n다음 행동: 담당자가 예외 처리 기준을 문서로 확정합니다.\n완료 조건: 오류 상황에서 담당자와 다음 행동을 알 수 있다.\n현재 실행 검사·앱 훅 관측·최종 인수: 미확인"
+      },
+      "sample-report-verify": {
+        "project": "sample-report",
+        "path": "fictional/sample-report/verify.md",
+        "lines": [
+          1,
+          8
+        ],
+        "excerpt": "가상 문서 · 주간 업무 보고\n목표: 진척과 막힌 이유를 문서 근거와 연결해 다음 판단을 돕는다\n작업: 현재 버전 검사와 사람 인수\n문서상 상태: unknown\n기록: 현재 버전 검사 결과와 사람 인수 기록이 없습니다.\n다음 행동: 실제 환경에서 완료 조건을 검사하고 인수 판단을 기록합니다.\n완료 조건: 현재 버전의 실행 검사와 사람 인수 근거가 모두 있다.\n현재 실행 검사·앱 훅 관측·최종 인수: 미확인"
+      }
+    }
+  },
+  "annotations": {
+    "sample-support": {
+      "phases": {
+        "plan": {
+          "title": "목표와 계획 정리",
+          "goal": "반복 문의를 분류하고 담당자에게 근거와 함께 전달한다 · 입력, 범위와 인수 조건을 문서로 정리한다"
+        },
+        "build": {
+          "title": "구현과 확인",
+          "goal": "핵심 흐름을 구현하고 예외 처리의 판단 기준을 확정한다"
+        },
+        "accept": {
+          "title": "현재 검증과 인수",
+          "goal": "현재 환경에서 검사하고 담당자의 최종 인수를 확인한다"
+        }
+      },
+      "references": []
+    },
+    "sample-intake": {
+      "phases": {
+        "plan": {
+          "title": "목표와 계획 정리",
+          "goal": "팀원이 자료를 제출하고 누락된 필수 항목을 확인할 수 있게 한다 · 입력, 범위와 인수 조건을 문서로 정리한다"
+        },
+        "build": {
+          "title": "구현과 확인",
+          "goal": "핵심 흐름을 구현하고 예외 처리의 판단 기준을 확정한다"
+        },
+        "accept": {
+          "title": "현재 검증과 인수",
+          "goal": "현재 환경에서 검사하고 담당자의 최종 인수를 확인한다"
+        }
+      },
+      "references": []
+    },
+    "sample-report": {
+      "phases": {
+        "plan": {
+          "title": "목표와 계획 정리",
+          "goal": "진척과 막힌 이유를 문서 근거와 연결해 다음 판단을 돕는다 · 입력, 범위와 인수 조건을 문서로 정리한다"
+        },
+        "build": {
+          "title": "구현과 확인",
+          "goal": "핵심 흐름을 구현하고 예외 처리의 판단 기준을 확정한다"
+        },
+        "accept": {
+          "title": "현재 검증과 인수",
+          "goal": "현재 환경에서 검사하고 담당자의 최종 인수를 확인한다"
+        }
+      },
+      "references": []
+    }
+  }
+}

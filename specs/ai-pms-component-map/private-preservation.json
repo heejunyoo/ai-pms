@@ -1,0 +1,10 @@
+{
+  "private_payloads_unchanged": true,
+  "payload_hashes": {
+    "documentary-data": "a8271ecc17ec6ce0ae1cf082c40c1153faa11dbb876495a3a1490d84c5d85494",
+    "human-annotations": "32c40fcb793ab314840a99ba0d2a38a9c0319c395d1cc8076be542e3356f4f4d",
+    "pms-data": "85648688934ea241dffad8e3fbb6839f077f0058f3e070336158c83a5851520c"
+  },
+  "updated_only": "HUMAN VIEW JS/CSS blocks",
+  "private_data_exported": false
+}

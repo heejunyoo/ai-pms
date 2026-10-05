@@ -21,8 +21,8 @@ LEGACY = {
  'eli5-skill-2026-08': 'eli5', 'codex-harness-eli5-2026-08': 'guide',
 }
 LABELS = {
- 'ko': {'ai-pms':'AI PMS','index':'시작하기','codex':'Codex','claude':'Claude','skills':'스킬','guide':'이해하기 · ELI20','maintenance':'적용 확인','handoff':'Handoff','expert-panel':'전문가 분석','eli5':'ELI20 설명'},
- 'en': {'ai-pms':'AI PMS','index':'Start','codex':'Codex','claude':'Claude','skills':'Skills','guide':'Understand · ELI20','maintenance':'Verify','handoff':'Handoff','expert-panel':'Expert analysis','eli5':'ELI20 explanations'},
+ 'ko': {'ste':'이해하기 · 한국어 STE','ai-pms':'AI PMS','index':'시작하기','codex':'Codex','claude':'Claude','skills':'스킬','guide':'이해하기 · ELI20','maintenance':'적용 확인','handoff':'Handoff','expert-panel':'전문가 분석','eli5':'ELI20 설명'},
+ 'en': {'ste':'Understand · English STE','ai-pms':'AI PMS','index':'Start','codex':'Codex','claude':'Claude','skills':'Skills','guide':'Understand · ELI20','maintenance':'Verify','handoff':'Handoff','expert-panel':'Expert analysis','eli5':'ELI20 explanations'},
 }
 CSS = '''
 :root{--bg:#f5f4ef;--paper:#fffefa;--ink:#162b38;--muted:#596871;--line:#d6ddd9;--accent:#006b60;--pale:#dcece5;--blue:#214d78;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--bg)}
@@ -165,15 +165,15 @@ def render(key, lang, evidence):
     title, intro, sections = guide_data(lang) if key=='guide' else PAGES[key][lang]
     e=html.escape
     other='en' if lang=='ko' else 'ko'
-    nav=''.join(f'<a href="./{filename(k,lang)}"'+(' aria-current="page"' if k==key else '')+f'>{LABELS[lang][k]}</a>' for k in ('index','guide','ai-pms','codex','claude','skills','maintenance'))
+    nav=''.join(f'<a href="./{filename(k,lang)}"'+(' aria-current="page"' if k==key else '')+f'>{LABELS[lang][k]}</a>' for k in ('index','guide','ste','ai-pms','codex','claude','skills','maintenance'))
     aside=''.join(f'<a href="#{sid}">{e(heading)}</a>' for sid,heading,_ in sections)
     explore_html,script=explorer(lang) if key=='guide' else ('','')
     cards=''
     for sid,heading,items in sections:
-        if key=='guide' and sid=='parts':
+        if key in ('guide','ste') and sid=='parts':
             body=''.join(f'<li><h3>{e(label)}</h3><p>{e(text)}</p></li>' for label,text in items)
             cards+=f'<section id="{sid}"><h2>{e(heading)}</h2><ol class="architecture">{body}</ol></section>'
-        elif key=='guide' and sid=='flow':
+        elif key in ('guide','ste') and sid=='flow':
             controls=''.join(f'<button type="button" class="flow-step" data-flow-step="{i}" aria-pressed="{str(i==0).lower()}" aria-controls="flow-panel-{i}">{e(label)}</button>' for i,(label,_) in enumerate(items))
             panels=''.join(f'<article class="flow-panel" id="flow-panel-{i}"'+('' if i==0 else ' hidden')+f'><h3>{e(label)}</h3><p>{e(text)}</p></article>' for i,(label,text) in enumerate(items))
             cards+=f'<section id="{sid}"><h2>{e(heading)}</h2><div class="flow-rail" role="group" aria-label="{e(heading,quote=True)}">{controls}</div><div class="flow-panels" aria-live="polite">{panels}</div></section>'
@@ -186,14 +186,21 @@ def render(key, lang, evidence):
                 body+=f'<article class="card"><h3>{e(label)}</h3>{content}{link}</article>'
             cards+=f'<section id="{sid}"><h2>{e(heading)}</h2><div class="grid">{body}</div></section>'
         if key=='guide' and sid=='concepts': cards+=explore_html
-    if key=='guide':
+    if key in ('guide','ste'):
         script+='''document.querySelectorAll('button[data-flow-step]').forEach(button=>button.addEventListener('click',()=>{const step=button.dataset.flowStep;document.querySelectorAll('button[data-flow-step]').forEach(x=>x.setAttribute('aria-pressed',String(x===button)));document.querySelectorAll('.flow-panel').forEach(x=>x.hidden=x.id!=='flow-panel-'+step);}));'''
+    if key in ('guide', 'ste'):
+        switch = '<div class="downloads" aria-label="'+('설명 방식 선택' if lang=='ko' else 'Choose a writing approach')+'">'
+        for route, label in (('guide', 'ELI20'), ('ste', '한국어 STE' if lang=='ko' else 'English STE')):
+            switch += f'<a class="button'+(' primary' if key==route else '')+f'" href="./{filename(route,lang)}"'+(' aria-current="page"' if key==route else '')+f'>{label}</a>'
+        cards = switch+'</div>'+cards
     if key=='skills':
-        cards+='<div class="downloads">'+''.join(f'<a class="button" href="./{filename(k,lang)}">{LABELS[lang][k]} →</a>' for k in ('handoff','expert-panel','eli5'))+'</div>'
+        cards+='<div class="downloads">'+''.join(f'<a class="button" href="./{filename(k,lang)}">{LABELS[lang][k]} →</a>' for k in ('handoff','expert-panel','eli5','ste'))+'</div>'
     if key=='ai-pms':
-        cards='<div class="downloads">'+''.join(f'<a class="button" href="{url}" rel="noreferrer">{html.escape(label)} ↗</a>' for label,url in [(('JSON 템플릿' if lang=='ko' else 'JSON template'),'https://github.com/heejunyoo/ai-pms/blob/main/templates/catalog-work.template.json'),(('전체 필드 설명' if lang=='ko' else 'Complete field guide'),'https://github.com/heejunyoo/ai-pms/blob/main/docs/json-contracts.md'),(('기록기 사용 안내' if lang=='ko' else 'Recorder instructions'),'https://github.com/heejunyoo/ai-pms/blob/main/kit/activity/README.md'),(('구현 소스 ZIP' if lang=='ko' else 'Implementation ZIP'),'./implementation.zip')])+'</div>'+cards
-        cards+='<div class="downloads">'+''.join(f'<a class="button" href="{url}" rel="noreferrer">{html.escape(label)} ↗</a>' for label,url in [(('Kit와 PMS 전체 설명' if lang=='ko' else 'Kit and PMS overview (Korean)'),'https://ai-pms-dashboard.vercel.app/overview.html'),(('합성 대시보드' if lang=='ko' else 'Synthetic dashboard'),'https://ai-pms-dashboard.vercel.app'),(('ELI20 보고서' if lang=='ko' else 'ELI20 report'),'https://ai-pms-dashboard.vercel.app/report.html'),(('공개 소스' if lang=='ko' else 'Public source'),'https://github.com/heejunyoo/ai-pms')])+'</div>'
+        cards='<div class="downloads">'+''.join(f'<a class="button" href="{url}" rel="noreferrer">{html.escape(label)} ↗</a>' for label,url in [(('GitHub 전체 도입 가이드' if lang=='ko' else 'Full GitHub adoption guide'),'https://github.com/heejunyoo/ai-pms/blob/main/docs/adoption.md'),(('JSON 템플릿' if lang=='ko' else 'JSON template'),'https://github.com/heejunyoo/ai-pms/blob/main/templates/catalog-work.template.json'),(('전체 필드 설명' if lang=='ko' else 'Complete field guide'),'https://github.com/heejunyoo/ai-pms/blob/main/docs/json-contracts.md'),(('기록기 사용 안내' if lang=='ko' else 'Recorder instructions'),'https://github.com/heejunyoo/ai-pms/blob/main/kit/activity/README.md'),(('구현 소스 ZIP' if lang=='ko' else 'Implementation ZIP'),'./implementation.zip')])+'</div>'+cards
+        cards+='<div class="downloads">'+''.join(f'<a class="button" href="{url}" rel="noreferrer">{html.escape(label)} ↗</a>' for label,url in [(('Kit와 PMS 전체 설명' if lang=='ko' else 'Kit and PMS overview (Korean)'),'https://ai-pms-dashboard.vercel.app/overview.html'),(('프로젝트 도입 예시' if lang=='ko' else 'Project adoption example'),'https://ai-pms-dashboard.vercel.app'),(('ELI20 보고서' if lang=='ko' else 'ELI20 report'),'https://ai-pms-dashboard.vercel.app/report.html'),(('공개 소스' if lang=='ko' else 'Public source'),'https://github.com/heejunyoo/ai-pms')])+'</div>'
     trust='기존 설정을 백업한 뒤 필요한 항목을 병합하세요.' if lang=='ko' else 'Back up existing settings, then merge the entries you need.'
+    if key=='ste':
+        trust += ' 한국어 STE는 자체 명료성 가이드이며 공식 한국어 표준이나 인증이 아닙니다.' if lang=='ko' else ' This is STE-oriented writing; approved dictionary usage and full compliance are not verified.'
     stats=''
     download=f'<div class="downloads"><a class="button primary" href="./'+filename('guide',lang)+'">'+('먼저 이해하기 · ELI20 →' if lang=='ko' else 'Understand first · ELI20 →')+'</a><a class="button" href="./implementation.zip" download>'+('구현 소스 받기' if lang=='ko' else 'Download implementation')+'</a><a class="button" href="./reference-'+lang+'.zip" download>'+('안내 문서 받기' if lang=='ko' else 'Download guides')+'</a></div>' if key=='index' else ''
     sources = [('AGENTS.md','https://learn.chatgpt.com/docs/agent-configuration/agents-md'),('Hooks','https://learn.chatgpt.com/docs/hooks')] if key=='codex' else [('Claude hooks','https://code.claude.com/docs/en/hooks')] if key=='claude' else [('Ponytail','https://github.com/DietrichGebert/ponytail'),('Graphify','https://pypi.org/project/graphifyy/')] if key=='skills' else []
@@ -236,8 +243,6 @@ def build(output):
     }
     for name in ('logger.py', 'connectivity.py', 'management.py', 'work.py', 'management_recorder.py', 'test_management_recorder.py', 'catalog-v3.template.json', 'catalog-work.template.json', 'operations.template.json', 'json-contracts.md', 'test_logger.py', 'viewer.html', 'README.md', 'example-project.jsonl'):
         implementation['activity/'+name] = '.claude/harness/activity/'+name
-    for name in ['docs/visual-management.md', 'docs/project-architecture.md', 'docs/rensei-experience.md', 'docs/human-view-and-analysis.md', 'scripts/prepare_goal_analysis.py', 'specs/ai-pms-live/live_service.py', 'specs/ai-pms-live/live_sender.py', 'specs/ai-pms-live/session_goal.py', 'specs/ai-pms-live/demo_setup.py', 'specs/ai-pms-live/README.md', 'specs/ai-pms-live/sample/catalog.json', 'specs/ai-pms-live/sample/operations.json', 'specs/ai-pms-live/sample/central.json', 'specs/ai-pms-dashboard/portfolio.py', 'specs/ai-pms-dashboard/management.py', 'specs/ai-pms-dashboard/work.py', 'specs/ai-pms-dashboard/operations.py', 'specs/ai-pms-dashboard/dashboard.html', 'specs/ai-pms-central/central.py', 'specs/ai-pms-central/connectivity.py', 'specs/ai-pms-transport/common.py', 'README.md']:
-        implementation['pms/'+name] = '.claude/harness/activity/pms/'+name
     # Only these authored skill packages are exportable; never walk all user settings.
     skill_roots = {
         'handoff': '.agents/skills/handoff',
@@ -246,6 +251,10 @@ def build(output):
         **{'codex/skills/'+n: '.codex/skills/'+n for n in ('codex-harness-audit','codex-improvement-loop')},
         **{'claude/skills/'+n: '.claude/skills/'+n for n in ('expert-panel','eli5')},
     }
+    # Only reviewed STE resources: keep a complete, portable package in the shared bundle.
+    for name in ('SKILL.md', 'references/asd-ste100-model.md', 'references/korean-writing.md',
+                 'assets/asd-ste100-explorer.html', 'assets/korean-writing-explorer.html'):
+        implementation['skills/asd-ste100-interactive/'+name] = '.codex/skills/asd-ste100-interactive/'+name
     for target, source in skill_roots.items():
         root = Path.home()/source
         for item in sorted(root.rglob('*')):
@@ -261,7 +270,7 @@ def build(output):
             info=zipfile.ZipInfo(target,(2026,9,5,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED
             bundle.writestr(info,body)
         info=zipfile.ZipInfo('REFERENCE.md',(2026,9,5,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED
-        bundle.writestr(info,'# Harness Kit implementation / 구현 소스\n\nStart with codex.md or claude.md in the guide ZIP. Copy complete skill folders, including SKILL.md and supporting files. Back up and merge existing settings. These files do not install themselves. Python 3.11+; default macOS/Linux home paths. Windows paths and shell commands need adaptation. Source comments retain their original language. Ponytail and Graphify are optional third-party tools and are not included; use the skills guide for installation and verification.\n\n안내 ZIP의 codex.md 또는 claude.md를 따라 배치합니다. 스킬은 SKILL.md와 보조 파일을 포함해 폴더 단위로 옮기세요. 기존 설정은 백업 후 병합합니다. Python 3.11 이상, macOS·Linux 기본 홈 경로 기준입니다. Windows에서는 경로와 셸 명령을 조정해야 합니다. Ponytail·Graphify는 포함되지 않는 선택 설치 도구입니다. 설치·검증 절차는 스킬 안내를 참고하세요.\n\nFor central multi-user project management, use ai-pms.md in the guide ZIP and https://ai-pms-dashboard.vercel.app (synthetic offline sample); source: https://github.com/heejunyoo/ai-pms. The local viewer is a personal reference, not the central product.\n\nThe activity/ package contains a local logger, offline workflow viewer and explicitly synthetic project example. Start a project without logs or select activity/example-project.jsonl yourself. Choose the basis for a next Agent task, export its Markdown packet, and save the complete project JSONL separately. Follow activity/README.md and merge command hooks into existing settings. Local checks do not prove application hook delivery.\n\nactivity/에는 로컬 기록기, 오프라인 워크플로 뷰어, 합성 프로젝트 예시가 포함됩니다. 기록 없이 새 프로젝트를 시작하거나 activity/example-project.jsonl을 직접 선택하세요. 다음 Agent 작업에 적용할 기준을 선택해 Markdown 패킷을 받고, 프로젝트 전체 JSONL은 별도로 저장합니다. activity/README.md를 따라 기존 설정에 명령 훅을 병합하세요. 로컬 검사 통과는 앱의 훅 전달 증거가 아닙니다.\n\n| Bundle / 묶음 | Destination / 배치 위치 |\n|---|---|\n| codex/safety_gate.py | ~/.codex/hooks/safety_gate.py |\n| codex/docs/ | ~/.codex/docs/ |\n| codex/skills/* | ~/.codex/skills/* |\n| handoff/ | ~/.agents/skills/handoff/ |\n| skills/* | ~/.agents/skills/* |\n| claude/*.py | ~/.claude/hooks/ |\n| claude/docs/ | ~/.claude/docs/ |\n| claude/skills/* | ~/.claude/skills/* |\n| claude-handoff/ | ~/.claude/skills/handoff/ |\n| activity/ | ~/.agents/harness-activity/ |\n\nConfigure accounts, models, MCP connections, personal memory, and project permissions separately. No credentials or personal configuration are included.\n')
+        bundle.writestr(info,'# Harness Kit implementation / 구현 소스\n\nStart with codex.md or claude.md in the guide ZIP. Copy complete skill folders, including SKILL.md and supporting files. Back up and merge existing settings. These files do not install themselves. Python 3.11+; default macOS/Linux home paths. Windows paths and shell commands need adaptation. Source comments retain their original language. Ponytail and Graphify are optional third-party tools and are not included; use the skills guide for installation and verification.\n\n안내 ZIP의 codex.md 또는 claude.md를 따라 배치합니다. 스킬은 SKILL.md와 보조 파일을 포함해 폴더 단위로 옮기세요. 기존 설정은 백업 후 병합합니다. Python 3.11 이상, macOS·Linux 기본 홈 경로 기준입니다. Windows에서는 경로와 셸 명령을 조정해야 합니다. Ponytail·Graphify는 포함되지 않는 선택 설치 도구입니다. 설치·검증 절차는 스킬 안내를 참고하세요.\n\nFor hook capture, use ai-pms.md in the guide ZIP. For full central multi-user dashboard adoption, use https://github.com/heejunyoo/ai-pms/blob/main/docs/adoption.md and https://ai-pms-dashboard.vercel.app (synthetic offline sample); source: https://github.com/heejunyoo/ai-pms. The local viewer is a personal reference, not the central product.\n\nThe activity/ package contains a local logger, offline workflow viewer and explicitly synthetic project example. Start a project without logs or select activity/example-project.jsonl yourself. Choose the basis for a next Agent task, export its Markdown packet, and save the complete project JSONL separately. Follow activity/README.md and merge command hooks into existing settings. Local checks do not prove application hook delivery.\n\nactivity/에는 로컬 기록기, 오프라인 워크플로 뷰어, 합성 프로젝트 예시가 포함됩니다. 기록 없이 새 프로젝트를 시작하거나 activity/example-project.jsonl을 직접 선택하세요. 다음 Agent 작업에 적용할 기준을 선택해 Markdown 패킷을 받고, 프로젝트 전체 JSONL은 별도로 저장합니다. activity/README.md를 따라 기존 설정에 명령 훅을 병합하세요. 로컬 검사 통과는 앱의 훅 전달 증거가 아닙니다.\n\n| Bundle / 묶음 | Destination / 배치 위치 |\n|---|---|\n| codex/safety_gate.py | ~/.codex/hooks/safety_gate.py |\n| codex/docs/ | ~/.codex/docs/ |\n| codex/skills/* | ~/.codex/skills/* |\n| handoff/ | ~/.agents/skills/handoff/ |\n| skills/* | ~/.agents/skills/* |\n| claude/*.py | ~/.claude/hooks/ |\n| claude/docs/ | ~/.claude/docs/ |\n| claude/skills/* | ~/.claude/skills/* |\n| claude-handoff/ | ~/.claude/skills/handoff/ |\n| activity/ | ~/.agents/harness-activity/ |\n\nConfigure accounts, models, MCP connections, personal memory, and project permissions separately. No credentials or personal configuration are included.\n')
     (output/'release.json').write_text(json.dumps(evidence,ensure_ascii=False,indent=2)+'\n')
     manifest={'release':RELEASE,'routes':routes,'sha256':{name:hashlib.sha256((output/name).read_bytes()).hexdigest() for name in routes}}
     (output/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')

@@ -1,4 +1,34 @@
-## 현재 작업 — 2026-10-04 공동 WBS와 실행 이력 재구성
+# 현재 공개 도입 릴리스 상태 (2026-10-05)
+
+GitHub 도입 안내, 가상 문서 기반 기본 샘플, 별도 recorded-example, Kit PMS 훅 범위 정리를 통합했습니다. 새 전체 검증은 specs/ai-pms-adoption-release/의 release-proof.json과 public-bytes.json을 기준으로 확인합니다. `docs/adoption.md`가 다운로드 사용자의 진입점입니다. 실제 앱 trust/훅 전달과 원격 두 사용자 운영 인수는 별도입니다. 아래는 이전 작업 기록입니다.
+
+## 최신 로컬 — 2026-10-05 도표 정렬·디자인 실제 화면 검증
+
+사용자가 도표 align/design 수정을 요청했습니다. 현재 정본 도표의 header/task/reference 공통 행과 단계 상태 하단을 정렬했습니다. 글자 크기·여백·참고 패널을 개선하고, 목표를 가로 스크롤 밖 중앙에 유지합니다. 작업이 많은 단계는 모든 노드를 보존한 채 최대360px 내부 스크롤/키보드 지원을 제공합니다. JS 변경은 humanComponentMap의 부모 위치·스크롤 접근성으로 한정합니다. 도표 밖 코드 byte 동일은 design-review.json에 기록했습니다.
+
+Native CUA 연결은 여전히 없지만, 이전 사용자 승인된 /private/tmp/pms-browser-qa/driver.cjs Playwright Chrome 대체 경로를 사용해 실제1440×1000 화면을 확인했습니다. Paper4단계/Knowledge10단계의 header/task/reference 행 편차0px, Paper 단계 상태 하단 편차0px, 목표 화면 내 표시와 마지막 단계 키보드 이동·Back/reload 정상, 브라우저 오류0. 이전 도표의 단계 header 높이 차19.1875px·작업 시작점19.1875px·참고 시작점110px 문제를 해결했습니다. 최종 check_map/check_readable 및 앱 빌드 exit0. 근거는 specs/ai-pms-component-map/design-proof.json, design-browser-metrics.json, design-review.json입니다.
+
+실제 프로젝트 payload3종 SHA는 유지했습니다. 스크린샷은 비공개 .local/share/ai-pms/real-projects/qa에만 보존합니다. 합성/비공개 로컬 화면 갱신, 공개 배포/push 없음, 모바일 제외. 이후 최신 사용자 피드백을 기다리며 임의 추가 기능을 만들지 않습니다. 아래 browser-unverified 문단은 이전 상태이며 이 검증이 해당 도표의 최신 증거입니다.
+
+## 이전 로컬 — 2026-10-05 구성요소와 연결 도표 추가
+
+최신 사용자 요청은 기존 전체 화면에 구성요소와 연결 도표만 추가하는 것입니다. 정본 specs/ai-pms-component-map/{source.md,spec.md,plan.json}; 독립 목적 검토 및 최종 코드 검토 완료. 전체 계획의 요약과 WBS 사이에 목표→단계→담당 작업의 소속 실선과 단계별 API/MCP·문서 참고 점선을 추가했습니다. 단계·작업은 기존 상세로 이동하고 문서 버전별 정확한 원문 선택을 보존합니다. 데이터 없는 참조/연결은 미기록이며 의존성/실제 호출을 추정하지 않습니다.
+
+새 check_map.py, 기존 check_readable.py, 실제 네 프로젝트 데이터의 DOM smoke 모두 exit 0. 공개용 분리 checkout 생성(459 files), 합성 앱 빌드와 두 로컬 서버 응답 byte 일치를 확인했습니다. 비공개 자료의 세 JSON payload 해시는 이전과 같습니다. 최신 integration-proof.json/private-preservation.json/final-review.json을 확인합니다. 로컬 주소는 http://127.0.0.1:21942/#project=alice-recall 과 http://127.0.0.1:21944/#project=paper 입니다.
+
+실제 데스크톱 도표 인수는 미완료입니다. 현재 CUA는 기존 browser 1 unavailable, apps/browsers 빈 목록 및 native startup 실패, 재확인도 browsers=[] 입니다. 대체 브라우저 자동화를 사용하거나 이전 화면 스크린샷을 새 도표 증거로 쓰지 않았습니다. 다음 작업은 Chrome 연결 복구 후 실제 도표 가독성·선 연결·키보드·상세/Back/reload를 확인하는 것입니다. 사용자가 요청하기 전 추가 개편이나 배포를 진행하지 않습니다. 모바일 제외, API/DB/완료 모델 변경 없음, push/배포 없음.
+
+## 이전 로컬 — 2026-10-04 프로젝트 전체 리팩터링 검증
+
+프로젝트 목록·계획·Phase·작업·확인 결과·실행 이력·참고 자료를 같은 목표/현재/남은 조건/다음 행동 구조로 정리했습니다. 확인 결과는 작업별 확인 내용→결과→다음 행동이며 원본 검사/runner/해시는 접힌 기록에 보존합니다. 공동 WBS/담당자, 완료 계산과 문서상 완료·현재 검증의 구분을 유지합니다. 정본은 docs/readable-project.md와 specs/ai-pms-readable-project/입니다.
+
+최신 check_readable.py 및 격리된 공개 checkout의 verify_public.py 모두 exit 0. 실제 Chrome에서 기본 확인 결과, 계획/작업 연결, 사람 scope, Back/reload, 실행/참고 탐색과 실제 Paper 문서상 완료·partial 상태를 확인했습니다. desktop-results.png와 integration-proof.json에 현재 소스 해시와 인수 경계를 기록했습니다. 공개 합성 로컬 http://127.0.0.1:21942 와 실제 문서 비공개 로컬 http://127.0.0.1:21944 에 반영했습니다. 사용자 최종 화면 수락은 미확인입니다.
+
+독립 목적/소스 검토는 통과했습니다. 마지막 작업 결과 표현 한 곳과 HTML 내 동일 반영은 부모가 차이를 확인하고 회귀/실제 화면을 검증했습니다. 검토자가 사용량 한도로 최신 작은 차이의 재검토를 완료하지 못했으므로 원래 영수증 해시를 변경하지 않았습니다. 근거 그룹 선택은 기존 주소 계약을 유지해 새로고침 시 확인 결과가 기본입니다.
+
+이번 변경은 로컬이며 배포/push를 하지 않았습니다. 모바일 제외, 실제 앱 훅/원격 두 사용자 전달/새 모델 분석은 미검증입니다. 다음 작업은 최신 로컬 화면에 대한 사용자 피드백을 반영하고, 공개 반영을 요청받으면 별도 배포 검증을 진행하는 것입니다. 아래 기록은 이전 릴리스입니다.
+
+## 이전 작업 — 2026-10-04 공동 WBS와 실행 이력 재구성
 
 전체 공동 Phase/원자 작업 WBS, 담당 요약, 현재·막힌 단계 우선 펼침, Phase 작업/검사 연결, 기본 API·MCP 요약, 3개 근거 그룹과 단일 실행 이력을 구현했습니다. 정본은 docs/visual-management.md와 specs/ai-pms-visual-management/입니다. 실제 네 프로젝트는 비공개 로컬이며 공개 자료는 합성 샘플입니다.
 

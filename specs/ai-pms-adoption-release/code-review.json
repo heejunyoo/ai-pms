@@ -1,0 +1,63 @@
+{
+  "reviewer": "independent-adoption-release-code-reviewer",
+  "verdict": "code_review_pass_release_verification_pending",
+  "requirements_covered": [
+    "adoption",
+    "sample",
+    "kit",
+    "release"
+  ],
+  "reviewed_sha256": {
+    "README.md": "9f932ca08d04a5d281da7f9e561c37c4e2169188a6ef6bbea1a55d1e7d9ba9d5",
+    "docs/adoption.md": "f2e8961d72e278c56a0df85ca2a1e1af6cb89cbfcc4839561a5747b6b83ac786",
+    "scripts/verify_adoption.py": "6bf724a5796c11cf3530eef475e75e0d9656afd5592d1574274d3dd80ab9babc",
+    "scripts/build_dashboard_app.py": "66f8c151e30d6fbf5b9b429505b9bb4da25ef23c254aa6bdcd40bb78349a5fe2",
+    "specs/ai-pms-live/README.md": "885f67c85da674d286c8ca3a55c974725e073e594808c7b44526ea6e4aad26f5",
+    "specs/ai-pms-adoption-release/sample-documentary.json": "cc5c816e281d421cbf430acdd287d62824cd0f7dd5b04cb150d024352a313211",
+    "specs/ai-pms-adoption-release/check_sample.py": "e768cff3c3cb0b6002cd80e78f4fb5bfc62a14162cc608e54da13ddfd2ed9a63",
+    "reports/harness-pms-eli20/index.html": "93cc25d73658cf718853af42c6db9b9fd9482d1b4e5115a62c2c49335c073e68",
+    "specs/ai-pms-adoption-release/source.md": "d265bcad0e54384bf2a0773731d2dbe9995dc4f9bd50ab9e4ca05b8724b8c9eb",
+    "specs/ai-pms-adoption-release/spec.md": "2c4b2f295c10f24fb599bcb704686cb1e9fa7d147cf9f4d1a9ce1351560bc534",
+    "specs/ai-pms-adoption-release/plan.json": "0fe2b2bb6e6d4e2f1a6c9ae12b502cdf0948d4635dbac126af78db17968758e9",
+    "kit-canonical/current_content.py": "3734af55591800d5346fe5294a197cbe81273e823b3a315583747c8aa0f0e2f8",
+    "kit-canonical/build_current.py": "bb18c30bac974f7a37432e147c1f9b544ab7b501756dd2e1cf7e23c17c4fd5ae",
+    "kit-canonical/check_current.py": "3e6821da77bf988c5f751ed94afb019405a735a69ec3af299e9a0a85a7b45402"
+  },
+  "blocking_findings": [],
+  "resolved_findings": [
+    {
+      "issue": "Kit overview claimed central Live runtime was included in Kit",
+      "resolution": "Overview card now explicitly says hooks come from Kit and central sender/service/dashboard are separately obtained from GitHub."
+    },
+    {
+      "issue": "Default adoption snapshot download did not contain displayed documentary tasks",
+      "resolution": "Download label now states collected model excludes documentary tasks; separate full fictional builder input JSON is provided, with explicit snapshot-import limitation in UI and adoption guide."
+    },
+    {
+      "issue": "Canonical runtime check contained redundant self-comparison",
+      "resolution": "Replaced by nonempty source and Python compile checks. Runtime help/setup checks retained; no freshness/byte-parity claim made from self-read."
+    }
+  ],
+  "independent_checks": [
+    "Reviewed complete original purpose and new source/spec/plan, README/adoption and Live instructions, download gate, builder/fictional input/sample regressions, final canonical Kit override/build/export/runtime validation.",
+    "Compiled reviewed Python source in memory without editing source or generated artifacts.",
+    "Imported final canonical current_content and verified equal Korean/English PMS section IDs and hook/GitHub separation.",
+    "Inspected fictional fixture: no private home paths, credentials or actual project data found; all sources fictional and current execution/acceptance explicitly unconfirmed."
+  ],
+  "evidence": [
+    "README locates downloaded repository root and required Python3.11+/Node/macOS/Linux environment. Local guide links and static/private/authenticated Live paths are defined; Kit activity and GitHub specs paths are distinguished.",
+    "Adoption gate uses explicit root with no HOME fallback, validates required download files/local links, captures child output rather than printing potential credentials, checks four runtime help entrypoints, seven writers/eight credential0600, empty versus observed hook health with identical event ID, static HTML/snapshot, retained logger/auth/live/durableACK/restart/dedup tests.",
+    "Guide keeps existing hook configuration/trust intact, distinguishes fake stdin from actual native event, requires actor/environment/native UUID and reviewed private paths, gives service→seed→writer→manager order and shutdown/failure/conflict/unknown boundaries.",
+    "Default builder uses authored fictional documentary input and empty synthetic events/runs/sessions with no complete projects. Recorded example retains original counterexamples and separate notice. Source excerpts are safely escaped; document tasks/current verification stay distinct.",
+    "Kit final bilingual override preserves general Harness content while its PMS guidance is hook-focused and links GitHub central adoption. ZIP excludes pms runtime; local mirror execution checks remain and downloaded repo gate repeats meaningful runtime coverage."
+  ],
+  "remaining_release_obligations": [
+    "Parent must finish fresh sanitized export, actual downloaded GitHub archive/ZIP execution, privacy scans, full portable/Kit checks and approved actual desktop browser/render/navigation/download acceptance.",
+    "After deployment proof, update README historical statements that current map/readable changes are not yet public; their current wording is truthful predeployment.",
+    "Verify published GitHub remote HEAD and both deployed services, production HTML/download bytes and actual production download replay. This source review does not certify published artifacts.",
+    "No actual native-app hook trust, remote real multi-user operational delivery, provider/AI analysis or business completion is established by synthetic gates."
+  ],
+  "published_artifacts_verified": false,
+  "actual_browser_verified_by_reviewer": false,
+  "private_payload_copied": false
+}

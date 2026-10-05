@@ -20,7 +20,7 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--out',type=Path,default=Path('specs/ai-pms-management/public-bytes.json'));args=parser.parse_args()
     manifest=json.loads((KIT/'manifest.json').read_text());pairs=[('https://harness-kit.vercel.app/'+name,KIT/name) for name in list(manifest['routes'])+['manifest.json','implementation.zip','reference-ko.zip','reference-en.zip']]
     public=ROOT/'apps/dashboard/public'
-    pairs += [('https://ai-pms-dashboard.vercel.app/'+('' if name=='index.html' else name),public/name) for name in ['index.html','empty.html','report.html','snapshot.json'] + (['overview.html'] if (public/'overview.html').exists() else [])]
+    pairs += [('https://ai-pms-dashboard.vercel.app/'+('' if name=='index.html' else name),public/name) for name in ['index.html','empty.html','report.html','snapshot.json'] + ([name for name in ['overview.html','recorded-example.html','adoption-snapshot.json','sample-documentary.json'] if (public/name).exists()])]
     with ThreadPoolExecutor(max_workers=8) as pool:results=list(pool.map(fetch,pairs))
     for result in results:
         if result['url'].endswith(('.html','vercel.app/')):assert result['security_headers']['Content-Security-Policy'],result['url']
@@ -28,6 +28,8 @@ def main():
         with urlopen(Request('https://ai-pms-dashboard.vercel.app/.env.local',method='HEAD'),timeout=15) as r:status=r.status
     except HTTPError as e:status=e.code
     assert status==404,'Unexpected env file route status'
+    pairs_sources=[('https://ai-pms-dashboard.vercel.app/'+f.name,f) for f in public.glob('source-*.html')]
+    with ThreadPoolExecutor(max_workers=8) as pool:results.extend(pool.map(fetch,pairs_sources))
     proof={'production_bytes':results,'env_route_status':status,'evidence_mode':'synthetic','personal_logs_uploaded':False}
     (ROOT/args.out).write_text(json.dumps(proof,indent=2)+'\n')
     print('PASS:',len(results),'production pages/bundles exactly match; env route404')

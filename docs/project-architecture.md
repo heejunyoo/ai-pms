@@ -12,7 +12,7 @@ flowchart LR
     W --> E[별도 근거 화면]
     P --> A[목표 분석 입력 준비]
     V --> B[정적 합성 app / 로컬 private preview]
-    V --> K[Kit 내장 runtime]
+    V --> K[GitHub 중앙 runtime]
 ```
 
 위 그림은 소스에서 확인한 설계 책임입니다. 정적 앱과 실제 Live service의 데이터 전달 경로는 다릅니다. 실제 provider 훅 신뢰·원격 두 사용자 전달·실제 AI 분석은 별도 인수 대상입니다.
@@ -26,7 +26,7 @@ flowchart LR
 | 사람·세션·북극성 | operations.py | 종료와 달성, 제안 귀속과 확인 기여, 측정과 선언을 구분 |
 | 중앙 집계와 전달 | specs/ai-pms-central/central.py, specs/ai-pms-live/live_service.py, live_sender.py | 영구 기록·ACK와 화면 cursor 변경을 연결 |
 | 공개 정적 빌드 | scripts/build_dashboard_app.py | apps/dashboard/public는 합성 데이터로 생성한 결과물 |
-| Kit runtime 패키지 | scripts/package_live_kit.py | 명시한 파일만 복사. 실제 로그·자격은 제외 |
+| 공개 패키지 | scripts/prepare_public.py | GitHub에는 전체 중앙 소스, Kit에는 훅. 실제 로그·자격 제외 |
 | Kit 한영 페이지 | kit/build/current_content.py의 공개 복사본 | 실제 설치의 canonical build가 생성. 생성 HTML 직접 수정 금지 |
 | 공개용 분리 snapshot | scripts/prepare_public.py | 기존 home Git 이력·private 실제 자료·graph/cache 제외 |
 | 목표 비교 준비 | scripts/prepare_goal_analysis.py | 허용 필드 입력만 생성. 모델 실행·경고 저장은 미구현 |

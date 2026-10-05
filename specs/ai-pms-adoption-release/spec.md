@@ -1,0 +1,16 @@
+# 공개 다운로드에서 도입·샘플·배포까지
+
+사용자 요구는 GitHub 다운로드 사용성을 검증하고 전체 도입 안내, 실제 문서 기반 도입과 같은 화면 구조의 공개 샘플, Kit의 훅 수집 범위 분리, 기존 GitHub/Vercel 두 공개 서비스 업데이트다. 현재 실제 사용자 자료·자격·훅 전역 설정은 공개하지 않는다. 기존 중앙 다중 사용자 제품 목적/완료 판정을 유지한다. 사용자 마지막 문장은 이번 배포/push 명시적 승인으로 해석한다; 다른 인프라/DB/API/실제 운영 credentials 변경 승인은 아니다.
+
+## 사용자 질문에서 인수까지
+- 다운로드 이용자가 어떻게 설치하나 → README 첫 도입 선택/요구 환경 → docs/adoption.md의 repo 다운로드/압축해제·Kit hook files 배치·기존 설정 병합·logger smoke/health·catalog/source identity·정적 개인 자료 화면과 인증 중앙 Live 파일럿의 별도 경로·문서/계획/작업 입력·정상/실패/중복/검증 없음 표시·종료/실제 운영 전 확인 → 깨끗한 다운로드 폴더에서 명령 실행·링크/파일 확인.
+- 샘플은 이상적인 모습인가 → 기본 public index는 fictional document-first adoption example, 실제 private 화면과 같은 human projection 및 원본 미관측/current verification unconfirmed; 모델을 통한 AI 분석 성공/앱훅 성공을 발명하지 않는다. 별도 recorded-example.html은 기존 합성 runner/operations 기록 예시로 명시. 실제 자료 복사 금지, 모든 fixture의 상태·모의 경계 유지. sample snapshot과 DOM regression fixtures를 무심코 바꿔 반례를 잃지 않는다.
+- Kit vs GitHub → 일반 Harness Kit 규칙/skills/안전검사 범위는 보존. PMS 관련 Kit 페이지/ZIP는 activity/logger.py/connectivity.py와 안전한 훅 병합·health 안내에 집중. pms/ 중앙 runtime는 Kit implementation.zip에서 제외하고 GitHub root의 실행 소스로 안내. 기존 export/runtime 검증은 새 repo 다운로드 도입 검증으로 이전하며 삭제/skip/의미 약화하지 않는다. canonical current_content/build_current/check_current/BUILD 및 활동 README만 갱신; 계정/hooks/trust 실제 설치는 하지 않는다. 한영 같은 section IDs·다운로드·offline 번들·일반 STE/ELI20/다른 최신 콘텐츠 보존.
+- 공개 완료 → local compile/check, fresh sanitized public snapshot and ZIP extraction, current full portable suite, both language Kit checks, source/zip privacy boundaries, actual approved Chrome rendering/navigation/download, GitHub isolated clean repo diff+commit+push+remote HEAD, existing Vercel site/dashboard prod ready, deployed pages/downloads source bytes match and new GitHub codeload download replay. 과거 영수증을 현재 성공으로 재사용하지 않는다. 모바일 PMS는 기존 사용자 제외 유지; Kit는 canonical publishing checks 유지. 새 DB/외부 API/backend cloud 배포 없음.
+
+## 소스 책임과 결정
+원본 리포 specs dashboard human-view.*, scripts/build_dashboard_app.py + current fictional annotations. Kit canonical ~/.claude/harness/build/current_content.py, build_current.py, check_current.py, BUILD.md, activity/README.md. root scripts/prepare_public.py exporter 및 scripts/package_live_kit.py mirror는 부모 소유. PUBLIC_SNAPSHOT source privacy; source root home Git untracked이므로 commit하지 않고 existing isolated /Documents/Codex/2026-10-01/ai-pms-public에 sanitized snapshot만 동기화. existing apps/dashboard/.vercel links 및 ~/.claude/harness/site/publish.sh 사용.
+
+세 원자 패킷 파일 경계: adoption README/docs/adoption.md/scripts/verify_adoption.py/specs/ai-pms-live/README.md; sample scripts/build_dashboard_app.py/new fictional sample input/new check_sample.py; Kit canonical build files/activity README/new kit result. 부모는 exporter/빌드 순서/공개 checkout/다운로드/브라우저/최종 배포 담당. 타 패킷 파일 수정 금지. 선언 입력/실행 기록/현재 검증/사람 인수 구분과 모든 기존 테스트 유지. test expectations의 범위 변경은 이유와 대체 동등한 runtime 실행 증거를 남긴다.
+
+명령 기준선: check_map/check_readable는 직전 exit0. 새 도입 gate는 scripts/verify_adoption.py이며 다운로드 실제 폴더에서 stdlib hook smoke+health, fake stdin only not app evidence, static model/HTML render, disposable synthetic demo setup+service+seed+writer durable ACK+login+snapshot path을 검증한다. 생성 fixture가 token을 출력하지 않고 성공 데이터만 보고. 부모 current verify_public를 실제 실행한다. open_decisions 없음.

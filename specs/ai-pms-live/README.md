@@ -1,14 +1,16 @@
-# 사람·세션·북극성 Live Kit
+# 사람·세션·북극성 Live PMS
 
 이 패키지는 로컬 logger → 명시적인 sender → 자체 호스팅 중앙 service → same-origin dashboard의 증분 갱신을 위한 실행 자료입니다. 공개 예시는 합성이며 공개 정적 사이트를 영속 수신기로 주장하지 않습니다. 실제 앱 hook·원격 두 환경·운영 브라우저 증명은 별도이며 미검증입니다.
 
+[처음 다운로드한 사용자의 전체 도입 순서](../../docs/adoption.md)를 먼저 확인하세요. 모든 명령은 README.md가 있는 **GitHub 저장소 최상위 폴더**에서 실행합니다. Python 3.11+와 Node.js가 필요합니다. Harness Kit의 PMS 배포 범위는 훅 수집이며 중앙 runtime는 이 저장소에서 실행합니다. Kit ZIP의 `pms/` 경로는 사용하지 않습니다.
+
 ## 1. 로컬 수집 상태
 
-`activity/logger.py`, `connectivity.py`를 함께 설치합니다. 기존 hook 설정과 안전 검사를 보존한 뒤 지원되는 Codex/Claude command hook에 logger 명령을 직접 병합합니다. 전역 설정과 trust는 자동 변경하지 않습니다. Codex `/hooks` 리뷰·trust는 사용자가 승인합니다. Cursor/Gemini hook는 미지원입니다.
+`kit/activity/logger.py`, `kit/activity/connectivity.py`를 함께 설치합니다. 기존 hook 설정과 안전 검사를 보존한 뒤 지원되는 Codex/Claude command hook에 logger 명령을 직접 병합합니다. 전역 설정과 trust는 자동 변경하지 않습니다. Codex `/hooks` 리뷰·trust는 사용자가 승인합니다. Cursor/Gemini hook는 미지원입니다.
 
 ```sh
-python3 activity/logger.py health --log-dir "$PMS_LOG_DIR"
-python3 activity/test_logger.py
+python3 kit/activity/logger.py health --log-dir "$PMS_LOG_DIR"
+python3 kit/activity/test_logger.py
 ```
 
 `PMS_LOG_DIR`은 운영자가 정한 로컬 로그 디렉터리입니다. 건강 JSON의 정확한 필드는 `{version:1,last_event_id,last_recorded_at,errors,last_failure_at,status,at}`입니다. `capture-health.json`은 logdir writer 전체의 마지막 fsync 완료 기록이며 프로젝트별 heartbeat가 아닙니다. 여러 프로젝트가 같은 logdir를 쓰면 한 프로젝트의 성공을 다른 프로젝트의 건강 증거로 읽지 마세요. sender identity 부착은 명시적인 출처 연결이며 실제 앱별 훅 커버리지를 보증하지 않습니다. 마지막 기록60초 초과는 stale일 수 있지만 미사용 중일 수도 있어 실패로 단정하지 않습니다.
@@ -21,7 +23,7 @@ python3 activity/test_logger.py
 
 owner-only registry에 writer의 actor/environment/native project UUID/token SHA256 및 별도 manager 자격을 등록합니다. token 원문은 owner-only credential 파일로 관리하고 URL·로그·공개 예시·localStorage에 두지 않습니다. 서비스는 loopback 기본이며 외부 bind에는 TLS cert/key가 필요합니다. sender는 HTTPS 원격 또는 명시적 loopback-test HTTP만 사용합니다. 실제 목적지와 자격을 운영자가 정하고 sender를 opt-in합니다.
 
-합성 로컬 파일럿은 다음 순서로 실행합니다. 프로젝트 루트(공개 GitHub 체크아웃 또는 ZIP의 `pms/`)에서 시작합니다. `PMS_RUN_DIR`은 아직 비어 있는 실제 경로를 선택합니다. macOS의 `/tmp`·`/var` 별칭 대신 실제 경로를 사용합니다.
+합성 로컬 파일럿은 다음 순서로 실행합니다. 프로젝트 루트(공개 GitHub 체크아웃 또는 Download ZIP 압축 해제 루트)에서 시작합니다. `PMS_RUN_DIR`은 아직 비어 있는 실제 경로를 선택합니다. macOS의 `/tmp`·`/var` 별칭 대신 실제 경로를 사용합니다.
 
 ```sh
 PMS_RUN_DIR="$HOME/pms-local-pilot"

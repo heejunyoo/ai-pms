@@ -1,0 +1,53 @@
+{
+  "reviewer": "independent-component-map-qa-reviewer",
+  "verdict": "code_and_semantic_checks_pass_browser_unverified",
+  "requirements_covered": [
+    "map"
+  ],
+  "reviewed_sha256": {
+    "specs/ai-pms-dashboard/human-view.js": "64536488674d589df781128c2919bbe5c4c5f6c9709a2e4db4564c91f74540a9",
+    "specs/ai-pms-dashboard/human-view.css": "4d9fe110401213028bdf85efb484db331d25423013be19ba8434461131a9c0be",
+    "specs/ai-pms-dashboard/dashboard.html": "b31745032a95916e43089481ff3ecb8ee7dc01e69b0d79bb1a6cf0717e938c25",
+    "specs/ai-pms-component-map/check_map.py": "dd6127c40c6d0b359be48db188e5d49ad259d660e02e662b1d60cee04ea6e7db",
+    "specs/ai-pms-component-map/source.md": "754ec9c30cfbf5c5a5a69f89626da83fa080196aea3374bf15d47bff516264b4",
+    "specs/ai-pms-component-map/spec.md": "db984f3008e4f806bad2a40c029277a26e20e13c930a15086fe80120eb3f5a1a"
+  },
+  "checks": [
+    {
+      "command": "python3 specs/ai-pms-component-map/check_map.py",
+      "exit_code": 0,
+      "output_tail": "Component map acceptance PASS: synthetic DOM and structure only. Actual desktop rendering/history/keyboard remains parent browser acceptance; mobile excluded; no deployment."
+    },
+    {
+      "command": "python3 specs/ai-pms-readable-project/check_readable.py",
+      "exit_code": 0,
+      "output_tail": "Readable project acceptance PASS: synthetic semantic regressions only; parent desktop Chrome acceptance separate, mobile excluded, no deployment/provider/model success."
+    }
+  ],
+  "blocking_code_findings": [],
+  "resolved_findings": [
+    {
+      "issue": "Duplicate document IDs originally selected latest version for every map reference",
+      "resolution": "Exact original document object sorted index now selects its version; displayed version/date and regression verifies original selected content."
+    },
+    {
+      "issue": "Per-column borders left disconnected gaps in horizontal containment branch",
+      "resolution": "Continuous columns::before branch spans first-to-last phase center, with centered trunk. CSS inspection confirms implementation; actual rendered continuity is unverified."
+    }
+  ],
+  "evidence": [
+    "One native map inserted between existing project summary and WBS. No backend/model/API or completion changes in map projection.",
+    "Declared phases/tasks and document phase_id/source/plan_source provide containment/reference edges; no phase dependency arrows or runtime call-flow inference. Explicit 소속/참고 labels explain edge meaning.",
+    "All shared owners and unknown-owner tasks remain visible despite person filter. Unlinked project references are common-only; missing data/source identity yields explicit absence, not fabricated links.",
+    "Native pageLink phase/task routes retain person scope. Exact document version selection and same-project safe source links preserve source identity. API/MCP without declared URL remains text.",
+    "Documentary status uses humanStateNode documentary mapping and date/current-unconfirmed notice. Unknown states do not become completion. All labels use native text insertion.",
+    "Canonical JS/CSS are embedded exactly. Focus CSS/native anchors/tabbable overflow provide keyboard mechanism; synthetic navigation checks do not prove actual browser keyboard or layout."
+  ],
+  "browser_acceptance_verified": false,
+  "private_source_payload_preservation_independently_verified": false,
+  "remaining_boundaries": [
+    "Actual desktop diagram readability, continuous rendered lines, keyboard navigation, Back/reload require parent Chrome acceptance. Parent reports CUA no browsers/native startup failure.",
+    "Private source payload preservation is parent-owned verification; this reviewer only used synthetic fixtures and canonical code.",
+    "Mobile excluded; no deployment/push/provider/model execution proof."
+  ]
+}

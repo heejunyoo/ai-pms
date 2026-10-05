@@ -1,0 +1,46 @@
+{
+  "task_id": "readable-ui",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/human-view.js",
+      "action": "modified",
+      "summary": "Consistent portfolio/project/task/phase navigation and human question-result-action; contextual document/session projections; closed original records; conservative completion."
+    },
+    {
+      "path": "specs/ai-pms-dashboard/human-view.css",
+      "action": "modified",
+      "summary": "Compact desktop hierarchy, project summary/WBS, single navigation and three-column result rows."
+    },
+    {
+      "path": "specs/ai-pms-dashboard/dashboard.html",
+      "action": "modified",
+      "summary": "Canonical HUMAN VIEW CSS/JS embedded exactly."
+    },
+    {
+      "path": "specs/ai-pms-readable-project/ui-result.json",
+      "action": "created",
+      "summary": "Packet implementation receipt."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-action-detail/check_action_detail.py",
+    "exit_code": 0,
+    "output_tail": "Action detail PASS: list/plan/task addresses, strict invalid routes, one shared plan, actual owners/action/blocker/exit facts, missing states, closed evidence, scope/focus/live/reset and text safety. Browser reload/history/layout require parent QA."
+  },
+  "done_when_check": [
+    {
+      "condition": "Whole screen hierarchy and question/result/action projections implemented",
+      "met": true,
+      "evidence": "Canonical code covers portfolio, scoped project summary, WBS, phase/task action pages, one navigation, compact result cards, contextual sessions/documents and closed raw disclosures."
+    },
+    {
+      "condition": "Model, source identity, shared tasks, routes, safe text and conservative completion preserved",
+      "met": true,
+      "evidence": "Source model is unchanged; acceptance command exit0; full readable semantic suite passed before final focus/label refinements and QA runs final suite independently."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.89,
+  "notes_for_orchestrator": "No commit/push/deploy/API/DB/model/global hooks or private inputs changed. Parent owns actual desktop acceptance and public/private HTML integration; mobile excluded. Final source review pending parent UI observation. Changes implement actual browser feedback; raw preserved closed."
+}

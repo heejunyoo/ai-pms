@@ -38,3 +38,17 @@ Keep CSP, nosniff, frame restrictions, discovery files, and language links intac
 Canonical `ai-pms.html` and `ai-pms-en.html` explain central multi-user, multi-session projects, document/step/revision completion, observed versus declared MCP/data references, safe local hook examples and privacy limits. Navigation, index discovery and both reference ZIPs include the pages. Public links target https://ai-pms-dashboard.vercel.app, its `/report.html`, and https://github.com/heejunyoo/ai-pms; the parent release verifies availability and deployed bytes.
 
 The implementation allowlist now includes `activity/connectivity.py` alongside the logger. Build only after the backend package is complete; run build_current.py then check_current.py. The old local activity viewer remains a personal reference, not the central product. The public dashboard is a synthetic static sample; automatic collection, production backend/authentication and real multi-user app-hook delivery remain outside its proof. No remote sender or trust settings are installed by this build.
+
+## STE writing release, 2026-10-05
+
+The bilingual skills guide explains the separate asd-ste100-interactive skill, Korean/English modes, ELI20 composition, complete-folder installation and heuristic limits. The implementation ZIP exports exactly five reviewed files from the installed Codex skill under skills/asd-ste100-interactive/. The Korean guide and both offline HTML tools are included; official rules and dictionaries are not. Do not describe the Korean adaptation as an official STE standard or automated compliance proof. Reference ZIPs include the same localized guidance.
+
+## Two understanding paths, 2026-10-05
+
+Keep guide.html / guide-en.html as the existing ELI20 path. ste.html adds a Korean STE-inspired harness guide; ste-en.html adds an English ASD-STE100-oriented guide. Each STE edition explains the full Kit scope of the existing ELI20 guide: purpose, terms, component responsibilities, the five-step fictional task, all five mechanisms, contents and verification boundaries, and agent setup links. Keep section identities aligned, link both editions in navigation and a page selector, and include ste.md in each reference ZIP. English examples are not certified compliant and dictionary approval is unverified.
+
+## PMS adoption release, 2026-10-05
+
+PMS-related Kit scope is local hook capture only. The implementation ZIP must have no `pms/` central runtime. Preserve all other Kit features and optional offline activity tools. Full dashboard/receiver/sender adoption lives at https://github.com/heejunyoo/ai-pms/blob/main/docs/adoption.md. Public default dashboard is a fictional document-first adoption example with current execution unconfirmed; recorded-example.html is a separate synthetic recorded example.
+
+Retain existing executable runtime smoke checks in check_current.py against the local reviewed runtime. Independently repeat --help, seven-writer demo setup, credential permissions and authenticated pilot checks from the downloaded public repository using scripts/verify_adoption.py. Packaging changes do not remove runtime coverage. Never interpret local stdin checks as native application hook delivery.

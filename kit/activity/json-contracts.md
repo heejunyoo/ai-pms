@@ -117,7 +117,7 @@ Git 커밋은 코드 상태 관측이며 세션 기여는 명시적 선언입니
 
 ## 사람·세션·북극성 및 Live 계약
 
-`templates/operations.template.json`은 비어 있는 정확한 `{version:1,sessions,north_stars,contributions,capture}` 입력입니다. 필드가 채워진 합성 예시는 `specs/ai-pms-live/sample/operations.json`, 필드별 엄격한 계약은 `specs/ai-pms-live/spec.md`의 session/north star/contribution/capture 절을 참조합니다. Kit implementation ZIP에는 `activity/operations.template.json`, `pms/specs/ai-pms-live/README.md`와 실행 가능한 서비스·sender·session_goal 기록기가 포함됩니다.
+`templates/operations.template.json`은 비어 있는 정확한 `{version:1,sessions,north_stars,contributions,capture}` 입력입니다. 필드가 채워진 합성 예시는 `specs/ai-pms-live/sample/operations.json`, 필드별 엄격한 계약은 `specs/ai-pms-live/spec.md`의 session/north star/contribution/capture 절을 참조합니다. Kit implementation ZIP에는 `activity/operations.template.json`이 포함됩니다. 실행 가능한 서비스·sender·session_goal 기록기는 GitHub 루트의 `specs/ai-pms-live/`에서 받으며 [도입 가이드](https://github.com/heejunyoo/ai-pms/blob/main/docs/adoption.md)를 따릅니다. Kit의 PMS 범위는 로컬 훅입니다.
 
 세션은 catalog 프로젝트와 native UUID, 사용자·환경·provider·native session ID, goal/goal_version, project_revision, task_ids 및 현재 목표/검증 해시에 묶인 acceptance를 기록합니다. 북극성은 회사/팀 scope, 담당자, 지표·단위·기간·baseline/target/direction 및 실측/선언 observations를 기록합니다. 기여는 세션과 북극성 정의에 묶인 proposed/confirmed이며 실제 인과 효과를 증명하지 않습니다. capture는 출처별 마지막 실제 기록과 오류/unknown·degraded 상태를 나타냅니다.
 

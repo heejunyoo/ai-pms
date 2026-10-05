@@ -17,4 +17,8 @@ subprocess.run([sys.executable,'specs/ai-pms-action-detail/check_action_detail.p
 subprocess.run([sys.executable,'specs/ai-pms-human-projection/check_human_view.py'],cwd=ROOT,check=True)
 subprocess.run([sys.executable,'specs/ai-pms-rensei-experience/check_experience.py'],cwd=ROOT,check=True)
 subprocess.run([sys.executable,'specs/ai-pms-visual-management/check_visual.py'],cwd=ROOT,check=True)
+subprocess.run([sys.executable,'specs/ai-pms-readable-project/check_readable.py'],cwd=ROOT,check=True)
+subprocess.run([sys.executable,'specs/ai-pms-component-map/check_map.py'],cwd=ROOT,check=True)
+subprocess.run([sys.executable,'specs/ai-pms-adoption-release/check_sample.py'],cwd=ROOT,check=True)
+subprocess.run([sys.executable,'scripts/verify_adoption.py'],cwd=ROOT,check=True)
 print('PASS: portable public source, privacy, completion, snapshot and app checks')

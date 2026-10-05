@@ -1,0 +1,46 @@
+{
+  "task_id": "readable-qa",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-readable-project/check_readable.py",
+      "action": "created",
+      "summary": "Human result/history/documentary, freshness, single visible navigation, consolidated main task results, completed-task no invented action and retained semantic suite"
+    },
+    {
+      "path": "specs/ai-pms-toss-ia/check_ia.py",
+      "action": "modified",
+      "summary": "Native insertBefore/classList harness support; valid human work label target assertion while retaining all keyboard checks"
+    },
+    {
+      "path": "specs/ai-pms-visual-management/check_visual.py",
+      "action": "modified",
+      "summary": "Question label expectation updated to 확인 결과; all semantic assertions retained"
+    },
+    {
+      "path": "specs/ai-pms-readable-project/qa-result.json",
+      "action": "created",
+      "summary": "Executed acceptance receipt and bounded QA outcome"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-readable-project/check_readable.py",
+    "exit_code": 0,
+    "output_tail": "IA structure and DOM simulation + existing work UI regressions PASS; browser/mobile rendering unverified\nAction detail PASS: list/plan/task addresses, strict invalid routes, one shared plan, actual owners/action/blocker/exit facts, missing states, closed evidence, scope/focus/live/reset and text safety. Browser reload/history/layout require parent QA.\nReadable project acceptance PASS: synthetic semantic regressions only; parent desktop Chrome acceptance separate, mobile excluded, no deployment/provider/model success."
+  },
+  "done_when_check": [
+    {
+      "condition": "New regressions cover human result explanations plus unchanged conservative semantics",
+      "met": true,
+      "evidence": "Executed result/history/documentary tests covering default active question, action links, closed raw internals, current failure/stale/missing, signature/future/conflict/unknown uncertainty, required/optional work and dated documentary-only completion. After parent actual Chrome identified UX defects, added and executed single visible nav/no repeated question row, one main result card per task, completed task no required new action, and navigation through actual visible project links; final full acceptance rerun exit 0."
+    },
+    {
+      "condition": "Model, source identity, shared tasks, routes, safe text and conservative completion preserved",
+      "met": true,
+      "evidence": "Executed retained human/experience/visual/IA/action suites, work parity/adversarial validator suites, unchanged model assertions, safe text, compound identity, all shared tasks, person URL/focus/delta/reset and documentary source navigation."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.98,
+  "notes_for_orchestrator": "Synthetic DOM acceptance only. Parent actual desktop Chrome visual/history/reload acceptance remains separate; mobile excluded. No private source copied, backend/model/API/hook/deploy changed, provider or model success invented. check_human_view.py and check_experience.py needed no edits. All meaningful existing assertions retained. Final rerun after compact/consolidated UI fixes exit 0. These DOM checks capture identified defects but do not certify human visual readability; parent Chrome reinspection remains required."
+}

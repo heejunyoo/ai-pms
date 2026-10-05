@@ -5,7 +5,6 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
-from package_live_kit import PMS_FILES
 ROOT=Path(__file__).resolve().parents[1]
 EXCLUDED={'graphify-out','.graphify','__pycache__','.git','.vercel','.local','runtime','outbox','inbox','staging','public-proof'}
 PRIVATE_NAMES={'runtime-inventory.json','local-verification-log.jsonl','preparation-evidence.json','preparation-result.json','preparation-review.md','capture-health.json','state.json','live-state.json','sender-state.json','registry.json','sender.json','demo.json'}
@@ -41,9 +40,6 @@ def main():
         body=(home/source).read_bytes()
         assert b'/Users/' not in body, target
         path=out/target;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(body);copied.append(target)
-    for name in [*PMS_FILES,'README.md']:
-        source=home/'.claude/harness/activity/pms'/name
-        target=out/'kit/pms'/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(source.read_bytes());copied.append(target.relative_to(out).as_posix())
     for name in ('implementation.zip','reference-ko.zip','reference-en.zip'):
         source=home/'.claude/harness/site/public'/name
         target=out/'kit/downloads'/name;target.parent.mkdir(parents=True,exist_ok=True)
@@ -56,7 +52,7 @@ def main():
 
 This repository is a clean public snapshot of AI PMS research, implementation, tests, synthetic samples, ELI20 report, and changed canonical Harness Kit sources. It contains no original home Git history, credentials, account configuration, private audit backups, real user hook logs, or runtime identity inventory. Personal home paths in historical documentation are replaced with $HOME. Consequently historical hash receipts describe the original local artifacts and must not be treated as fresh public verification. Portable tests and the latest IA release proof describe current checks. Older dashboard/management/connectivity/transport receipts retain their recorded scope; stale hashes are preserved rather than presented as fresh browser verification.
 
-Kit/build contains the canonical source used in the existing Harness Kit home installation; that full generator needs the separately configured Harness Kit environment. Kit/activity is portable and independently testable. Public Kit downloads contain explicit, reviewed implementation sources. The sample app is a static synthetic dashboard, not a hosted receiver or an authenticated operations service. The opt-in self-hosted Live PMS service, incremental sender, capture health and session-goal recorder are executable in kit/pms and specs/ai-pms-live. Real provider hook trust and remote two-user delivery remain unverified. Current separate-page action detail browser acceptance is recorded separately in specs/ai-pms-action-detail; no private telemetry is sent to the public sample.
+Kit/build contains the canonical source used in the existing Harness Kit home installation; that full generator needs the separately configured Harness Kit environment. Kit/activity is portable and independently testable. Public Kit downloads contain explicit, reviewed implementation sources. The default sample app is a static fictional document-first adoption dashboard; recorded-example.html is a separately labeled synthetic recorded example. It is, not a hosted receiver or an authenticated operations service. The opt-in self-hosted Live PMS service, incremental sender, capture health and session-goal recorder are executable in specs/ai-pms-live at the repository root; Kit PMS scope is local hooks only, with no pms/ central runtime in its ZIP. Real provider hook trust and remote two-user delivery remain unverified. Current separate-page action detail browser acceptance is recorded separately in specs/ai-pms-action-detail; no private telemetry is sent to the public sample.
 ''')
     for relative in [Path('specs/ai-pms-management/release-proof.json'),Path('specs/ai-pms-work-management/release-proof.json'),Path('specs/ai-pms-work-management/code-review.json'),Path('specs/ai-pms-toss-ia/release-proof.json'),Path('specs/ai-pms-toss-ia/code-review.json'),Path('specs/ai-pms-action-detail/code-review.json'),Path('specs/ai-pms-action-detail/release-proof.json')]:
         target=out/relative
@@ -72,6 +68,17 @@ Kit/build contains the canonical source used in the existing Harness Kit home in
             receipt['sha256'][path]=public_digest
         receipt['publication_transform']={'source_receipt_sha256':hashlib.sha256((ROOT/relative).read_bytes()).hexdigest(),'changed_paths':changed,'stale_source_paths':stale,'reason':'Only fresh source hashes reconciled after path/whitespace sanitization. Historical hashes preserved; not another independent review or browser verification.'}
         target.write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
+    # Reconcile only fresh intent receipt hashes after public path substitution.
+    relative=Path('specs/ai-pms-adoption-release/intent-review.json')
+    if (ROOT/relative).exists():
+        receipt=json.loads((ROOT/relative).read_text())
+        original={}
+        for key,name in [('source_sha256','source.md'),('spec_sha256','spec.md')]:
+            original[key]=receipt[key]
+            assert hashlib.sha256((ROOT/relative.parent/name).read_bytes()).hexdigest()==receipt[key]
+            receipt[key]=hashlib.sha256((out/relative.parent/name).read_bytes()).hexdigest()
+        receipt['publication_transform']={'original_hashes':original,'reason':'Fresh reviewed source/spec hashes reconciled after home-path substitution only; not another independent review.'}
+        (out/relative).write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
     (out/'publication-manifest.json').write_text(json.dumps({'kind':'sanitized-public-snapshot','files':sorted(copied),'excluded':['home Git history','credentials and settings','private audit backups','real runtime logs and inventory'],'personal_paths_replaced':True},indent=2)+'\n')
     print('Prepared',len(copied),'public source/sample/doc files')
 if __name__=='__main__':main()

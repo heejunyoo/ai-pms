@@ -1,0 +1,46 @@
+{
+  "task_id": "sample",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "scripts/build_dashboard_app.py",
+      "action": "modified",
+      "summary": "Build fictional document-first index with safe source pages, separate recorded-example.html, observed adoption-snapshot.json and full fictional builder input sample-documentary.json downloads with explicit contract boundary; preserve recorded snapshot and CSP generation."
+    },
+    {
+      "path": "specs/ai-pms-adoption-release/sample-documentary.json",
+      "action": "created",
+      "summary": "Authored three fictional projects, shared owners, dated documentary tasks and safe excerpts; zero app/provider/current execution assertions."
+    },
+    {
+      "path": "specs/ai-pms-adoption-release/check_sample.py",
+      "action": "created",
+      "summary": "Verify emitted default/recorded boundaries, exact download labels and full fictional input bytes, source routes, zero events/current completion, emitted JS documentary projection and immutable model with old counterexamples."
+    },
+    {
+      "path": "specs/ai-pms-adoption-release/sample-result.json",
+      "action": "created",
+      "summary": "Validated task evidence and integration handoff."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-adoption-release/check_sample.py",
+    "exit_code": 0,
+    "output_tail": "Built fictional document-first adoption, separate recorded synthetic example, empty state, reports and CSP headers\nPublic adoption DOM PASS: fictional notice, plans/component map, task and source routes, no sessions/current completion, person URL, immutable model\nSample acceptance PASS: fictional document-first default; separate recorded model and counterexamples preserved; zero app/provider/current verification claims. Simulated DOM only; parent browser/release verification remains separate."
+  },
+  "done_when_check": [
+    {
+      "condition": "Public fictional document-first adoption sample plus explicitly separate recorded example",
+      "met": true,
+      "evidence": "check_sample exit 0 against emitted index.html, adoption-snapshot.json, source-sample-*.html and recorded-example.html; default documents include documented/in_progress/blocked/unknown states while model has no complete projects or execution evidence. Follow-up check_sample exit 0 verifies explicit observed-model versus complete-documentary-input download labels and byte identity of published sample-documentary.json."
+    },
+    {
+      "condition": "Privacy, existing semantics and retained test coverage preserved",
+      "met": true,
+      "evidence": "Entire new input authored as fictional data; recorded pms-data equals original snapshot.json; old failed/revalidation/review_pending/unknown counterexamples retained. check_map and check_readable including their prior UI/validator regression chain exit 0; canonical human-view and tests untouched."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.96,
+  "notes_for_orchestrator": "Production/browser/export/build integration remains parent responsibility. Capture /, /#project=sample-support, /#project=sample-support&task=decision, /#view=attention&person=Bob and /recorded-example.html. Outputs under apps/dashboard/public include adoption-snapshot.json and twelve source-sample-*.html; keep snapshot.json as legacy recorded fixture. adoption-snapshot.json follows unchanged snapshot contract and therefore contains the conservative observed model, while fictional documentary tasks/source excerpts reside in emitted index documentary-data and sample-documentary.json. Snapshot import alone does not reconstruct documentary projection. No provider/native-hook/private input/deployment success claimed. Follow-up: public /sample-documentary.json contains the full authored fictional catalog/documentary/annotations builder input, byte-identical to the source fixture. Default notice names observed snapshot download 수집 모델 JSON · 문서 작업 제외 and full input download 전체 가상 문서 입력 JSON, explicitly states that the latter is builder input and snapshot import alone does not reproduce documentary tasks. Capture /sample-documentary.json and updated index; static JSON requires no script CSP changes."
+}

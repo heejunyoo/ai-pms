@@ -1,0 +1,51 @@
+{
+  "task_id": "component-map",
+  "status": "partial",
+  "files_changed": [
+    {
+      "path": "specs/ai-pms-dashboard/human-view.js",
+      "action": "modified",
+      "summary": "전체 계획 요약과 WBS 사이에 선언된 목표→단계→작업 및 참고 연결 도표를 추가. 모든 담당 작업과 scoped native 상세 경로, 정확 문서 버전 선택, 문서 출처 신원 유지."
+    },
+    {
+      "path": "specs/ai-pms-dashboard/human-view.css",
+      "action": "modified",
+      "summary": "중앙 trunk와 연속 가로 가지, 단계 열, 소속 실선·참고 점선, 가로 overflow 및 native focus 스타일."
+    },
+    {
+      "path": "specs/ai-pms-dashboard/dashboard.html",
+      "action": "modified",
+      "summary": "HUMAN VIEW JS/CSS blocks exact canonical embed. 원본 데이터 및 다른 UI 블록 미수정."
+    },
+    {
+      "path": "specs/ai-pms-component-map/check_map.py",
+      "action": "created",
+      "summary": "선언된 단계·작업·참고 edge, 모든 담당 작업, scope navigation, 정확 문서 버전/원문, 미기록, documentary/current distinction, text safety 및 immutable model 회귀."
+    },
+    {
+      "path": "specs/ai-pms-component-map/ui-result.json",
+      "action": "created",
+      "summary": "구현·검사 결과와 실제 브라우저 검증 미확인 경계 기록."
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 specs/ai-pms-component-map/check_map.py; python3 specs/ai-pms-readable-project/check_readable.py",
+    "exit_code": 0,
+    "output_tail": "Component map acceptance PASS: synthetic DOM and structure only. Actual desktop rendering/history/keyboard remains parent browser acceptance; mobile excluded; no deployment.\nReadable project acceptance PASS: synthetic semantic regressions only; parent desktop Chrome acceptance separate, mobile excluded, no deployment/provider/model success."
+  },
+  "done_when_check": [
+    {
+      "condition": "Declared components and connections are visually readable and actionable",
+      "met": false,
+      "evidence": "Native diagram, continuous branch CSS and real scoped links implemented; declared edge and exact reference navigation DOM regressions pass. Actual desktop rendering/history/keyboard acceptance remains unverified because parent Chrome connector is unavailable."
+    },
+    {
+      "condition": "Existing model, scope, completion and raw evidence preserved",
+      "met": true,
+      "evidence": "check_map immutable model, person scope/all shared tasks, dated documentary completion/current-unconfirmed and text safety passed. Existing check_readable plus human projection, experience, visual semantic, IA and action detail regressions passed."
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.87,
+  "notes_for_orchestrator": "브라우저 실화면 합격은 주장하지 않습니다. check_map은 DOM simulation 및 source structure 검사입니다. 부모가 synthetic/private desktop diagram readability, keyboard/click phase/task links, Back/reload를 실제 브라우저에서 확인해야 최종 도표 인수가 가능합니다. 모바일 제외. API/DB/model/private inputs/network/dependencies/deploy/commit 변경 없음. 독립 QA 최종 source 검토 대기."
+}

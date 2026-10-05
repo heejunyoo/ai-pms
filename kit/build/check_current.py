@@ -34,7 +34,7 @@ class Page(HTMLParser):
 
 def validate(public):
     manifest=json.loads((public/'manifest.json').read_text());routes=manifest['routes'];parsers={}
-    required=['index','codex','claude','skills','guide','maintenance','handoff','expert-panel','eli5','ai-pms']
+    required=['index','codex','claude','skills','guide','maintenance','handoff','expert-panel','eli5','ai-pms','ste']
     for key in required:
         for suffix in ('','-en'):assert key+suffix+'.html' in routes,key+suffix
     # Existing externally shared routes must remain reachable, not disappear in a redesign.
@@ -124,12 +124,14 @@ def validate(public):
         activity = {'activity/'+name for name in ('logger.py','connectivity.py','management.py','work.py','management_recorder.py','test_management_recorder.py','catalog-v3.template.json','catalog-work.template.json','operations.template.json','json-contracts.md','test_logger.py','viewer.html','README.md','example-project.jsonl')}
         assert {name for name in z.namelist() if name.startswith('activity/')} == activity, 'Activity export must use the exact public allowlist'
         pms_files = ['docs/visual-management.md', 'docs/project-architecture.md', 'docs/rensei-experience.md', 'docs/human-view-and-analysis.md', 'scripts/prepare_goal_analysis.py', 'specs/ai-pms-live/live_service.py', 'specs/ai-pms-live/live_sender.py', 'specs/ai-pms-live/session_goal.py', 'specs/ai-pms-live/demo_setup.py', 'specs/ai-pms-live/README.md', 'specs/ai-pms-live/sample/catalog.json', 'specs/ai-pms-live/sample/operations.json', 'specs/ai-pms-live/sample/central.json', 'specs/ai-pms-dashboard/portfolio.py', 'specs/ai-pms-dashboard/management.py', 'specs/ai-pms-dashboard/work.py', 'specs/ai-pms-dashboard/operations.py', 'specs/ai-pms-dashboard/dashboard.html', 'specs/ai-pms-central/central.py', 'specs/ai-pms-central/connectivity.py', 'specs/ai-pms-transport/common.py', 'README.md']
-        assert {name for name in z.namelist() if name.startswith('pms/')} == {'pms/'+name for name in pms_files}, 'PMS export must use the exact credential-free runtime allowlist'
+        assert not any(name.startswith('pms/') for name in z.namelist()), 'Kit PMS scope is local hooks; central runtime belongs to GitHub'
+        # Retain local executable runtime checks; downloaded GitHub repeats these in verify_adoption.py.
         with tempfile.TemporaryDirectory() as temporary:
             pilot_root=Path(temporary).resolve()/'pms'
             for name in pms_files:
-                payload=z.read('pms/'+name)
-                assert payload==(Path.home()/'.claude/harness/activity/pms'/name).read_bytes(),name
+                payload=(Path.home()/'.claude/harness/activity/pms'/name).read_bytes()
+                assert payload, ('empty reviewed local runtime source', name)
+                if name.endswith('.py'):compile(payload, name, 'exec')
                 target=pilot_root/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(payload)
             for name in ('live_service.py','live_sender.py','session_goal.py','demo_setup.py'):
                 result=subprocess.run([sys.executable,str(pilot_root/'specs/ai-pms-live'/name),'--help'],cwd=pilot_root,text=True,capture_output=True,timeout=30)
@@ -184,6 +186,33 @@ def validate(public):
             skill=z.read(name).decode()
             assert 'ELI20' in skill and 'ELI15' not in skill and 'ELI10' not in skill,(name,'stale ELI depth')
         assert not any('ponytail' in n.lower() or 'graphify' in n.lower() for n in z.namelist()),'Optional tools bundled without setup contract'
+    # Every advertised STE resource must match the installed, reviewed source.
+    ste_files = ('SKILL.md', 'references/asd-ste100-model.md', 'references/korean-writing.md',
+                 'assets/asd-ste100-explorer.html', 'assets/korean-writing-explorer.html')
+    with zipfile.ZipFile(public/'implementation.zip') as bundle:
+        prefix = 'skills/asd-ste100-interactive/'
+        assert {n for n in bundle.namelist() if n.startswith(prefix)} == {prefix+n for n in ste_files}
+        for name in ste_files:
+            assert bundle.read(prefix+name) == (Path.home()/'.codex/skills/asd-ste100-interactive'/name).read_bytes(), (name, 'stale STE resource')
+    for lang, suffix in (('ko', ''), ('en', '-en')):
+        page = (public/('skills'+suffix+'.html')).read_text()
+        assert 'id="asd-ste100-interactive"' in page
+        for token in ('skills/asd-ste100-interactive/', 'korean-writing-explorer.html', 'asd-ste100-explorer.html', '$asd-ste100-interactive'):
+            assert token in page, (lang, 'missing STE usage guidance', token)
+        with zipfile.ZipFile(public/f'reference-{lang}.zip') as bundle:
+            assert 'asd-ste100-interactive' in bundle.read('skills.md').decode()
+    # Both understanding routes remain discoverable and compare the same task.
+    for suffix, label in (('', '한국어 STE'), ('-en', 'English STE')):
+        ste = (public/('ste'+suffix+'.html')).read_text()
+        guide = (public/('guide'+suffix+'.html')).read_text()
+        assert label in ste and 'CSV' in ste
+        sections = ('start','terms','parts','flow','concepts','boundary','next')
+        assert all(f'id="{sid}"' in ste and f'id="{sid}"' in guide for sid in sections)
+        assert ste.count('class="flow-step"') == 5 and 'aria-live="polite"' in ste
+        assert len(parsers['ste'+suffix+'.html'].ids) >= len(sections)
+        assert './ste'+suffix+'.html' in guide and './guide'+suffix+'.html' in ste
+        with zipfile.ZipFile(public/('reference-'+('en' if suffix else 'ko')+'.zip')) as bundle:
+            assert 'ste.md' in bundle.namelist()
     # Narrow release invariants: current procedures and bilingual retry guidance,
     # not proof of semantic product acceptance or native hook execution.
     procedures = {

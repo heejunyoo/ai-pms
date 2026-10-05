@@ -1,0 +1,11 @@
+{
+  "reviewer": "independent-component-map-qa-reviewer",
+  "verdict": "aligned",
+  "source_sha256": "754ec9c30cfbf5c5a5a69f89626da83fa080196aea3374bf15d47bff516264b4",
+  "spec_sha256": "db984f3008e4f806bad2a40c029277a26e20e13c930a15086fe80120eb3f5a1a",
+  "requirements_covered": [
+    "map"
+  ],
+  "unapproved_changes": [],
+  "evidence": "Independent pre-dispatch review of source.md, spec.md and plan.json. source.md:3 requests only adding a component/connection diagram after phases and content became readable. spec.md:3 confines implementation to one diagram between existing project summary and WBS and excludes another refactor, model/API/data-contract changes and deployment. spec.md:5 grounds nodes and links in existing humanPhases/humanPhase/humanTasks/humanReferences, declared document phase_id and documentary task phase/source/plan_source; it explicitly forbids inferring implementation modules or runtime dependencies. spec.md:7 labels containment as 소속 and references as 참고, retains every owner task, avoids misleading inter-phase dependency arrows, separates unlinked project references and marks absent data. spec.md:9 preserves native pageLink person scope/history/reload and text safety, forbids invented external addresses, large graph libraries and new external APIs, and handles variable desktop phase counts. spec.md:11 preserves current UI and conservative judgment/completion semantics with changes limited to canonical map function, plan insertion, CSS and exact embeds. spec.md:13 requires declared-edge/shared-owner/missing/unlinked/documentary/safe-text/immutable-model DOM regressions plus existing check_readable and separate actual Chrome synthetic/private visual and navigation acceptance; private payloads stay unchanged and no deployment/push occurs. plan.json maps its sole component-map task to map, permits only the three canonical UI files and check_map/ui-result additions, carries exact done_when conditions and excludes API/DB/model/private-input/deploy scope. This aligned receipt establishes source/spec/plan alignment only; actual implementation, meaningful regression execution and parent desktop visual acceptance remain required. Existing phase/task/document relationships are the defensible component map basis; absent software architecture evidence cannot justify invented call flows."
+}

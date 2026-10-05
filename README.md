@@ -1,6 +1,30 @@
 # AI PMS
 
-**문서 업데이트: 2026-10-04 · 공동 WBS와 단일 실행 이력**
+여러 사람이 에이전트로 만드는 프로젝트의 목표·문서·Phase·작업·검증을 한곳에서 살펴보는 중앙 관리 프로토타입입니다. 공개 화면은 가상 자료로 만든 정적 도입 예시입니다. 실제 앱 수집과 인증된 중앙 서비스는 별도로 연결해야 합니다.
+
+**처음 다운로드했다면 [도입 가이드](docs/adoption.md)를 따라 시작하세요.** GitHub Code → Download ZIP으로 압축을 풀고 README.md가 있는 최상위 폴더에서 실행합니다. Python 3.11+와 Node.js, macOS/Linux가 필요하며 Python 외부 패키지는 없습니다.
+
+```sh
+python3 scripts/verify_adoption.py
+python3 scripts/build_dashboard_app.py
+python3 -m http.server 21932 --directory apps/dashboard/public --bind 127.0.0.1
+```
+
+`http://127.0.0.1:21932/`에서 샘플을 봅니다. `verify_adoption.py`는 임시 합성 자료로 다운로드의 링크·훅 stdin/health·문서 화면·인증 Live 파일럿을 검사합니다. 실제 앱 hook/trust나 원격 사용자 전달은 검증하지 않습니다. 전체 기존 회귀 검사는 `python3 scripts/verify_public.py`입니다.
+
+| 원하는 도입 | 시작 위치 |
+|---|---|
+| 문서와 계획으로 내 프로젝트 보기 | [private catalog → HTML/snapshot](docs/adoption.md#2-문서만으로-내-프로젝트-보기) |
+| Codex/Claude 훅 추가·수집 상태 확인 | [kit/activity와 기존 설정 병합](docs/adoption.md#3-선택한-앱의-훅-수집-연결) |
+| 인증된 중앙 서비스와 sender 실행 | [루트 specs/ai-pms-live 안내](specs/ai-pms-live/README.md) |
+
+Harness Kit의 PMS 범위는 훅 수집 안내와 `activity/` 파일입니다. GitHub에는 `kit/activity/`와 중앙 대시보드·Live 실행 소스가 함께 있습니다. Kit ZIP의 `pms/`에서 시작하지 않습니다. 기본 공개 예시는 문서를 먼저 넣은 도입 상태이며 실행·현재 검증 미관측을 유지합니다. 기존 합성 실행 기록은 [별도 실행 이력 예시](https://ai-pms-dashboard.vercel.app/recorded-example.html)에서 구분합니다. 실제 private 자료를 공개 샘플에 보내지 마세요.
+
+**문서 업데이트: 2026-10-05 · 구성요소와 연결 도표**
+
+전체 계획의 구성요소 도표 정렬·디자인을 보완했습니다. [최신 디자인 검증](specs/ai-pms-component-map/design-proof.json): 실제 Chrome1440×1000의 Paper/Knowledge 정렬·목표 표시·키보드 이동과 회귀 검사 통과. 공개 배포에는 아직 반영하지 않았습니다.
+
+2026-10-04 로컬 리팩터링은 [프로젝트 화면 안내](docs/readable-project.md)와 [검증 기록](specs/ai-pms-readable-project/integration-proof.json)에 있습니다. 확인 결과는 확인한 내용·결과·다음 행동을 먼저 표시하고 원본 기록을 펼쳐 봅니다. 전체 회귀 검사와 Chrome 데스크톱 확인을 통과했으며 공개 배포는 아직 반영하지 않았습니다.
 
 [Harness Kit와 AI PMS ELI20 전체 설명](https://ai-pms-dashboard.vercel.app/overview.html) — Kit 범위, PMS 목적·구성, 공동 작업 흐름, 구현/검증과 다음 방향을 한 주제씩 읽을 수 있습니다. [정본 및 검증](reports/harness-pms-eli20/README.md).
 

@@ -1,0 +1,76 @@
+{
+  "recorded_at": "2026-10-05T01:08:37.461317+00:00",
+  "status": "implemented_and_semantic_checks_pass; desktop_render_acceptance_pending",
+  "requirement": "Only add declared component/connection map to existing project plan",
+  "source_hashes": {
+    "specs/ai-pms-dashboard/human-view.js": "64536488674d589df781128c2919bbe5c4c5f6c9709a2e4db4564c91f74540a9",
+    "specs/ai-pms-dashboard/human-view.css": "4d9fe110401213028bdf85efb484db331d25423013be19ba8434461131a9c0be",
+    "specs/ai-pms-dashboard/dashboard.html": "b31745032a95916e43089481ff3ecb8ee7dc01e69b0d79bb1a6cf0717e938c25",
+    "specs/ai-pms-component-map/check_map.py": "dd6127c40c6d0b359be48db188e5d49ad259d660e02e662b1d60cee04ea6e7db",
+    "specs/ai-pms-component-map/source.md": "754ec9c30cfbf5c5a5a69f89626da83fa080196aea3374bf15d47bff516264b4",
+    "specs/ai-pms-component-map/spec.md": "db984f3008e4f806bad2a40c029277a26e20e13c930a15086fe80120eb3f5a1a",
+    "scripts/verify_public.py": "e81022dcc99701d79224a3db51bd0918d2b5add0c856c22ff7cfad72549bb4f7"
+  },
+  "checks": [
+    {
+      "command": "python3 scripts/build_dashboard_app.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 specs/ai-pms-component-map/check_map.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 specs/ai-pms-readable-project/check_readable.py",
+      "exit_code": 0
+    },
+    {
+      "command": "Parent private four-project DOM smoke via existing harness",
+      "exit_code": 0,
+      "scope": "All declared phase/task/API-MCP reference nodes; documentary completion/current verification distinction; immutable private model"
+    },
+    {
+      "command": "python3 scripts/prepare_public.py --out /private/tmp/ai-pms-component-checkout",
+      "exit_code": 0,
+      "files": 459
+    }
+  ],
+  "independent_review": {
+    "receipt": "final-review.json",
+    "hashes_current": true,
+    "blocking_code_findings": []
+  },
+  "local_previews": {
+    "synthetic": "http://127.0.0.1:21942/#project=alice-recall",
+    "private": "http://127.0.0.1:21944/#project=paper",
+    "actual_served_bytes_match": true
+  },
+  "private_preservation": {
+    "receipt": "private-preservation.json",
+    "payloads_unchanged": true,
+    "private_data_exported": false
+  },
+  "browser_acceptance": {
+    "verified": false,
+    "attempts": [
+      "Existing browser 1 unavailable",
+      "CUA inventory apps=[], browsers=[], native pipe startup failure",
+      "Second browser listing still empty"
+    ],
+    "remaining": [
+      "Actual desktop diagram readability/continuous lines",
+      "Keyboard/click phase and task links",
+      "Native Back/reload with person filter"
+    ]
+  },
+  "boundaries": {
+    "mobile_excluded": true,
+    "deployed": false,
+    "pushed": false,
+    "api_or_db_changed": false,
+    "completion_model_changed": false,
+    "actual_multi_user_delivery_verified": false,
+    "new_provider_or_model_execution": false,
+    "user_acceptance": false
+  }
+}

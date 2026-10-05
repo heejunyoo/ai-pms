@@ -1,0 +1,45 @@
+{
+  "reviewer": "independent-component-map-design-reviewer",
+  "verdict": "code_and_semantic_checks_pass_browser_parent_owned",
+  "reviewed_sha256": {
+    "specs/ai-pms-dashboard/human-view.js": "230af2276e609d6f04db4ed422763cc15aa725b4c7ed4a2c9d62f3bbdefe881a",
+    "specs/ai-pms-dashboard/human-view.css": "085b8b72b6416fa3db2ff6ac7e78b2b8eef299b94dc244a55fb2182df4bfc8b2",
+    "specs/ai-pms-dashboard/dashboard.html": "1cd16aee5c71aeda738809505e5b04b92852325e0b6f84c1b542842255b8aea1",
+    "specs/ai-pms-component-map/check_map.py": "dd6127c40c6d0b359be48db188e5d49ad259d660e02e662b1d60cee04ea6e7db"
+  },
+  "blocking_code_findings": [],
+  "checks": [
+    {
+      "command": "python3 specs/ai-pms-component-map/check_map.py",
+      "exit_code": 0
+    },
+    {
+      "command": "python3 specs/ai-pms-readable-project/check_readable.py",
+      "exit_code": 0
+    },
+    {
+      "command": "Independent temporary DOM/CSS structural probe; no test files edited",
+      "exit_code": 0,
+      "evidence": "Goal/trunk are map direct children outside horizontal scroller; every task list remains focusable with all-tasks scroll label; full task node count equals model tasks. Shared subgrid3rows, bottom-aligned heading state and max360px task list vertical overflow confirmed."
+    },
+    {
+      "command": "Independent comparison with parent pre-design canonical HTML snapshot",
+      "exit_code": 0,
+      "evidence": "Outside humanComponentMap JS, pre-map CSS and HTML outside canonical HUMAN VIEW blocks are byte-identical. JS diff contains only goal/trunk tree-to-map parent movement and task-list tabindex/scroll aria-label addition. Reference/route/status/node logic unchanged."
+    }
+  ],
+  "code_evidence": [
+    "Goal and trunk now remain outside horizontal scrolling; tree contains phase columns only. Native map heading/caption and containment/reference labels retained.",
+    "Grid columns share three subgrid rows for phase headings, full task lists and references. Heading state uses margin-top:auto; no data-dependent per-column reference positioning introduced.",
+    "Task lists have tabindex0, all-tasks vertical scroll aria-label, max-height360px and overflow-y:auto. All nodes remain native DOM; no task filtering, slicing or truncation added.",
+    "Phase/task native pageLink identities, person scope, exact document version selection, safe source linkage and common-only unlinked references are unchanged in reviewed map logic.",
+    "Documentary complete/unknown/owner/source semantics and model immutability still pass. Canonical JS/CSS exact embedding verified."
+  ],
+  "browser_acceptance_independently_verified": false,
+  "outside_map_byte_preservation_independently_verified": true,
+  "remaining_boundaries": [
+    "Parent owns actual Playwright screenshots/alignment/root visibility/scroll/keyboard/history/reload acceptance. This reviewer does not copy screenshots or private data and does not claim pixel results.",
+    "Mobile excluded; no deployment or API/model changes authorized."
+  ],
+  "scope_baseline_sha256": "b31745032a95916e43089481ff3ecb8ee7dc01e69b0d79bb1a6cf0717e938c25"
+}

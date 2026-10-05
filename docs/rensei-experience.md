@@ -1,3 +1,5 @@
+> 현재 공개 도입은 [adoption.md](adoption.md)를 따릅니다. 아래 Kit runtime 패키지 관련 문장은 이전 준비 단계 기록이며 현재 Kit ZIP은 중앙 runtime을 포함하지 않습니다.
+
 > 2026-10-04 시각화 재구성으로 기본 WBS와 Phase 작업 통로를 복원했습니다. 현재 화면 계약은 [visual-management.md](visual-management.md)를 따릅니다. 아래는 이전 단계 흐름 설계 이력입니다.
 
 # 사람 중심의 Phase 흐름과 판단 필요 처리함

@@ -1,3 +1,5 @@
+> **PMS 범위 / PMS scope:** Harness Kit은 로컬 훅 기록기를 제공합니다. 중앙 PMS 대시보드·수신기·송신기 도입은 [GitHub 도입 가이드](https://github.com/heejunyoo/ai-pms/blob/main/docs/adoption.md)를 따르세요. Kit ZIP에는 중앙 `pms/` runtime이 없습니다. 기존 오프라인 뷰어와 수동 기록 도구는 선택적 로컬 참고 도구입니다. / Kit provides local hook capture; full PMS adoption belongs to the GitHub guide. Optional offline reference tools do not install or operate a central service.
+
 # Harness Activity / AI PMS workflow kit
 
 Local tools for carrying one explicit work cycle from a chosen phase and scope, through evidence and a review decision, into a concrete next Agent task. Python 3 standard library only; the viewer works offline.
@@ -16,7 +18,7 @@ The packet is a task brief, while project JSONL is the durable event record. Kee
 
 ## Install the logger / 기록기 설치
 
-Copy the exported `activity/` files to `~/.agents/harness-activity/`. Keep `logger.py`, `test_logger.py`, `viewer.html`, `README.md`, and `example-project.jsonl` together. Merge the command entries from your provider's setup guide into its existing hook configuration; preserve existing safety checks and settings. No account, hook configuration, or project log is included in this package.
+Copy the exported `activity/` files to `~/.agents/harness-activity/`. Keep `logger.py`, `connectivity.py`, `test_logger.py`, `viewer.html`, `README.md`, and `example-project.jsonl` together. Merge the command entries from your provider's setup guide into its existing hook configuration; preserve existing safety checks and settings. No account, hook configuration, or project log is included in this package.
 
 ```sh
 python3 "$HOME/.agents/harness-activity/logger.py" hook --source codex
@@ -209,4 +211,4 @@ Claude 설정에도 같은 구조에서 `--source claude`를 사용합니다. �
 
 ## 사람·세션·실시간 중앙 운영
 
-`operations.template.json`과 `json-contracts.md`에 세션 목표/인수·회사/팀 북극성·기여·수집 상태 입력을 안내합니다. ZIP의 `pms/README.md`에서 실행 가능한 private 합성 파일럿과 opt-in sender를 시작하세요. 훅만으로 업무 목적을 추측하지 않으며 Handoff 관리 자료와 명시적인 session_goal 연결을 사용합니다. 전역 hook/trust 설정은 자동 변경하지 않습니다.
+`operations.template.json`과 `json-contracts.md`에 세션 목표/인수·회사/팀 북극성·기여·수집 상태 입력을 안내합니다. [GitHub 도입 가이드](https://github.com/heejunyoo/ai-pms/blob/main/docs/adoption.md)와 저장소 루트의 `specs/ai-pms-live/README.md`에서 private 합성 파일럿과 opt-in sender를 시작하세요. Kit ZIP에는 중앙 runtime이 없습니다. 훅만으로 업무 목적을 추측하지 않으며 Handoff 관리 자료와 명시적인 session_goal 연결을 사용합니다. 전역 hook/trust 설정은 자동 변경하지 않습니다.

@@ -1,0 +1,37 @@
+{
+  "reviewer": "independent-readable-intent-review",
+  "verdict": "pass",
+  "scope": "Final source code and synthetic semantic regression review. Actual desktop Chrome readability/history/reload acceptance remains owned by parent.",
+  "source_hashes": {
+    "specs/ai-pms-readable-project/source.md": "c3d9e34d6acd3c3ab232767e0cd2bacc38a8f2df6aeda51a640dcbc9440ae621",
+    "specs/ai-pms-readable-project/spec.md": "d2cdc752204b459579c5415e7f97edf55e4e2540288a12a3db72660c649c2df5",
+    "specs/ai-pms-readable-project/plan.json": "48772eede95502b2c331e3006db6a2fb353bd53b3d5ce9afcb0735f813feb18b",
+    "specs/ai-pms-dashboard/human-view.js": "c50ce8d4ff68f550a3a07c618fc9fc58f87c09b9b0d9f7a394783d810220207c",
+    "specs/ai-pms-dashboard/human-view.css": "3666962281c845d4ba52d4c7fbe53a6a461cfa37f3d7fec966e22bf38da12d5f",
+    "specs/ai-pms-dashboard/dashboard.html": "07710e68ff9bb6fc72b36630e5783e30f9865a03f8e3c9da1c206d1af3407bda",
+    "specs/ai-pms-readable-project/check_readable.py": "a825764f53f1309701fca847d7baf6a1701a33457cebe765b60cd90b9fd0fc35"
+  },
+  "blockers": [],
+  "resolved_findings": [
+    "Required-only pending summary now distinguishes complete/no-plan/unknown; task rows/results explicitly identify required versus optional from declared boolean.",
+    "Documentary Phase and tooltip completion show document-only/current-unconfirmed; documentary-only task direct routes use current project navigation and goal.",
+    "Uncertain raw run signature/future/conflict/unknown records cannot become current pass. Result state comes from conservative model; original model is unchanged.",
+    "Main result cards consolidate task and task-check content; raw records remain available behind closed native details. Repeated human button row is hidden and one visible project navigation is used.",
+    "Completed tasks explicitly state no additional required action; task detail changes fulfilled-condition wording without altering completion.",
+    "Native hash/person scope retained; same-evidence nav recreation restores focus to replacement anchor. Technical tab labels remain valid through original renderer.",
+    "Internal status reason/catalog path, runner/signature/compound IDs and selected document content remain under details. Native text rendering and safe source-ID links preserve source identities."
+  ],
+  "validation": {
+    "command": "python3 specs/ai-pms-readable-project/check_readable.py",
+    "exit_code": 0,
+    "performed_by_reviewer": true,
+    "evidence_kind": "synthetic DOM / validator parity; not browser render or live delivery"
+  },
+  "boundaries": [
+    "No deployment, API, DB, model or private-source mutation performed by reviewer.",
+    "No real hooks, remote two-user delivery, provider/model analysis or business-result verification claim.",
+    "Final desktop Chrome comprehension/layout/native Back/reload must be established separately; earlier parent Chrome observations found readability defects despite passing tests.",
+    "Evidence tab reload intentionally defaults to work; tab state is not independently addressable in the existing hash contract."
+  ],
+  "unapproved_changes": []
+}

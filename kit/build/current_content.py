@@ -1,6 +1,6 @@
 """Bilingual setup guides and retained ELI explanations."""
 import json
-RELEASE = '2026-10-03'
+RELEASE = '2026-10-05'
 
 PAGES = {'index': {'ko': ('이 운영 환경을\n다른 곳에서도.',
                   'Codex·Claude의 기본 하네스를 옮기고 적용 여부를 확인합니다. Ponytail·Graphify는 별도로 설치하고 검증합니다.',
@@ -226,6 +226,13 @@ PAGES = {'index': {'ko': ('이 운영 환경을\n다른 곳에서도.',
                      [('하나의 깊이',
                        '낯선 용어부터 구성요소별 책임, 연결, 실제 흐름, 조건·예외·한계와 근거까지 설명합니다. 기존 eli5 호출명은 호환을 위해 유지합니다.'),
                       ('결과 검증', '관계 탐색이 도움이 될 때 자기완결 HTML을 만듭니다. 모바일에서 상태 변화와 읽기 편한지를 확인합니다. 배포는 사용자가 요청·승인한 경우에만 합니다.')]),
+                    ('asd-ste100-interactive',
+                     'STE 기반 기술 문서 명료화 · 한국어와 영어',
+                     [('역할', 'ELI20은 무엇을 어떤 순서로 충분히 설명할지, 이 스킬은 기술 문장을 어떻게 명확하게 쓸지 담당합니다. 별도 스킬로 필요할 때 함께 씁니다.'),
+                      ('한국어 모드', '주체·지시어·용어·행동 순서를 명확히 하되 조건·예외·부정·수치와 의무의 강도를 유지합니다. 영어 단어 수와 승인 사전은 적용하지 않습니다. 공식 한국어 STE 표준이 아닌 자체 가이드입니다.'),
+                      ('설치', '구현 ZIP의 skills/asd-ste100-interactive/ 폴더 전체를 Codex에서는 ~/.agents/skills/ 또는 ~/.codex/skills/에, Claude에서는 ~/.claude/skills/에 배치합니다. 같은 환경의 두 경로에 중복 설치하지 말고 기존 폴더는 백업 후 병합하세요.'),
+                      ('호출 예시', '$asd-ste100-interactive로 이 한국어 문서를 의미와 예외를 유지하면서 다듬어줘. ELI20 병용: $eli5와 $asd-ste100-interactive를 함께 써서 원리와 조건을 충분히 설명해줘.'),
+                      ('직접 탐색과 검증', '스킬의 assets/korean-writing-explorer.html은 한국어 유형별 예시와 검토 후보를, asd-ste100-explorer.html은 영어 STE 구조와 설정을 보여줍니다. HTML을 브라우저에서 여세요. 한국어 도구의 표현 탐지와 문장 길이는 참고용이며, 의미 보존·안전성·공식 준수를 자동 판정하지 않습니다. 영어 사전 승인도 공식 자료로 별도 확인합니다.')]),
                     ('optional-tools',
                      '선택 설치 · Ponytail과 Graphify',
                      [('Ponytail', '코딩 작업의 불필요한 구현을 줄이는 외부 플러그인입니다. ZIP에 포함되지 않습니다. Codex: codex plugin marketplace add DietrichGebert/ponytail → codex plugin add ponytail@ponytail. Claude Code: /plugin marketplace add DietrichGebert/ponytail → /plugin install ponytail@ponytail. /hooks에서 신뢰 상태를 확인하고 새 세션에서 동작을 확인합니다. Cursor·Gemini는 아래 원본 안내의 도구별 설치법을 따릅니다.'),
@@ -259,6 +266,13 @@ PAGES = {'index': {'ko': ('이 운영 환경을\n다른 곳에서도.',
                        'Define unfamiliar terms, distinguish component responsibilities, trace connections and a concrete flow, and retain conditions, exceptions, limits, and evidence. The eli5 invocation name remains for compatibility.'),
                       ('Validate the result',
                        'Create self-contained HTML when exploring relationships helps. Check real state changes and readability on mobile. Publish only when requested or authorized.')]),
+                    ('asd-ste100-interactive',
+                     'STE-inspired technical writing · Korean and English',
+                     [('Role', 'ELI20 determines what to explain and how deeply. This separate skill clarifies technical sentences and can be used with ELI20 when needed.'),
+                      ('Korean mode', 'Clarify actors, references, terminology and action order while preserving conditions, exceptions, negation, quantities and obligation strength. English word limits and the approved dictionary do not apply. This is an adapted guide, not an official Korean STE standard.'),
+                      ('Install', 'Copy the complete skills/asd-ste100-interactive/ folder from the implementation ZIP to ~/.agents/skills/ or ~/.codex/skills/ for Codex, or ~/.claude/skills/ for Claude. Avoid duplicate installation in both Codex locations. Back up and merge an existing folder.'),
+                      ('Example requests', 'Use $asd-ste100-interactive to clarify this Korean technical document while preserving its meaning and exceptions. Combine it with $eli5 to explain the mechanisms and conditions fully, then clarify the wording.'),
+                      ('Explore and verify', 'Open assets/korean-writing-explorer.html in the skill for Korean examples and review candidates, or asd-ste100-explorer.html for the English STE structure and settings. Korean expression flags and sentence lengths are advisory; the tool does not verify meaning preservation, safety or official compliance. English dictionary approval also requires authoritative data.')]),
                     ('optional-tools',
                      'Optional installs · Ponytail and Graphify',
                      [('Ponytail', 'An external plugin that helps avoid unnecessary code in coding tasks. It is not in this ZIP. For Codex, run codex plugin marketplace add DietrichGebert/ponytail, then codex plugin add ponytail@ponytail. For Claude Code, run /plugin marketplace add DietrichGebert/ponytail, then /plugin install ponytail@ponytail. Review trust in /hooks and verify behavior in a new session. Follow the upstream tool-specific instructions for Cursor and Gemini.'),
@@ -832,3 +846,82 @@ for lang in ('ko', 'en'):
     sections.append(('visual-session-history', '세션을 읽는 방법' if lang == 'ko' else 'Reading session history', [
         ('한 실행을 한 번 표시' if lang == 'ko' else 'One entry per observed execution', '목표·담당·실행 상태·목표 검사·시각과 연결 작업을 한 이력에서 읽고 내부 ID는 접습니다. 사용자·환경·출처 귀속을 보존하며 중복 raw 목록을 덧붙이지 않습니다. 세션 종료는 목표 달성을 뜻하지 않고 수집이 없으면 기록 없음으로 표시합니다.' if lang == 'ko' else 'Read the goal, owner, execution state, goal checks, time and linked tasks in one history, with internal IDs collapsed. User, environment and source identity are preserved without appending a duplicate raw list. Session termination is not goal achievement; absent capture is shown as no record.'),
         ('실제 화면 검증은 별도' if lang == 'ko' else 'Rendered acceptance is separate', 'ZIP의 pms/docs/visual-management.md에 화면 역할과 검증 범위를 설명합니다. AI 전문가 소스 의견과 DOM 회귀는 실제 사람의 수락이나 데스크톱 가독성 확인이 아닙니다. 데스크톱 이동·선택·새로고침은 실제 브라우저에서 확인하며 모바일 검증은 이번 인수에서 제외합니다.' if lang == 'ko' else 'The ZIP includes pms/docs/visual-management.md for screen responsibilities and verification scope. AI source reviews and DOM regressions are neither human acceptance nor proof of desktop readability. Desktop navigation, selection and reload need a real browser; mobile verification is excluded from this acceptance.')]))
+
+# Full STE editions of the Kit understanding guide; section identities match ELI20.
+PAGES['ste'] = {
+ 'ko': ('Harness Kit은\n어떻게 작업을 지원하나요?',
+        'Harness Kit의 목적, 기본 용어, 구성요소와 작업 흐름을 한국어 STE 방식으로 설명합니다. 각 구성요소의 책임과 적용·검증 범위를 확인하세요.', [
+  ('start', '다른 환경에 같은 운영 구성을 옮깁니다', [
+   ('모델이 같아도 결과는 달라질 수 있습니다', '에이전트는 지침을 읽고 도구를 사용합니다. 실행 전 검사와 완료 확인 방법도 작업에 영향을 줍니다. 같은 모델을 써도 이 구성이 다르면 결과가 달라질 수 있습니다. Harness Kit은 이 운영 구성을 다른 환경에 옮기기 위한 참고 자료입니다.'),
+   ('에이전트와 하네스의 역할은 다릅니다', '에이전트는 사용자 요청을 해석합니다. 도구를 호출해 작업을 실행합니다. 하네스는 에이전트 주위의 지침·스킬·훅·검증 절차입니다. Harness Kit은 하네스를 구성하는 파일과 적용 안내를 제공합니다. Kit 자체는 모델이나 독립 실행 프로그램이 아닙니다.'),
+   ('아래 순서로 읽으세요', '기본 용어를 먼저 확인하세요. 각 구성요소의 책임과 연결을 확인하세요. 가상의 CSV 내보내기 작업을 따라가세요. 마지막으로 Kit의 포함 범위와 실제로 확인할 항목을 구분하세요.')]),
+  ('terms', '기본 용어를 확인합니다', [
+   ('지침 · AGENTS.md / CLAUDE.md', '지침은 환경과 프로젝트의 규칙을 담습니다. 에이전트는 작업할 때 이 규칙을 참고합니다. 지침에는 승인 경계와 프로젝트 명령을 적습니다.'),
+   ('스킬 · SKILL.md', '스킬은 특정 작업의 절차와 판단 기준을 담습니다. 에이전트는 작업에 필요한 스킬을 읽습니다. 설치된 스킬이 모든 작업에서 자동 실행되는 것은 아닙니다.'),
+   ('훅', '훅은 도구 호출이나 세션 이벤트에 연결된 자동 검사입니다. 훅은 지정된 위험 행동을 차단할 수 있습니다. 훅이 결과의 의미나 품질을 대신 판단하지는 않습니다.'),
+   ('도구와 검증', '도구는 파일·셸·외부 서비스의 실제 상태를 바꿉니다. 테스트와 화면 확인은 바뀐 결과를 관찰합니다. 검사 통과와 사용자 문제 해결은 따로 확인해야 합니다.')]),
+  ('parts', '요청에서 결과까지 책임을 연결합니다', [
+   ('사용자 요청 → 에이전트', '사용자 요청이 목표와 허용 범위를 정합니다. 에이전트는 필요한 파일을 읽습니다. 에이전트는 작업을 계획하고 실행합니다.'),
+   ('지침·스킬 → 작업 방법', '지침은 환경의 지속 규칙을 제공합니다. 스킬은 해당 작업의 전문 절차를 제공합니다. 지침과 스킬은 스스로 파일을 수정하지 않습니다.'),
+   ('훅 → 도구 실행', '훅은 정의된 도구 호출 경계에서 검사합니다. 검사에 걸리면 도구 호출을 차단할 수 있습니다. 허용된 도구가 파일이나 외부 시스템의 상태를 바꿉니다.'),
+   ('검증 → 보고', '에이전트는 테스트와 실제 화면으로 결과를 확인합니다. 확인한 결과를 보고합니다. 아직 확인하지 못한 범위도 함께 보고합니다.')]),
+  ('flow', '가상 작업 · CSV 내보내기 버튼을 추가합니다', [
+   ('1 · 요청을 확인합니다', '사용자가 기존 목록 화면의 CSV 내보내기를 요청합니다. 에이전트는 데이터 형식을 확인합니다. 완료 조건을 확인합니다. DB나 API 계약 변경이 필요한지도 먼저 판단합니다.'),
+   ('2 · 관련 코드를 찾습니다', '에이전트는 프로젝트 지침을 읽습니다. 목록 화면과 내보내기 관련 소스를 찾습니다. Graphify 그래프가 있으면 탐색에 사용할 수 있습니다. 그래프가 최신인지 확인합니다. 그래프를 참고한 뒤에도 현재 소스를 읽습니다.'),
+   ('3 · 허용 범위에서 구현합니다', '에이전트는 필요한 스킬을 적용합니다. 파일을 수정합니다. Ponytail은 불필요한 구현을 줄이는 판단을 돕습니다. 훅은 비밀정보 기록이나 기존 테스트 삭제처럼 정의된 행동을 차단할 수 있습니다.'),
+   ('4 · 실제 결과를 확인합니다', '에이전트는 CSV의 내용을 확인합니다. 실제 화면에서 버튼을 누릅니다. 다운로드 파일과 모바일 화면을 확인합니다. 테스트가 통과해도 파일 내용이나 모바일 화면이 올바르다고 단정하지 않습니다.'),
+   ('5 · 완료 범위를 판단합니다', '에이전트는 확인한 결과와 남은 한계를 보고합니다. 작업 중 DB 스키마나 API 계약 변경이 필요해지면 기존 허용 범위를 확인합니다. 변경이 그 범위를 벗어나면 실행 전에 승인을 받습니다.')]),
+  ('concepts', '반복해서 쓰는 다섯 장치를 구분합니다', [
+   ('철칙 · 승인 경계', '철칙은 환경 고유의 실행 경계입니다. 에이전트는 행동이 사용자 요청의 허용 범위에 포함되는지 확인합니다. 이미 허용된 범위는 다시 묻지 않습니다. 새 DB 변경이나 외부 실행이 필요하면 기존 범위에 포함되는지 확인합니다. 일반적인 구현 판단은 에이전트에게 맡깁니다. 모든 행동에 승인을 요구하면 작업이 멈춥니다.'),
+   ('하네스 · 운영 구성', '하네스는 지침에서 도구 실행과 결과 확인까지 연결하는 운영 구성입니다. 환경 사실은 진입점에 둡니다. 좁은 기계적 조건은 훅에 둡니다. 작업 절차는 스킬에 둡니다. 파일 배치와 로컬 검사 통과만으로 실제 앱의 호출을 입증하지는 못합니다.'),
+   ('루프 · 변경과 재검증', '루프는 기준선 확인 → 변경 → 검증 → 판단의 반복입니다. 사용자 목적에 맞지 않아 거절된 결과도 실패로 봅니다. 목적이 분명히 어긋나면 바로 수정합니다. 같은 접근이 두 번 실패하면 세 번째 시도 전에 가정을 확인하거나 접근을 바꿉니다. 진행할 수 있는 다른 작업은 계속합니다. 문서나 자동화 수로 성숙도를 판단하지 않습니다. 근거 없이 같은 시도를 반복하거나 너무 일찍 포기하지 않습니다.'),
+   ('그래프 · 관계와 의존성', '그래프는 작업이나 구성요소의 관계를 보여줍니다. 작업 A와 B를 각각 검증할 수 있으면 독립된 가지로 표시합니다. 두 작업을 합친 뒤 통합 결과를 검증합니다. 실패 후 돌아가는 경로도 표시할 수 있습니다. 단순한 순서에는 목록이면 충분합니다. 관계를 더 잘 이해할 수 있을 때 그래프의 유지 비용을 감수합니다.'),
+   ('스킬 · 필요할 때 읽는 절차', '스킬은 반복되는 전문 작업에 쓸 절차와 기준입니다. 에이전트는 현재 요청에 맞는 스킬을 선택합니다. 절차를 적용한 뒤 결과를 확인합니다. 작업 패킷이 완성되어 있어도 부모의 모델과 추론 설정을 기본으로 상속합니다. 한 번의 요청을 모든 작업의 의무 절차로 확대하지 않습니다. 스킬이 현재 사용자 요청을 바꾸어서는 안 됩니다.')]),
+  ('boundary', '포함 범위와 검증 범위를 구분합니다', [
+   ('Kit에 포함됩니다', 'Kit은 Codex·Claude용 지침·훅·스킬의 공개 가능한 구현 파일을 제공합니다. 적용 안내도 제공합니다. 압축 파일은 자동 설치 프로그램이 아닙니다.'),
+   ('별도로 설치하거나 설정합니다', 'Ponytail과 Graphify는 외부 선택 도구입니다. 별도로 설치합니다. 모델, 로그인, API 키, MCP 연결, 개인 메모리와 프로젝트 권한은 Kit에 포함되지 않습니다. 대상 환경에서 각각 설정합니다.'),
+   ('세 단계로 확인합니다', '파일을 배치합니다. 새 세션에서 지침과 스킬이 로드되는지 확인합니다. 실제 작업에서 훅 호출과 사용자 화면을 확인합니다. 정적 검사만으로 앱의 훅 전달, 비용·시간 절감, 최종 작업 품질을 증명하지 않습니다.')]),
+  ('next', '사용하는 에이전트에 적용합니다', [
+   ('Codex 구성', '현재 지침·안전 훅·스킬을 백업하세요. Kit의 파일과 현재 설정을 비교하세요. 필요한 항목을 병합하세요. 로드와 실제 동작을 확인하세요.'),
+   ('Claude 구성', '현재 지침·안전 훅·Stop 훅·스킬을 백업하세요. Kit의 파일과 현재 설정을 비교하세요. 필요한 항목을 병합하세요. 로드와 실제 동작을 확인하세요.'),
+   ('스킬 설치', '스킬 안내에서 ELI20·STE 스킬의 위치와 사용 방법을 확인하세요. Ponytail과 Graphify의 별도 설치·확인 방법도 확인하세요.')])]),
+ 'en': ('How does Harness Kit\nsupport agent work?',
+        'This STE-oriented guide explains the purpose, terms, components, work flow and verification limits of Harness Kit.', [
+  ('start', 'Transfer the operating setup to another environment', [
+   ('The same model can give different results', 'An agent reads instructions and uses tools. Checks before execution and checks for completion also affect the work. Results can differ if this setup changes, even with the same model. Harness Kit provides references for transferring this operating setup.'),
+   ('The agent and harness have different jobs', 'The agent interprets the user request. It calls tools to do the work. The harness contains instructions, skills, hooks and verification procedures around the agent. Harness Kit provides setup files and guides. The kit is not a model or an independent program.'),
+   ('Follow this reading order', 'Read the terms first. Identify each component and its connections. Follow the fictional CSV export task. Then distinguish the kit contents from the checks that need real execution.')]),
+  ('terms', 'Identify the basic terms', [
+   ('Instructions · AGENTS.md / CLAUDE.md', 'Instructions contain environment and project rules. The agent reads these rules during its work. They identify approval boundaries and project commands.'),
+   ('Skill · SKILL.md', 'A skill contains procedures and criteria for a particular task. The agent reads a skill when the task needs it. An installed skill does not run automatically for every task.'),
+   ('Hook', 'A hook is an automatic check at a tool call or session event. It can block defined risky actions. It does not judge the meaning or quality of the result.'),
+   ('Tools and verification', 'Tools change the actual state of files, shells or external services. Tests and interface checks observe those changes. A passing check does not establish that the user problem is solved.')]),
+  ('parts', 'Connect responsibilities from request to result', [
+   ('User request → agent', 'The user request defines the goal and authorization scope. The agent reads the necessary files. The agent plans and executes the work.'),
+   ('Instructions and skills → work method', 'Instructions provide durable environment rules. Skills provide specialist procedures for the task. Instructions and skills do not edit files by themselves.'),
+   ('Hooks → tool execution', 'Hooks check defined tool-call boundaries. A matching condition can block a call. A permitted tool changes files or external systems.'),
+   ('Verification → report', 'The agent uses tests and the actual interface to check the result. It reports confirmed results. It also reports the scope that remains unverified.')]),
+  ('flow', 'Fictional task · add a CSV export button', [
+   ('1 · Confirm the request', 'The user requests CSV export from an existing list. The agent checks the data format. It checks the completion criteria. It first determines whether a database or API contract change is necessary.'),
+   ('2 · Find the code', 'The agent reads project instructions. It finds the list interface and export code. An existing Graphify graph can help navigation. The agent checks if that graph is current. The agent still reads the current source after it uses the graph.'),
+   ('3 · Implement within scope', 'The agent applies the necessary skill. It edits the files. Ponytail helps avoid unnecessary code. A hook can block defined actions, such as recording secrets or deleting existing tests.'),
+   ('4 · Check the actual result', 'The agent checks the CSV content. It clicks the actual button. It checks the downloaded file and the mobile interface. Passing tests alone do not establish that the file content or mobile interface is correct.'),
+   ('5 · Decide completion scope', 'The agent reports confirmed results and remaining limits. If a database schema or API contract change becomes necessary, it checks existing authorization. If the change is outside that scope, it obtains approval before execution.')]),
+  ('concepts', 'Distinguish five recurring mechanisms', [
+   ('Rules · approval boundaries', 'Rules define environment-specific execution boundaries. The agent checks if an action is within the user authorization. It does not ask again about authorized work. It checks whether a new database change or external operation is within that scope. Leave ordinary implementation decisions to the agent. Requiring approval for every action stops progress.'),
+   ('Harness · operating setup', 'The harness connects instructions to tools and observed results. Put environment facts in the entry point. Put narrow mechanical conditions in hooks. Put work procedures in skills. Files and local checks do not prove that the application calls the hooks correctly.'),
+   ('Loop · change and verify again', 'A loop repeats the baseline check, change, verification and decision. A result rejected for missing the user purpose is also a failure. Correct a clear purpose mismatch immediately. After two failures with the same approach, check assumptions or change the approach before a third attempt. Continue other work that can progress. Document counts and automation counts do not establish maturity. Do not repeat without evidence or stop too early.'),
+   ('Graph · relationships and dependencies', 'A graph shows relationships between tasks or components. If tasks A and B can be checked separately, show them as independent branches. Check the integrated result after the tasks are combined. A graph can also show a return path after failure. A list is sufficient for a simple sequence. Use a graph when its explanatory value justifies its maintenance cost.'),
+   ('Skill · procedure when needed', 'A skill provides procedures and criteria for recurring specialist work. The agent selects a skill for the current request. It checks the result after it applies the procedure. A complete task packet still inherits the parent model and reasoning settings by default. Do not make a one-time request mandatory for every task. A skill must not replace the current user request.')]),
+  ('boundary', 'Distinguish contents and verification limits', [
+   ('Included in the kit', 'The kit provides public implementation files for Codex and Claude instructions, hooks and skills. It also provides setup guides. The ZIP is not an automatic installer.'),
+   ('Install or configure separately', 'Ponytail and Graphify are optional external tools. Install them separately. Models, logins, API keys, MCP connections, personal memory and project permissions are not in the kit. Configure these in the target environment.'),
+   ('Check three levels', 'Place the files. Check instruction and skill loading in a new session. Check actual hook calls and the user interface during real work. Static checks do not prove application hook delivery, cost or time savings, or final work quality.')]),
+  ('next', 'Apply the kit to your agent', [
+   ('Codex configuration', 'Back up the current instructions, safety hook and skills. Compare the kit files with the current setup. Merge the necessary entries. Check loading and actual behavior.'),
+   ('Claude configuration', 'Back up the current instructions, safety hook, Stop hook and skills. Compare the kit files with the current setup. Merge the necessary entries. Check loading and actual behavior.'),
+   ('Skill installation', 'Read the skills guide for ELI20 and STE installation locations and usage. Read the separate installation and check steps for Ponytail and Graphify.')])])
+}
+
+# Current PMS packaging scope: local hooks in Kit, full adoption in GitHub.
+PAGES['ai-pms'] = {'ko': ('AI PMS 훅 추가', '로컬 기록을 확인한 다음 중앙 대시보드 도입으로 이어갑니다.', [('purpose', 'Kit에서 훅을 추가하고 GitHub에서 PMS를 도입합니다', [('포함 범위', 'Kit의 PMS 구성은 로컬 훅 기록기입니다. 기존 Codex·Claude 구성과 안전 훅에 기록 명령을 병합합니다. 중앙 대시보드·수신기·송신기는 GitHub에서 별도로 도입합니다. Kit은 자동 설치 프로그램이 아닙니다.'), ('도입 가이드', 'https://github.com/heejunyoo/ai-pms/blob/main/docs/adoption.md 에서 다운로드 → 훅 확인 → 프로젝트 등록 → 대시보드 → 인증된 로컬 파일럿 순서를 따르세요.')]), ('flow', '설치와 관측을 차례로 확인합니다', [('1 · 파일 배치', 'implementation.zip의 activity/를 ~/.agents/harness-activity/에 복사합니다. logger.py와 connectivity.py를 함께 유지합니다. python3 ~/.agents/harness-activity/test_logger.py 로 로컬 검사를 실행합니다.'), ('2 · 기존 설정 병합', 'Codex 또는 Claude 안내에 따라 기존 훅 설정을 백업하고 hook --source codex 또는 hook --source claude 명령을 병합합니다. SessionStart·PreToolUse·PostToolUse·Stop 등 실제 앱 이벤트를 새 세션에서 확인합니다. 기존 안전 훅을 보존합니다.'), ('3 · GitHub로 이어갑니다', '프로젝트 ID·사용자·환경을 검토해 등록하고 목표·단계·작업을 명시합니다. 정적 프로젝트 화면과 인증된 Live 파일럿은 별도 절차입니다. 원격 운영에는 추가 보안·운영 검증이 필요합니다.')]), ('connectivity', '연결 기록이 의미하는 범위를 확인합니다', [('메타데이터', '선택 pms_metadata는 operation·resources·artifact_refs만 받습니다. --resource-map은 검토한 로컬 매핑을 사용하며 evidence를 declared로 표시합니다. input/output 근거, artifact revision은 명시적으로 구분합니다.'), ('관측 한계', 'duration_ms는 이벤트가 제공한 값만 기록합니다. 도구 호출 성공은 데이터 활용·사용자 목적 달성·프로젝트 완료를 증명하지 않습니다. 원본 input/output, URL·SQL·비밀정보는 공유하지 않습니다.')]), ('logging', '훅 기록과 사람이 입력한 근거를 구분합니다', [('기록 위치', '기본 기록은 ~/.local/state/harness-activity 아래의 로컬 JSONL입니다. 프로젝트 경로 인덱스는 개인 정보입니다. 선택해 검토한 기록만 공유하세요. 누락된 ID는 누락 상태로 남깁니다.'), ('확인 수준', 'stdin 테스트 통과 → 실제 앱 훅 호출 확인 → 중앙 송수신 확인은 각각 다른 증거입니다. 이 Kit 빌드는 실제 앱의 훅 신뢰 승인이나 원격 다중 사용자 전달을 설치·증명하지 않습니다.')]), ('boundary', '샘플과 실제 적용의 경계를 확인합니다', [('기본 도입 예시', 'https://ai-pms-dashboard.vercel.app 은 가상 프로젝트를 실제 도입과 같은 문서 기반 화면으로 보여줍니다. 계획이 있어도 현재 실행은 미확인입니다. recorded-example.html은 기록이 채워진 별도 합성 예제입니다.'), ('전체 자료', 'https://ai-pms-dashboard.vercel.app/report.html 에서 제품 설명을 읽고 https://github.com/heejunyoo/ai-pms 에서 전체 소스와 검증 명령을 받으세요. Kit ZIP에는 중앙 pms/ runtime이 없습니다. 기존 오프라인 뷰어와 수동 기록 도구는 선택적 로컬 참고 자료입니다.')])]), 'en': ('Add AI PMS hooks', 'Verify local capture, then continue to central dashboard adoption.', [('purpose', 'Add hooks with Kit; adopt PMS through GitHub', [('Scope', 'The PMS part of Kit provides local hook capture. Merge logging commands into existing Codex or Claude settings and retain safety hooks. Adopt the central dashboard, receiver and sender separately from GitHub. The ZIP is not an installer.'), ('Adoption guide', 'Follow https://github.com/heejunyoo/ai-pms/blob/main/docs/adoption.md : download, verify hooks, register projects, render the dashboard, then try the authenticated local pilot.')]), ('flow', 'Check setup and observations in order', [('1 · Place files', 'Copy activity/ from implementation.zip to ~/.agents/harness-activity/. Keep logger.py and connectivity.py together. Run python3 ~/.agents/harness-activity/test_logger.py.'), ('2 · Merge existing settings', 'Follow the Codex or Claude guide. Back up existing settings and merge hook --source codex or hook --source claude. Verify actual SessionStart, PreToolUse, PostToolUse and Stop events in a new session. Preserve safety hooks.'), ('3 · Continue in GitHub', 'Review project, actor and environment identities; explicitly author goals, phases and tasks. Static views and authenticated Live pilots have separate instructions. Remote operation requires further security and operating validation.')]), ('connectivity', 'Understand connection evidence', [('Metadata', 'Optional pms_metadata accepts operation, resources and artifact_refs only. --resource-map uses reviewed local mappings with declared evidence. Distinguish explicit input/output evidence and artifact revision.'), ('Limits', 'duration_ms is recorded only when supplied by the event. Successful tool calls do not prove data usage, user acceptance or project completion. Never share raw input/output, URLs, SQL or secrets.')]), ('logging', 'Separate observed hooks from authored evidence', [('Local storage', 'Default JSONL records are under ~/.local/state/harness-activity. The local path index is private. Share only selected, reviewed records. Missing native IDs remain missing.'), ('Verification levels', 'Passing stdin tests, observing native application hooks, and verifying central transport are separate evidence. This build does not install or prove native hook trust or remote multi-user delivery.')]), ('boundary', 'Understand the sample and deployment boundary', [('Default example', 'https://ai-pms-dashboard.vercel.app displays fictional projects in the same document-first view used for adoption. Plans do not confirm current execution. recorded-example.html separately retains synthetic recorded operations.'), ('Full project', 'Read https://ai-pms-dashboard.vercel.app/report.html and get the full source from https://github.com/heejunyoo/ai-pms. Kit ZIP has no central pms/ runtime. Existing offline viewers and manual recorders remain optional local references.')])])}
