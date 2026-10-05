@@ -22,11 +22,22 @@ description: 사용자가 핸드오프·위임·Phase 실행을 요청할 때 �
 
 Keep the user's direction distinct from an analyst proposal. Preserve the original request in one authoritative source document; `spec.md` may make it concrete. The plan requires `author`, `intent_guard.source_ref`, `requirements[{id,quote,outcome}]`, `review_ref`, and plan-level `acceptance{command,expect_exit_code}`. Each quote must be an exact substring of the source.
 
-Before dispatch, an independent reviewer reads the raw source and spec and writes a JSON receipt with `reviewer`, `verdict`, both SHA-256 hashes, `requirements_covered`, `unapproved_changes`, and `evidence`. Self-review, `blocked`, stale hashes, or missing requirement coverage fail closed. Repeat review after edits that change the purpose. The validator checks file identity, hashes, and requirement links; hashes do not prove semantic alignment or actual reviewer independence.
+Before dispatch:
+
+1. An independent reviewer reads the raw source and spec.
+2. The reviewer records `reviewer`, `verdict`, both SHA-256 hashes, `requirements_covered`, `unapproved_changes`, and `evidence` in a JSON receipt.
+3. Do not dispatch if there is self-review, a `blocked` verdict, stale hashes, or missing requirement coverage.
+4. Repeat the review after edits that change the purpose.
+
+The validator checks file identity, hashes, and requirement links. These checks do not prove semantic alignment or actual reviewer independence.
 
 Every task, including investigation, maps to original requirements through `requirement_ids`; the task union must cover them all. The plan also needs an end-to-end acceptance check for the original purpose. Validate the plan and use `emit` before dispatch. Standalone `packet` validation checks structure only and is not dispatch approval.
 
 Changing the target user, problem, unit of management, or success condition requires a new explicit user request. Continue ordinary implementation decisions autonomously. Do not add this handoff process or a new approval ceremony to a small, reversible standalone change.
+
+## 절차 문장을 명료하게 쓸 때
+
+패킷을 읽고 누가 무엇을 해야 하는지 판단하기 어려우면, 행위자·선행조건·행동·확인할 결과·중단 조건을 나누어 쓴다. 원문 인용, JSON 키, 명령과 기대 exit code는 그대로 유지한다. 기술 문장 명료화가 필요하고 `asd-ste100-interactive`가 설치되어 있으면 병용할 수 있다. 문장을 다듬어도 독립 검토나 실제 인수 검증을 대신하지 않는다.
 
 ## 검증과 디스패치
 

@@ -39,3 +39,7 @@ The legacy command name is retained for compatibility. It now reports local conf
 - Put reusable control logic in this global skill; place project acceptance criteria, commands, and ledgers in the project.
 - Use `codex-harness-audit` after altering global configuration or skills.
 - Do not add an undocumented hook, scheduler, or plugin to simulate automation.
+
+## Clear result wording
+
+When a ledger or report is ambiguous, state the verified scope, remaining criterion, known blocker, and next action. Keep passed checks, unverified behavior, blocked work, and iteration limits distinct. Do not invent an owner or a cause. If technical wording needs clarification and `asd-ste100-interactive` is installed, use it on the final report. Preserve evidence, scores, terminal-state rules, and acceptance criteria; wording changes do not establish completion.

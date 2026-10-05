@@ -37,7 +37,12 @@ python3 -m http.server 21932 --directory apps/dashboard/public --bind 127.0.0.1
 python3 specs/ai-pms-dashboard/portfolio.py --catalog "$PMS_CATALOG" --out "$PMS_PRIVATE_DIR/documents.html" --json-out "$PMS_PRIVATE_DIR/snapshot.json"
 ```
 
-생성된 documents.html을 열거나, 로컬 대시보드의 JSON 가져오기에서 snapshot.json을 선택합니다. raw catalog는 가져오기 대상이 아닙니다. 기본 샘플의 문서 과업/출처 주석은 `sample-documentary.json`과 index HTML의 documentary-data에 있으므로 `adoption-snapshot.json`만 가져오면 해당 문서 주석 전체를 재현하지 않습니다. 내 문서의 목표·단계·작업은 catalog에 명시해 렌더하세요. catalog만 넣으면 출처 활동은 미관측입니다. 문서 등록/HTML 생성은 AI 분석 성공이나 실제 앱 수집 증거가 아닙니다. [화면과 AI 분석](human-view-and-analysis.md)을 참고하세요.
+1. 생성된 documents.html을 엽니다. 또는 로컬 대시보드의 JSON 가져오기에서 snapshot.json을 선택합니다. raw catalog는 가져올 수 없습니다.
+2. 내 문서의 목표·단계·작업을 catalog에 명시해 렌더합니다. catalog만 넣으면 출처 활동은 미관측으로 남습니다.
+
+기본 샘플의 문서 과업·출처 주석은 `sample-documentary.json`과 index HTML의 documentary-data에 있습니다. `adoption-snapshot.json`만 가져오면 이 주석 전체를 재현하지 않습니다.
+
+문서 등록과 HTML 생성은 AI 분석 성공이나 실제 앱 수집을 증명하지 않습니다. [화면과 AI 분석](human-view-and-analysis.md)을 참고하세요.
 
 ## 3. 선택한 앱의 훅 수집 연결
 
@@ -58,7 +63,13 @@ printf '%s' '{"hook_event_name":"SessionStart","session_id":"synthetic-smoke"}' 
 python3 kit/activity/logger.py health --log-dir "$PMS_LOG_DIR"
 ```
 
-정상은 status=observed, 마지막 event ID/시각이고 JSONL event ID와 맞아야 합니다. 파일/디렉터리 권한은 0600/0700입니다. health는 logdir 기록기 전체 상태이며 모든 프로젝트의 heartbeat가 아닙니다. 빈 기록은 unknown, 손상/미지원은 unknown 또는 degraded이고 오래된 성공은 현재 정상으로 승격하지 않습니다. hook exit0만으로 기록 성공을 판정하지 마세요.
+합성 stdin 검사 후 다음 근거를 확인합니다.
+
+- health의 status가 observed인지 확인합니다. 마지막 event ID와 시각을 확인하고 JSONL의 event ID와 대조합니다.
+- 파일 권한은 0600, 디렉터리 권한은 0700인지 확인합니다.
+- 빈 기록은 unknown입니다. 손상·미지원 상태는 unknown 또는 degraded로 남깁니다. 오래된 성공을 현재 정상으로 바꾸지 않습니다.
+
+health는 logdir 기록기 전체의 상태입니다. 모든 프로젝트의 heartbeat가 아닙니다. hook의 exit0만으로 기록 성공을 판정하지 마세요.
 
 이후 **실제 앱에서** 선택 이벤트를 발생시키고 JSONL → capture-health.json의 같은 event ID를 확인합니다. 합성 stdin 검사는 실제 앱 호출을 증명하지 않습니다. 실제 앱별 확인 전 커버리지는 미검증으로 남깁니다. 원문 prompt·SQL·URL·자격을 로그에 추가하지 마세요.
 
@@ -66,10 +77,22 @@ python3 kit/activity/logger.py health --log-dir "$PMS_LOG_DIR"
 
 [Live 실행 안내](../specs/ai-pms-live/README.md)의 setup → service → seed → writer → manager login 순서로 시작합니다. 합성 데모는 private 임시 폴더에 7개 writer와 별도 manager 자격을 만들며 실제 훅을 설치하지 않습니다. browser는 localhost 서비스의 same-origin 페이지에서 인증 후 조회합니다. 공개 Vercel 정적 페이지는 중앙 수신기가 아닙니다.
 
-실제 프로젝트 도입은 합성 registry/자격을 재사용하지 않고 운영자가 허가한 actor/environment/native UUID, HTTPS 목적지, owner-only token_file과 private catalog/operations/logdir를 준비합니다. 한 outbox는 한 인증 context와 목적지 전용입니다. 대상 변경에는 새 outbox를 사용하고 base revision 충돌은 검토합니다. 초기 manager seed가 끝나기 전에 writer를 시작하지 마세요. `session_goal.py bind`로 source/session/task를 연결하고 현재 검증이 충족된 뒤에만 `decide accepted`를 기록합니다.
+실제 프로젝트를 도입할 때는 다음 순서를 따릅니다.
+
+1. 운영자가 허가한 actor/environment/native UUID와 HTTPS 목적지를 준비합니다. owner-only token_file과 private catalog/operations/logdir도 준비합니다. 합성 registry와 자격을 재사용하지 않습니다.
+2. 초기 manager seed를 완료합니다. 완료 전에 writer를 시작하지 마세요.
+3. writer를 시작합니다. 한 outbox는 한 인증 context와 목적지에만 사용합니다. 대상이 바뀌면 새 outbox를 사용합니다. base revision 충돌이 발생하면 검토합니다.
+4. `session_goal.py bind`로 source/session/task를 연결합니다.
+5. 현재 검증이 충족된 뒤에만 `decide accepted`를 기록합니다.
 
 ## 5. 확인과 종료
 
-정상 도입은 실제 앱 event ID → 로컬 health → sender의 내구 ACK → 인증된 changes → 같은 사람/환경/session/task 화면까지 맞아야 합니다. 실패 전송은 outbox를 보존하고 재시작 시 재시도합니다. 동일 ID/본문은 중복이며 다른 본문은 conflict입니다. 검증 없음을 완료로 해석하거나 충돌을 수동 JSON 수정으로 통과시키지 마세요. 목표·산출물·검사 정의가 바뀌면 과거 pass/승인은 재검증해야 합니다.
+정상 도입의 근거를 다음 순서로 대조합니다.
+
+실제 앱 event ID → 로컬 health → sender의 내구 ACK → 인증된 changes → 같은 사람/환경/session/task의 화면.
+
+- 전송이 실패하면 outbox를 보존합니다. 재시작 시 다시 전송합니다.
+- 동일 ID와 동일 본문은 중복입니다. 동일 ID에 다른 본문이 오면 conflict입니다. 충돌을 수동 JSON 수정으로 통과시키지 마세요.
+- 검증 기록이 없으면 완료로 해석하지 않습니다. 목표·산출물·검사 정의가 바뀌면 과거 pass와 승인을 다시 검증합니다.
 
 종료할 때 sender와 service 터미널에서 Ctrl-C를 누르고 정적 http.server도 종료합니다. 훅 수집을 중단하려면 백업한 설정과 비교해 자신이 추가한 entry만 제거하고 기존 hook는 보존합니다. private 데이터·자격 보관/삭제는 운영자 정책으로 결정하며 이 검사는 자동 삭제하지 않습니다. 이 로컬 파일럿은 원격 실제 다중 사용자 전달, SLA, 운영 TLS 배포 또는 브라우저 렌더 인수를 대신하지 않습니다.

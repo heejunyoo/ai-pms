@@ -1,3 +1,7 @@
+# 최신 STE 적용 릴리스 (2026-10-05)
+
+AI PMS 도입·Live 안내, 진행 막힘 상태와 연결 기록을 명료하게 수정했습니다. API·완료 판정·명령은 보존했습니다. Codex·Claude 관련 스킬 10개 정의를 검증하고 Kit 한·영 안내·ZIP을 갱신했습니다. PMS·Kit 기존 Vercel 배포와 공개 브라우저(1440px·390px), 87개 페이지·묶음 바이트 일치를 확인했습니다. 근거는 `specs/ai-pms-ste-writing/`입니다. 실제 앱 trust/훅 전달과 원격 실제 다중 사용자 운영은 별도이며 archify 설치는 나중에 진행합니다. 아래는 이전 작업 기록입니다.
+
 # 현재 공개 도입 릴리스 상태 (2026-10-05)
 
 GitHub 도입 안내, 가상 문서 기반 기본 샘플, 별도 recorded-example, Kit PMS 훅 범위 정리를 통합했습니다. GitHub push와 기존 PMS·Kit Vercel 배포를 완료했습니다. 공개 ZIP 도입 실행과 실제 Chrome 경로, 62개 공개 파일 바이트 일치를 확인했습니다. 새 전체 검증은 specs/ai-pms-adoption-release/의 release-proof.json과 public-bytes.json을 기준으로 확인합니다. `docs/adoption.md`가 다운로드 사용자의 진입점입니다. 실제 앱 trust/훅 전달과 원격 두 사용자 운영 인수는 별도입니다. 아래는 이전 작업 기록입니다.

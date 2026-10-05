@@ -1,0 +1,61 @@
+{
+  "at": "2026-10-05T10:54:45.619156+00:00",
+  "scope": "Selective STE wording in AI PMS, installed skills, bilingual Harness Kit and downloads",
+  "review": "Parent source/diff review; no independent-agent review claimed",
+  "checks": {
+    "skill_metadata": {
+      "updated_definitions": 10,
+      "result": "pass"
+    },
+    "harness": "pass",
+    "kit_pages": 38,
+    "portable_public_suite": "pass",
+    "command_fences_preserved": true,
+    "api_completion_routing_unchanged": true,
+    "local_browser": "local-browser.json",
+    "public_browser": "public-browser.json",
+    "production_byte_matches": 87,
+    "bytes_proof": "public-bytes.json",
+    "private_inputs_preserved": true
+  },
+  "deployments": {
+    "kit": {
+      "alias": "https://harness-kit.vercel.app",
+      "deployment": "https://harness-lwfigm5tx-luckyhyun.vercel.app",
+      "state": "READY"
+    },
+    "pms": {
+      "alias": "https://ai-pms-dashboard.vercel.app",
+      "deployment": "https://ai-pms-dashboard-8fgn07qj8-luckyhyun.vercel.app",
+      "state": "READY"
+    }
+  },
+  "sha256": {
+    "docs/adoption.md": "aba972f57f83da00fb4df070714381a38deddbe6fa0c4726878886f98fd17963",
+    "docs/human-view-and-analysis.md": "7f9f7c41fdfc1afbdf58db00a8c68aebfc49166f1eb6ded4bb289a8944bfc802",
+    "specs/ai-pms-dashboard/dashboard.html": "5b104bd5b5949a2ce63d19ed091a78f79174c50e9db16908b2e793a92b52b575",
+    "specs/ai-pms-dashboard/human-view.js": "e703edc611e3a0a2304a522c42e41a4c07fef797cb9d4939dc9a7a2af54cf548",
+    "specs/ai-pms-live/README.md": "b81d0fa61d7cf0f954757bdc906ce65b400a0dfcc126e5a5f4fddea51e880cd4",
+    "kit/build/current_content.py": "98acfa903eb1717f5bbde1aed8086558489a021e20f186e6f9f5a54dfe8512bd",
+    "kit/build/BUILD.md": "45defbda422e099af3032fbb50e9f81871ade02159e9f56c299e6b41eb781265",
+    "kit/handoff/SKILL.md": "6b264277c7ed115054c2021ff12680576e6d9958d77a18c7d5d79d3d82278ec8",
+    "kit/claude-handoff/SKILL.md": "d0b907c57528c02f7a398aedfc37ad646763f0ae5c71468924f823ab62be5dfd",
+    "kit/codex/skills/codex-improvement-loop/SKILL.md": "56b1d36e23e9288e017bccfefb2f0b1671d503b080df8bffb79f5a93ccf029ad",
+    "kit/downloads/implementation.zip": "05c5a28c79df1288492e596c03c4afe194ce0283d51513e2b0ebf73291927a11",
+    "kit/downloads/reference-ko.zip": "420c22a883880aba557721063e683bc5311e3b4b8320ec6cb9302a72bd2662b2",
+    "kit/downloads/reference-en.zip": "cd1e27fb47016c6b7249fd54a18095356c023c229f438f77f81bf2a4951927eb",
+    "apps/dashboard/public/index.html": "94ae0ebb740a748e638bef2b0e910a24d64ac654a79b6f3fbea92dffb87e1693",
+    "apps/dashboard/public/recorded-example.html": "9c31231237325d8ee08e341bebda7dd4f0f125dfc19077b1b3a38f59aa814077",
+    "apps/dashboard/public/empty.html": "e555d028ac2ed27b4349fc00c4a55c1d567a29ebc65c25d1fded1acdc492143f",
+    "apps/dashboard/vercel.json": "696dbcf1d8d2583502b0c85b2efebacf79412e532e15c943fa8a7c59f6f111c3"
+  },
+  "boundaries": {
+    "archify": "installation deferred by user",
+    "korean": "STE-inspired guidance; not an official standard",
+    "english_dictionary": "unverified without authoritative dictionary data",
+    "native_app_hook_trust_delivery": "not established by this release",
+    "remote_real_multi_user_operation": "not established by synthetic loopback checks",
+    "external_model_calls_added": false,
+    "new_global_mandatory_workflow": false
+  }
+}

@@ -41,7 +41,20 @@ python3 specs/ai-pms-live/live_sender.py --config "$PMS_RUN_DIR/Alice-laptop/sen
 
 다른 터미널에서 Bob의 `Bob-bob-work/sender.json`을 사용합니다. `http://127.0.0.1:8765/`에서 관리자 로그인 후 확인합니다. 관리자 자격은 자신의 private `manager.credential`에 있으며 서버나 명령은 원문을 출력하지 않습니다. 이 파일럿은 합성 자료이고 실제 앱 hook를 설치하지 않습니다. 샘플 JSONL은 과거 관측이며 건강파일이 없어 수집 상태는 unknown으로 시작합니다.
 
-writer 설정의 필수 키는 `{version:1,url,actor_id,environment_id,project_ids,token_file,logdir,catalog,operations,outbox,loopback_test}`입니다. `url`은 서비스 base URL, `project_ids`는 native UUID 배열, 경로들은 owner-only 로컬 파일/디렉터리이며 `catalog`·`operations`는 null을 허용합니다. 선택 키는 `role`(writer 기본/manager), `base_revisions`(kind:id → 정수), `base_hashes`(kind:id → SHA256)입니다. bootstrap은 manager가 실제 seed한 payload의 기준 revision/hash를 함께 사용합니다. 변경된 내용을 같다고 취급하거나 충돌을 덮어쓰는 옵션이 아닙니다. seed 완료 전에 writer를 실행하지 마세요. 한 outbox는 한 인증 context·한 서비스 전용이며 대상/identity를 바꿀 때 새 outbox를 사용합니다.
+writer 설정의 필수 키는 `{version:1,url,actor_id,environment_id,project_ids,token_file,logdir,catalog,operations,outbox,loopback_test}`입니다.
+
+| 설정 | 의미 |
+|---|---|
+| `url` | 서비스 base URL |
+| `project_ids` | native UUID 배열 |
+| 파일·디렉터리 경로 | owner-only 로컬 파일·디렉터리. `catalog`·`operations`는 null 허용 |
+| 선택 `role` | writer가 기본값이며 manager도 사용 가능 |
+| 선택 `base_revisions` | kind:id → 정수 |
+| 선택 `base_hashes` | kind:id → SHA256 |
+
+manager가 실제 seed한 payload의 기준 revision과 hash를 bootstrap에 함께 사용합니다. 변경된 내용을 같다고 취급하거나 충돌을 덮어쓰는 옵션이 아닙니다.
+
+writer를 시작하기 전에 seed를 완료하세요. 한 outbox는 한 인증 context와 한 서비스에만 사용합니다. 대상이나 identity를 바꾸면 새 outbox를 사용합니다.
 
 실사용에서는 합성 registry를 재사용하지 않습니다. 운영자가 writer별 허가 project UUID와 별도 manager를 등록하고 HTTPS 서비스·private token_file을 연결합니다. service는 `--data-dir`, `--registry`, 선택 `--host`, `--port`, `--tls-cert`, `--tls-key`를 받습니다. 외부 bind에는 TLS가 필수이며 인증서 hostname에 맞는 공개 host로 bind해야 합니다. 현재 reverse proxy host 재작성 및 IPv6 외부 운영은 인수하지 않았습니다. 운영 배포와 실제 참여자 동의/보관 범위는 별도로 결정합니다.
 

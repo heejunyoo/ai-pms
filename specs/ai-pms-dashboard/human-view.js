@@ -11,7 +11,7 @@ function humanPhase(p,ph){
  return {id:ph.id,title:authored?.title||ph.name,goal,state,basis};
 }
 function humanBasis(p){const d=humanDocumentary?.projects[p.id];return d?' · 문서 기준 '+d.docdate:'';}
-function humanStatus(x){return ({complete:'검증 완료',documented:'문서상 완료 · 현재 검증 미확인',ready:'시작 가능',not_started:'예정',changes_requested:'수정 요청',local:'로컬 검증까지',blocked:'확인 필요',planned:'예정',in_progress:'진행 중',failed:'검사 실패',review_pending:'검토 대기',revalidation:'재검증 필요',unknown:'확인되지 않음'})[x]||'확인되지 않음';}
+function humanStatus(x){return ({complete:'검증 완료',documented:'문서상 완료 · 현재 검증 미확인',ready:'시작 가능',not_started:'예정',changes_requested:'수정 요청',local:'로컬 검증까지',blocked:'진행 막힘',planned:'예정',in_progress:'진행 중',failed:'검사 실패',review_pending:'검토 대기',revalidation:'재검증 필요',unknown:'확인되지 않음'})[x]||'확인되지 않음';}
 function humanReferences(p,phaseId=null){
  const authored=humanAnnotations[p.id]?.references;if(authored)return authored.filter(r=>!phaseId||r.phase_ids.includes(phaseId));
  // Without an explicit phase link, project connections are not attributed to a phase.

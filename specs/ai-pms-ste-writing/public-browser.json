@@ -1,0 +1,205 @@
+{
+  "mode": "public",
+  "errors": [],
+  "kit": [
+    {
+      "route": "skills",
+      "width": 1440,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "handoff",
+      "width": 1440,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "expert-panel",
+      "width": 1440,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "eli5",
+      "width": 1440,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "ai-pms",
+      "width": 1440,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "guide",
+      "width": 1440,
+      "controls": true,
+      "overflow": false
+    },
+    {
+      "route": "ste",
+      "width": 1440,
+      "controls": true,
+      "overflow": false
+    },
+    {
+      "route": "skills-en",
+      "width": 1440,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "handoff-en",
+      "width": 1440,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "expert-panel-en",
+      "width": 1440,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "eli5-en",
+      "width": 1440,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "ai-pms-en",
+      "width": 1440,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "guide-en",
+      "width": 1440,
+      "controls": true,
+      "overflow": false
+    },
+    {
+      "route": "ste-en",
+      "width": 1440,
+      "controls": true,
+      "overflow": false
+    },
+    {
+      "route": "skills",
+      "width": 390,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "handoff",
+      "width": 390,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "expert-panel",
+      "width": 390,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "eli5",
+      "width": 390,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "ai-pms",
+      "width": 390,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "guide",
+      "width": 390,
+      "controls": true,
+      "overflow": false
+    },
+    {
+      "route": "ste",
+      "width": 390,
+      "controls": true,
+      "overflow": false
+    },
+    {
+      "route": "skills-en",
+      "width": 390,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "handoff-en",
+      "width": 390,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "expert-panel-en",
+      "width": 390,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "eli5-en",
+      "width": 390,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "ai-pms-en",
+      "width": 390,
+      "applicationSection": true,
+      "overflow": false
+    },
+    {
+      "route": "guide-en",
+      "width": 390,
+      "controls": true,
+      "overflow": false
+    },
+    {
+      "route": "ste-en",
+      "width": 390,
+      "controls": true,
+      "overflow": false
+    }
+  ],
+  "pms": [
+    {
+      "sample": "default",
+      "width": 1440,
+      "routeReload": true,
+      "statusDistinction": true,
+      "overflow": false
+    },
+    {
+      "sample": "/recorded-example.html",
+      "width": 1440,
+      "routeReload": true,
+      "statusDistinction": true,
+      "overflow": false
+    },
+    {
+      "sample": "default",
+      "width": 390,
+      "routeReload": true,
+      "statusDistinction": true,
+      "overflow": false
+    },
+    {
+      "sample": "/recorded-example.html",
+      "width": 390,
+      "routeReload": true,
+      "statusDistinction": true,
+      "overflow": false
+    }
+  ],
+  "syntheticLive": null
+}
