@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-05",
+  "deployed_code_commit": "3a096aed6a33113d761c5778fa34c64021e01727",
+  "github": "https://github.com/heejunyoo/ai-pms",
+  "deployment": {
+    "id": "dpl_BGxDYMih59cHVm4MK8joWyYVfz21",
+    "url": "https://ai-pms-dashboard-jinbmc5x0-luckyhyun.vercel.app",
+    "alias": "https://ai-pms-dashboard.vercel.app",
+    "target": "production",
+    "status": "READY"
+  },
+  "verification": {
+    "fresh_export_full_regression": {
+      "command": "python3 scripts/verify_public.py",
+      "exit_code": 0
+    },
+    "actual_github_zip": {
+      "revision": "3a096aed6a33113d761c5778fa34c64021e01727",
+      "download": "https://api.github.com/repos/heejunyoo/ai-pms/zipball/3a096ae",
+      "checks": [
+        {
+          "command": "python3 scripts/verify_adoption.py",
+          "exit_code": 0
+        },
+        {
+          "command": "python3 specs/ai-pms-adoption-release/check_sample.py",
+          "exit_code": 0
+        }
+      ]
+    },
+    "production_bytes": {
+      "command": "python3 scripts/capture_release.py --out specs/ai-pms-sample-parity/public-bytes.json",
+      "exit_code": 0,
+      "pages_and_bundles": 87,
+      "env_route_status": 404,
+      "details": "public-bytes.json"
+    },
+    "actual_production_browser": {
+      "engine": "Google Chrome",
+      "viewport": [
+        1440,
+        1000
+      ],
+      "project": "sample-intake",
+      "phases": 10,
+      "tasks": 23,
+      "heading_task_reference_y_spreads": [
+        0,
+        0,
+        0
+      ],
+      "notice_collapsed": true,
+      "paths": [
+        "horizontal navigation to last phase; goal remains above diagram",
+        "all four human tabs; v1 document selection",
+        "support decision task -> evidence -> source document -> reload -> back to task"
+      ],
+      "console_or_page_errors": []
+    }
+  },
+  "boundaries": {
+    "fictional_content_only": true,
+    "private_input_hashes_unchanged": true,
+    "current_run_or_acceptance_invented": false,
+    "kit_app_artifacts_changed": false,
+    "kit_deployment": "Prior authorized Kit release unchanged; production Kit pages/bundles still match in 87-response capture.",
+    "remote_users_or_actual_hook_trust": "Not claimed",
+    "desktop_only": true
+  }
+}

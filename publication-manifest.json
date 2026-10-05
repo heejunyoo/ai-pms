@@ -375,6 +375,8 @@
     "specs/ai-pms-sample-parity/intent-review.json",
     "specs/ai-pms-sample-parity/plan.json",
     "specs/ai-pms-sample-parity/private-preservation.json",
+    "specs/ai-pms-sample-parity/public-bytes.json",
+    "specs/ai-pms-sample-parity/release-proof.json",
     "specs/ai-pms-sample-parity/sample-result.json",
     "specs/ai-pms-sample-parity/source.md",
     "specs/ai-pms-sample-parity/spec.md",
