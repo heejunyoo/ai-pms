@@ -1,6 +1,6 @@
 # 현재 공개 도입 릴리스 상태 (2026-10-05)
 
-GitHub 도입 안내, 가상 문서 기반 기본 샘플, 별도 recorded-example, Kit PMS 훅 범위 정리를 통합했습니다. 새 전체 검증은 specs/ai-pms-adoption-release/의 release-proof.json과 public-bytes.json을 기준으로 확인합니다. `docs/adoption.md`가 다운로드 사용자의 진입점입니다. 실제 앱 trust/훅 전달과 원격 두 사용자 운영 인수는 별도입니다. 아래는 이전 작업 기록입니다.
+GitHub 도입 안내, 가상 문서 기반 기본 샘플, 별도 recorded-example, Kit PMS 훅 범위 정리를 통합했습니다. GitHub push와 기존 PMS·Kit Vercel 배포를 완료했습니다. 공개 ZIP 도입 실행과 실제 Chrome 경로, 62개 공개 파일 바이트 일치를 확인했습니다. 새 전체 검증은 specs/ai-pms-adoption-release/의 release-proof.json과 public-bytes.json을 기준으로 확인합니다. `docs/adoption.md`가 다운로드 사용자의 진입점입니다. 실제 앱 trust/훅 전달과 원격 두 사용자 운영 인수는 별도입니다. 아래는 이전 작업 기록입니다.
 
 ## 최신 로컬 — 2026-10-05 도표 정렬·디자인 실제 화면 검증
 

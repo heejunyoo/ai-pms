@@ -1,0 +1,51 @@
+{
+  "task_id": "kit",
+  "status": "complete",
+  "files_changed": [
+    {
+      "path": "$HOME/.claude/harness/build/current_content.py",
+      "action": "modified",
+      "summary": "Limit PMS-related Kit export/page to hooks and link GitHub adoption while preserving whole Kit"
+    },
+    {
+      "path": "$HOME/.claude/harness/build/build_current.py",
+      "action": "modified",
+      "summary": "Limit PMS-related Kit export/page to hooks and link GitHub adoption while preserving whole Kit"
+    },
+    {
+      "path": "$HOME/.claude/harness/build/check_current.py",
+      "action": "modified",
+      "summary": "Limit PMS-related Kit export/page to hooks and link GitHub adoption while preserving whole Kit"
+    },
+    {
+      "path": "$HOME/.claude/harness/build/BUILD.md",
+      "action": "modified",
+      "summary": "Limit PMS-related Kit export/page to hooks and link GitHub adoption while preserving whole Kit"
+    },
+    {
+      "path": "$HOME/.claude/harness/activity/README.md",
+      "action": "modified",
+      "summary": "Limit PMS-related Kit export/page to hooks and link GitHub adoption while preserving whole Kit"
+    }
+  ],
+  "acceptance_run": {
+    "command": "python3 $HOME/.claude/harness/build/build_current.py && python3 $HOME/.claude/harness/build/check_site.py",
+    "exit_code": 0,
+    "output_tail": "Built 38 pages. ALL PASS language parity, legacy routes, privacy, bundles and headers."
+  },
+  "done_when_check": [
+    {
+      "condition": "Limit PMS-related Kit export/page to hooks and link GitHub adoption while preserving whole Kit",
+      "met": true,
+      "evidence": "38 pages passed; actual published bilingual pages and 78-entry ZIP verified no pms runtime"
+    },
+    {
+      "condition": "Privacy, existing semantics and retained test coverage preserved",
+      "met": true,
+      "evidence": "Retained runtime --help/demo checks locally and repeated in actual downloaded GitHub adoption gate; no tests removed/skipped"
+    }
+  ],
+  "unmet_constraints": [],
+  "confidence": 0.97,
+  "notes_for_orchestrator": "Root implemented packet after team thread-limit prevented third task delegation. Production and clean-download evidence in release-proof.json."
+}

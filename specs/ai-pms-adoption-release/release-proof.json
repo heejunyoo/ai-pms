@@ -1,0 +1,118 @@
+{
+  "status": "published_verified",
+  "release_code_revision": "badff60a97754bbb380d0f0566927bde7222a636",
+  "github": "https://github.com/heejunyoo/ai-pms",
+  "deployments": {
+    "dashboard": {
+      "id": "dpl_wQYS1pYApgFghafxNEaskt8FiEqH",
+      "state": "READY",
+      "alias": "https://ai-pms-dashboard.vercel.app"
+    },
+    "kit": {
+      "id": "dpl_5U3cLv843bHLKsLTTJ5gU9pnLbYw",
+      "state": "READY",
+      "alias": "https://harness-kit.vercel.app"
+    }
+  },
+  "checks": {
+    "public_download_adoption": {
+      "revision": "badff60a97754bbb380d0f0566927bde7222a636",
+      "command": "python3 scripts/verify_adoption.py",
+      "exit_code": 0,
+      "coverage": "7 writers / 8 credential0600; synthetic Codex/Claude stdin health; document render; retained live authentication, durable ACK, retries and dedup"
+    },
+    "public_download_full_regressions": {
+      "revision": "1571b16fd5e47d3029d903c73b6284b5b78e0aca",
+      "command": "python3 scripts/verify_public.py",
+      "exit_code": 0,
+      "note": "Later changes limited to inert offline icon markup; final-code sample and adoption gates repeated."
+    },
+    "final_sample_gate": {
+      "command": "python3 specs/ai-pms-adoption-release/check_sample.py",
+      "exit_code": 0
+    },
+    "kit_gate": {
+      "command": "python3 ~/.claude/harness/build/check_site.py",
+      "exit_code": 0,
+      "pages": 38
+    },
+    "production_bytes": {
+      "command": "python3 scripts/capture_release.py",
+      "exit_code": 0,
+      "artifacts": 62,
+      "receipt": "public-bytes.json"
+    },
+    "kit_download": {
+      "url": "https://harness-kit.vercel.app/implementation.zip",
+      "entries": 78,
+      "central_pms_runtime": false,
+      "hook_files": [
+        "activity/logger.py",
+        "activity/connectivity.py"
+      ],
+      "extracted_logger_tests": 11
+    },
+    "desktop_map": {
+      "viewport": [
+        1440,
+        1000
+      ],
+      "phase_heading_y": 222.234375,
+      "task_row_y": 397.046875,
+      "reference_row_y": 661.046875,
+      "row_alignment_max_delta_px": 0,
+      "checked": "three phase headings, task rows and references aligned; screenshot visually inspected"
+    },
+    "browser": {
+      "states": [
+        {
+          "url": "https://ai-pms-dashboard.vercel.app/",
+          "title": "AI PMS · 프로젝트 포트폴리오",
+          "errors": []
+        },
+        {
+          "url": "https://ai-pms-dashboard.vercel.app/source-sample-support-decision.html",
+          "title": "가상 문서 발췌",
+          "errors": []
+        },
+        {
+          "url": "https://ai-pms-dashboard.vercel.app/recorded-example.html",
+          "title": "AI PMS · 프로젝트 포트폴리오",
+          "errors": []
+        },
+        {
+          "url": "https://harness-kit.vercel.app/ai-pms.html",
+          "title": "AI PMS 훅 추가 · Harness Kit",
+          "errors": []
+        },
+        {
+          "url": "https://harness-kit.vercel.app/ai-pms-en.html",
+          "title": "Add AI PMS hooks · Harness Kit",
+          "errors": []
+        }
+      ],
+      "paths": "project > component task > dated fictional source; reload/back; Bob attention; separate recorded example; Kit Korean/English",
+      "kit_mobile": {
+        "width": 390,
+        "body_width": 390,
+        "language": "English",
+        "guide_controls": "all five actual flow panels selected and visible individually"
+      },
+      "pms_mobile": "excluded"
+    }
+  },
+  "scope": {
+    "kit_pms": "local hooks/capture; optional pre-existing offline references preserved",
+    "github_pms": "hooks plus dashboard and opt-in self-hosted central pilot",
+    "default_sample": "fictional document-first adoption, current execution unconfirmed",
+    "recorded_example": "separately labeled synthetic operations"
+  },
+  "unverified": [
+    "actual native app hook trust/delivery in a new user environment",
+    "remote actual two-user end-to-end operation",
+    "AI semantic/provider analysis success"
+  ],
+  "private_telemetry_published": false,
+  "tests_deleted_or_skipped": false,
+  "post_review_changes": "Inert offline favicon markup only; final browser confirms no console/page errors on tested routes."
+}

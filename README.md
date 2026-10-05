@@ -22,9 +22,9 @@ Harness Kit의 PMS 범위는 훅 수집 안내와 `activity/` 파일입니다. G
 
 **문서 업데이트: 2026-10-05 · 구성요소와 연결 도표**
 
-전체 계획의 구성요소 도표 정렬·디자인을 보완했습니다. [최신 디자인 검증](specs/ai-pms-component-map/design-proof.json): 실제 Chrome1440×1000의 Paper/Knowledge 정렬·목표 표시·키보드 이동과 회귀 검사 통과. 공개 배포에는 아직 반영하지 않았습니다.
+전체 계획의 구성요소 도표 정렬·디자인을 보완했습니다. [최신 디자인 검증](specs/ai-pms-component-map/design-proof.json): 실제 Chrome1440×1000의 Paper/Knowledge 정렬·목표 표시·키보드 이동과 회귀 검사 통과. 이번 공개 릴리스에 반영했습니다. [다운로드·배포 검증](specs/ai-pms-adoption-release/release-proof.json).
 
-2026-10-04 로컬 리팩터링은 [프로젝트 화면 안내](docs/readable-project.md)와 [검증 기록](specs/ai-pms-readable-project/integration-proof.json)에 있습니다. 확인 결과는 확인한 내용·결과·다음 행동을 먼저 표시하고 원본 기록을 펼쳐 봅니다. 전체 회귀 검사와 Chrome 데스크톱 확인을 통과했으며 공개 배포는 아직 반영하지 않았습니다.
+2026-10-04 로컬 리팩터링은 [프로젝트 화면 안내](docs/readable-project.md)와 [검증 기록](specs/ai-pms-readable-project/integration-proof.json)에 있습니다. 확인 결과는 확인한 내용·결과·다음 행동을 먼저 표시하고 원본 기록을 펼쳐 봅니다. 전체 회귀 검사와 Chrome 데스크톱 확인을 통과했으며 이번 공개 릴리스에 반영했습니다.
 
 [Harness Kit와 AI PMS ELI20 전체 설명](https://ai-pms-dashboard.vercel.app/overview.html) — Kit 범위, PMS 목적·구성, 공동 작업 흐름, 구현/검증과 다음 방향을 한 주제씩 읽을 수 있습니다. [정본 및 검증](reports/harness-pms-eli20/README.md).
 
