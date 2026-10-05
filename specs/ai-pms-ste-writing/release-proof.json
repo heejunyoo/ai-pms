@@ -16,7 +16,8 @@
     "public_browser": "public-browser.json",
     "production_byte_matches": 87,
     "bytes_proof": "public-bytes.json",
-    "private_inputs_preserved": true
+    "private_inputs_preserved": true,
+    "github_download": "github-download.json"
   },
   "deployments": {
     "kit": {

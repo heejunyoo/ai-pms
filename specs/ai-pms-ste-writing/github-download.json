@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-05T10:58:57.880721+00:00",
+  "tested_source_commit": "8cfb1d37b825bdedd4420c82308ac687e1f18dcd",
+  "github_zip_sha256": "f736f2037790308e673cbd4aa7a99b6e08b307321674f11b0b0386ad2a5ef11a",
+  "reviewed_file_hash_matches": 17,
+  "command": "python3 scripts/verify_adoption.py",
+  "exit_code": 0,
+  "result": [
+    "PASS: clean-download links; runtime --help; 7 writers / 8 credential0600; Codex/Claude synthetic stdin + health; document-only HTML/snapshot; retained logger/live/auth/durable-ACK/dedup tests",
+    "Boundary: disposable synthetic loopback only. Actual app hooks/trust, remote users, browser rendering and production release require separate evidence."
+  ],
+  "scope": "Downloaded public repository, disposable synthetic loopback; no native app trust or remote-user proof"
+}

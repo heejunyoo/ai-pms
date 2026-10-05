@@ -381,6 +381,7 @@
     "specs/ai-pms-sample-parity/source.md",
     "specs/ai-pms-sample-parity/spec.md",
     "specs/ai-pms-ste-writing/README.md",
+    "specs/ai-pms-ste-writing/github-download.json",
     "specs/ai-pms-ste-writing/local-browser.json",
     "specs/ai-pms-ste-writing/public-browser.json",
     "specs/ai-pms-ste-writing/public-bytes.json",
